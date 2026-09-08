@@ -6,10 +6,31 @@
   --color-accent: #7cff6b;
   --color-text: #f2f2f5;
   --color-text-muted: #9a9aa5;
+  --color-border: #292932;
+  --color-danger: #ff6b6b;
+  --radius-card: 18px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
 }
 
 body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text);
+  min-width: 320px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
