@@ -21,6 +21,13 @@ describe('workouts data layer', () => {
     expect((await getActiveWorkout(database))?.id).toBe(workout.id)
   })
 
+  it('reuses the active workout instead of creating another', async () => {
+    const first = await startWorkout(database)
+    const second = await startWorkout(database)
+    expect(second.id).toBe(first.id)
+    expect(await database.workouts.count()).toBe(1)
+  })
+
   it('returns undefined without an active workout', async () => {
     expect(await getActiveWorkout(database)).toBeUndefined()
   })

@@ -18,6 +18,12 @@ export async function exportData(database: AppDatabase): Promise<BackupData> {
 }
 
 export async function importData(database: AppDatabase, data: BackupData): Promise<void> {
+  assertBackupIntegrity(data)
+  const knownExerciseIds = new Set((await database.exercises.toCollection().primaryKeys()) as number[])
+  if (data.sets.some(({ exerciseId }) => !knownExerciseIds.has(exerciseId))
+    || data.exerciseProgress.some(({ exerciseId }) => !knownExerciseIds.has(exerciseId))) {
+    throw new Error('INVALID_BACKUP_FILE')
+  }
   await database.transaction('rw', database.workouts, database.sets, database.exerciseProgress, async () => {
     await Promise.all([database.workouts.clear(), database.sets.clear(), database.exerciseProgress.clear()])
     await Promise.all([
@@ -50,9 +56,9 @@ function isWorkoutSet(value: unknown): value is WorkoutSet {
     && typeof value.id === 'string'
     && typeof value.workoutId === 'string'
     && typeof value.exerciseId === 'number'
-    && typeof value.weight === 'number'
-    && typeof value.reps === 'number'
-    && typeof value.setOrder === 'number'
+    && typeof value.weight === 'number' && Number.isFinite(value.weight) && value.weight >= 0
+    && typeof value.reps === 'number' && Number.isFinite(value.reps) && value.reps > 0
+    && typeof value.setOrder === 'number' && Number.isInteger(value.setOrder) && value.setOrder >= 0
     && typeof value.createdAt === 'string'
     && typeof value.updatedAt === 'string'
 }
@@ -60,9 +66,24 @@ function isWorkoutSet(value: unknown): value is WorkoutSet {
 function isExerciseProgress(value: unknown): value is ExerciseProgress {
   return isRecord(value)
     && typeof value.exerciseId === 'number'
-    && typeof value.totalSets === 'number'
-    && typeof value.totalXp === 'number'
-    && typeof value.bestWeightEver === 'number'
+    && typeof value.totalSets === 'number' && Number.isInteger(value.totalSets) && value.totalSets >= 0
+    && typeof value.totalXp === 'number' && Number.isFinite(value.totalXp) && value.totalXp >= 0
+    && typeof value.bestWeightEver === 'number' && Number.isFinite(value.bestWeightEver) && value.bestWeightEver >= 0
+}
+
+function hasDuplicates<T>(values: T[]): boolean {
+  return new Set(values).size !== values.length
+}
+
+function assertBackupIntegrity(data: BackupData): void {
+  const workoutIds = data.workouts.map(({ id }) => id)
+  const setIds = data.sets.map(({ id }) => id)
+  const progressIds = data.exerciseProgress.map(({ exerciseId }) => exerciseId)
+  const workoutIdSet = new Set(workoutIds)
+  if (hasDuplicates(workoutIds) || hasDuplicates(setIds) || hasDuplicates(progressIds)
+    || data.sets.some(({ workoutId }) => !workoutIdSet.has(workoutId))) {
+    throw new Error('INVALID_BACKUP_FILE')
+  }
 }
 
 export function parseBackup(json: string): BackupData {
@@ -79,7 +100,9 @@ export function parseBackup(json: string): BackupData {
       || !parsed.exerciseProgress.every(isExerciseProgress)) {
       throw new Error('INVALID_BACKUP_FILE')
     }
-    return parsed as unknown as BackupData
+    const backup = parsed as unknown as BackupData
+    assertBackupIntegrity(backup)
+    return backup
   } catch {
     throw new Error('INVALID_BACKUP_FILE')
   }

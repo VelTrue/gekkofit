@@ -46,4 +46,12 @@ describe('backup module', () => {
     expect(() => parseBackup(JSON.stringify({ foo: 'bar' }))).toThrow('INVALID_BACKUP_FILE')
     expect(() => parseBackup(JSON.stringify({ version: 1, workouts: [{}], sets: [], exerciseProgress: [] }))).toThrow('INVALID_BACKUP_FILE')
   })
+
+  it('rejects a backup with orphaned set references before replacing data', async () => {
+    const workout = await startWorkout(database)
+    const backup = await exportData(database)
+    backup.sets.push({ id: crypto.randomUUID(), workoutId: 'missing', exerciseId: 1, weight: 60, reps: 8, setOrder: 0, createdAt: workout.createdAt, updatedAt: workout.updatedAt })
+    await expect(importData(database, backup)).rejects.toThrow('INVALID_BACKUP_FILE')
+    expect(await database.workouts.get(workout.id)).toBeDefined()
+  })
 })

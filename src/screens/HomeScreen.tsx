@@ -17,6 +17,7 @@ export function HomeScreen() {
   const [pickerOpen, setPickerOpen] = useState(false)
   const [draft, setDraft] = useState<Record<number, { weight: number; reps: number }>>({})
   const [restSecondsLeft, setRestSecondsLeft] = useState<number | null>(null)
+  const [starting, setStarting] = useState(false)
 
   const refreshEntries = useCallback(async (workoutId: string) => {
     setEntries(await getWorkoutExercisesWithSets(db, workoutId))
@@ -38,9 +39,15 @@ export function HomeScreen() {
   }, [restSecondsLeft])
 
   async function handleStart() {
-    const nextWorkout = await startWorkout(db)
-    setWorkout(nextWorkout)
-    setEntries([])
+    if (starting) return
+    setStarting(true)
+    try {
+      const nextWorkout = await startWorkout(db)
+      setWorkout(nextWorkout)
+      setEntries([])
+    } finally {
+      setStarting(false)
+    }
   }
 
   async function handleFinish() {
@@ -71,7 +78,7 @@ export function HomeScreen() {
     <section className="mx-auto flex min-h-[70vh] max-w-xl flex-col justify-center">
       <p className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-[var(--color-accent)]">Workout log / 01</p>
       <h1 className="max-w-md text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl">{lang === 'ru' ? 'Сегодня — хороший день стать сильнее.' : 'A good day to get stronger.'}</h1>
-      <button type="button" onClick={handleStart} className="mt-9 min-h-14 rounded-2xl bg-[var(--color-accent)] px-7 text-base font-black text-[#071006] shadow-[0_0_40px_rgba(124,255,107,.15)] transition-transform active:scale-[.98]">{t('startWorkout')}</button>
+      <button type="button" disabled={starting} onClick={handleStart} className="mt-9 min-h-14 rounded-2xl bg-[var(--color-accent)] px-7 text-base font-black text-[#071006] shadow-[0_0_40px_rgba(124,255,107,.15)] transition-transform active:scale-[.98] disabled:cursor-wait disabled:opacity-60">{t('startWorkout')}</button>
       <p className="mt-3 text-center text-sm text-[var(--color-text-muted)]">{t('emptyHomeHint')}</p>
       {recentWorkouts.length > 0 && <div className="mt-10 border-t border-[var(--color-border)] pt-5"><p className="mb-3 text-xs uppercase tracking-widest text-[var(--color-text-muted)]">{t('recent')}</p><ul className="space-y-2">{recentWorkouts.map((item) => <li key={item.id} className="flex justify-between rounded-xl bg-[var(--color-surface)] px-4 py-3 text-sm"><span>{new Date(item.startedAt).toLocaleDateString(lang)}</span><span className="text-[var(--color-text-muted)]">✓</span></li>)}</ul></div>}
     </section>

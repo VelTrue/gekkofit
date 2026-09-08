@@ -50,6 +50,13 @@ describe('sets data layer', () => {
     expect(await getLastSetForExercise(database, 999)).toBeUndefined()
   })
 
+  it('rejects invalid numeric values before writing data', async () => {
+    const workout = await startWorkout(database)
+    await expect(addSet(database, workout.id, benchPress.id, Number.NaN, 8)).rejects.toThrow('INVALID_SET_VALUES')
+    await expect(addSet(database, workout.id, benchPress.id, 60, 0)).rejects.toThrow('INVALID_SET_VALUES')
+    expect(await database.sets.count()).toBe(0)
+  })
+
   it('groups workout sets by exercise', async () => {
     const workout = await startWorkout(database)
     await addSet(database, workout.id, benchPress.id, 60, 8)

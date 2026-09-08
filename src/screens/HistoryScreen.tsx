@@ -4,7 +4,10 @@ import { db, type Exercise, type Workout, type WorkoutSet } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
 
 type WorkoutDetail = { workout: Workout; entries: Array<{ exercise: Exercise; sets: WorkoutSet[] }> }
-const dateKey = (iso: string) => iso.slice(0, 10)
+const dateKey = (iso: string) => {
+  const date = new Date(iso)
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
 
 function Calendar({ history, onSelect }: { history: Workout[]; onSelect: (ids: string[]) => void }) {
   const [offset, setOffset] = useState(0)

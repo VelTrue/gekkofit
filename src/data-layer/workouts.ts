@@ -3,16 +3,14 @@ import { getWorkoutExercisesWithSets } from './sets'
 import { nextTimestamp } from './timestamps'
 
 export async function startWorkout(database: AppDatabase): Promise<Workout> {
-  const now = nextTimestamp()
-  const workout: Workout = {
-    id: crypto.randomUUID(),
-    startedAt: now,
-    finishedAt: null,
-    createdAt: now,
-    updatedAt: now,
-  }
-  await database.workouts.add(workout)
-  return workout
+  return database.transaction('rw', database.workouts, async () => {
+    const active = (await database.workouts.toArray()).find(({ finishedAt }) => finishedAt === null)
+    if (active) return active
+    const now = nextTimestamp()
+    const workout: Workout = { id: crypto.randomUUID(), startedAt: now, finishedAt: null, createdAt: now, updatedAt: now }
+    await database.workouts.add(workout)
+    return workout
+  })
 }
 
 export async function finishWorkout(database: AppDatabase, workoutId: string): Promise<void> {
