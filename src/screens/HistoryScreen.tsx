@@ -1,1 +1,27 @@
-export function HistoryScreen() { return <div>History screen</div> }
+import { useEffect, useMemo, useState } from 'react'
+import { getWorkoutDetail, getWorkoutHistory } from '../data-layer/workouts'
+import { db, type Exercise, type Workout, type WorkoutSet } from '../db/schema'
+import { useLang } from '../i18n/LangContext'
+
+type WorkoutDetail = { workout: Workout; entries: Array<{ exercise: Exercise; sets: WorkoutSet[] }> }
+const dateKey = (iso: string) => iso.slice(0, 10)
+
+function Calendar({ history, onSelect }: { history: Workout[]; onSelect: (ids: string[]) => void }) {
+  const [offset, setOffset] = useState(0)
+  const byDate = useMemo(() => { const map = new Map<string, string[]>(); history.forEach((workout) => map.set(dateKey(workout.startedAt), [...(map.get(dateKey(workout.startedAt)) ?? []), workout.id])); return map }, [history])
+  const base = new Date(); base.setDate(1); base.setMonth(base.getMonth() + offset)
+  const year = base.getFullYear(), month = base.getMonth(), days = new Date(year, month + 1, 0).getDate(), first = (new Date(year, month, 1).getDay() + 6) % 7
+  const cells: Array<number | null> = [...Array(first).fill(null), ...Array.from({ length: days }, (_, index) => index + 1)]
+  return <div className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4"><div className="mb-5 flex items-center justify-between"><button type="button" aria-label="Previous month" onClick={() => setOffset((value) => value - 1)} className="h-11 w-11 rounded-xl bg-white/5">←</button><strong className="capitalize">{base.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</strong><button type="button" aria-label="Next month" onClick={() => setOffset((value) => value + 1)} className="h-11 w-11 rounded-xl bg-white/5">→</button></div><div className="mb-2 grid grid-cols-7 text-center text-[10px] uppercase text-[var(--color-text-muted)]">{['M','T','W','T','F','S','S'].map((day,index) => <span key={`${day}-${index}`}>{day}</span>)}</div><div className="grid grid-cols-7 gap-1">{cells.map((day, index) => { if (day === null) return <span key={`blank-${index}`}/>; const key = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`, ids = byDate.get(key) ?? []; return <button type="button" key={key} disabled={!ids.length} onClick={() => onSelect(ids)} className={`aspect-square min-h-10 rounded-xl text-sm font-bold ${ids.length ? 'bg-[var(--color-accent)] text-[#071006]' : 'text-[var(--color-text-muted)]'}`}>{day}</button> })}</div></div>
+}
+
+export function HistoryScreen() {
+  const { lang, t } = useLang()
+  const [mode, setMode] = useState<'list' | 'calendar'>('list')
+  const [history, setHistory] = useState<Workout[]>([])
+  const [details, setDetails] = useState<WorkoutDetail[] | null>(null)
+  useEffect(() => { void getWorkoutHistory(db).then(setHistory) }, [])
+  async function open(ids: string[]) { if (ids.length) setDetails(await Promise.all(ids.map((id) => getWorkoutDetail(db, id)))) }
+  if (details) return <section><button type="button" onClick={() => setDetails(null)} className="mb-5 min-h-11 text-[var(--color-text-muted)]">← {new Date(details[0].workout.startedAt).toLocaleDateString(lang)}</button><div className="space-y-4">{details.map(({ workout, entries }) => <article key={workout.id} className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">{entries.map(({ exercise, sets }) => <div key={exercise.id} className="mb-5 last:mb-0"><h2 className="mb-2 font-black">{lang === 'ru' ? exercise.name_ru : exercise.name_en}</h2>{sets.map((set) => <div key={set.id} className="border-t border-white/5 py-2 text-sm tabular-nums">{set.weight} kg × {set.reps}</div>)}</div>)}</article>)}</div></section>
+  return <section><header className="mb-6 flex items-end justify-between"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">Archive</p><h1 className="mt-1 text-4xl font-black">{t('tabHistory')}</h1></div><div className="flex rounded-xl bg-[var(--color-surface)] p-1"><button type="button" onClick={() => setMode('list')} className={`min-h-10 rounded-lg px-3 text-sm ${mode === 'list' ? 'bg-white/10 text-white' : 'text-[var(--color-text-muted)]'}`}>{t('historyList')}</button><button type="button" onClick={() => setMode('calendar')} className={`min-h-10 rounded-lg px-3 text-sm ${mode === 'calendar' ? 'bg-white/10 text-white' : 'text-[var(--color-text-muted)]'}`}>{t('historyCalendar')}</button></div></header>{history.length === 0 ? <div className="rounded-[var(--radius-card)] border border-dashed border-[var(--color-border)] p-8 text-center text-[var(--color-text-muted)]">{lang === 'ru' ? 'Завершённые тренировки появятся здесь.' : 'Completed workouts will appear here.'}</div> : mode === 'calendar' ? <Calendar history={history} onSelect={open}/> : <div className="space-y-2">{history.map((workout, index) => <button key={workout.id} type="button" onClick={() => open([workout.id])} className="grid min-h-16 w-full grid-cols-[44px_1fr_auto] items-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 text-left hover:border-white/20"><span className="text-xs font-black text-[var(--color-accent)]">{String(history.length - index).padStart(2,'0')}</span><span><strong className="block">{new Date(workout.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'long' })}</strong><small className="text-[var(--color-text-muted)]">{new Date(workout.startedAt).toLocaleDateString(lang, { weekday: 'long' })}</small></span><span className="text-[var(--color-text-muted)]">→</span></button>)}</div>}</section>
+}
