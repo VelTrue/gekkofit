@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a working local-only PWA workout tracker MVP — log sets/reps/weight per exercise, see progress via a two-scale mastery/leveling system, browse history (list + calendar), export/import data for backup, RU/EN interface.
+**Goal:** Build a working local-only PWA workout tracker MVP - log sets/reps/weight per exercise, see progress via a two-scale mastery/leveling system, browse history (list + calendar), export/import data for backup, RU/EN interface.
 
-**Architecture:** React + Vite SPA. All data lives in IndexedDB via Dexie — no backend, no network calls for data. A thin data-layer module is the only interface between UI components and Dexie. Pure functions compute mastery XP/levels from stored counters. Export/Import serializes the three data tables to/from a JSON file. PWA via vite-plugin-pwa for offline app-shell caching and install support.
+**Architecture:** React + Vite SPA. All data lives in IndexedDB via Dexie - no backend, no network calls for data. A thin data-layer module is the only interface between UI components and Dexie. Pure functions compute mastery XP/levels from stored counters. Export/Import serializes the three data tables to/from a JSON file. PWA via vite-plugin-pwa for offline app-shell caching and install support.
 
 **Tech Stack:** React 18, TypeScript, Vite, Tailwind CSS v4, Dexie.js (IndexedDB), Motion (animations), vite-plugin-pwa, Vitest + fake-indexeddb (tests).
 
@@ -12,15 +12,15 @@
 
 ## Global Constraints
 
-- No backend, no network calls for app data — everything reads/writes through the data-layer to Dexie only (spec §3).
+- No backend, no network calls for app data - everything reads/writes through the data-layer to Dexie only (spec §3).
 - User-created `workouts` and `sets` use locally generated UUID primary keys plus `createdAt`/`updatedAt`; do not add accounts, `userId`, sync queues, tombstones, or cloud dependencies in the MVP (spec §4).
-- UI components never touch Dexie directly — always through `src/data-layer/*` functions (spec §3).
+- UI components never touch Dexie directly - always through `src/data-layer/*` functions (spec §3).
 - Weight unit is kilograms only, no unit toggle (spec §2).
-- No user-added custom exercises, no workout templates, no separate body-weight tracking, no PR badges screen, no set editing/deletion UI — none of these are in the approved MVP scope (spec §2). Do not add them.
-- Mastery level is never stored — always computed from `totalSets`/`totalXp` via pure functions (spec §4, §5).
+- No user-added custom exercises, no workout templates, no separate body-weight tracking, no PR badges screen, no set editing/deletion UI - none of these are in the approved MVP scope (spec §2). Do not add them.
+- Mastery level is never stored - always computed from `totalSets`/`totalXp` via pure functions (spec §4, §5).
 - XP formula constants: `XP_BASE = 10`, qualifying reps for full reps-factor = 5, level-cost growth = ×1.25 per level (spec §5).
 - Dark theme by default, single accent color, no multicolor palette (spec §10).
-- UI-facing strings must go through the i18n dictionary (RU/EN) — no hardcoded interface text in components (spec §7).
+- UI-facing strings must go through the i18n dictionary (RU/EN) - no hardcoded interface text in components (spec §7).
 
 ---
 
@@ -29,39 +29,39 @@
 ```
 package.json, vite.config.ts, tsconfig.json, index.html
 src/
-  main.tsx                     — app entry, mounts <App/>
-  App.tsx                      — top-level layout, tab navigation, screen routing
-  theme.css                    — Tailwind import + dark theme tokens (accent color, etc.)
+  main.tsx                     - app entry, mounts <App/>
+  App.tsx                      - top-level layout, tab navigation, screen routing
+  theme.css                    - Tailwind import + dark theme tokens (accent color, etc.)
   db/
-    schema.ts                  — Dexie DB class + TypeScript row types
-    seedExercises.ts           — loads data/exercises.json into `exercises` table on first run
+    schema.ts                  - Dexie DB class + TypeScript row types
+    seedExercises.ts           - loads data/exercises.json into `exercises` table on first run
   data-layer/
-    mastery.ts                 — pure XP/level math (no Dexie dependency)
+    mastery.ts                 - pure XP/level math (no Dexie dependency)
     mastery.test.ts
-    workouts.ts                — startWorkout, finishWorkout, getActiveWorkout, getWorkoutHistory, getWorkoutDetail
+    workouts.ts                - startWorkout, finishWorkout, getActiveWorkout, getWorkoutHistory, getWorkoutDetail
     workouts.test.ts
-    sets.ts                    — addSet, getLastSetForExercise, getWorkoutExercisesWithSets
+    sets.ts                    - addSet, getLastSetForExercise, getWorkoutExercisesWithSets
     sets.test.ts
-    exercises.ts                — searchExercises, getRecentExercises, getAllExercises, groupExercisesByMuscleGroup
+    exercises.ts                - searchExercises, getRecentExercises, getAllExercises, groupExercisesByMuscleGroup
     exercises.test.ts
-    backup.ts                  — exportData, importData, serializeBackup, parseBackup
+    backup.ts                  - exportData, importData, serializeBackup, parseBackup
     backup.test.ts
   i18n/
-    translations.ts             — RU/EN string dictionary + t()
-    LangContext.tsx             — React context/provider + useLang() hook
+    translations.ts             - RU/EN string dictionary + t()
+    LangContext.tsx             - React context/provider + useLang() hook
   components/
-    Stepper.tsx                 — +/- numeric input with tap-to-edit
-    LevelBar.tsx                — mastery progress bar (used in Progress screen)
-    NavBar.tsx                  — bottom tab bar (mobile) / side nav (desktop)
+    Stepper.tsx                 - +/- numeric input with tap-to-edit
+    LevelBar.tsx                - mastery progress bar (used in Progress screen)
+    NavBar.tsx                  - bottom tab bar (mobile) / side nav (desktop)
   screens/
-    HomeScreen.tsx               — start/active workout, set logging
-    ExercisePicker.tsx           — recent + search + group tree, modal/overlay
-    ProgressScreen.tsx           — mastery list + detail
-    HistoryScreen.tsx            — list/calendar toggle
-    SettingsScreen.tsx           — language, export, import
+    HomeScreen.tsx               - start/active workout, set logging
+    ExercisePicker.tsx           - recent + search + group tree, modal/overlay
+    ProgressScreen.tsx           - mastery list + detail
+    HistoryScreen.tsx            - list/calendar toggle
+    SettingsScreen.tsx           - language, export, import
   test/
-    setup.ts                    — imports fake-indexeddb/auto for Vitest
-data/exercises.json              — already exists (337 entries), consumed by seedExercises.ts
+    setup.ts                    - imports fake-indexeddb/auto for Vitest
+data/exercises.json              - already exists (337 entries), consumed by seedExercises.ts
 ```
 
 ---
@@ -171,7 +171,7 @@ Ensure `package.json` `scripts` includes:
 ```
 
 Run: `npm test`
-Expected: "No test files found" (passes, no failures — confirms Vitest + fake-indexeddb wiring loads without error).
+Expected: "No test files found" (passes, no failures - confirms Vitest + fake-indexeddb wiring loads without error).
 
 - [ ] **Step 8: Commit**
 
@@ -303,7 +303,7 @@ describe('seedExercisesIfEmpty', () => {
 - [ ] **Step 3: Run test, verify it fails**
 
 Run: `npm test -- seedExercises`
-Expected: FAIL — `seedExercisesIfEmpty` is not defined / module not found.
+Expected: FAIL - `seedExercisesIfEmpty` is not defined / module not found.
 
 - [ ] **Step 4: Implement seeding**
 
@@ -335,7 +335,7 @@ export async function initExerciseCatalog(): Promise<void> {
 }
 ```
 
-Call `initExerciseCatalog()` once from `src/main.tsx` before rendering (await it, show nothing or a blank screen until it resolves — this is near-instant since it's a local bulk insert).
+Call `initExerciseCatalog()` once from `src/main.tsx` before rendering (await it, show nothing or a blank screen until it resolves - this is near-instant since it's a local bulk insert).
 
 - [ ] **Step 7: Commit**
 
@@ -457,7 +457,7 @@ describe('applySetToProgress', () => {
 - [ ] **Step 2: Run tests, verify they fail**
 
 Run: `npm test -- mastery`
-Expected: FAIL — `src/data-layer/mastery.ts` does not exist.
+Expected: FAIL - `src/data-layer/mastery.ts` does not exist.
 
 - [ ] **Step 3: Implement the mastery engine**
 
@@ -535,7 +535,7 @@ git commit -m "feat: implement mastery XP and leveling engine"
 
 ---
 
-### Task 4: Data layer — workouts and sets
+### Task 4: Data layer - workouts and sets
 
 **Files:**
 - Create: `src/data-layer/workouts.ts`
@@ -555,7 +555,7 @@ git commit -m "feat: implement mastery XP and leveling engine"
   - `async function getLastSetForExercise(db: AppDatabase, exerciseId: number): Promise<WorkoutSet | undefined>`
   - `async function getWorkoutExercisesWithSets(db: AppDatabase, workoutId: string): Promise<Array<{ exercise: Exercise; sets: WorkoutSet[] }>>`
 
-**Note on scope:** no set editing or deletion functions — not in MVP scope per spec §2/§7 (the spec's set-logging flow has no delete/edit step; adding one would be scope creep).
+**Note on scope:** no set editing or deletion functions - not in MVP scope per spec §2/§7 (the spec's set-logging flow has no delete/edit step; adding one would be scope creep).
 
 - [ ] **Step 1: Write failing tests for `workouts.ts`**
 
@@ -613,7 +613,7 @@ describe('workouts data layer', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- workouts`
-Expected: FAIL — `src/data-layer/workouts.ts` does not exist.
+Expected: FAIL - `src/data-layer/workouts.ts` does not exist.
 
 - [ ] **Step 3: Implement `workouts.ts`**
 
@@ -666,7 +666,7 @@ export async function getWorkoutDetail(
 - [ ] **Step 4: Run test, verify it passes**
 
 Run: `npm test -- workouts`
-Expected: PASS (5 tests). Note: this will still fail to compile until `sets.ts` exists (next step) since `workouts.ts` imports from it — implement Steps 5-8 before re-running.
+Expected: PASS (5 tests). Note: this will still fail to compile until `sets.ts` exists (next step) since `workouts.ts` imports from it - implement Steps 5-8 before re-running.
 
 - [ ] **Step 5: Write failing tests for `sets.ts`**
 
@@ -743,7 +743,7 @@ describe('sets data layer', () => {
 - [ ] **Step 6: Run test, verify it fails**
 
 Run: `npm test -- sets`
-Expected: FAIL — `src/data-layer/sets.ts` does not exist.
+Expected: FAIL - `src/data-layer/sets.ts` does not exist.
 
 - [ ] **Step 7: Implement `sets.ts`**
 
@@ -822,7 +822,7 @@ git commit -m "feat: add workouts and sets data layer with mastery side-effects"
 
 ---
 
-### Task 5: Data layer — exercise search and grouping
+### Task 5: Data layer - exercise search and grouping
 
 **Files:**
 - Create: `src/data-layer/exercises.ts`
@@ -877,7 +877,7 @@ describe('exercises data layer', () => {
     const w = await startWorkout(db)
     await addSet(db, w.id!, bench.id, 60, 8)
     await addSet(db, w.id!, squat.id, 80, 5)
-    await addSet(db, w.id!, bench.id, 62.5, 6) // bench used again — should not duplicate, moves to front
+    await addSet(db, w.id!, bench.id, 62.5, 6) // bench used again - should not duplicate, moves to front
     const recent = await getRecentExercises(db, 10)
     expect(recent.map((e) => e.id)).toEqual([2, 1])
   })
@@ -894,7 +894,7 @@ describe('exercises data layer', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- exercises`
-Expected: FAIL — `src/data-layer/exercises.ts` does not exist.
+Expected: FAIL - `src/data-layer/exercises.ts` does not exist.
 
 - [ ] **Step 3: Implement `exercises.ts`**
 
@@ -1037,7 +1037,7 @@ describe('backup module', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- backup`
-Expected: FAIL — `src/data-layer/backup.ts` does not exist.
+Expected: FAIL - `src/data-layer/backup.ts` does not exist.
 
 - [ ] **Step 3: Implement `backup.ts`**
 
@@ -1099,7 +1099,7 @@ Expected: PASS (4 tests).
 - [ ] **Step 5: Run the full test suite so far**
 
 Run: `npm test`
-Expected: PASS — all test files (mastery, workouts, sets, exercises, backup, seedExercises) green.
+Expected: PASS - all test files (mastery, workouts, sets, exercises, backup, seedExercises) green.
 
 - [ ] **Step 6: Commit**
 
@@ -1147,7 +1147,7 @@ describe('t (translation lookup)', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- translations`
-Expected: FAIL — `src/i18n/translations.ts` does not exist.
+Expected: FAIL - `src/i18n/translations.ts` does not exist.
 
 - [ ] **Step 3: Implement the dictionary**
 
@@ -1214,7 +1214,7 @@ export function t(lang: Lang, key: TranslationKey): string {
 Run: `npm test -- translations`
 Expected: PASS (2 tests).
 
-- [ ] **Step 5: Implement the language context (no test — thin React wiring)**
+- [ ] **Step 5: Implement the language context (no test - thin React wiring)**
 
 ```tsx
 // src/i18n/LangContext.tsx
@@ -1263,7 +1263,7 @@ git commit -m "feat: add RU/EN i18n dictionary and language context"
 
 ---
 
-### Task 8: App shell — theme tokens, tab navigation, screen routing
+### Task 8: App shell - theme tokens, tab navigation, screen routing
 
 **Files:**
 - Modify: `src/theme.css`
@@ -1275,14 +1275,14 @@ git commit -m "feat: add RU/EN i18n dictionary and language context"
 - Produces:
   - `type ScreenName = 'workout' | 'progress' | 'history' | 'settings'`
   - `function NavBar({ active, onChange }: { active: ScreenName; onChange: (s: ScreenName) => void }): JSX.Element`
-  - `App.tsx` renders `LangProvider` at the root and switches between the four screens by local state (no router library — four screens, YAGNI).
+  - `App.tsx` renders `LangProvider` at the root and switches between the four screens by local state (no router library - four screens, YAGNI).
 
-This task has no automated tests per spec §11 ("UI components — manual verification is enough for MVP"). Each step ends in a manual browser check instead.
+This task has no automated tests per spec §11 ("UI components - manual verification is enough for MVP"). Each step ends in a manual browser check instead.
 
 - [ ] **Step 1: Extend theme tokens for surfaces/borders used across screens**
 
 ```css
-/* src/theme.css — append after existing :root block */
+/* src/theme.css - append after existing :root block */
 :root {
   --color-border: #26262f;
   --radius-card: 16px;
@@ -1363,7 +1363,7 @@ export default function App() {
 }
 ```
 
-Note: this task creates placeholder imports for `HomeScreen`, `ProgressScreen`, `HistoryScreen`, `SettingsScreen` that don't exist yet — implemented in Tasks 9, 11, 12, 13. Create minimal stub components now so the app compiles:
+Note: this task creates placeholder imports for `HomeScreen`, `ProgressScreen`, `HistoryScreen`, `SettingsScreen` that don't exist yet - implemented in Tasks 9, 11, 12, 13. Create minimal stub components now so the app compiles:
 
 ```tsx
 // src/screens/HomeScreen.tsx (stub, replaced in Task 9)
@@ -1400,7 +1400,7 @@ git commit -m "feat: add app shell with responsive tab navigation"
 
 **Files:**
 - Create: `src/components/Stepper.tsx`
-- Create: `src/screens/ExercisePicker.tsx` (stub — real implementation in Task 10)
+- Create: `src/screens/ExercisePicker.tsx` (stub - real implementation in Task 10)
 - Modify: `src/screens/HomeScreen.tsx` (replaces the Task 8 stub)
 
 **Interfaces:**
@@ -1408,9 +1408,9 @@ git commit -m "feat: add app shell with responsive tab navigation"
 - Produces:
   - `function Stepper({ value, step, onChange, min }: { value: number; step: number; onChange: (v: number) => void; min?: number }): JSX.Element`
   - `function ExercisePicker({ onPick, onClose }: { onPick: (e: Exercise) => void; onClose: () => void }): JSX.Element` (stub for now)
-  - `REST_SECONDS = 90` — rest timer duration constant, tunable later.
+  - `REST_SECONDS = 90` - rest timer duration constant, tunable later.
 
-No automated tests (spec §11 — manual verification for UI). Steps end in browser checks.
+No automated tests (spec §11 - manual verification for UI). Steps end in browser checks.
 
 - [ ] **Step 1: Implement the Stepper component**
 
@@ -1641,7 +1641,7 @@ git commit -m "feat: add Stepper and Home/Workout screen with set logging"
 
 **Interfaces:**
 - Consumes: `db` (Task 2); `getAllExercises`, `getRecentExercises`, `searchExercises`, `groupExercisesByMuscleGroup` (Task 5); `useLang` (Task 7).
-- Produces: same `ExercisePicker` signature as the Task 9 stub — drop-in replacement, `HomeScreen.tsx` needs no changes.
+- Produces: same `ExercisePicker` signature as the Task 9 stub - drop-in replacement, `HomeScreen.tsx` needs no changes.
 
 No automated tests (spec §11). Steps end in browser checks.
 
@@ -1821,7 +1821,7 @@ describe('exerciseHistory data layer', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- exerciseHistory`
-Expected: FAIL — `src/data-layer/exerciseHistory.ts` does not exist.
+Expected: FAIL - `src/data-layer/exerciseHistory.ts` does not exist.
 
 - [ ] **Step 3: Implement `exerciseHistory.ts`**
 
@@ -1870,7 +1870,7 @@ git add -A
 git commit -m "feat: add exercise progress listing and weight history queries"
 ```
 
-- [ ] **Step 6: Implement the LevelBar component (no test — presentational)**
+- [ ] **Step 6: Implement the LevelBar component (no test - presentational)**
 
 ```tsx
 // src/components/LevelBar.tsx
@@ -2000,7 +2000,7 @@ git commit -m "feat: implement Progress/Mastery screen with level bars and weigh
 
 **Interfaces:**
 - Consumes: `db` (Task 2); `getWorkoutHistory`, `getWorkoutDetail` (Task 4); `useLang` (Task 7).
-- Produces: no new exported functions consumed elsewhere — this screen is a leaf.
+- Produces: no new exported functions consumed elsewhere - this screen is a leaf.
 
 No automated tests (spec §11). Steps end in browser checks.
 
@@ -2165,7 +2165,7 @@ git commit -m "feat: implement History screen with list and calendar views"
 
 ---
 
-### Task 13: Settings screen — language, export, import, backup reminder
+### Task 13: Settings screen - language, export, import, backup reminder
 
 **Files:**
 - Create: `src/data-layer/backupReminder.ts`
@@ -2211,7 +2211,7 @@ describe('shouldShowBackupReminder', () => {
 - [ ] **Step 2: Run test, verify it fails**
 
 Run: `npm test -- backupReminder`
-Expected: FAIL — `src/data-layer/backupReminder.ts` does not exist.
+Expected: FAIL - `src/data-layer/backupReminder.ts` does not exist.
 
 - [ ] **Step 3: Implement the reminder rule**
 
@@ -2338,11 +2338,11 @@ export function SettingsScreen() {
 }
 ```
 
-Note: `confirm`/`alert` are used here as the simplest possible functional implementation for the MVP's confirmation and error dialogs (spec §8 requires an explicit confirming dialog before import-replace, and §11 requires a readable error on a corrupt file — both satisfied). Swapping these for custom-styled modals is a pure polish pass that can happen later without touching the data flow.
+Note: `confirm`/`alert` are used here as the simplest possible functional implementation for the MVP's confirmation and error dialogs (spec §8 requires an explicit confirming dialog before import-replace, and §11 requires a readable error on a corrupt file - both satisfied). Swapping these for custom-styled modals is a pure polish pass that can happen later without touching the data flow.
 
 - [ ] **Step 7: Manual verification**
 
-Run: `npm run dev`. Log a few sets, go to Settings, click "Экспорт данных" — confirm a `.json` file downloads (or the share sheet opens on mobile) and contains your workouts. Click "Импорт данных", select that same file, confirm the dialog, verify the app reloads with the same data. Try importing a non-JSON file and confirm you get the "Import failed" alert instead of a crash. Switch language RU/EN and confirm all screens' text updates.
+Run: `npm run dev`. Log a few sets, go to Settings, click "Экспорт данных" - confirm a `.json` file downloads (or the share sheet opens on mobile) and contains your workouts. Click "Импорт данных", select that same file, confirm the dialog, verify the app reloads with the same data. Try importing a non-JSON file and confirm you get the "Import failed" alert instead of a crash. Switch language RU/EN and confirm all screens' text updates.
 Expected: no console errors; export/import round-trips correctly; language switch is instant and persists across a page reload.
 
 - [ ] **Step 8: Commit**
@@ -2358,17 +2358,17 @@ git commit -m "feat: implement Settings screen with export/import and backup rem
 
 **Files:**
 - Modify: `vite.config.ts`
-- Create: `public/icon-192.png`, `public/icon-512.png` (placeholder app icons — see Step 1)
+- Create: `public/icon-192.png`, `public/icon-512.png` (placeholder app icons - see Step 1)
 - Modify: `src/App.tsx` (install prompt + update banner)
 
 **Interfaces:**
 - Produces: an installable, offline-capable app shell via `vite-plugin-pwa`; a captured `beforeinstallprompt` event exposed through a small hook `useInstallPrompt()`.
 
-No automated tests (spec §11 — PWA behavior is verified manually, it can't be meaningfully unit tested). Steps end in browser/build checks.
+No automated tests (spec §11 - PWA behavior is verified manually, it can't be meaningfully unit tested). Steps end in browser/build checks.
 
 - [ ] **Step 1: Add placeholder app icons**
 
-Generate two solid-color PNG placeholders (192×192 and 512×512, using the accent color `#7cff6b` on the dark background `#0b0b0f`) and save them to `public/icon-192.png` and `public/icon-512.png`. These are functional placeholders — replace with real artwork whenever a designed icon is available; nothing else in the app depends on their appearance.
+Generate two solid-color PNG placeholders (192×192 and 512×512, using the accent color `#7cff6b` on the dark background `#0b0b0f`) and save them to `public/icon-192.png` and `public/icon-512.png`. These are functional placeholders - replace with real artwork whenever a designed icon is available; nothing else in the app depends on their appearance.
 
 - [ ] **Step 2: Configure `vite-plugin-pwa`**
 
@@ -2450,7 +2450,7 @@ function useInstallPrompt() {
 }
 ```
 
-Wire an "Install app" button using `useInstallPrompt()` into `SettingsScreen.tsx` (only rendered when `canInstall` is true) — this satisfies spec §9's requirement to offer install from Settings rather than an intrusive prompt on first visit:
+Wire an "Install app" button using `useInstallPrompt()` into `SettingsScreen.tsx` (only rendered when `canInstall` is true) - this satisfies spec §9's requirement to offer install from Settings rather than an intrusive prompt on first visit:
 
 ```tsx
 // add near the top of SettingsScreen's returned JSX, Task 13's component
@@ -2474,7 +2474,7 @@ function UpdateBanner() {
   if (!needRefresh) return null
   return (
     <div className="fixed top-0 left-0 right-0 z-20 bg-[var(--color-accent)] p-2 text-center text-sm font-bold text-black">
-      <button onClick={() => updateServiceWorker(true)}>Доступно обновление — нажмите, чтобы обновить</button>
+      <button onClick={() => updateServiceWorker(true)}>Доступно обновление - нажмите, чтобы обновить</button>
     </div>
   )
 }
@@ -2503,9 +2503,9 @@ git commit -m "feat: add PWA support with custom install prompt and update banne
 
 **Interfaces:**
 - Consumes: `motion`/`AnimatePresence` from the `motion` package (installed in Task 1); `LevelInfo` (Task 3).
-- Produces: same `LevelBar` props as before — drop-in replacement, no callers change.
+- Produces: same `LevelBar` props as before - drop-in replacement, no callers change.
 
-No automated tests (spec §11 — animation is inherently a manual/visual check).
+No automated tests (spec §11 - animation is inherently a manual/visual check).
 
 - [ ] **Step 1: Add a spring-animated fill and a level-up badge**
 

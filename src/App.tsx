@@ -22,7 +22,7 @@ function UpdateBanner() {
   const { needRefresh: [needRefresh], updateServiceWorker } = useRegisterSW()
   const { lang } = useLang()
   if (!needRefresh) return null
-  return <button type="button" onClick={() => updateServiceWorker(true)} className="fixed inset-x-3 top-3 z-50 mx-auto min-h-12 max-w-md rounded-2xl bg-[var(--color-accent)] px-4 font-bold text-[#071006] shadow-xl">{lang === 'ru' ? 'Доступно обновление — применить' : 'Update available — apply'}</button>
+  return <button type="button" onClick={() => updateServiceWorker(true)} className="fixed inset-x-3 top-3 z-50 mx-auto min-h-12 max-w-md rounded-2xl bg-[var(--color-accent)] px-4 font-bold text-[#071006] shadow-xl">{lang === 'ru' ? 'Доступно обновление - применить' : 'Update available - apply'}</button>
 }
 
 export default function App() {
