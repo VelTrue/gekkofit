@@ -5,9 +5,21 @@ import { addSet } from './sets'
 import { startWorkout } from './workouts'
 import { getAllExercises, getRecentExercises, groupExercisesByMuscleGroup, searchExercises } from './exercises'
 
-const bench: Exercise = { id: 1, slug: 'bench-1', name_ru: 'Жим лежа', name_en: 'Barbell Bench Press', muscle_group: 'ГРУДЬ', sub_group: 'Середина', equipment: 'штанга' }
-const squat: Exercise = { id: 2, slug: 'squat-2', name_ru: 'Приседания', name_en: 'Barbell Squat', muscle_group: 'НОГИ', sub_group: 'Квадрицепс', equipment: 'штанга' }
-const plank: Exercise = { id: 3, slug: 'plank-3', name_ru: 'Планка', name_en: 'Plank', muscle_group: 'ФУЛБОДИ', sub_group: null, equipment: 'свой вес' }
+const bench: Exercise = {
+  id: 1, slug: 'bench-1', name_ru: 'Жим штанги лежа', name_en: 'Barbell Bench Press', muscle_group: 'ГРУДЬ',
+  sub_group: 'Середина', equipment: 'штанга', aliases_ru: ['Жим лежа'], primary_muscles: ['chest'],
+  secondary_muscles: ['front-deltoids', 'triceps'], preferred_body_view: 'front',
+}
+const squat: Exercise = {
+  id: 2, slug: 'squat-2', name_ru: 'Приседания со штангой', name_en: 'Barbell Squat', muscle_group: 'НОГИ',
+  sub_group: 'Квадрицепс', equipment: 'штанга', aliases_ru: ['Приседания'], primary_muscles: ['quadriceps', 'glutes'],
+  secondary_muscles: ['abs'], preferred_body_view: 'both',
+}
+const plank: Exercise = {
+  id: 3, slug: 'plank-3', name_ru: 'Планка', name_en: 'Plank', muscle_group: 'ФУЛБОДИ', sub_group: null,
+  equipment: 'свой вес', aliases_ru: ['Планка на предплечьях'], primary_muscles: ['abs'],
+  secondary_muscles: ['obliques', 'glutes'], preferred_body_view: 'front',
+}
 
 describe('exercises data layer', () => {
   let database: AppDatabase

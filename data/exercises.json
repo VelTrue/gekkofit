@@ -2,209 +2,455 @@
   {
     "id": 1,
     "slug": "zhim-lezha-shtanga-1",
-    "name_ru": "Жим лежа",
+    "name_ru": "Жим штанги лежа",
     "name_en": "Barbell Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 2,
     "slug": "zhim-lezha-ganteli-2",
-    "name_ru": "Жим лежа",
+    "name_ru": "Жим гантелей лежа",
     "name_en": "Dumbbell Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 3,
     "slug": "zhim-lezha-nizhniy-blok-3",
-    "name_ru": "Жим лежа",
+    "name_ru": "Жим на нижних блоках лежа",
     "name_en": "Cable Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Жим лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 4,
     "slug": "zhim-lezha-trenazher-smita-4",
-    "name_ru": "Жим лежа",
+    "name_ru": "Жим в тренажере Смита лежа",
     "name_en": "Smith Machine Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 5,
     "slug": "zhim-ot-grudi-sidya-trenazher-5",
-    "name_ru": "Жим от груди сидя",
+    "name_ru": "Жим от груди в тренажере сидя",
     "name_en": "Seated Machine Chest Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Жим от груди сидя"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 6,
     "slug": "zhim-ot-grudi-stoya-blok-6",
-    "name_ru": "Жим от груди стоя",
+    "name_ru": "Жим от груди на блоках стоя",
     "name_en": "Standing Cable Chest Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Жим от груди стоя"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 7,
     "slug": "svedenie-ruk-lezha-ganteli-7",
-    "name_ru": "Сведение рук лежа",
+    "name_ru": "Разведение гантелей лежа",
     "name_en": "Dumbbell Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сведение рук лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 8,
     "slug": "svedenie-ruk-stoya-verhniy-blok-8",
-    "name_ru": "Сведение рук стоя",
+    "name_ru": "Сведение рук на верхних блоках стоя",
     "name_en": "Standing Cable Fly (High Pulley)",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Сведение рук стоя"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 9,
     "slug": "svedenie-sognutyh-ruk-sidya-trenazher-9",
-    "name_ru": "Сведение согнутых рук сидя",
+    "name_ru": "Сведение согнутых рук в тренажере «бабочка»",
     "name_en": "Pec Deck Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сведение согнутых рук сидя"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 10,
     "slug": "svedenie-ruk-sidya-trenazher-10",
-    "name_ru": "Сведение рук сидя",
+    "name_ru": "Сведение прямых рук в тренажере сидя",
     "name_en": "Machine Chest Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сведение рук сидя"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 11,
     "slug": "svedenie-ruk-lezha-nizhniy-blok-11",
-    "name_ru": "Сведение рук лежа",
+    "name_ru": "Сведение рук на нижних блоках лежа",
     "name_en": "Cable Fly (Lying)",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сведение рук лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 12,
     "slug": "pulover-shtanga-12",
-    "name_ru": "Пуловер",
+    "name_ru": "Пуловер со штангой лежа",
     "name_en": "Barbell Pullover",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Пуловер"
+    ],
+    "primary_muscles": [
+      "chest",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 13,
     "slug": "pulover-gantel-13",
-    "name_ru": "Пуловер",
+    "name_ru": "Пуловер с гантелью лежа",
     "name_en": "Dumbbell Pullover",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Пуловер"
+    ],
+    "primary_muscles": [
+      "chest",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 14,
     "slug": "pulover-nizhniy-blok-14",
-    "name_ru": "Пуловер",
+    "name_ru": "Пуловер на нижнем блоке лежа",
     "name_en": "Cable Pullover",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Пуловер"
+    ],
+    "primary_muscles": [
+      "chest",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 15,
     "slug": "pulover-trenazher-15",
-    "name_ru": "Пуловер",
+    "name_ru": "Пуловер в тренажере",
     "name_en": "Machine Pullover",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Пуловер"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "triceps"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 16,
     "slug": "otzhimaniya-svoy-ves-16",
-    "name_ru": "Отжимания",
+    "name_ru": "Отжимания от пола",
     "name_en": "Push-Up",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Отжимания"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 17,
     "slug": "vokrug-sveta-lezha-ganteli-17",
-    "name_ru": "Вокруг света лежа",
+    "name_ru": "Круговые движения гантелями лежа",
     "name_en": "Dumbbell Around the World",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Вокруг света лежа"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 18,
     "slug": "zhim-lezha-naklon-shtanga-18",
-    "name_ru": "Жим лежа (наклон)",
+    "name_ru": "Жим штанги под наклоном",
     "name_en": "Barbell Incline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 19,
     "slug": "zhim-lezha-naklon-ganteli-19",
-    "name_ru": "Жим лежа (наклон)",
+    "name_ru": "Жим гантелей под наклоном",
     "name_en": "Dumbbell Incline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 20,
     "slug": "zhim-lezha-naklon-nizhniy-blok-20",
-    "name_ru": "Жим лежа (наклон)",
+    "name_ru": "Жим на нижних блоках под наклоном",
     "name_en": "Incline Cable Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Жим лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 21,
     "slug": "zhim-lezha-naklon-trenazher-smita-21",
-    "name_ru": "Жим лежа (наклон)",
+    "name_ru": "Жим в тренажере Смита под наклоном",
     "name_en": "Smith Machine Incline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 22,
     "slug": "svedenie-ruk-lezha-naklon-ganteli-22",
-    "name_ru": "Сведение рук лежа (наклон)",
+    "name_ru": "Разведение гантелей под наклоном",
     "name_en": "Incline Dumbbell Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сведение рук лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 23,
     "slug": "svedenie-ruk-lezha-naklon-nizhniy-blok-23",
-    "name_ru": "Сведение рук лежа (наклон)",
+    "name_ru": "Сведение рук на нижних блоках под наклоном",
     "name_en": "Incline Cable Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сведение рук лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 24,
@@ -213,718 +459,1658 @@
     "name_en": "Decline Push-Up",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Верх",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Отжимания с ногами на возвышении"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 25,
     "slug": "zhim-lezha-obratnyy-naklon-shtanga-25",
-    "name_ru": "Жим лежа (обратный наклон)",
+    "name_ru": "Жим штанги лежа головой вниз",
     "name_en": "Barbell Decline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 26,
     "slug": "zhim-lezha-obratnyy-naklon-ganteli-26",
-    "name_ru": "Жим лежа (обратный наклон)",
+    "name_ru": "Жим гантелей лежа головой вниз",
     "name_en": "Dumbbell Decline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 27,
     "slug": "zhim-lezha-obratnyy-naklon-nizhniy-blok-27",
-    "name_ru": "Жим лежа (обратный наклон)",
+    "name_ru": "Жим на нижних блоках лежа головой вниз",
     "name_en": "Decline Cable Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Жим лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 28,
     "slug": "zhim-lezha-obratnyy-naklon-trenazher-smita-28",
-    "name_ru": "Жим лежа (обратный наклон)",
+    "name_ru": "Жим в тренажере Смита лежа головой вниз",
     "name_en": "Smith Machine Decline Bench Press",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 29,
     "slug": "svedenie-ruk-lezha-obratnyy-naklon-ganteli-29",
-    "name_ru": "Сведение рук лежа (обратный наклон)",
+    "name_ru": "Разведение гантелей лежа головой вниз",
     "name_en": "Decline Dumbbell Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сведение рук лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 30,
     "slug": "svedenie-ruk-lezha-obratnyy-naklon-nizhniy-blok-30",
-    "name_ru": "Сведение рук лежа (обратный наклон)",
+    "name_ru": "Сведение рук на нижних блоках лежа головой вниз",
     "name_en": "Decline Cable Fly",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сведение рук лежа (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 31,
     "slug": "otzhimaniya-v-naklone-svoy-ves-31",
-    "name_ru": "Отжимания в наклоне",
+    "name_ru": "Отжимания с руками на возвышении",
     "name_en": "Incline Push-Up",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Отжимания в наклоне"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 32,
     "slug": "brusya-na-grud-svoy-ves-32",
-    "name_ru": "Брусья на грудь",
+    "name_ru": "Отжимания на брусьях с наклоном вперед",
     "name_en": "Chest Dip",
     "muscle_group": "ГРУДЬ",
     "sub_group": "Низ",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Брусья на грудь"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 33,
     "slug": "tyaga-v-naklone-shtanga-33",
-    "name_ru": "Тяга в наклоне",
+    "name_ru": "Тяга штанги в наклоне",
     "name_en": "Barbell Bent-Over Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга в наклоне"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 34,
     "slug": "tyaga-v-naklone-ganteli-34",
-    "name_ru": "Тяга в наклоне",
+    "name_ru": "Тяга гантелей в наклоне",
     "name_en": "Dumbbell Bent-Over Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Тяга в наклоне"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 35,
     "slug": "tyaga-v-naklone-nizhniy-blok-35",
-    "name_ru": "Тяга в наклоне",
+    "name_ru": "Тяга нижнего блока в наклоне",
     "name_en": "Cable Bent-Over Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Тяга в наклоне"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 36,
     "slug": "tyaga-v-naklone-trenazher-smita-36",
-    "name_ru": "Тяга в наклоне",
+    "name_ru": "Тяга в тренажере Смита в наклоне",
     "name_en": "Smith Machine Bent-Over Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Тяга в наклоне"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 37,
     "slug": "tyaga-v-naklone-t-grif-37",
-    "name_ru": "Тяга в наклоне",
+    "name_ru": "Тяга Т-грифа в наклоне",
     "name_en": "T-Bar Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "Т-гриф"
+    "equipment": "Т-гриф",
+    "aliases_ru": [
+      "Тяга в наклоне"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 38,
     "slug": "tyaga-v-naklone-s-pola-shtanga-38",
-    "name_ru": "Тяга в наклоне с пола",
+    "name_ru": "Тяга штанги с пола в наклоне (тяга Пендли)",
     "name_en": "Barbell Pendlay Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга в наклоне с пола"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 39,
     "slug": "gorizontalnaya-tyaga-sidya-blok-39",
-    "name_ru": "Горизонтальная тяга сидя",
+    "name_ru": "Тяга горизонтального блока сидя",
     "name_en": "Seated Cable Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Горизонтальная тяга сидя"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 40,
     "slug": "gorizontalnaya-rychazhnaya-tyaga-trenazher-40",
-    "name_ru": "Горизонтальная рычажная тяга",
+    "name_ru": "Тяга в рычажном тренажере сидя",
     "name_en": "Seated Machine Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Горизонтальная рычажная тяга"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 41,
     "slug": "gorizontalnaya-tyaga-stoya-blok-41",
-    "name_ru": "Горизонтальная тяга стоя",
+    "name_ru": "Тяга горизонтального блока стоя",
     "name_en": "Standing Cable Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Горизонтальная тяга стоя"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 42,
     "slug": "tyaga-lezha-naklon-shtanga-42",
-    "name_ru": "Тяга лежа (наклон)",
+    "name_ru": "Тяга штанги с упором грудью в наклонную скамью",
     "name_en": "Chest-Supported Barbell Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 43,
     "slug": "tyaga-lezha-naklon-ganteli-43",
-    "name_ru": "Тяга лежа (наклон)",
+    "name_ru": "Тяга гантелей с упором грудью в наклонную скамью",
     "name_en": "Chest-Supported Dumbbell Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Тяга лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 44,
     "slug": "tyaga-lezha-naklon-nizhniy-blok-44",
-    "name_ru": "Тяга лежа (наклон)",
+    "name_ru": "Тяга нижнего блока с упором грудью в наклонную скамью",
     "name_en": "Chest-Supported Cable Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Тяга лежа (наклон)"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 45,
     "slug": "gorizontalnye-podtyagivaniya-svoy-ves-45",
-    "name_ru": "Горизонтальные подтягивания",
+    "name_ru": "Подтягивания на низкой перекладине",
     "name_en": "Inverted Row",
     "muscle_group": "СПИНА",
     "sub_group": "Середина",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Горизонтальные подтягивания"
+    ],
+    "primary_muscles": [
+      "upper-back",
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 46,
     "slug": "tyaga-v-naklone-odnoy-rukoy-gantel-46",
-    "name_ru": "Тяга в наклоне одной рукой",
+    "name_ru": "Тяга гантели одной рукой в наклоне",
     "name_en": "One-Arm Dumbbell Row",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Тяга в наклоне одной рукой"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 47,
     "slug": "tyaga-v-naklone-odnoy-rukoy-nizhniy-blok-47",
-    "name_ru": "Тяга в наклоне одной рукой",
+    "name_ru": "Тяга нижнего блока одной рукой в наклоне",
     "name_en": "Single-Arm Cable Row",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Тяга в наклоне одной рукой"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 48,
     "slug": "vertikalnaya-tyaga-verhniy-blok-48",
-    "name_ru": "Вертикальная тяга",
+    "name_ru": "Тяга верхнего блока к груди",
     "name_en": "Lat Pulldown",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Вертикальная тяга"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 49,
     "slug": "vertikalnaya-tyaga-uzkim-hvatom-verhniy-blok-49",
-    "name_ru": "Вертикальная тяга узким хватом",
+    "name_ru": "Тяга верхнего блока узким хватом",
     "name_en": "Close-Grip Lat Pulldown",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Вертикальная тяга узким хватом"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 50,
     "slug": "vertikalnaya-tyaga-trenazher-50",
-    "name_ru": "Вертикальная тяга",
+    "name_ru": "Вертикальная тяга в тренажере",
     "name_en": "Machine Lat Pulldown",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Вертикальная тяга"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 51,
     "slug": "vertikalnaya-tyaga-za-golovu-verhniy-blok-51",
-    "name_ru": "Вертикальная тяга за голову",
+    "name_ru": "Тяга верхнего блока за голову",
     "name_en": "Behind-the-Neck Lat Pulldown",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Вертикальная тяга за голову"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 52,
     "slug": "vertikalnaya-tyaga-pryamymi-rukami-verhniy-blok-52",
-    "name_ru": "Вертикальная тяга прямыми руками",
+    "name_ru": "Тяга верхнего блока прямыми руками",
     "name_en": "Straight-Arm Pulldown",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Вертикальная тяга прямыми руками"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 53,
     "slug": "podtyagivaniya-svoy-ves-53",
-    "name_ru": "Подтягивания",
+    "name_ru": "Подтягивания прямым хватом",
     "name_en": "Pull-Up",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 54,
     "slug": "podtyagivaniya-shirokim-hvatom-svoy-ves-54",
-    "name_ru": "Подтягивания широким хватом",
+    "name_ru": "Подтягивания широким прямым хватом",
     "name_en": "Wide-Grip Pull-Up",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания широким хватом"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 55,
     "slug": "podtyagivaniya-uzkim-hvatom-svoy-ves-55",
-    "name_ru": "Подтягивания узким хватом",
+    "name_ru": "Подтягивания узким прямым хватом",
     "name_en": "Close-Grip Pull-Up",
     "muscle_group": "СПИНА",
     "sub_group": "Широчайшие",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания узким хватом"
+    ],
+    "primary_muscles": [
+      "lats"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 56,
     "slug": "shragi-shtanga-56",
-    "name_ru": "Шраги",
+    "name_ru": "Шраги со штангой",
     "name_en": "Barbell Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Шраги"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 57,
     "slug": "shragi-ganteli-57",
-    "name_ru": "Шраги",
+    "name_ru": "Шраги с гантелями",
     "name_en": "Dumbbell Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Шраги"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 58,
     "slug": "shragi-nizhniy-blok-58",
-    "name_ru": "Шраги",
+    "name_ru": "Шраги на нижнем блоке",
     "name_en": "Cable Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Шраги"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 59,
     "slug": "shragi-trenazher-59",
-    "name_ru": "Шраги",
+    "name_ru": "Шраги в тренажере",
     "name_en": "Machine Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Шраги"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 60,
     "slug": "shragi-trenazher-smita-60",
-    "name_ru": "Шраги",
+    "name_ru": "Шраги в тренажере Смита",
     "name_en": "Smith Machine Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Шраги"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 61,
     "slug": "shragi-na-naklonnoy-skame-ganteli-61",
-    "name_ru": "Шраги на наклонной скамье",
+    "name_ru": "Шраги с гантелями на наклонной скамье",
     "name_en": "Incline Dumbbell Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Шраги на наклонной скамье"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 62,
     "slug": "shragi-za-spinoy-shtanga-62",
-    "name_ru": "Шраги за спиной",
+    "name_ru": "Шраги со штангой за спиной",
     "name_en": "Behind-the-Back Barbell Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Шраги за спиной"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 63,
     "slug": "shragi-za-spinoy-trenazher-smita-63",
-    "name_ru": "Шраги за спиной",
+    "name_ru": "Шраги в тренажере Смита за спиной",
     "name_en": "Behind-the-Back Smith Machine Shrug",
     "muscle_group": "СПИНА",
     "sub_group": "Трапеция",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Шраги за спиной"
+    ],
+    "primary_muscles": [
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 64,
     "slug": "giperekstenziya-svoy-ves-64",
-    "name_ru": "Гиперэкстензия",
+    "name_ru": "Гиперэкстензия на скамье",
     "name_en": "Hyperextension",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Гиперэкстензия"
+    ],
+    "primary_muscles": [
+      "lower-back"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 65,
     "slug": "giperekstenziya-fitbol-65",
-    "name_ru": "Гиперэкстензия",
+    "name_ru": "Гиперэкстензия на фитболе",
     "name_en": "Stability Ball Hyperextension",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "фитбол"
+    "equipment": "фитбол",
+    "aliases_ru": [
+      "Гиперэкстензия"
+    ],
+    "primary_muscles": [
+      "lower-back"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 66,
     "slug": "obratnaya-giperekstenziya-svoy-ves-66",
-    "name_ru": "Обратная гиперэкстензия",
+    "name_ru": "Обратная гиперэкстензия без отягощения",
     "name_en": "Reverse Hyperextension",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Обратная гиперэкстензия"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 67,
     "slug": "obratnaya-giperekstenziya-trenazher-67",
-    "name_ru": "Обратная гиперэкстензия",
+    "name_ru": "Обратная гиперэкстензия в тренажере",
     "name_en": "Machine Reverse Hyperextension",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Обратная гиперэкстензия"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 68,
     "slug": "supermen-svoy-ves-68",
-    "name_ru": "Супермен",
+    "name_ru": "Подъем рук и ног лежа на животе (супермен)",
     "name_en": "Superman",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Супермен"
+    ],
+    "primary_muscles": [
+      "lower-back"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 69,
     "slug": "ptitsa-sobaka-svoy-ves-69",
-    "name_ru": "Птица-собака",
+    "name_ru": "Вытягивание противоположных руки и ноги на четвереньках",
     "name_en": "Bird Dog",
     "muscle_group": "СПИНА",
     "sub_group": "Поясница",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Птица-собака"
+    ],
+    "primary_muscles": [
+      "lower-back",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "obliques",
+      "upper-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 70,
     "slug": "prisedaniya-svoy-ves-70",
-    "name_ru": "Приседания",
+    "name_ru": "Приседания без отягощения",
     "name_en": "Bodyweight Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 71,
     "slug": "prisedaniya-shtanga-71",
-    "name_ru": "Приседания",
+    "name_ru": "Приседания со штангой на спине",
     "name_en": "Barbell Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 72,
     "slug": "prisedaniya-ganteli-72",
-    "name_ru": "Приседания",
+    "name_ru": "Приседания с гантелями",
     "name_en": "Dumbbell Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 73,
     "slug": "prisedaniya-trenazher-smita-73",
-    "name_ru": "Приседания",
+    "name_ru": "Приседания в тренажере Смита",
     "name_en": "Smith Machine Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 74,
     "slug": "gakk-prisedaniya-shtanga-74",
-    "name_ru": "Гакк-приседания",
+    "name_ru": "Гакк-приседания со штангой",
     "name_en": "Barbell Hack Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Гакк-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 75,
     "slug": "gakk-prisedaniya-trenazher-smita-75",
-    "name_ru": "Гакк-приседания",
+    "name_ru": "Гакк-приседания в тренажере Смита",
     "name_en": "Smith Machine Hack Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Гакк-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 76,
     "slug": "gakk-prisedaniya-trenazher-76",
-    "name_ru": "Гакк-приседания",
+    "name_ru": "Гакк-приседания в тренажере",
     "name_en": "Hack Squat Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Гакк-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 77,
     "slug": "frontalnye-prisedaniya-shtanga-77",
-    "name_ru": "Фронтальные приседания",
+    "name_ru": "Приседания со штангой на груди",
     "name_en": "Barbell Front Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Фронтальные приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 78,
     "slug": "frontalnye-prisedaniya-gantel-78",
-    "name_ru": "Фронтальные приседания",
+    "name_ru": "Приседания с гантелью у груди",
     "name_en": "Dumbbell Front Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Фронтальные приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 79,
     "slug": "frontalnye-prisedaniya-nizhniy-blok-79",
-    "name_ru": "Фронтальные приседания",
+    "name_ru": "Приседания с нижним блоком у груди",
     "name_en": "Cable Front Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Фронтальные приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 80,
     "slug": "frontalnye-prisedaniya-trenazher-smita-80",
-    "name_ru": "Фронтальные приседания",
+    "name_ru": "Фронтальные приседания в тренажере Смита",
     "name_en": "Smith Machine Front Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Фронтальные приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 81,
     "slug": "split-prisedaniya-svoy-ves-81",
-    "name_ru": "Сплит-приседания",
+    "name_ru": "Сплит-приседания без отягощения",
     "name_en": "Bodyweight Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Сплит-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 82,
     "slug": "split-prisedaniya-shtanga-82",
-    "name_ru": "Сплит-приседания",
+    "name_ru": "Сплит-приседания со штангой",
     "name_en": "Barbell Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сплит-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 83,
     "slug": "split-prisedaniya-ganteli-83",
-    "name_ru": "Сплит-приседания",
+    "name_ru": "Сплит-приседания с гантелями",
     "name_en": "Dumbbell Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сплит-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 84,
     "slug": "split-prisedaniya-trenazher-smita-84",
-    "name_ru": "Сплит-приседания",
+    "name_ru": "Сплит-приседания в тренажере Смита",
     "name_en": "Smith Machine Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Сплит-приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 85,
     "slug": "bolgarskie-prisedaniya-svoy-ves-85",
-    "name_ru": "Болгарские приседания",
+    "name_ru": "Болгарские приседания без отягощения",
     "name_en": "Bulgarian Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Болгарские приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 86,
     "slug": "bolgarskie-prisedaniya-shtanga-86",
-    "name_ru": "Болгарские приседания",
+    "name_ru": "Болгарские приседания со штангой",
     "name_en": "Barbell Bulgarian Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Болгарские приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 87,
     "slug": "bolgarskie-prisedaniya-ganteli-87",
-    "name_ru": "Болгарские приседания",
+    "name_ru": "Болгарские приседания с гантелями",
     "name_en": "Dumbbell Bulgarian Split Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Болгарские приседания"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 88,
     "slug": "prisedaniya-na-skamyu-svoy-ves-88",
-    "name_ru": "Приседания на скамью",
+    "name_ru": "Приседания на скамью без отягощения",
     "name_en": "Bodyweight Box Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Приседания на скамью"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 89,
     "slug": "prisedaniya-na-skamyu-shtanga-89",
-    "name_ru": "Приседания на скамью",
+    "name_ru": "Приседания со штангой на скамью",
     "name_en": "Barbell Box Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Приседания на скамью"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 90,
     "slug": "prisedaniya-na-skamyu-ganteli-90",
-    "name_ru": "Приседания на скамью",
+    "name_ru": "Приседания с гантелями на скамью",
     "name_en": "Dumbbell Box Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Приседания на скамью"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 91,
     "slug": "prisedaniya-zerchera-shtanga-91",
-    "name_ru": "Приседания Зерчера",
+    "name_ru": "Приседания со штангой на сгибах локтей (приседания Зерчера)",
     "name_en": "Zercher Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Приседания Зерчера"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 92,
     "slug": "prisedaniya-na-odnoy-noge-svoy-ves-92",
-    "name_ru": "Приседания на одной ноге",
+    "name_ru": "Приседания на одной ноге (пистолетик)",
     "name_en": "Pistol Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Приседания на одной ноге"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 93,
     "slug": "zhim-nogami-trenazher-93",
-    "name_ru": "Жим ногами",
+    "name_ru": "Жим ногами в тренажере",
     "name_en": "Leg Press",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Жим ногами"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 94,
     "slug": "vypady-svoy-ves-94",
-    "name_ru": "Выпады",
+    "name_ru": "Выпады вперед без отягощения",
     "name_en": "Bodyweight Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 95,
     "slug": "vypady-shtanga-95",
-    "name_ru": "Выпады",
+    "name_ru": "Выпады со штангой вперед",
     "name_en": "Barbell Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 96,
     "slug": "vypady-ganteli-96",
-    "name_ru": "Выпады",
+    "name_ru": "Выпады с гантелями вперед",
     "name_en": "Dumbbell Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 97,
     "slug": "vypady-trenazher-smita-97",
-    "name_ru": "Выпады",
+    "name_ru": "Выпады в тренажере Смита вперед",
     "name_en": "Smith Machine Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 98,
     "slug": "razgibanie-nog-trenazher-98",
-    "name_ru": "Разгибание ног",
+    "name_ru": "Разгибание ног в тренажере",
     "name_en": "Leg Extension",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Разгибание ног"
+    ],
+    "primary_muscles": [
+      "quadriceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 99,
     "slug": "privedenie-nogi-vpered-nizhniy-blok-99",
-    "name_ru": "Приведение ноги вперед",
+    "name_ru": "Сгибание бедра на нижнем блоке стоя",
     "name_en": "Cable Hip Flexion",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Приведение ноги вперед"
+    ],
+    "primary_muscles": [
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 100,
     "slug": "privedenie-nogi-vpered-trenazher-100",
-    "name_ru": "Приведение ноги вперед",
+    "name_ru": "Сгибание бедра в тренажере",
     "name_en": "Machine Hip Flexion",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Приведение ноги вперед"
+    ],
+    "primary_muscles": [
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "quadriceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 101,
     "slug": "vyshagivaniya-na-platformu-svoy-ves-101",
-    "name_ru": "Вышагивания на платформу",
+    "name_ru": "Зашагивания на платформу без отягощения",
     "name_en": "Bodyweight Step-Up",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Вышагивания на платформу"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 102,
     "slug": "vyshagivaniya-na-platformu-shtanga-102",
-    "name_ru": "Вышагивания на платформу",
+    "name_ru": "Зашагивания со штангой на платформу",
     "name_en": "Barbell Step-Up",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Вышагивания на платформу"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 103,
     "slug": "vyshagivaniya-na-platformu-ganteli-103",
-    "name_ru": "Вышагивания на платформу",
+    "name_ru": "Зашагивания с гантелями на платформу",
     "name_en": "Dumbbell Step-Up",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Вышагивания на платформу"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 104,
@@ -933,97 +2119,230 @@
     "name_en": "Box Jump",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Прыжки на тумбу"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "calves",
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 105,
     "slug": "bokovye-pryzhki-na-tumbu-svoy-ves-105",
-    "name_ru": "Боковые прыжки на тумбу",
+    "name_ru": "Прыжки на тумбу боком",
     "name_en": "Lateral Box Jump",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Боковые прыжки на тумбу"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "calves",
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 106,
     "slug": "stulchik-u-steny-svoy-ves-106",
-    "name_ru": "Стульчик у стены",
+    "name_ru": "Присед у стены (стульчик)",
     "name_en": "Wall Sit",
     "muscle_group": "НОГИ",
     "sub_group": "Квадрицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Стульчик у стены"
+    ],
+    "primary_muscles": [
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "calves"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 107,
     "slug": "prisedaniya-sumo-shtanga-107",
-    "name_ru": "Приседания сумо",
+    "name_ru": "Приседания сумо со штангой",
     "name_en": "Barbell Sumo Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Приседания сумо"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 108,
     "slug": "prisedaniya-sumo-gantel-108",
-    "name_ru": "Приседания сумо",
+    "name_ru": "Приседания сумо с гантелью",
     "name_en": "Dumbbell Sumo Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Приседания сумо"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 109,
     "slug": "prisedaniya-sumo-trenazher-smita-109",
-    "name_ru": "Приседания сумо",
+    "name_ru": "Приседания сумо в тренажере Смита",
     "name_en": "Smith Machine Sumo Squat",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Приседания сумо"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 110,
     "slug": "bokovye-vypady-svoy-ves-110",
-    "name_ru": "Боковые выпады",
+    "name_ru": "Выпады в сторону без отягощения",
     "name_en": "Bodyweight Lateral Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Боковые выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 111,
     "slug": "bokovye-vypady-shtanga-111",
-    "name_ru": "Боковые выпады",
+    "name_ru": "Выпады со штангой в сторону",
     "name_en": "Barbell Lateral Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Боковые выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 112,
     "slug": "bokovye-vypady-ganteli-112",
-    "name_ru": "Боковые выпады",
+    "name_ru": "Выпады с гантелями в сторону",
     "name_en": "Dumbbell Lateral Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Боковые выпады"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 113,
     "slug": "svedenie-nog-sidya-trenazher-113",
-    "name_ru": "Сведение ног сидя",
+    "name_ru": "Сведение ног в тренажере сидя",
     "name_en": "Seated Hip Adduction Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сведение ног сидя"
+    ],
+    "primary_muscles": [
+      "adductors"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 114,
     "slug": "privedenie-bedra-stoya-nizhniy-blok-114",
-    "name_ru": "Приведение бедра стоя",
+    "name_ru": "Приведение бедра на нижнем блоке стоя",
     "name_en": "Standing Cable Hip Adduction",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Приведение бедра стоя"
+    ],
+    "primary_muscles": [
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 115,
@@ -1032,403 +2351,918 @@
     "name_en": "Side-Lying Hip Adduction",
     "muscle_group": "НОГИ",
     "sub_group": "Внутр",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Приведение бедра лежа на боку"
+    ],
+    "primary_muscles": [
+      "adductors"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 116,
     "slug": "stanovaya-tyaga-shtanga-116",
-    "name_ru": "Становая тяга",
+    "name_ru": "Становая тяга со штангой",
     "name_en": "Barbell Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Становая тяга"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "lower-back",
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 117,
     "slug": "stanovaya-tyaga-ganteli-117",
-    "name_ru": "Становая тяга",
+    "name_ru": "Становая тяга с гантелями",
     "name_en": "Dumbbell Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Становая тяга"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "lower-back",
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 118,
     "slug": "stanovaya-tyaga-trenazher-smita-118",
-    "name_ru": "Становая тяга",
+    "name_ru": "Становая тяга в тренажере Смита",
     "name_en": "Smith Machine Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Становая тяга"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "lower-back",
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 119,
     "slug": "stanovaya-tyaga-na-pryamyh-nogah-shtanga-119",
-    "name_ru": "Становая тяга на прямых ногах",
+    "name_ru": "Становая тяга со штангой на прямых ногах",
     "name_en": "Barbell Stiff-Leg Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Становая тяга на прямых ногах"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 120,
     "slug": "stanovaya-tyaga-na-pryamyh-nogah-ganteli-120",
-    "name_ru": "Становая тяга на прямых ногах",
+    "name_ru": "Становая тяга с гантелями на прямых ногах",
     "name_en": "Dumbbell Stiff-Leg Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Становая тяга на прямых ногах"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 121,
     "slug": "stanovaya-tyaga-na-pryamyh-nogah-trenazher-smita-121",
-    "name_ru": "Становая тяга на прямых ногах",
+    "name_ru": "Становая тяга в тренажере Смита на прямых ногах",
     "name_en": "Smith Machine Stiff-Leg Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Становая тяга на прямых ногах"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 122,
     "slug": "stanovaya-tyaga-sumo-shtanga-122",
-    "name_ru": "Становая тяга сумо",
+    "name_ru": "Становая тяга сумо со штангой",
     "name_en": "Barbell Sumo Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Становая тяга сумо"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "lower-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 123,
     "slug": "stanovaya-tyaga-sumo-ganteli-123",
-    "name_ru": "Становая тяга сумо",
+    "name_ru": "Становая тяга сумо с гантелями",
     "name_en": "Dumbbell Sumo Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Становая тяга сумо"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "lower-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 124,
     "slug": "stanovaya-tyaga-sumo-trenazher-smita-124",
-    "name_ru": "Становая тяга сумо",
+    "name_ru": "Становая тяга сумо в тренажере Смита",
     "name_en": "Smith Machine Sumo Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Становая тяга сумо"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps",
+      "adductors"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "lower-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 125,
     "slug": "stanovaya-tyaga-na-odnoy-pryamoy-noge-ganteli-125",
-    "name_ru": "Становая тяга на одной прямой ноге",
+    "name_ru": "Становая тяга с гантелями на одной прямой ноге",
     "name_en": "Single-Leg Dumbbell Stiff-Leg Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Становая тяга на одной прямой ноге"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 126,
     "slug": "rumynskaya-tyaga-shtanga-126",
-    "name_ru": "Румынская тяга",
+    "name_ru": "Румынская тяга со штангой",
     "name_en": "Barbell Romanian Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Румынская тяга"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 127,
     "slug": "rumynskaya-tyaga-ganteli-127",
-    "name_ru": "Румынская тяга",
+    "name_ru": "Румынская тяга с гантелями",
     "name_en": "Dumbbell Romanian Deadlift",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Румынская тяга"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 128,
     "slug": "dobroe-utro-shtanga-128",
-    "name_ru": "Доброе утро",
+    "name_ru": "Наклоны со штангой на плечах (доброе утро)",
     "name_en": "Barbell Good Morning",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Доброе утро"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 129,
     "slug": "dobroe-utro-trenazher-smita-129",
-    "name_ru": "Доброе утро",
+    "name_ru": "Наклоны в тренажере Смита (доброе утро)",
     "name_en": "Smith Machine Good Morning",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Доброе утро"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 130,
     "slug": "tyaga-v-silovoy-rame-shtanga-130",
-    "name_ru": "Тяга в силовой раме",
+    "name_ru": "Тяга штанги с упоров в силовой раме",
     "name_en": "Barbell Rack Pull",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга в силовой раме"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "lower-back"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 131,
     "slug": "sgibanie-nog-trenazher-131",
-    "name_ru": "Сгибание ног",
+    "name_ru": "Сгибание ног в тренажере",
     "name_en": "Leg Curl Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сгибание ног"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "calves"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 132,
     "slug": "sgibanie-nog-lezha-trenazher-132",
-    "name_ru": "Сгибание ног лежа",
+    "name_ru": "Сгибание ног в тренажере лежа",
     "name_en": "Lying Leg Curl Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сгибание ног лежа"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "calves"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 133,
     "slug": "sgibanie-nog-lezha-gantel-133",
-    "name_ru": "Сгибание ног лежа",
+    "name_ru": "Сгибание ног с гантелью лежа",
     "name_en": "Dumbbell Lying Leg Curl",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Сгибание ног лежа"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "calves"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 134,
     "slug": "sgibanie-nogi-stoya-nizhniy-blok-134",
-    "name_ru": "Сгибание ноги стоя",
+    "name_ru": "Сгибание ноги на нижнем блоке стоя",
     "name_en": "Standing Cable Leg Curl",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание ноги стоя"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "calves"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 135,
     "slug": "podem-korpusa-stoya-na-kolenyah-v-upore-svoy-ves-135",
-    "name_ru": "Подъем корпуса стоя на коленях в упоре",
+    "name_ru": "Сгибание ног с опусканием корпуса с колен (нордические сгибания)",
     "name_en": "Nordic Hamstring Curl",
     "muscle_group": "НОГИ",
     "sub_group": "Биц бедра",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем корпуса стоя на коленях в упоре"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "calves"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 136,
     "slug": "tyaga-mezhdu-nog-nizhniy-blok-136",
-    "name_ru": "Тяга между ног",
+    "name_ru": "Тяга нижнего блока между ног",
     "name_en": "Cable Pull-Through",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Тяга между ног"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 137,
     "slug": "obratnye-vypady-svoy-ves-137",
-    "name_ru": "Обратные выпады",
+    "name_ru": "Выпады назад без отягощения",
     "name_en": "Bodyweight Reverse Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Обратные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 138,
     "slug": "obratnye-vypady-shtanga-138",
-    "name_ru": "Обратные выпады",
+    "name_ru": "Выпады со штангой назад",
     "name_en": "Barbell Reverse Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Обратные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 139,
     "slug": "obratnye-vypady-ganteli-139",
-    "name_ru": "Обратные выпады",
+    "name_ru": "Выпады с гантелями назад",
     "name_en": "Dumbbell Reverse Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Обратные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 140,
     "slug": "obratnye-vypady-trenazher-smita-140",
-    "name_ru": "Обратные выпады",
+    "name_ru": "Выпады в тренажере Смита назад",
     "name_en": "Smith Machine Reverse Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Обратные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 141,
     "slug": "obratnye-vypady-t-grif-141",
-    "name_ru": "Обратные выпады",
+    "name_ru": "Выпады с Т-грифом назад",
     "name_en": "T-Bar Reverse Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "Т-гриф"
+    "equipment": "Т-гриф",
+    "aliases_ru": [
+      "Обратные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 142,
     "slug": "skrestnye-vypady-svoy-ves-142",
-    "name_ru": "Скрестные выпады",
+    "name_ru": "Выпады накрест без отягощения",
     "name_en": "Bodyweight Curtsy Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скрестные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 143,
     "slug": "skrestnye-vypady-shtanga-143",
-    "name_ru": "Скрестные выпады",
+    "name_ru": "Выпады со штангой накрест",
     "name_en": "Barbell Curtsy Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Скрестные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 144,
     "slug": "skrestnye-vypady-ganteli-144",
-    "name_ru": "Скрестные выпады",
+    "name_ru": "Выпады с гантелями накрест",
     "name_en": "Dumbbell Curtsy Lunge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Скрестные выпады"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 145,
     "slug": "yagodichnyy-mostik-svoy-ves-145",
-    "name_ru": "Ягодичный мостик",
+    "name_ru": "Ягодичный мост без отягощения",
     "name_en": "Bodyweight Glute Bridge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ягодичный мостик"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 146,
     "slug": "yagodichnyy-mostik-shtanga-146",
-    "name_ru": "Ягодичный мостик",
+    "name_ru": "Ягодичный мост со штангой",
     "name_en": "Barbell Glute Bridge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Ягодичный мостик"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 147,
     "slug": "yagodichnyy-mostik-gantel-147",
-    "name_ru": "Ягодичный мостик",
+    "name_ru": "Ягодичный мост с гантелью",
     "name_en": "Dumbbell Glute Bridge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Ягодичный мостик"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 148,
     "slug": "yagodichnyy-mostik-na-odnoy-noge-svoy-ves-148",
-    "name_ru": "Ягодичный мостик на одной ноге",
+    "name_ru": "Ягодичный мост на одной ноге",
     "name_en": "Single-Leg Glute Bridge",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ягодичный мостик на одной ноге"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 149,
     "slug": "yagodichnyy-mostik-lyagushka-svoy-ves-149",
-    "name_ru": "Ягодичный мостик «Лягушка»",
+    "name_ru": "Ягодичный мост со сведенными стопами (лягушка)",
     "name_en": "Frog Pump",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ягодичный мостик «Лягушка»"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 150,
     "slug": "yagodichnyy-mostik-na-skame-svoy-ves-150",
-    "name_ru": "Ягодичный мостик на скамье",
+    "name_ru": "Подъем таза с опорой на скамью без отягощения",
     "name_en": "Bodyweight Hip Thrust",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ягодичный мостик на скамье"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 151,
     "slug": "yagodichnyy-mostik-na-skame-shtanga-151",
-    "name_ru": "Ягодичный мостик на скамье",
+    "name_ru": "Подъем таза со штангой с опорой на скамью",
     "name_en": "Barbell Hip Thrust",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Ягодичный мостик на скамье"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 152,
     "slug": "yagodichnyy-mostik-na-skame-trenazher-smita-152",
-    "name_ru": "Ягодичный мостик на скамье",
+    "name_ru": "Подъем таза в тренажере Смита с опорой на скамью",
     "name_en": "Smith Machine Hip Thrust",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Ягодичный мостик на скамье"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 153,
     "slug": "mahi-nogoy-nazad-na-chetverenkah-svoy-ves-153",
-    "name_ru": "Махи ногой назад на четвереньках",
+    "name_ru": "Разгибание бедра на четвереньках",
     "name_en": "Donkey Kick",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Махи ногой назад на четвереньках"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 154,
     "slug": "mahi-nogoy-nazad-nizhniy-blok-154",
-    "name_ru": "Махи ногой назад",
+    "name_ru": "Отведение ноги на нижнем блоке назад",
     "name_en": "Cable Kickback",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Махи ногой назад"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 155,
     "slug": "mahi-nogoy-nazad-trenazher-155",
-    "name_ru": "Махи ногой назад",
+    "name_ru": "Отведение ноги в тренажере назад",
     "name_en": "Glute Kickback Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Махи ногой назад"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 156,
     "slug": "bokovye-vyshagivaniya-na-platformu-svoy-ves-156",
-    "name_ru": "Боковые вышагивания на платформу",
+    "name_ru": "Зашагивания на платформу боком",
     "name_en": "Lateral Step-Up",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Боковые вышагивания на платформу"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "adductors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 157,
     "slug": "pozharnyy-gidrant-svoy-ves-157",
-    "name_ru": "Пожарный гидрант",
+    "name_ru": "Отведение бедра в сторону на четвереньках",
     "name_en": "Fire Hydrant",
     "muscle_group": "НОГИ",
     "sub_group": "Ягодицы",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Пожарный гидрант"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 158,
     "slug": "razvedenie-nog-sidya-trenazher-158",
-    "name_ru": "Разведение ног сидя",
+    "name_ru": "Разведение ног в тренажере сидя",
     "name_en": "Seated Hip Abduction Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Внешн",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Разведение ног сидя"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 159,
     "slug": "razvedenie-nog-stoya-nizhniy-blok-159",
-    "name_ru": "Разведение ног стоя",
+    "name_ru": "Отведение бедра на нижнем блоке в сторону",
     "name_en": "Standing Cable Hip Abduction",
     "muscle_group": "НОГИ",
     "sub_group": "Внешн",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разведение ног стоя"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 160,
@@ -1437,214 +3271,450 @@
     "name_en": "Side-Lying Leg Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Внешн",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем прямой ноги лежа на боку"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 161,
     "slug": "podem-na-noski-stoya-svoy-ves-161",
-    "name_ru": "Подъем на носки стоя",
+    "name_ru": "Подъем на носки стоя без отягощения",
     "name_en": "Bodyweight Standing Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем на носки стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 162,
     "slug": "podem-na-noski-stoya-shtanga-162",
-    "name_ru": "Подъем на носки стоя",
+    "name_ru": "Подъем на носки со штангой стоя",
     "name_en": "Barbell Standing Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Подъем на носки стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 163,
     "slug": "podem-na-noski-stoya-ganteli-163",
-    "name_ru": "Подъем на носки стоя",
+    "name_ru": "Подъем на носки с гантелями стоя",
     "name_en": "Dumbbell Standing Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Подъем на носки стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 164,
     "slug": "podem-na-noski-stoya-trenazher-164",
-    "name_ru": "Подъем на носки стоя",
+    "name_ru": "Подъем на носки в тренажере стоя",
     "name_en": "Standing Calf Raise Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Подъем на носки стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 165,
     "slug": "podem-na-noski-stoya-trenazher-smita-165",
-    "name_ru": "Подъем на носки стоя",
+    "name_ru": "Подъем на носки в тренажере Смита стоя",
     "name_en": "Smith Machine Standing Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Подъем на носки стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 166,
     "slug": "podem-na-nosok-odnoy-nogi-stoya-svoy-ves-166",
-    "name_ru": "Подъем на носок одной ноги стоя",
+    "name_ru": "Подъем на носок одной ноги без отягощения",
     "name_en": "Single-Leg Standing Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем на носок одной ноги стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 167,
     "slug": "podem-na-nosok-odnoy-nogi-stoya-ganteli-167",
-    "name_ru": "Подъем на носок одной ноги стоя",
+    "name_ru": "Подъем на носок одной ноги с гантелями",
     "name_en": "Single-Leg Standing Dumbbell Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Подъем на носок одной ноги стоя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 168,
     "slug": "podem-na-noski-sidya-shtanga-168",
-    "name_ru": "Подъем на носки сидя",
+    "name_ru": "Подъем на носки со штангой сидя",
     "name_en": "Seated Barbell Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Подъем на носки сидя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 169,
     "slug": "podem-na-noski-sidya-ganteli-169",
-    "name_ru": "Подъем на носки сидя",
+    "name_ru": "Подъем на носки с гантелями сидя",
     "name_en": "Seated Dumbbell Calf Raise",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Подъем на носки сидя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 170,
     "slug": "podem-na-noski-sidya-trenazher-170",
-    "name_ru": "Подъем на носки сидя",
+    "name_ru": "Подъем на носки в тренажере сидя",
     "name_en": "Seated Calf Raise Machine",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Подъем на носки сидя"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 171,
     "slug": "zhim-noskami-trenazher-171",
-    "name_ru": "Жим носками",
+    "name_ru": "Жим носками в тренажере",
     "name_en": "Toe Press (Machine)",
     "muscle_group": "НОГИ",
     "sub_group": "Икры",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Жим носками"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 172,
     "slug": "zhim-nad-golovoy-shtanga-172",
-    "name_ru": "Жим над головой",
+    "name_ru": "Жим штанги над головой стоя",
     "name_en": "Standing Barbell Overhead Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим над головой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 173,
     "slug": "zhim-nad-golovoy-ganteli-173",
-    "name_ru": "Жим над головой",
+    "name_ru": "Жим гантелей над головой стоя",
     "name_en": "Standing Dumbbell Shoulder Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим над головой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 174,
     "slug": "zhim-nad-golovoy-nizhniy-blok-174",
-    "name_ru": "Жим над головой",
+    "name_ru": "Жим на нижних блоках над головой стоя",
     "name_en": "Standing Cable Shoulder Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Жим над головой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 175,
     "slug": "zhim-nad-golovoy-trenazher-175",
-    "name_ru": "Жим над головой",
+    "name_ru": "Жим в тренажере над головой стоя",
     "name_en": "Standing Machine Shoulder Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Жим над головой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 176,
     "slug": "zhim-nad-golovoy-trenazher-smita-176",
-    "name_ru": "Жим над головой",
+    "name_ru": "Жим в тренажере Смита над головой",
     "name_en": "Smith Machine Overhead Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим над головой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 177,
     "slug": "zhim-nad-golovoy-sidya-shtanga-177",
-    "name_ru": "Жим над головой сидя",
+    "name_ru": "Жим штанги над головой сидя",
     "name_en": "Seated Barbell Overhead Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим над головой сидя"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 178,
     "slug": "zhim-nad-golovoy-sidya-ganteli-178",
-    "name_ru": "Жим над головой сидя",
+    "name_ru": "Жим гантелей над головой сидя",
     "name_en": "Seated Dumbbell Shoulder Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим над головой сидя"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 179,
     "slug": "zhim-arnolda-ganteli-179",
-    "name_ru": "Жим Арнольда",
+    "name_ru": "Жим Арнольда с гантелями",
     "name_en": "Arnold Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим Арнольда"
+    ],
+    "primary_muscles": [
+      "front-deltoids",
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 180,
     "slug": "podem-pered-soboy-shtanga-180",
-    "name_ru": "Подъем перед собой",
+    "name_ru": "Подъем штанги перед собой",
     "name_en": "Barbell Front Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Подъем перед собой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 181,
     "slug": "podem-pered-soboy-ganteli-181",
-    "name_ru": "Подъем перед собой",
+    "name_ru": "Подъем гантелей перед собой",
     "name_en": "Dumbbell Front Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Подъем перед собой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 182,
     "slug": "podem-pered-soboy-blin-182",
-    "name_ru": "Подъем перед собой",
+    "name_ru": "Подъем блина перед собой",
     "name_en": "Weight Plate Front Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "блин"
+    "equipment": "блин",
+    "aliases_ru": [
+      "Подъем перед собой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 183,
     "slug": "podem-pered-soboy-nizhniy-blok-183",
-    "name_ru": "Подъем перед собой",
+    "name_ru": "Подъем рук на нижнем блоке перед собой",
     "name_en": "Cable Front Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Подъем перед собой"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 184,
@@ -1653,7 +3723,19 @@
     "name_en": "Pike Push-Up",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Отжимания уголком"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "side-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 185,
@@ -1662,340 +3744,753 @@
     "name_en": "Handstand Push-Up",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Перед",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Отжимания стоя на руках"
+    ],
+    "primary_muscles": [
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "side-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 186,
     "slug": "zhim-iz-za-golovy-trenazher-smita-186",
-    "name_ru": "Жим из-за головы",
+    "name_ru": "Жим в тренажере Смита из-за головы",
     "name_en": "Smith Machine Behind-the-Neck Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим из-за головы"
+    ],
+    "primary_muscles": [
+      "front-deltoids",
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 187,
     "slug": "podem-ruk-v-storony-ganteli-187",
-    "name_ru": "Подъём рук в стороны",
+    "name_ru": "Подъем гантелей в стороны",
     "name_en": "Dumbbell Lateral Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Подъём рук в стороны"
+    ],
+    "primary_muscles": [
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 188,
     "slug": "podem-ruk-v-storony-nizhniy-blok-188",
-    "name_ru": "Подъём рук в стороны",
+    "name_ru": "Подъем рук на нижних блоках в стороны",
     "name_en": "Cable Lateral Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Подъём рук в стороны"
+    ],
+    "primary_muscles": [
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 189,
     "slug": "podem-ruk-v-storony-trenazher-189",
-    "name_ru": "Подъём рук в стороны",
+    "name_ru": "Подъем рук в тренажере в стороны",
     "name_en": "Machine Lateral Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Подъём рук в стороны"
+    ],
+    "primary_muscles": [
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 190,
     "slug": "tyaga-k-podborodku-shtanga-190",
-    "name_ru": "Тяга к подбородку",
+    "name_ru": "Тяга штанги к подбородку",
     "name_en": "Barbell Upright Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга к подбородку"
+    ],
+    "primary_muscles": [
+      "side-deltoids",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 191,
     "slug": "tyaga-k-podborodku-ganteli-191",
-    "name_ru": "Тяга к подбородку",
+    "name_ru": "Тяга гантелей к подбородку",
     "name_en": "Dumbbell Upright Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Тяга к подбородку"
+    ],
+    "primary_muscles": [
+      "side-deltoids",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 192,
     "slug": "tyaga-k-podborodku-nizhniy-blok-192",
-    "name_ru": "Тяга к подбородку",
+    "name_ru": "Тяга нижнего блока к подбородку",
     "name_en": "Cable Upright Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Тяга к подбородку"
+    ],
+    "primary_muscles": [
+      "side-deltoids",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 193,
     "slug": "tyaga-k-podborodku-trenazher-smita-193",
-    "name_ru": "Тяга к подбородку",
+    "name_ru": "Тяга в тренажере Смита к подбородку",
     "name_en": "Smith Machine Upright Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Тяга к подбородку"
+    ],
+    "primary_muscles": [
+      "side-deltoids",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 194,
     "slug": "vokrug-sveta-stoya-ganteli-194",
-    "name_ru": "Вокруг света стоя",
+    "name_ru": "Круговые движения гантелями стоя",
     "name_en": "Standing Dumbbell Around the World",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Середина",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Вокруг света стоя"
+    ],
+    "primary_muscles": [
+      "side-deltoids",
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 195,
     "slug": "kubinskiy-zhim-ganteli-195",
-    "name_ru": "Кубинский жим",
+    "name_ru": "Кубинский жим с гантелями",
     "name_en": "Dumbbell Cuban Press",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Кубинский жим"
+    ],
+    "primary_muscles": [
+      "rotator-cuff",
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "rear-deltoids",
+      "front-deltoids",
+      "triceps",
+      "upper-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 196,
     "slug": "razvedenie-ruk-verhniy-blok-196",
-    "name_ru": "Разведение рук",
+    "name_ru": "Разведение рук на верхних блоках",
     "name_en": "Cable Rear Delt Fly",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Разведение рук"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 197,
     "slug": "razvedenie-ruk-trenazher-197",
-    "name_ru": "Разведение рук",
+    "name_ru": "Обратное разведение рук в тренажере «бабочка»",
     "name_en": "Reverse Pec Deck Fly",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Разведение рук"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 198,
     "slug": "razvedenie-ruk-lezha-ganteli-198",
-    "name_ru": "Разведение рук лежа",
+    "name_ru": "Разведение гантелей лежа на животе",
     "name_en": "Lying Dumbbell Rear Delt Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Разведение рук лежа"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 199,
     "slug": "razvedenie-ruk-v-naklone-ganteli-199",
-    "name_ru": "Разведение рук в наклоне",
+    "name_ru": "Разведение гантелей в наклоне",
     "name_en": "Bent-Over Dumbbell Rear Delt Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Разведение рук в наклоне"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 200,
     "slug": "razvedenie-ruk-v-naklone-nizhniy-blok-200",
-    "name_ru": "Разведение рук в наклоне",
+    "name_ru": "Разведение рук на нижних блоках в наклоне",
     "name_en": "Bent-Over Cable Rear Delt Raise",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разведение рук в наклоне"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 201,
     "slug": "tyaga-na-zadnie-delty-verhniy-blok-201",
-    "name_ru": "Тяга на задние дельты",
+    "name_ru": "Тяга верхнего блока к лицу",
     "name_en": "Face Pull (Cable)",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Тяга на задние дельты"
+    ],
+    "primary_muscles": [
+      "rear-deltoids",
+      "rotator-cuff"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 202,
     "slug": "tyaga-v-naklone-na-zadnie-delty-shtanga-202",
-    "name_ru": "Тяга в наклоне на задние дельты",
+    "name_ru": "Тяга штанги на задние дельты в наклоне",
     "name_en": "Bent-Over Barbell Rear Delt Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга в наклоне на задние дельты"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 203,
     "slug": "tyaga-v-naklone-na-zadnie-delty-ganteli-203",
-    "name_ru": "Тяга в наклоне на задние дельты",
+    "name_ru": "Тяга гантелей на задние дельты в наклоне",
     "name_en": "Bent-Over Dumbbell Rear Delt Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Тяга в наклоне на задние дельты"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 204,
     "slug": "tyaga-v-naklone-na-zadnie-delty-trenazher-smita-204",
-    "name_ru": "Тяга в наклоне на задние дельты",
+    "name_ru": "Тяга в тренажере Смита на задние дельты в наклоне",
     "name_en": "Smith Machine Bent-Over Rear Delt Row",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Тяга в наклоне на задние дельты"
+    ],
+    "primary_muscles": [
+      "rear-deltoids"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "biceps",
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 205,
     "slug": "vokrug-sveta-v-naklone-ganteli-205",
-    "name_ru": "Вокруг света в наклоне",
+    "name_ru": "Круговые движения гантелями в наклоне",
     "name_en": "Bent-Over Dumbbell Around the World",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Вокруг света в наклоне"
+    ],
+    "primary_muscles": [
+      "rear-deltoids",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "side-deltoids",
+      "rotator-cuff"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 206,
     "slug": "vraschenie-plecha-vnutr-blok-206",
-    "name_ru": "Вращение плеча внутрь",
+    "name_ru": "Вращение плеча на блоке внутрь",
     "name_en": "Cable Internal Rotation",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Вращение плеча внутрь"
+    ],
+    "primary_muscles": [
+      "rotator-cuff"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "lats"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 207,
     "slug": "vraschenie-plecha-naruzhu-blok-207",
-    "name_ru": "Вращение плеча наружу",
+    "name_ru": "Вращение плеча на блоке наружу",
     "name_en": "Cable External Rotation",
     "muscle_group": "ПЛЕЧИ",
     "sub_group": "Задн",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Вращение плеча наружу"
+    ],
+    "primary_muscles": [
+      "rotator-cuff"
+    ],
+    "secondary_muscles": [
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 208,
     "slug": "sgibanie-ruk-shtanga-208",
-    "name_ru": "Сгибание рук",
+    "name_ru": "Сгибание рук со штангой",
     "name_en": "Barbell Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сгибание рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 209,
     "slug": "sgibanie-ruk-ganteli-209",
-    "name_ru": "Сгибание рук",
+    "name_ru": "Сгибание рук с гантелями",
     "name_en": "Dumbbell Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 210,
     "slug": "sgibanie-ruk-nizhniy-blok-210",
-    "name_ru": "Сгибание рук",
+    "name_ru": "Сгибание рук на нижнем блоке",
     "name_en": "Cable Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 211,
     "slug": "sgibanie-ruk-trenazher-211",
-    "name_ru": "Сгибание рук",
+    "name_ru": "Сгибание рук в тренажере",
     "name_en": "Machine Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Сгибание рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 212,
     "slug": "sgibanie-ruk-na-naklonnoy-skame-ganteli-212",
-    "name_ru": "Сгибание рук на наклонной скамье",
+    "name_ru": "Сгибание рук с гантелями на наклонной скамье",
     "name_en": "Incline Dumbbell Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук на наклонной скамье"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 213,
     "slug": "perekrestnye-sgibaniya-ruk-ganteli-213",
-    "name_ru": "Перекрестные сгибания рук",
+    "name_ru": "Сгибание рук с гантелями поперек корпуса молотковым хватом",
     "name_en": "Cross-Body Hammer Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Перекрестные сгибания рук"
+    ],
+    "primary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 214,
     "slug": "sgibanie-ruk-s-supinatsiey-ganteli-214",
-    "name_ru": "Сгибание рук с супинацией",
+    "name_ru": "Сгибание рук с гантелями с супинацией",
     "name_en": "Supinating Dumbbell Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук с супинацией"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 215,
     "slug": "sgibaniya-zottmana-ganteli-215",
-    "name_ru": "Сгибания Зоттмана",
+    "name_ru": "Сгибания Зоттмана с гантелями",
     "name_en": "Zottman Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибания Зоттмана"
+    ],
+    "primary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 216,
     "slug": "pauchi-sgibaniya-shtanga-216",
-    "name_ru": "Паучьи сгибания",
+    "name_ru": "Паучьи сгибания со штангой",
     "name_en": "Barbell Spider Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Паучьи сгибания"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 217,
     "slug": "pauchi-sgibaniya-ganteli-217",
-    "name_ru": "Паучьи сгибания",
+    "name_ru": "Паучьи сгибания с гантелями",
     "name_en": "Dumbbell Spider Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Паучьи сгибания"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 218,
     "slug": "sgibanie-ruk-molotkovym-hvatom-ganteli-218",
-    "name_ru": "Сгибание рук молотковым хватом",
+    "name_ru": "Сгибание рук с гантелями молотковым хватом",
     "name_en": "Dumbbell Hammer Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук молотковым хватом"
+    ],
+    "primary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 219,
     "slug": "sgibanie-ruk-molotkovym-hvatom-nizhniy-blok-219",
-    "name_ru": "Сгибание рук молотковым хватом",
+    "name_ru": "Сгибание рук на нижнем блоке молотковым хватом",
     "name_en": "Cable Hammer Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание рук молотковым хватом"
+    ],
+    "primary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 220,
     "slug": "kontsentrirovannye-sgibaniya-ruk-shtanga-220",
-    "name_ru": "Концентрированные сгибания рук",
+    "name_ru": "Концентрированные сгибания со штангой",
     "name_en": "Barbell Concentration Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Концентрированные сгибания рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 221,
     "slug": "kontsentrirovannye-sgibaniya-ruk-gantel-221",
-    "name_ru": "Концентрированные сгибания рук",
+    "name_ru": "Концентрированное сгибание с гантелью",
     "name_en": "Dumbbell Concentration Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Концентрированные сгибания рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 222,
     "slug": "kontsentrirovannye-sgibaniya-ruk-nizhniy-blok-222",
-    "name_ru": "Концентрированные сгибания рук",
+    "name_ru": "Концентрированное сгибание на нижнем блоке",
     "name_en": "Cable Concentration Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Концентрированные сгибания рук"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 223,
@@ -2004,7 +4499,19 @@
     "name_en": "Reverse-Grip Lat Pulldown",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Тяга верхнего блока обратным хватом"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 224,
@@ -2013,232 +4520,483 @@
     "name_en": "Reverse-Grip Pull-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания обратным хватом"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 225,
     "slug": "podtyagivaniya-obratnym-shirokim-hvatom-svoy-ves-225",
-    "name_ru": "Подтягивания обратным широким хватом",
+    "name_ru": "Подтягивания широким обратным хватом",
     "name_en": "Wide-Grip Chin-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания обратным широким хватом"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 226,
     "slug": "podtyagivaniya-obratnym-uzkim-hvatom-svoy-ves-226",
-    "name_ru": "Подтягивания обратным узким хватом",
+    "name_ru": "Подтягивания узким обратным хватом",
     "name_en": "Close-Grip Chin-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания обратным узким хватом"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 227,
     "slug": "sgibaniya-ruk-na-skame-skotta-shtanga-227",
-    "name_ru": "Сгибания рук на скамье Скотта",
+    "name_ru": "Сгибание рук со штангой на скамье Скотта",
     "name_en": "Barbell Preacher Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сгибания рук на скамье Скотта"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 228,
     "slug": "sgibaniya-ruk-na-skame-skotta-ganteli-228",
-    "name_ru": "Сгибания рук на скамье Скотта",
+    "name_ru": "Сгибание рук с гантелями на скамье Скотта",
     "name_en": "Dumbbell Preacher Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибания рук на скамье Скотта"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 229,
     "slug": "sgibanie-ruk-na-skame-skotta-nizhniy-blok-229",
-    "name_ru": "Сгибание рук на скамье Скотта",
+    "name_ru": "Сгибание рук на нижнем блоке на скамье Скотта",
     "name_en": "Cable Preacher Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание рук на скамье Скотта"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 230,
     "slug": "sgibanie-odnoy-ruki-na-skame-skotta-gantel-230",
-    "name_ru": "Сгибание одной руки на скамье Скотта",
+    "name_ru": "Сгибание одной руки с гантелью на скамье Скотта",
     "name_en": "Single-Arm Dumbbell Preacher Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Сгибание одной руки на скамье Скотта"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 231,
     "slug": "sgibanie-ruk-na-skame-skotta-molotkovym-hvatom-ganteli-231",
-    "name_ru": "Сгибание рук на скамье Скотта молотковым хватом",
+    "name_ru": "Сгибание рук с гантелями на скамье Скотта молотковым хватом",
     "name_en": "Dumbbell Preacher Hammer Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Бицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук на скамье Скотта молотковым хватом"
+    ],
+    "primary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 232,
     "slug": "zhim-lezha-uzkim-hvatom-shtanga-232",
-    "name_ru": "Жим лежа узким хватом",
+    "name_ru": "Жим штанги лежа узким хватом",
     "name_en": "Close-Grip Barbell Bench Press",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Жим лежа узким хватом"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 233,
     "slug": "zhim-lezha-uzkim-hvatom-ganteli-233",
-    "name_ru": "Жим лежа узким хватом",
+    "name_ru": "Жим гантелей лежа узким хватом",
     "name_en": "Close-Grip Dumbbell Bench Press",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Жим лежа узким хватом"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 234,
     "slug": "zhim-lezha-uzkim-hvatom-trenazher-smita-234",
-    "name_ru": "Жим лежа узким хватом",
+    "name_ru": "Жим в тренажере Смита лежа узким хватом",
     "name_en": "Close-Grip Smith Machine Bench Press",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "тренажер Смита"
+    "equipment": "тренажер Смита",
+    "aliases_ru": [
+      "Жим лежа узким хватом"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 235,
     "slug": "razgibanie-ruk-lezha-shtanga-235",
-    "name_ru": "Разгибание рук лежа",
+    "name_ru": "Французский жим со штангой лежа",
     "name_en": "Barbell Skull Crusher",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Разгибание рук лежа"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 236,
     "slug": "razgibanie-ruk-lezha-ganteli-236",
-    "name_ru": "Разгибание рук лежа",
+    "name_ru": "Французский жим с гантелями лежа",
     "name_en": "Dumbbell Skull Crusher",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Разгибание рук лежа"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 237,
     "slug": "razgibanie-ruk-lezha-nizhniy-blok-237",
-    "name_ru": "Разгибание рук лежа",
+    "name_ru": "Разгибание рук на нижнем блоке лежа",
     "name_en": "Cable Lying Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разгибание рук лежа"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 238,
     "slug": "razgibanie-ruk-sidya-shtanga-238",
-    "name_ru": "Разгибание рук сидя",
+    "name_ru": "Разгибание рук со штангой из-за головы сидя",
     "name_en": "Seated Barbell Overhead Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Разгибание рук сидя"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 239,
     "slug": "razgibanie-ruk-sidya-gantel-239",
-    "name_ru": "Разгибание рук сидя",
+    "name_ru": "Разгибание рук с гантелью из-за головы сидя",
     "name_en": "Seated Dumbbell Overhead Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Разгибание рук сидя"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 240,
     "slug": "razgibanie-odnoy-ruki-iz-za-golovy-gantel-240",
-    "name_ru": "Разгибание одной руки из-за головы",
+    "name_ru": "Разгибание одной руки с гантелью из-за головы",
     "name_en": "Single-Arm Dumbbell Overhead Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Разгибание одной руки из-за головы"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 241,
     "slug": "razgibanie-ruk-iz-za-golovy-nizhniy-blok-241",
-    "name_ru": "Разгибание рук из-за головы",
+    "name_ru": "Разгибание рук на нижнем блоке из-за головы",
     "name_en": "Cable Overhead Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разгибание рук из-за головы"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 242,
     "slug": "razgibanie-ruk-iz-za-golovy-stoya-na-kolenyah-nizhniy-blok-242",
-    "name_ru": "Разгибание рук из-за головы стоя на коленях",
+    "name_ru": "Разгибание рук на нижнем блоке из-за головы с колен",
     "name_en": "Kneeling Cable Overhead Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разгибание рук из-за головы стоя на коленях"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 243,
     "slug": "razgibanie-ruk-verhniy-blok-243",
-    "name_ru": "Разгибание рук",
+    "name_ru": "Разгибание рук на верхнем блоке",
     "name_en": "Cable Triceps Pushdown",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Разгибание рук"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 244,
     "slug": "razgibanie-ruk-trenazher-244",
-    "name_ru": "Разгибание рук",
+    "name_ru": "Разгибание рук в тренажере",
     "name_en": "Machine Triceps Extension",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Разгибание рук"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "back"
   },
   {
     "id": 245,
     "slug": "razgibanie-ruk-v-naklone-ganteli-245",
-    "name_ru": "Разгибание рук в наклоне",
+    "name_ru": "Разгибание рук с гантелями в наклоне",
     "name_en": "Bent-Over Dumbbell Triceps Kickback",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Разгибание рук в наклоне"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 246,
     "slug": "razgibanie-ruki-v-naklone-nizhniy-blok-246",
-    "name_ru": "Разгибание руки в наклоне",
+    "name_ru": "Разгибание руки на нижнем блоке в наклоне",
     "name_en": "Cable Triceps Kickback",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Разгибание руки в наклоне"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "rear-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 247,
     "slug": "brusya-na-tritseps-svoy-ves-247",
-    "name_ru": "Брусья на трицепс",
+    "name_ru": "Отжимания на брусьях с прямым корпусом",
     "name_en": "Triceps Dip",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Брусья на трицепс"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 248,
     "slug": "brusya-na-tritseps-trenazher-248",
-    "name_ru": "Брусья на трицепс",
+    "name_ru": "Отжимания в тренажере на трицепс",
     "name_en": "Machine Triceps Dip",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Брусья на трицепс"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 249,
     "slug": "obratnye-otzhimaniya-svoy-ves-249",
-    "name_ru": "Обратные отжимания",
+    "name_ru": "Обратные отжимания от скамьи",
     "name_en": "Bench Dip",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Обратные отжимания"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 250,
@@ -2247,7 +5005,19 @@
     "name_en": "Triceps Push-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Французские отжимания"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 251,
@@ -2256,124 +5026,260 @@
     "name_en": "Diamond Push-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Алмазные отжимания"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 252,
     "slug": "bokovye-otzhimaniya-svoy-ves-252",
-    "name_ru": "Боковые отжимания",
+    "name_ru": "Отжимания лежа на боку",
     "name_en": "Side Push-Up",
     "muscle_group": "РУКИ",
     "sub_group": "Трицепс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Боковые отжимания"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "front-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 253,
     "slug": "sgibanie-ruk-obratnym-hvatom-shtanga-253",
-    "name_ru": "Сгибание рук обратным хватом",
+    "name_ru": "Сгибание рук со штангой обратным хватом",
     "name_en": "Barbell Reverse Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сгибание рук обратным хватом"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 254,
     "slug": "sgibanie-ruk-obratnym-hvatom-ganteli-254",
-    "name_ru": "Сгибание рук обратным хватом",
+    "name_ru": "Сгибание рук с гантелями обратным хватом",
     "name_en": "Dumbbell Reverse Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание рук обратным хватом"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 255,
     "slug": "sgibanie-ruk-obratnym-hvatom-nizhniy-blok-255",
-    "name_ru": "Сгибание рук обратным хватом",
+    "name_ru": "Сгибание рук на нижнем блоке обратным хватом",
     "name_en": "Cable Reverse Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание рук обратным хватом"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 256,
     "slug": "kontsentrirovannye-sgibaniya-ruk-obratnym-hvatom-gantel-256",
-    "name_ru": "Концентрированные сгибания рук обратным хватом",
+    "name_ru": "Концентрированное сгибание с гантелью обратным хватом",
     "name_en": "Reverse Grip Concentration Curl (Dumbbell)",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Концентрированные сгибания рук обратным хватом"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 257,
     "slug": "sgibanie-kistey-shtanga-257",
-    "name_ru": "Сгибание кистей",
+    "name_ru": "Сгибание кистей со штангой",
     "name_en": "Barbell Wrist Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сгибание кистей"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 258,
     "slug": "sgibanie-kistey-ganteli-258",
-    "name_ru": "Сгибание кистей",
+    "name_ru": "Сгибание кистей с гантелями",
     "name_en": "Dumbbell Wrist Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Сгибание кистей"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 259,
     "slug": "sgibanie-kistey-nizhniy-blok-259",
-    "name_ru": "Сгибание кистей",
+    "name_ru": "Сгибание кистей на нижнем блоке",
     "name_en": "Cable Wrist Curl (Low Pulley)",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Сгибание кистей"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 260,
     "slug": "sgibanie-kistey-za-spinoy-shtanga-260",
-    "name_ru": "Сгибание кистей за спиной",
+    "name_ru": "Сгибание кистей со штангой за спиной",
     "name_en": "Behind the Back Barbell Wrist Curl",
     "muscle_group": "РУКИ",
     "sub_group": "Предплечье",
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Сгибание кистей за спиной"
+    ],
+    "primary_muscles": [
+      "forearms"
+    ],
+    "secondary_muscles": [],
+    "preferred_body_view": "front"
   },
   {
     "id": 261,
     "slug": "skruchivaniya-svoy-ves-261",
-    "name_ru": "Скручивания",
+    "name_ru": "Скручивания на полу",
     "name_en": "Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 262,
     "slug": "skruchivaniya-verhniy-blok-262",
-    "name_ru": "Скручивания",
+    "name_ru": "Скручивания на верхнем блоке",
     "name_en": "Cable Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 263,
     "slug": "skruchivaniya-trenazher-263",
-    "name_ru": "Скручивания",
+    "name_ru": "Скручивания в тренажере",
     "name_en": "Machine Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 264,
     "slug": "skruchivaniya-fitbol-264",
-    "name_ru": "Скручивания",
+    "name_ru": "Скручивания на фитболе",
     "name_en": "Stability Ball Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "фитбол"
+    "equipment": "фитбол",
+    "aliases_ru": [
+      "Скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 265,
@@ -2382,34 +5288,76 @@
     "name_en": "Crunch with Arms Overhead",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скручивания с руками над головой"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 266,
     "slug": "obratnye-skruchivaniya-svoy-ves-266",
-    "name_ru": "Обратные скручивания",
+    "name_ru": "Обратные скручивания на полу",
     "name_en": "Reverse Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Обратные скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 267,
     "slug": "obratnye-skruchivaniya-nizhniy-blok-267",
-    "name_ru": "Обратные скручивания",
+    "name_ru": "Обратные скручивания на нижнем блоке",
     "name_en": "Cable Reverse Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Обратные скручивания"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 268,
     "slug": "skruchivaniya-obratnyy-naklon-svoy-ves-268",
-    "name_ru": "Скручивания (обратный наклон)",
+    "name_ru": "Скручивания на скамье головой вниз",
     "name_en": "Decline Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скручивания (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 269,
@@ -2418,88 +5366,201 @@
     "name_en": "Seated Bench Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скручивания сидя на скамье"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 270,
     "slug": "podtyagivaniya-koleney-k-grudi-svoy-ves-270",
-    "name_ru": "Подтягивания коленей к груди",
+    "name_ru": "Подтягивание коленей к груди",
     "name_en": "Knee Tuck",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания коленей к груди"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 271,
     "slug": "podem-kolen-lezha-svoy-ves-271",
-    "name_ru": "Подъем колен лежа",
+    "name_ru": "Подъем коленей лежа",
     "name_en": "Lying Knee Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем колен лежа"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 272,
     "slug": "mertvyy-zhuk-svoy-ves-272",
-    "name_ru": "Мертвый жук",
+    "name_ru": "Выпрямление противоположных руки и ноги лежа (мертвый жук)",
     "name_en": "Dead Bug",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Мертвый жук"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques",
+      "hip-flexors"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 273,
     "slug": "sitapy-svoy-ves-273",
-    "name_ru": "Ситапы",
+    "name_ru": "Подъем корпуса лежа (ситап)",
     "name_en": "Sit-Up",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ситапы"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 274,
     "slug": "sitapy-obratnyy-naklon-svoy-ves-274",
-    "name_ru": "Ситапы (обратный наклон)",
+    "name_ru": "Подъем корпуса на скамье головой вниз",
     "name_en": "Decline Sit-Up",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Ситапы (обратный наклон)"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 275,
     "slug": "skladnoy-nozh-svoy-ves-275",
-    "name_ru": "Складной нож",
+    "name_ru": "Одновременный подъем корпуса и ног (складной нож)",
     "name_en": "V-Up",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Складной нож"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 276,
     "slug": "podemy-nog-lezha-svoy-ves-276",
-    "name_ru": "Подъемы ног лежа",
+    "name_ru": "Подъем прямых ног лежа",
     "name_en": "Lying Leg Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъемы ног лежа"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 277,
     "slug": "podem-nog-v-vise-svoy-ves-277",
-    "name_ru": "Подъем ног в висе",
+    "name_ru": "Подъем прямых ног в висе",
     "name_en": "Hanging Leg Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем ног в висе"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 278,
     "slug": "podem-nog-v-upore-svoy-ves-278",
-    "name_ru": "Подъем ног в упоре",
+    "name_ru": "Подъем прямых ног в упоре на локтях",
     "name_en": "Captain's Chair Leg Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем ног в упоре"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 279,
@@ -2508,25 +5569,59 @@
     "name_en": "Hanging Knee Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем коленей в висе"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 280,
     "slug": "podem-koleney-v-upore-svoy-ves-280",
-    "name_ru": "Подъем коленей в упоре",
+    "name_ru": "Подъем коленей в упоре на локтях",
     "name_en": "Captain's Chair Knee Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем коленей в упоре"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 281,
     "slug": "planka-svoy-ves-281",
-    "name_ru": "Планка",
+    "name_ru": "Планка на предплечьях",
     "name_en": "Plank",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Планка"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques",
+      "glutes",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 282,
@@ -2535,7 +5630,19 @@
     "name_en": "High Plank",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Планка на прямых руках"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "obliques",
+      "glutes",
+      "front-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 283,
@@ -2544,34 +5651,83 @@
     "name_en": "Reverse Plank",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Обратная планка"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs",
+      "rear-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 284,
     "slug": "mahi-nogami-lezha-na-spine-svoy-ves-284",
-    "name_ru": "Махи ногами лежа на спине",
+    "name_ru": "Попеременные махи ногами лежа на спине",
     "name_en": "Flutter Kicks",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Махи ногами лежа на спине"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 285,
     "slug": "mahi-nogami-lezha-na-zhivote-svoy-ves-285",
-    "name_ru": "Махи ногами лежа на животе",
+    "name_ru": "Попеременные махи ногами лежа на животе",
     "name_en": "Prone Flutter Kicks",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Махи ногами лежа на животе"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 286,
     "slug": "prokat-s-kolen-na-gimnasticheskom-rolike-drugoe-286",
-    "name_ru": "Прокат с колен на гимнастическом ролике",
+    "name_ru": "Выкатывание с гимнастическим роликом с колен",
     "name_en": "Kneeling Ab Wheel Rollout",
     "muscle_group": "КОРПУС",
     "sub_group": "Пресс",
-    "equipment": "другое"
+    "equipment": "другое",
+    "aliases_ru": [
+      "Прокат с колен на гимнастическом ролике"
+    ],
+    "primary_muscles": [
+      "abs"
+    ],
+    "secondary_muscles": [
+      "lats",
+      "front-deltoids",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 287,
@@ -2580,7 +5736,17 @@
     "name_en": "Side Lying Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скручивания лежа на боку"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 288,
@@ -2589,25 +5755,57 @@
     "name_en": "Cross-Body Crunch",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Перекрестные скручивания"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 289,
     "slug": "russkie-skruchivaniya-svoy-ves-289",
-    "name_ru": "Русские скручивания",
+    "name_ru": "Повороты корпуса сидя (русские скручивания)",
     "name_en": "Russian Twist",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Русские скручивания"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 290,
     "slug": "podem-nog-v-vise-s-povorotom-svoy-ves-290",
-    "name_ru": "Подъем ног в висе с поворотом",
+    "name_ru": "Подъем прямых ног в висе с поворотом",
     "name_en": "Twisting Hanging Leg Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем ног в висе с поворотом"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors",
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 291,
@@ -2616,7 +5814,19 @@
     "name_en": "Twisting Hanging Knee Raise",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем коленей в висе с поворотом"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors",
+      "forearms"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 292,
@@ -2625,70 +5835,159 @@
     "name_en": "Side Plank",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Боковая планка"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "glutes",
+      "side-deltoids"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 293,
     "slug": "naklony-v-storony-ganteli-293",
-    "name_ru": "Наклоны в стороны",
+    "name_ru": "Наклоны с гантелями в стороны",
     "name_en": "Dumbbell Side Bend",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Наклоны в стороны"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 294,
     "slug": "naklony-v-storony-nizhniy-blok-294",
-    "name_ru": "Наклоны в стороны",
+    "name_ru": "Наклоны с нижним блоком в сторону",
     "name_en": "Cable Side Bend (Low Pulley)",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Наклоны в стороны"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 295,
     "slug": "povoroty-korpusa-blok-295",
-    "name_ru": "Повороты корпуса",
+    "name_ru": "Повороты корпуса на блоке",
     "name_en": "Cable Torso Rotation",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "блок"
+    "equipment": "блок",
+    "aliases_ru": [
+      "Повороты корпуса"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 296,
     "slug": "drovosek-gantel-296",
-    "name_ru": "Дровосек",
+    "name_ru": "Диагональные махи с гантелью (дровосек)",
     "name_en": "Dumbbell Woodchopper",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "гантель"
+    "equipment": "гантель",
+    "aliases_ru": [
+      "Дровосек"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "glutes"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 297,
     "slug": "drovosek-verhniy-blok-297",
-    "name_ru": "Дровосек",
+    "name_ru": "Диагональная тяга верхнего блока вниз (дровосек)",
     "name_en": "Cable Woodchopper (High to Low)",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Дровосек"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "glutes"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 298,
     "slug": "obratnyy-drovosek-nizhniy-blok-298",
-    "name_ru": "Обратный дровосек",
+    "name_ru": "Диагональная тяга нижнего блока вверх (обратный дровосек)",
     "name_en": "Reverse Cable Woodchopper (Low to High)",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Обратный дровосек"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "glutes"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 299,
     "slug": "dvorniki-na-press-svoy-ves-299",
-    "name_ru": "Дворники на пресс",
+    "name_ru": "Повороты поднятых ног лежа (дворники)",
     "name_en": "Windshield Wipers",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Дворники на пресс"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 300,
@@ -2697,250 +5996,636 @@
     "name_en": "Heel Touches",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Касание пяток лежа на спине"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 301,
     "slug": "povoroty-korpusa-trenazher-301",
-    "name_ru": "Повороты корпуса",
+    "name_ru": "Повороты корпуса в тренажере",
     "name_en": "Machine Torso Rotation",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Повороты корпуса"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "abs"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 302,
     "slug": "podemy-tulovischa-s-povorotom-svoy-ves-302",
-    "name_ru": "Подъемы туловища с поворотом",
+    "name_ru": "Подъем корпуса с поворотом",
     "name_en": "Twisting Sit-Up",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъемы туловища с поворотом"
+    ],
+    "primary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "hip-flexors"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 303,
     "slug": "naklony-v-storonu-stoya-verhniy-blok-303",
-    "name_ru": "Наклоны в сторону стоя",
+    "name_ru": "Наклоны с верхним блоком в сторону стоя",
     "name_en": "Standing Cable Side Bend (High Pulley)",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "верхний блок"
+    "equipment": "верхний блок",
+    "aliases_ru": [
+      "Наклоны в сторону стоя"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 304,
     "slug": "melnitsa-girya-304",
-    "name_ru": "Мельница",
+    "name_ru": "Наклоны с гирей над головой (мельница)",
     "name_en": "Kettlebell Windmill",
     "muscle_group": "КОРПУС",
     "sub_group": "Косые",
-    "equipment": "гиря"
+    "equipment": "гиря",
+    "aliases_ru": [
+      "Мельница"
+    ],
+    "primary_muscles": [
+      "obliques"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings",
+      "rotator-cuff",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 305,
     "slug": "mahi-girya-305",
-    "name_ru": "Махи",
+    "name_ru": "Махи гирей",
     "name_en": "Kettlebell Swing",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гиря"
+    "equipment": "гиря",
+    "aliases_ru": [
+      "Махи"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "lower-back",
+      "abs",
+      "forearms",
+      "upper-back"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 306,
     "slug": "turetskiy-podem-girya-306",
-    "name_ru": "Турецкий подъем",
+    "name_ru": "Турецкий подъем с гирей",
     "name_en": "Turkish Get-Up",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гиря"
+    "equipment": "гиря",
+    "aliases_ru": [
+      "Турецкий подъем"
+    ],
+    "primary_muscles": [
+      "abs",
+      "obliques",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "front-deltoids",
+      "rotator-cuff",
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 307,
     "slug": "progulka-fermera-ganteli-307",
-    "name_ru": "Прогулка фермера",
+    "name_ru": "Прогулка фермера с гантелями",
     "name_en": "Farmer's Walk",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Прогулка фермера"
+    ],
+    "primary_muscles": [
+      "forearms",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "obliques",
+      "glutes",
+      "quadriceps",
+      "calves"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 308,
     "slug": "zheleznyy-krest-ganteli-308",
-    "name_ru": "Железный крест",
+    "name_ru": "Приседания с разведением гантелей (железный крест)",
     "name_en": "Dumbbell Iron Cross",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Железный крест"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "abs",
+      "upper-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 309,
     "slug": "prisedaniya-s-tyagoy-nizhniy-blok-309",
-    "name_ru": "Приседания с тягой",
+    "name_ru": "Приседания с тягой нижнего блока",
     "name_en": "Cable Squat Row",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "нижний блок"
+    "equipment": "нижний блок",
+    "aliases_ru": [
+      "Приседания с тягой"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "lats",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 310,
     "slug": "tyaga-v-upore-lezha-ganteli-310",
-    "name_ru": "Тяга в упоре лежа",
+    "name_ru": "Тяга гантелей в упоре лежа",
     "name_en": "Renegade Row (Dumbbell)",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гантели"
+    "equipment": "гантели",
+    "aliases_ru": [
+      "Тяга в упоре лежа"
+    ],
+    "primary_muscles": [
+      "lats",
+      "upper-back",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "obliques",
+      "rear-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 311,
     "slug": "trastery-shtanga-311",
-    "name_ru": "Трастеры",
+    "name_ru": "Приседания с жимом штанги (трастер)",
     "name_en": "Barbell Thruster",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Трастеры"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "side-deltoids",
+      "abs",
+      "upper-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 312,
     "slug": "trastery-girya-312",
-    "name_ru": "Трастеры",
+    "name_ru": "Приседания с жимом гири (трастер)",
     "name_en": "Kettlebell Thruster",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "гиря"
+    "equipment": "гиря",
+    "aliases_ru": [
+      "Трастеры"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "side-deltoids",
+      "abs",
+      "upper-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 313,
     "slug": "podem-na-grud-shtanga-313",
-    "name_ru": "Подъем на грудь",
+    "name_ru": "Взятие штанги на грудь",
     "name_en": "Barbell Clean",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Подъем на грудь"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "calves",
+      "lower-back",
+      "abs",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 314,
     "slug": "tolchok-shtanga-314",
-    "name_ru": "Толчок",
+    "name_ru": "Толчок штанги",
     "name_en": "Barbell Jerk",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Толчок"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "calves",
+      "upper-back",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 315,
     "slug": "ryvok-shtanga-315",
-    "name_ru": "Рывок",
+    "name_ru": "Рывок штанги",
     "name_en": "Barbell Snatch",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Рывок"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "side-deltoids",
+      "rotator-cuff",
+      "triceps",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 316,
     "slug": "tyaga-sumo-k-podborodku-shtanga-316",
-    "name_ru": "Тяга сумо к подбородку",
+    "name_ru": "Становая тяга сумо со штангой к подбородку",
     "name_en": "Barbell Sumo Deadlift High Pull",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "штанга"
+    "equipment": "штанга",
+    "aliases_ru": [
+      "Тяга сумо к подбородку"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "adductors",
+      "side-deltoids",
+      "biceps",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 317,
     "slug": "podem-siloy-na-perekladine-svoy-ves-317",
-    "name_ru": "Подъем силой на перекладине",
+    "name_ru": "Выход силой на перекладине",
     "name_en": "Muscle-Up",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подъем силой на перекладине"
+    ],
+    "primary_muscles": [
+      "lats",
+      "chest",
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "upper-back",
+      "front-deltoids",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 318,
     "slug": "podtyagivaniya-s-podemom-kolen-k-podborodku-svoy-ves-318",
-    "name_ru": "Подтягивания с подъемом колен к подбородку",
+    "name_ru": "Подтягивания с подъемом коленей",
     "name_en": "Pull-Up with Knee Raise",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Подтягивания с подъемом колен к подбородку"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps",
+      "abs",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "upper-back",
+      "forearms"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 319,
     "slug": "broski-myacha-ob-stenu-medbol-319",
-    "name_ru": "Броски мяча об стену",
+    "name_ru": "Броски медбола в стену",
     "name_en": "Medicine Ball Wall Throw",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "медбол"
+    "equipment": "медбол",
+    "aliases_ru": [
+      "Броски мяча об стену"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "front-deltoids"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "triceps",
+      "abs",
+      "calves"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 320,
     "slug": "broski-myacha-ob-pol-medbol-320",
-    "name_ru": "Броски мяча об пол",
+    "name_ru": "Броски медбола в пол",
     "name_en": "Medicine Ball Slam",
     "muscle_group": "ФУЛБОДИ",
     "sub_group": null,
-    "equipment": "медбол"
+    "equipment": "медбол",
+    "aliases_ru": [
+      "Броски мяча об пол"
+    ],
+    "primary_muscles": [
+      "lats",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps",
+      "glutes",
+      "quadriceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 321,
     "slug": "begovaya-dorozhka-trenazher-321",
-    "name_ru": "Беговая дорожка",
+    "name_ru": "Бег на беговой дорожке",
     "name_en": "Treadmill",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Беговая дорожка"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "secondary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 322,
     "slug": "ellipsoid-trenazher-322",
-    "name_ru": "Эллипсоид",
+    "name_ru": "Ходьба на эллиптическом тренажере",
     "name_en": "Elliptical Trainer",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Эллипсоид"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves",
+      "biceps",
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 323,
     "slug": "velosiped-trenazher-323",
-    "name_ru": "Велосипед",
+    "name_ru": "Езда на велотренажере",
     "name_en": "Stationary Bike",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Велосипед"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves",
+      "hip-flexors"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 324,
     "slug": "stepper-trenazher-324",
-    "name_ru": "Степпер",
+    "name_ru": "Ходьба на степпере",
     "name_en": "Stepper",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Степпер"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "calves",
+      "hamstrings"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 325,
     "slug": "lestnitsa-stepper-trenazher-325",
-    "name_ru": "Лестница-степпер",
+    "name_ru": "Подъем по лестнице в тренажере",
     "name_en": "Stair Climber",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Лестница-степпер"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "calves",
+      "hamstrings"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 326,
     "slug": "skakalka-drugoe-326",
-    "name_ru": "Скакалка",
+    "name_ru": "Прыжки со скакалкой",
     "name_en": "Jump Rope",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "другое"
+    "equipment": "другое",
+    "aliases_ru": [
+      "Скакалка"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "glutes",
+      "abs",
+      "forearms"
+    ],
+    "preferred_body_view": "back"
   },
   {
     "id": 327,
     "slug": "greblya-trenazher-327",
-    "name_ru": "Гребля",
+    "name_ru": "Гребля на тренажере",
     "name_en": "Rowing Machine",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "тренажер"
+    "equipment": "тренажер",
+    "aliases_ru": [
+      "Гребля"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "lats",
+      "upper-back"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "biceps",
+      "abs",
+      "lower-back"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 328,
@@ -2949,7 +6634,23 @@
     "name_en": "Swimming",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "другое"
+    "equipment": "другое",
+    "aliases_ru": [
+      "Плавание"
+    ],
+    "primary_muscles": [
+      "lats",
+      "chest"
+    ],
+    "secondary_muscles": [
+      "front-deltoids",
+      "triceps",
+      "abs",
+      "glutes",
+      "quadriceps",
+      "hamstrings"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 329,
@@ -2958,7 +6659,22 @@
     "name_en": "Battle Ropes",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "другое"
+    "equipment": "другое",
+    "aliases_ru": [
+      "Волны с канатами"
+    ],
+    "primary_muscles": [
+      "front-deltoids",
+      "side-deltoids"
+    ],
+    "secondary_muscles": [
+      "forearms",
+      "abs",
+      "obliques",
+      "quadriceps",
+      "glutes"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 330,
@@ -2967,7 +6683,22 @@
     "name_en": "Burpee",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Берпи"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "chest"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "front-deltoids",
+      "abs",
+      "calves"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 331,
@@ -2976,34 +6707,89 @@
     "name_en": "Jump Squat",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Приседания с выпрыгиванием"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "calves",
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 332,
     "slug": "skalolaz-svoy-ves-332",
-    "name_ru": "Скалолаз",
+    "name_ru": "Подтягивание коленей в упоре лежа (скалолаз)",
     "name_en": "Mountain Climber",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Скалолаз"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "abs"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "front-deltoids",
+      "triceps",
+      "obliques"
+    ],
+    "preferred_body_view": "front"
   },
   {
     "id": 333,
     "slug": "dzhamping-dzhek-svoy-ves-333",
-    "name_ru": "Джампинг Джек",
+    "name_ru": "Прыжки с разведением рук и ног (джампинг-джек)",
     "name_en": "Jumping Jack",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Джампинг Джек"
+    ],
+    "primary_muscles": [
+      "calves",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "adductors",
+      "side-deltoids"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 334,
     "slug": "froggery-svoy-ves-334",
-    "name_ru": "Фроггеры",
+    "name_ru": "Прыжки из упора лежа в присед (лягушка)",
     "name_en": "Frogger",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Фроггеры"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hip-flexors"
+    ],
+    "secondary_muscles": [
+      "abs",
+      "calves",
+      "front-deltoids",
+      "triceps"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 335,
@@ -3012,7 +6798,20 @@
     "name_en": "Jumping Lunge",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Выпады в прыжке"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 336,
@@ -3021,15 +6820,42 @@
     "name_en": "High Knees",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Бег с высоким подниманием бедра"
+    ],
+    "primary_muscles": [
+      "hip-flexors",
+      "quadriceps",
+      "calves"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings",
+      "abs"
+    ],
+    "preferred_body_view": "both"
   },
   {
     "id": 337,
     "slug": "zahlest-goleni-svoy-ves-337",
-    "name_ru": "Захлест голени",
+    "name_ru": "Бег с захлестом голени",
     "name_en": "Butt Kicks",
     "muscle_group": "КАРДИО",
     "sub_group": null,
-    "equipment": "свой вес"
+    "equipment": "свой вес",
+    "aliases_ru": [
+      "Захлест голени"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hip-flexors"
+    ],
+    "preferred_body_view": "back"
   }
 ]
