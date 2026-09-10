@@ -1,13 +1,26 @@
-import type { AppDatabase, Exercise, Workout, WorkoutSet } from '../db/schema'
-import { getWorkoutExercisesWithSets } from './sets'
+import type { AppDatabase, Workout } from '../db/schema'
+import { defaultWorkoutTitle, type WorkoutTitleLocale } from '../db/workoutTitle'
 import { nextTimestamp } from './timestamps'
+import { getWorkoutEntries, type WorkoutEntry } from './workoutEditor'
 
-export async function startWorkout(database: AppDatabase): Promise<Workout> {
+export interface WorkoutDetail {
+  workout: Workout
+  entries: WorkoutEntry[]
+}
+
+export async function startWorkout(database: AppDatabase, locale: WorkoutTitleLocale): Promise<Workout> {
   return database.transaction('rw', database.workouts, async () => {
     const active = (await database.workouts.toArray()).find(({ finishedAt }) => finishedAt === null)
     if (active) return active
     const now = nextTimestamp()
-    const workout: Workout = { id: crypto.randomUUID(), startedAt: now, finishedAt: null, createdAt: now, updatedAt: now }
+    const workout: Workout = {
+      id: crypto.randomUUID(),
+      startedAt: now,
+      finishedAt: null,
+      createdAt: now,
+      updatedAt: now,
+      title: defaultWorkoutTitle(now, locale),
+    }
     await database.workouts.add(workout)
     return workout
   })
@@ -32,8 +45,8 @@ export async function getWorkoutHistory(database: AppDatabase): Promise<Workout[
 export async function getWorkoutDetail(
   database: AppDatabase,
   workoutId: string,
-): Promise<{ workout: Workout; entries: Array<{ exercise: Exercise; sets: WorkoutSet[] }> }> {
+): Promise<WorkoutDetail> {
   const workout = await database.workouts.get(workoutId)
   if (!workout) throw new Error(`Workout ${workoutId} not found`)
-  return { workout, entries: await getWorkoutExercisesWithSets(database, workoutId) }
+  return { workout, entries: await getWorkoutEntries(database, workoutId) }
 }

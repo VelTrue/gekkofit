@@ -9,10 +9,10 @@ export async function addSet(
   weight: number,
   reps: number,
 ): Promise<WorkoutSet> {
-  if (!Number.isFinite(weight) || weight < 0 || !Number.isFinite(reps) || reps <= 0) {
+  if (!Number.isFinite(weight) || weight < 0 || !Number.isInteger(reps) || reps <= 0) {
     throw new Error('INVALID_SET_VALUES')
   }
-  return database.transaction('rw', database.sets, database.exerciseProgress, async () => {
+  return database.transaction('rw', database.sets, database.exerciseProgress, database.workouts, async () => {
     const setOrder = await database.sets.where({ workoutId, exerciseId }).count()
     const now = nextTimestamp()
     const workoutSet: WorkoutSet = {
@@ -22,10 +22,12 @@ export async function addSet(
       weight,
       reps,
       setOrder,
+      completed: false,
       createdAt: now,
       updatedAt: now,
     }
     await database.sets.add(workoutSet)
+    await database.workouts.update(workoutId, { updatedAt: now })
 
     const currentProgress = (await database.exerciseProgress.get(exerciseId)) ?? {
       exerciseId,
