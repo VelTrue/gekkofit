@@ -1,53 +1,92 @@
 import { describe, expect, it } from 'vitest'
-import { applySetToProgress, levelInfo, strengthLevelInfo, volumeLevelInfo, xpForSet } from './mastery'
+import type { Workout, WorkoutSet } from '../db/schema'
+import { calculateExerciseMastery, estimateOneRepMax, masteryLevel } from './mastery'
 
-describe('xpForSet', () => {
-  it('gives full XP for the first weighted set', () => expect(xpForSet(50, 5, 0)).toBe(10))
-  it('gives full XP when weight and reps qualify', () => {
-    expect(xpForSet(100, 5, 100)).toBe(10)
-    expect(xpForSet(100, 8, 100)).toBe(10)
+const workouts: Workout[] = [
+  {
+    id: 'workout-1', title: 'First', startedAt: '2026-09-01T10:00:00.000Z', finishedAt: '2026-09-01T11:00:00.000Z',
+    createdAt: '2026-09-01T10:00:00.000Z', updatedAt: '2026-09-01T11:00:00.000Z',
+  },
+  {
+    id: 'workout-2', title: 'Second', startedAt: '2026-09-03T10:00:00.000Z', finishedAt: null,
+    createdAt: '2026-09-03T10:00:00.000Z', updatedAt: '2026-09-03T10:30:00.000Z',
+  },
+]
+
+function workoutSet(
+  id: string,
+  workoutId: string,
+  weight: number,
+  reps: number,
+  setOrder: number,
+  completed = true,
+  exerciseId = 4,
+): WorkoutSet {
+  const createdAt = `${workoutId === 'workout-1' ? '2026-09-01' : '2026-09-03'}T10:${String(setOrder).padStart(2, '0')}:00.000Z`
+  return { id, workoutId, exerciseId, weight, reps, setOrder, completed, createdAt, updatedAt: createdAt }
+}
+
+const sets: WorkoutSet[] = [
+  workoutSet('first-set', 'workout-1', 10, 10, 0),
+  workoutSet('weight-record', 'workout-1', 12, 5, 1),
+  workoutSet('draft-set', 'workout-1', 100, 30, 2, false),
+  workoutSet('estimated-record', 'workout-2', 11, 20, 0),
+  workoutSet('record-set', 'workout-2', 20, 1, 1),
+  workoutSet('other-exercise', 'workout-2', 200, 10, 2, true, 9),
+]
+
+describe('mastery levels', () => {
+  it.each([[1, 1], [15, 2], [50, 3], [120, 4], [250, 5]])('maps %s points to level %s', (points, level) => {
+    expect(masteryLevel(points).level).toBe(level)
   })
-  it('reduces XP for low reps', () => expect(xpForSet(100, 1, 100)).toBeCloseTo(2, 5))
-  it('reduces XP for light weight', () => expect(xpForSet(20, 5, 100)).toBeCloseTo(2, 5))
-  it('caps weight factor for a new record', () => expect(xpForSet(120, 5, 100)).toBe(10))
-  it('returns zero for a zero-weight set', () => expect(xpForSet(0, 5, 0)).toBe(0))
+
+  it('returns the exact next threshold and remaining points', () => {
+    expect(masteryLevel(0)).toEqual({ level: 0, currentThreshold: 0, nextLevelThreshold: 1, pointsToNextLevel: 1 })
+    expect(masteryLevel(49)).toEqual({ level: 2, currentThreshold: 15, nextLevelThreshold: 50, pointsToNextLevel: 1 })
+    expect(masteryLevel(250)).toEqual({ level: 5, currentThreshold: 250, nextLevelThreshold: null, pointsToNextLevel: 0 })
+  })
 })
 
-describe('levelInfo', () => {
-  it('starts at level 1', () => {
-    expect(levelInfo(0, 100, 1.25)).toEqual({ level: 1, currentInLevel: 0, neededForNextLevel: 100 })
+describe('deterministic exercise mastery', () => {
+  it('uses the Epley formula', () => {
+    expect(estimateOneRepMax(60, 10)).toBe(80)
   })
-  it('levels up exactly at the threshold', () => {
-    expect(levelInfo(100, 100, 1.25)).toEqual({ level: 2, currentInLevel: 0, neededForNextLevel: 125 })
-  })
-  it('tracks partial progress in the current level', () => {
-    expect(levelInfo(150, 100, 1.25)).toEqual({ level: 2, currentInLevel: 50, neededForNextLevel: 125 })
-  })
-  it('compounds thresholds across levels', () => {
-    expect(levelInfo(225, 100, 1.25)).toEqual({ level: 3, currentInLevel: 0, neededForNextLevel: 156 })
-  })
-})
 
-describe('mastery scales', () => {
-  it('uses the volume threshold', () => {
-    expect(volumeLevelInfo(10)).toEqual({ level: 2, currentInLevel: 0, neededForNextLevel: 13 })
+  it('scores completed sets, distinct workouts, and record events', () => {
+    expect(calculateExerciseMastery(workouts, sets, 4)).toMatchObject({
+      exerciseId: 4,
+      points: 20,
+      level: 2,
+      nextLevelThreshold: 50,
+      pointsToNextLevel: 30,
+      bestWeight: 20,
+      estimatedOneRepMax: 20 * (1 + 1 / 30),
+      volume: 400,
+      workoutCount: 2,
+      setCount: 4,
+      repetitionCount: 36,
+      lastPerformedAt: '2026-09-03T10:00:00.000Z',
+    })
+    expect(calculateExerciseMastery(workouts, sets, 4).records).toHaveLength(4)
   })
-  it('uses the strength threshold', () => expect(strengthLevelInfo(0).level).toBe(1))
-})
 
-describe('applySetToProgress', () => {
-  const empty = { exerciseId: 1, totalSets: 0, totalXp: 0, bestWeightEver: 0 }
+  it('removes points and records when source sets are deleted', () => {
+    const before = calculateExerciseMastery(workouts, sets, 4)
+    const after = calculateExerciseMastery(workouts, sets.filter(({ id }) => id !== 'record-set'), 4)
+    expect(after.points).toBeLessThan(before.points)
+    expect(after.bestWeight).toBeLessThan(before.bestWeight)
+    expect(after.records).toHaveLength(before.records.length - 1)
+  })
 
-  it('records the first qualifying set', () => {
-    expect(applySetToProgress(empty, 50, 5)).toEqual({ exerciseId: 1, totalSets: 1, totalXp: 10, bestWeightEver: 50 })
+  it('does not depend on input order and grants one bonus when a set breaks both records', () => {
+    const chronological = calculateExerciseMastery(workouts, sets, 4)
+    const reversed = calculateExerciseMastery([...workouts].reverse(), [...sets].reverse(), 4)
+    expect(reversed).toEqual(chronological)
+    expect(chronological.points).toBe(4 + 4 + 4 * 3)
   })
-  it('uses the prior best when computing XP', () => {
-    const afterFirst = applySetToProgress(empty, 50, 5)
-    expect(applySetToProgress(afterFirst, 25, 5).totalXp).toBeCloseTo(15, 5)
-  })
-  it('updates the best weight after a record', () => {
-    const result = applySetToProgress(applySetToProgress(empty, 50, 5), 60, 5)
-    expect(result.bestWeightEver).toBe(60)
-    expect(result.totalXp).toBeCloseTo(20, 5)
+
+  it('ignores incomplete, unrelated, and orphaned sets', () => {
+    const orphan = workoutSet('orphan', 'missing-workout', 500, 10, 0)
+    expect(calculateExerciseMastery(workouts, [...sets, orphan], 4)).toEqual(calculateExerciseMastery(workouts, sets, 4))
   })
 })

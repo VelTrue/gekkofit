@@ -1,4 +1,144 @@
-import type { ExerciseProgress } from '../db/schema'
+import type { Exercise, ExerciseProgress, Workout, WorkoutSet } from '../db/schema'
+
+export const MASTERY_THRESHOLDS = [1, 15, 50, 120, 250] as const
+export const SET_POINT = 1
+export const WORKOUT_POINT = 2
+export const RECORD_POINT = 3
+
+export interface MasteryLevel {
+  level: number
+  currentThreshold: number
+  nextLevelThreshold: number | null
+  pointsToNextLevel: number
+}
+
+export interface MasteryRecord {
+  setId: string
+  workoutId: string
+  performedAt: string
+  weight: number
+  reps: number
+  estimatedOneRepMax: number
+  isWeightRecord: boolean
+  isEstimatedOneRepMaxRecord: boolean
+}
+
+export interface ExerciseMastery extends MasteryLevel {
+  exerciseId: number
+  points: number
+  bestWeight: number
+  estimatedOneRepMax: number
+  volume: number
+  workoutCount: number
+  setCount: number
+  repetitionCount: number
+  lastPerformedAt: string | null
+  records: MasteryRecord[]
+}
+
+export interface MasteryItem {
+  exercise: Exercise
+  mastery: ExerciseMastery
+}
+
+export function masteryLevel(points: number): MasteryLevel {
+  const normalizedPoints = Number.isFinite(points) ? Math.max(0, Math.floor(points)) : 0
+  let level = 0
+  for (const threshold of MASTERY_THRESHOLDS) {
+    if (normalizedPoints < threshold) break
+    level += 1
+  }
+  const currentThreshold = level === 0 ? 0 : MASTERY_THRESHOLDS[level - 1]
+  const nextLevelThreshold = MASTERY_THRESHOLDS[level] ?? null
+  return {
+    level,
+    currentThreshold,
+    nextLevelThreshold,
+    pointsToNextLevel: nextLevelThreshold === null ? 0 : nextLevelThreshold - normalizedPoints,
+  }
+}
+
+export function estimateOneRepMax(weight: number, reps: number): number {
+  return weight * (1 + reps / 30)
+}
+
+export function calculateExerciseMastery(
+  workouts: Workout[],
+  sets: WorkoutSet[],
+  exerciseId: number,
+): ExerciseMastery {
+  const chronologicalWorkouts = [...workouts].sort(compareWorkouts)
+  const workoutOrder = new Map(chronologicalWorkouts.map((workout, index) => [workout.id, index]))
+  const workoutById = new Map(chronologicalWorkouts.map((workout) => [workout.id, workout]))
+  const completedSets = sets
+    .filter((set) => set.exerciseId === exerciseId
+      && set.completed
+      && workoutById.has(set.workoutId)
+      && Number.isFinite(set.weight)
+      && set.weight >= 0
+      && Number.isInteger(set.reps)
+      && set.reps > 0)
+    .sort((left, right) => (workoutOrder.get(left.workoutId)! - workoutOrder.get(right.workoutId)!)
+      || left.createdAt.localeCompare(right.createdAt)
+      || left.setOrder - right.setOrder
+      || left.id.localeCompare(right.id))
+
+  const workoutIds = new Set<string>()
+  const records: MasteryRecord[] = []
+  let bestWeight = 0
+  let estimatedOneRepMax = 0
+  let volume = 0
+  let repetitionCount = 0
+
+  for (const set of completedSets) {
+    workoutIds.add(set.workoutId)
+    volume += set.weight * set.reps
+    repetitionCount += set.reps
+
+    const setEstimatedOneRepMax = estimateOneRepMax(set.weight, set.reps)
+    const isWeightRecord = set.weight > bestWeight
+    const isEstimatedOneRepMaxRecord = setEstimatedOneRepMax > estimatedOneRepMax
+    if (isWeightRecord || isEstimatedOneRepMaxRecord) {
+      records.push({
+        setId: set.id,
+        workoutId: set.workoutId,
+        performedAt: workoutById.get(set.workoutId)!.startedAt,
+        weight: set.weight,
+        reps: set.reps,
+        estimatedOneRepMax: setEstimatedOneRepMax,
+        isWeightRecord,
+        isEstimatedOneRepMaxRecord,
+      })
+    }
+    bestWeight = Math.max(bestWeight, set.weight)
+    estimatedOneRepMax = Math.max(estimatedOneRepMax, setEstimatedOneRepMax)
+  }
+
+  const setCount = completedSets.length
+  const workoutCount = workoutIds.size
+  const points = setCount * SET_POINT + workoutCount * WORKOUT_POINT + records.length * RECORD_POINT
+  const lastSet = completedSets.at(-1)
+
+  return {
+    exerciseId,
+    points,
+    ...masteryLevel(points),
+    bestWeight,
+    estimatedOneRepMax,
+    volume,
+    workoutCount,
+    setCount,
+    repetitionCount,
+    lastPerformedAt: lastSet ? workoutById.get(lastSet.workoutId)!.startedAt : null,
+    records,
+  }
+}
+
+function compareWorkouts(left: Workout, right: Workout): number {
+  return left.startedAt.localeCompare(right.startedAt)
+    || left.createdAt.localeCompare(right.createdAt)
+    || left.id.localeCompare(right.id)
+}
 
 export const XP_BASE = 10
 export const MIN_QUALIFYING_REPS = 5
