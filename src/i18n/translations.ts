@@ -7,6 +7,7 @@ export const translations = {
     tabWorkout: 'Тренировка', tabProgress: 'Прогресс', tabHistory: 'История', tabSettings: 'Настройки',
     historyList: 'Список', historyCalendar: 'Календарь', settingsLanguage: 'Язык', settingsExport: 'Экспорт данных',
     settingsImport: 'Импорт данных', importConfirm: 'Это заменит текущие данные. Продолжить?',
+    settingsTheme: 'Тема', themeSystem: 'Системная', themeDark: 'Тёмная', themeLight: 'Светлая',
     emptyHomeHint: 'Первый подход займёт 10 секунд', volumeLevel: 'Объём', strengthLevel: 'Сила',
   },
   en: {
@@ -15,6 +16,7 @@ export const translations = {
     tabWorkout: 'Workout', tabProgress: 'Progress', tabHistory: 'History', tabSettings: 'Settings',
     historyList: 'List', historyCalendar: 'Calendar', settingsLanguage: 'Language', settingsExport: 'Export data',
     settingsImport: 'Import data', importConfirm: 'This will replace your current data. Continue?',
+    settingsTheme: 'Theme', themeSystem: 'System', themeDark: 'Dark', themeLight: 'Light',
     emptyHomeHint: 'Your first set takes 10 seconds', volumeLevel: 'Volume', strengthLevel: 'Strength',
   },
 } as const
