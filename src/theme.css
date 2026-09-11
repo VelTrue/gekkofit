@@ -10,9 +10,11 @@
   --color-text-muted: #aab3b8;
   --color-border: #5b666d;
   --color-border-strong: #6c7880;
+  --color-divider-subtle: #30373c;
   --color-accent: #b8ff3d;
   --color-accent-fill: #b8ff3d;
   --color-accent-fill-pressed: #9fe828;
+  --color-accent-glow: rgb(184 255 61 / 15%);
   --color-accent-text: #0e1804;
   --color-muscle-primary: #ff684c;
   --color-muscle-secondary: #d48a7c;
@@ -54,9 +56,11 @@
   --color-text-muted: #5c686e;
   --color-border: #8a969d;
   --color-border-strong: #667278;
+  --color-divider-subtle: #d5dde0;
   --color-accent: #3f6800;
   --color-accent-fill: #b8ff3d;
   --color-accent-fill-pressed: #a4eb2e;
+  --color-accent-glow: rgb(63 104 0 / 18%);
   --color-accent-text: #0e1804;
   --color-muscle-primary: #bf3e28;
   --color-muscle-secondary: #91493c;

@@ -77,6 +77,15 @@ describe('ThemeProvider', () => {
     expect(document.documentElement.dataset.theme).toBe('dark')
   })
 
+  it('falls back to system mode for an invalid persisted preference', () => {
+    localStorage.setItem('theme-mode', 'sepia')
+
+    render(<ThemeProvider><ThemeProbe /></ThemeProvider>)
+
+    expect(screen.getByLabelText('theme state')).toHaveTextContent('system:dark')
+    expect(document.documentElement.dataset.theme).toBe('dark')
+  })
+
   it('tracks operating system changes while system mode is selected', () => {
     render(<ThemeProvider><ThemeProbe /></ThemeProvider>)
     expect(screen.getByLabelText('theme state')).toHaveTextContent('system:dark')
@@ -85,6 +94,20 @@ describe('ThemeProvider', () => {
 
     expect(screen.getByLabelText('theme state')).toHaveTextContent('system:light')
     expect(document.documentElement.dataset.theme).toBe('light')
+  })
+
+  it.each([
+    { label: 'Тёмная', mode: 'dark', initialSystemDark: true, nextSystemDark: false },
+    { label: 'Светлая', mode: 'light', initialSystemDark: false, nextSystemDark: true },
+  ] as const)('keeps explicit $mode mode when the operating system changes', async ({ label, mode, initialSystemDark, nextSystemDark }) => {
+    media.matches = initialSystemDark
+    render(<ThemeProvider><ThemeProbe /></ThemeProvider>)
+    await userEvent.click(screen.getByRole('button', { name: label }))
+
+    act(() => media.setMatches(nextSystemDark))
+
+    expect(screen.getByLabelText('theme state')).toHaveTextContent(`${mode}:${mode}`)
+    expect(document.documentElement.dataset.theme).toBe(mode)
   })
 
   it('exposes an accessible three-way theme control in settings', async () => {
@@ -113,5 +136,25 @@ describe('ThemeProvider', () => {
     expect(themeCss).toContain('--color-text: #121517')
     expect(themeCss).toContain('--color-mastery-novice:')
     expect(themeCss).toContain('--color-mastery-master:')
+  })
+
+  it('keeps application components free of embedded theme-specific colors', () => {
+    const consumers = [
+      'src/App.tsx',
+      'src/components/LevelBar.tsx',
+      'src/components/NavBar.tsx',
+      'src/components/Stepper.tsx',
+      'src/screens/ExercisePicker.tsx',
+      'src/screens/HistoryScreen.tsx',
+      'src/screens/HomeScreen.tsx',
+      'src/screens/ProgressScreen.tsx',
+    ]
+
+    for (const path of consumers) {
+      const source = readFileSync(path, 'utf8')
+      expect(source, path).not.toMatch(/#[0-9a-f]{3,8}\b/i)
+      expect(source, path).not.toMatch(/\b(?:bg|border|divide|fill|from|ring|shadow|stroke|text|to|via)-(?:black|white)(?:\/\d+)?\b/)
+      expect(source, path).not.toMatch(/rgba?\(/i)
+    }
   })
 })

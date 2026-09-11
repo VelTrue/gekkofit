@@ -12,11 +12,11 @@ const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabProgress' | 'ta
 export function NavBar({ active, onChange }: { active: ScreenName; onChange: (screen: ScreenName) => void }) {
   const { t } = useLang()
   return (
-    <nav aria-label="Primary" className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-[var(--color-border)] bg-[#111116]/95 px-2 pb-[max(8px,env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl md:static md:h-screen md:w-56 md:grid-cols-1 md:grid-rows-[repeat(4,64px)_1fr] md:border-r md:border-t-0 md:px-3 md:pt-6">
+    <nav aria-label="Primary" className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-[var(--color-border)] bg-[var(--color-nav)] px-2 pb-[max(8px,var(--safe-area-bottom))] pt-2 backdrop-blur-xl md:static md:h-screen md:w-56 md:grid-cols-1 md:grid-rows-[repeat(4,64px)_1fr] md:border-r md:border-t-0 md:px-3 md:pt-6">
       {tabs.map((tab) => {
         const selected = active === tab.id
         return (
-          <button key={tab.id} type="button" onClick={() => onChange(tab.id)} aria-current={selected ? 'page' : undefined} className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-2 text-[11px] font-semibold transition-colors md:justify-start md:px-4 md:text-sm ${selected ? 'bg-[var(--color-accent)] text-[#071006]' : 'text-[var(--color-text-muted)] hover:bg-white/5 hover:text-white'}`}>
+          <button key={tab.id} type="button" onClick={() => onChange(tab.id)} aria-current={selected ? 'page' : undefined} className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-2 text-[11px] font-semibold transition-colors duration-200 md:justify-start md:px-4 md:text-sm ${selected ? 'bg-[var(--color-accent-fill)] text-[var(--color-accent-text)]' : 'text-[var(--color-text-muted)] hover:bg-[var(--color-state-hover)] hover:text-[var(--color-text)] active:bg-[var(--color-state-pressed)]'}`}>
             <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-2"><path d={tab.icon} strokeLinecap="round" strokeLinejoin="round" /></svg>
             <span className="hidden sm:inline">{t(tab.labelKey)}</span>
           </button>
