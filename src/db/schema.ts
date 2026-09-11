@@ -84,6 +84,49 @@ export class AppDatabase extends Dexie {
         set.completed ??= true
       })
     })
+    this.version(3).stores({
+      exercises: 'id, muscle_group, *aliases_ru, *primary_muscles',
+      workouts: 'id, startedAt, finishedAt, updatedAt, title',
+      workoutExercises: 'id, workoutId, exerciseId, [workoutId+order], &[workoutId+exerciseId]',
+      sets: 'id, workoutId, exerciseId, completed, createdAt, updatedAt',
+      exerciseProgress: 'exerciseId',
+    }).upgrade(async (transaction) => {
+      const sets = await transaction.table<WorkoutSet>('sets').toArray()
+      const workoutExercises = transaction.table<WorkoutExercise>('workoutExercises')
+      const existingRows = await workoutExercises.toArray()
+      const existingPairs = new Set(existingRows.map(({ workoutId, exerciseId }) => `${workoutId}\u0000${exerciseId}`))
+      const nextOrderByWorkout = new Map<string, number>()
+
+      for (const row of existingRows) {
+        nextOrderByWorkout.set(row.workoutId, Math.max(nextOrderByWorkout.get(row.workoutId) ?? 0, row.order + 1))
+      }
+
+      const firstSets = [...sets]
+        .sort((left, right) => left.createdAt.localeCompare(right.createdAt)
+          || left.setOrder - right.setOrder
+          || left.id.localeCompare(right.id))
+        .filter((set, index, sorted) => sorted.findIndex((candidate) => (
+          candidate.workoutId === set.workoutId && candidate.exerciseId === set.exerciseId
+        )) === index)
+
+      const missingRows = firstSets.flatMap<WorkoutExercise>((set) => {
+        const pair = `${set.workoutId}\u0000${set.exerciseId}`
+        if (existingPairs.has(pair)) return []
+        existingPairs.add(pair)
+        const order = nextOrderByWorkout.get(set.workoutId) ?? 0
+        nextOrderByWorkout.set(set.workoutId, order + 1)
+        return [{
+          id: `legacy-workout-exercise:${set.workoutId}:${set.exerciseId}`,
+          workoutId: set.workoutId,
+          exerciseId: set.exerciseId,
+          order,
+          createdAt: set.createdAt,
+          updatedAt: set.createdAt,
+        }]
+      })
+
+      if (missingRows.length > 0) await workoutExercises.bulkAdd(missingRows)
+    })
   }
 }
 
