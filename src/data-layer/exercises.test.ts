@@ -61,7 +61,7 @@ describe('exercises data layer', () => {
     expect((await searchExercises(database, 'жим лежа наклон гантели'))[0].id).toBe(19)
   })
 
-  it('ranks current exact name, prefix, contained name, alias, English, muscle, then equipment', async () => {
+  it('ranks exact name, prefix, alias, English, muscle, and equipment before a contained name fallback', async () => {
     await database.exercises.clear()
     const fixture = (id: number, values: Partial<Exercise>): Exercise => ({
       ...plank, id, name_ru: `Движение ${id}`, name_en: `Movement ${id}`, aliases_ru: [],
@@ -74,7 +74,16 @@ describe('exercises data layer', () => {
       fixture(3, { name_ru: 'Подъем на пресс' }), fixture(2, { name_ru: 'Пресс на скамье' }),
       fixture(1, { name_ru: 'Пресс' }),
     ])
-    expect((await searchExercises(database, 'ПрЕсС')).map(({ id }) => id)).toEqual([1, 2, 3, 4, 5, 6, 7])
+    expect((await searchExercises(database, 'ПрЕсС')).map(({ id }) => id)).toEqual([1, 2, 4, 5, 6, 7, 3])
+  })
+
+  it('keeps a legacy alias ahead of a contained current-name phrase despite a lower competing id', async () => {
+    await database.exercises.clear()
+    await database.exercises.bulkAdd([
+      { ...bench, id: 1, name_ru: 'Французский жим лежа', aliases_ru: [] },
+      { ...bench, id: 9, name_ru: 'Жим штанги на горизонтальной скамье', aliases_ru: ['Жим лежа'] },
+    ])
+    expect((await searchExercises(database, 'жим лежа')).map(({ id }) => id)).toEqual([9, 1])
   })
 
   it('matches English and Russian equipment, groups, subgroups, and secondary muscle labels', async () => {

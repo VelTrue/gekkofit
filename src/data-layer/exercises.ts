@@ -15,13 +15,13 @@ function searchRank(exercise: Exercise, query: string): number {
   const matches = (value: string) => normalizeExerciseQuery(value).includes(query)
   if (name === query) return 700
   if (name.startsWith(query)) return 600
-  if (name.includes(query)) return 550
   if (exercise.aliases_ru.some((alias) => matches(alias) || matches(`${alias} ${exercise.equipment}`))) return 500
   if (matches(exercise.name_en)) return 400
   const muscles = [...exercise.primary_muscles, ...exercise.secondary_muscles]
   if ([exercise.muscle_group, exercise.sub_group ?? '', muscleGroupName(exercise.muscle_group, 'en'),
     muscleNames(muscles, 'ru'), muscleNames(muscles, 'en'), ...muscles].some(matches)) return 300
   if ([exercise.equipment, equipmentName(exercise.equipment, 'en')].some(matches)) return 200
+  if (name.includes(query)) return 100
   return 0
 }
 
