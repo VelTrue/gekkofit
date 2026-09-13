@@ -1,58 +1,91 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getAllExercises, getRecentExercises, groupExercisesByMuscleGroup, searchExercises } from '../data-layer/exercises'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
+import { ExerciseDetailSheet } from '../components/exercises/ExerciseDetailSheet'
+import { ExerciseListItem } from '../components/exercises/ExerciseListItem'
+import { WorkoutDialog } from '../components/workout/WorkoutDialog'
+import { WorkoutIcon } from '../components/workout/WorkoutIcon'
+import { muscleGroupName } from '../data-layer/exerciseLabels'
+import { getAllExercises, getFrequentExercises, getRecentExercises, normalizeExerciseQuery, rankExercises } from '../data-layer/exercises'
 import { db, type Exercise } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
+import '../components/workout/workout.css'
+import '../components/exercises/exercises.css'
+
+const RECENT_LIMIT = 3
+const FREQUENT_LIMIT = 3
+const PAGE_SIZE = 40
+
+function ExerciseResultRows({ exercises, count, onMore, onPick, onInfo }: {
+  exercises: Exercise[]; count: number; onMore: () => void; onPick: (exercise: Exercise) => void; onInfo: (exercise: Exercise) => void
+}) {
+  const { lang } = useLang()
+  const list = useRef<HTMLUListElement>(null)
+  useEffect(() => {
+    if (count > PAGE_SIZE) list.current?.children[count - PAGE_SIZE]?.querySelector('button')?.focus()
+  }, [count])
+  return <><ul className="exercise-list" ref={list}>{exercises.slice(0, count).map((exercise) => <ExerciseListItem key={exercise.id} exercise={exercise} onPick={onPick} onInfo={onInfo} />)}</ul>
+    {count < exercises.length && <div className="exercise-pagination"><p role="status">{lang === 'ru' ? 'Показано' : 'Showing'} {Math.min(count, exercises.length)} {lang === 'ru' ? 'из' : 'of'} {exercises.length}</p><button type="button" className="workout-button" onClick={onMore}>{lang === 'ru' ? 'Показать ещё' : 'Show more'}</button></div>}
+  </>
+}
 
 export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercise) => void; onClose: () => void }) {
-  const { lang, t } = useLang()
-  const [recent, setRecent] = useState<Exercise[]>([])
-  const [all, setAll] = useState<Exercise[]>([])
+  const { lang } = useLang()
+  const ru = lang === 'ru'
+  const [catalog, setCatalog] = useState<{ all: Exercise[]; recent: Exercise[]; frequent: Exercise[] } | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [attempt, setAttempt] = useState(0)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<Exercise[]>([])
-
-  useEffect(() => {
-    void Promise.all([getRecentExercises(db), getAllExercises(db)]).then(([recentExercises, allExercises]) => {
-      setRecent(recentExercises)
-      setAll(allExercises)
-    })
-  }, [])
+  const [group, setGroup] = useState('')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const [detail, setDetail] = useState<Exercise | null>(null)
+  const selected = useRef<Exercise | null>(null)
+  const search = useRef<HTMLInputElement>(null)
+  const searchId = useId()
+  const groupsId = useId()
 
   useEffect(() => {
     let current = true
-    if (!query.trim()) return
-    void searchExercises(db, query).then((matches) => current && setResults(matches))
+    void Promise.all([getAllExercises(db), getRecentExercises(db, RECENT_LIMIT), getFrequentExercises(db)])
+      .then(([all, recent, frequent]) => {
+        if (!current) return
+        const recentIds = new Set(recent.map(({ id }) => id))
+        setCatalog({ all, recent, frequent: frequent.filter(({ id }) => !recentIds.has(id)).slice(0, FREQUENT_LIMIT) })
+      }).catch(() => { if (current) setFailed(true) })
     return () => { current = false }
-  }, [query])
+  }, [attempt])
 
-  const tree = useMemo(() => groupExercisesByMuscleGroup(all), [all])
-  const isSearching = query.trim().length > 0
-  const name = (exercise: Exercise) => lang === 'ru' ? exercise.name_ru : exercise.name_en
-  const exerciseButton = (exercise: Exercise) => (
-    <button key={exercise.id} type="button" onClick={() => onPick(exercise)} className="grid min-h-14 w-full grid-cols-[1fr_auto] items-center gap-3 rounded-xl px-3 text-left transition-colors duration-200 hover:bg-[var(--color-state-hover)] active:bg-[var(--color-state-pressed)]">
-      <span className="font-semibold">{name(exercise)}</span>
-      <span className="max-w-28 text-right text-xs text-[var(--color-text-muted)]">{exercise.equipment}</span>
-    </button>
-  )
+  const groups = useMemo(() => [...new Set(catalog?.all.map(({ muscle_group }) => muscle_group) ?? [])], [catalog])
+  const isSearching = normalizeExerciseQuery(query).length > 0
+  const matches = useMemo(() => catalog ? rankExercises(catalog.all, query, catalog.recent)
+    .filter((exercise) => !group || exercise.muscle_group === group) : [], [catalog, query, group])
+  const pick = useCallback((exercise: Exercise) => {
+    if (selected.current) return
+    selected.current = exercise
+    history.back()
+  }, [])
+  const close = () => {
+    if (selected.current) onPick(selected.current)
+    else onClose()
+  }
+  const changeQuery = (value: string) => { setQuery(value); setVisibleCount(PAGE_SIZE) }
+  const changeGroup = (value: string) => { setGroup(value); setVisibleCount(PAGE_SIZE) }
+  const clearSearch = () => { changeQuery(''); search.current?.focus() }
+  const rows = (exercises: Exercise[]) => <ul className="exercise-list">{exercises.map((exercise) => <ExerciseListItem key={exercise.id} exercise={exercise} onPick={pick} onInfo={setDetail} />)}</ul>
+  const section = (label: string, exercises: Exercise[]) => <section className="exercise-section" aria-label={label}><h3>{label}</h3>{rows(exercises)}</section>
 
-  return (
-    <div role="dialog" aria-modal="true" className="fixed inset-0 z-40 overflow-y-auto bg-[var(--color-bg)]">
-      <div className="sticky top-0 z-10 border-b border-[var(--color-border)] bg-[var(--color-nav)] px-4 pb-4 pt-[max(16px,var(--safe-area-top))] backdrop-blur-xl">
-        <div className="mx-auto flex max-w-2xl items-center gap-3">
-          <button type="button" onClick={onClose} aria-label="Close" className="h-11 w-11 rounded-xl bg-[var(--color-state-hover)] text-xl transition-colors duration-200 active:bg-[var(--color-state-pressed)]">×</button>
-          <div className="relative flex-1"><svg viewBox="0 0 24 24" aria-hidden="true" className="absolute left-4 top-3.5 h-5 w-5 fill-none stroke-[var(--color-text-muted)] stroke-2"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('search')} className="h-12 w-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-12 pr-4 outline-none focus:border-[var(--color-accent)]" /></div>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-2xl p-4 pb-12">
-        {isSearching ? (
-          <section><p className="mb-2 text-xs font-bold uppercase tracking-widest text-[var(--color-text-muted)]">{results.length} results</p><div className="divide-y divide-[var(--color-divider-subtle)]">{results.map(exerciseButton)}</div></section>
-        ) : (
-          <>
-            {recent.length > 0 && <section className="mb-8"><h2 className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">{t('recent')}</h2><div className="grid gap-2 sm:grid-cols-2">{recent.map((exercise) => <button key={exercise.id} type="button" onClick={() => onPick(exercise)} className="min-h-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 text-left text-sm font-semibold hover:border-[var(--color-accent)]">{name(exercise)}</button>)}</div></section>}
-            <section className="space-y-2">{Object.entries(tree).map(([group, subgroups], groupIndex) => <details key={group} open={groupIndex === 0} className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]"><summary className="flex min-h-14 cursor-pointer list-none items-center px-4 font-black"><span className="mr-3 text-xs text-[var(--color-accent)]">{String(groupIndex + 1).padStart(2, '0')}</span>{group}<span className="ml-auto text-[var(--color-text-muted)]">＋</span></summary><div className="border-t border-[var(--color-border)] p-2">{Object.entries(subgroups).map(([subgroup, exercises]) => <div key={subgroup} className="mb-3 last:mb-0">{subgroup !== '_none' && <h3 className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">{subgroup}</h3>}<div className="divide-y divide-[var(--color-divider-subtle)]">{exercises.map(exerciseButton)}</div></div>)}</div></details>)}</section>
-          </>
-        )}
-      </div>
+  return <WorkoutDialog title={ru ? 'Выберите упражнение' : 'Choose an exercise'} backLabel={ru ? 'Назад к тренировке' : 'Back to workout'} onClose={close}>
+    <div className="exercise-picker">
+      <div className="exercise-search"><label htmlFor={searchId}>{ru ? 'Поиск упражнений' : 'Search exercises'}</label><div className="exercise-search-field"><WorkoutIcon name="search" /><input ref={search} id={searchId} type="search" value={query} onChange={(event) => changeQuery(event.target.value)} placeholder={ru ? 'Название, мышца или оборудование' : 'Name, muscle or equipment'} />{query && <button type="button" onClick={clearSearch} aria-label={ru ? 'Очистить поиск' : 'Clear search'}><WorkoutIcon name="close" /></button>}</div></div>
+      {!catalog && !failed && <p className="exercise-message" role="status">{ru ? 'Загружаем упражнения…' : 'Loading exercises…'}</p>}
+      {failed && <div className="exercise-message"><p role="alert">{ru ? 'Не удалось загрузить упражнения. Повторите попытку.' : 'Could not load exercises. Try again.'}</p><button type="button" className="workout-button" onClick={() => { setFailed(false); setAttempt((value) => value + 1) }}>{ru ? 'Повторить' : 'Retry'}</button></div>}
+      {catalog && <>
+        {!isSearching && !group && <>{catalog.recent.length > 0 && section(ru ? 'Недавние' : 'Recent', catalog.recent)}{catalog.frequent.length > 0 && section(ru ? 'Часто используемые' : 'Frequently used', catalog.frequent)}</>}
+        <section className="exercise-section" aria-labelledby={groupsId}><h3 id={groupsId}>{ru ? 'Группы мышц' : 'Muscle groups'}</h3><div className="exercise-groups"><button type="button" aria-pressed={!group} onClick={() => changeGroup('')}>{ru ? 'Все группы' : 'All groups'}</button>{groups.map((item) => <button key={item} type="button" aria-pressed={group === item} onClick={() => changeGroup(item)}>{muscleGroupName(item, lang)}</button>)}</div></section>
+        <section className="exercise-section" aria-label={isSearching ? (ru ? 'Результаты поиска' : 'Search results') : (ru ? 'Все упражнения' : 'All exercises')}>
+          <div className="exercise-section-heading"><h3>{isSearching ? (ru ? 'Результаты поиска' : 'Search results') : (ru ? 'Все упражнения' : 'All exercises')}</h3><span role="status">{ru ? 'Найдено' : 'Found'}: {matches.length}</span></div>
+          {matches.length > 0 ? <ExerciseResultRows exercises={matches} count={visibleCount} onMore={() => setVisibleCount((value) => value + PAGE_SIZE)} onPick={pick} onInfo={setDetail} /> : <div className="exercise-message"><strong>{ru ? 'Ничего не найдено' : 'No exercises found'}</strong><p>{catalog.all.length === 0 ? (ru ? 'Закройте каталог и откройте приложение снова, чтобы загрузить упражнения.' : 'Close the catalog and reopen the app to load exercises.') : (ru ? 'Попробуйте другое название, мышцу или оборудование.' : 'Try another name, muscle or equipment.')}</p>{group && <button type="button" className="workout-button" onClick={() => changeGroup('')}>{ru ? 'Сбросить группу' : 'Clear muscle group'}</button>}</div>}
+        </section>
+      </>}
     </div>
-  )
+    {detail && <ExerciseDetailSheet exercise={detail} onClose={() => setDetail(null)} />}
+  </WorkoutDialog>
 }

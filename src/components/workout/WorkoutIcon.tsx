@@ -10,6 +10,9 @@ const paths = {
   cards: 'M4 4h16v16H4ZM4 10h16',
   list: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
   clock: 'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',
+  info: 'M12 11v6M12 7h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',
+  search: 'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0',
+  close: 'm6 6 12 12M6 18 18 6',
 } as const
 
 export function WorkoutIcon({ name }: { name: keyof typeof paths }) {
