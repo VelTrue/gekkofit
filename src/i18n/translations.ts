@@ -18,6 +18,10 @@ export const translations = {
     historyBack: 'Назад к истории', historyBackCalendar: 'Назад к календарю', previousMonth: 'Предыдущий месяц', nextMonth: 'Следующий месяц', selectedDayWorkouts: 'Тренировки за выбранный день', workoutsCount: 'тренировки', historyWeekdays: 'Пн,Вт,Ср,Чт,Пт,Сб,Вс',
     levelProgress: 'Прогресс уровня', maximumLevel: 'Максимальный уровень', toLevel: 'До уровня', points: 'очков', allLevelsUnlocked: 'Все уровни открыты.', reachMasteryPoints: 'Наберите {points} очков мастерства.',
     bestWeight: 'Лучший вес', estimatedMax: 'Расчетный максимум', volume: 'Объем', workouts: 'Тренировки', sets: 'Подходы', repetitions: 'Повторения', lastPerformed: 'Последний результат', notPerformed: 'Еще не выполнялось', personalRecords: 'Личные рекорды', noRecords: 'Рекордов пока нет', openExercise: 'Открыть упражнение', kg: 'кг',
+    collection: 'Коллекция', exerciseSearch: 'Поиск упражнений', findExercise: 'Найти упражнение', collectionFilter: 'Фильтр коллекции',
+    collectionLoading: 'Собираем коллекцию…', masteryLoadError: 'Не удалось загрузить мастерство', showMore: 'Показать еще', noMatches: 'Ничего не найдено', noUnlocked: 'Пока нет открытых упражнений', catalogEmpty: 'Каталог пуст', unlockHint: 'Завершите первый рабочий подход, чтобы открыть жетон.', changeSearch: 'Измените поиск или фильтр.',
+    workoutView: 'Вид тренировки', saveError: 'Не удалось сохранить. Повторите попытку.', saving: 'Сохранение…', workoutEmptyTitle: 'С чего начнем?', workoutEmptyText: 'Добавьте упражнение, затем запишите вес и повторы.', workoutExercises: 'Упражнения тренировки', editExercise: 'Редактирование упражнения', backToList: 'Назад к списку',
+    backToExercises: 'Назад к упражнениям', front: 'Спереди', backView: 'Сзади', equipment: 'Оборудование', none: 'Нет', latestSet: 'Последний записанный подход', resultLoading: 'Загружаем результат…', resultLoadError: 'Не удалось загрузить результат.', notCompleted: 'Еще не выполнен', noLoggedSets: 'Записанных подходов пока нет',
     emptyHomeHint: 'Первый подход займёт 10 секунд', volumeLevel: 'Объём', strengthLevel: 'Сила',
   },
   en: {
@@ -37,6 +41,10 @@ export const translations = {
     historyBack: 'Back to history', historyBackCalendar: 'Back to calendar', previousMonth: 'Previous month', nextMonth: 'Next month', selectedDayWorkouts: 'Workouts on selected day', workoutsCount: 'workouts', historyWeekdays: 'Mon,Tue,Wed,Thu,Fri,Sat,Sun',
     levelProgress: 'Level progress', maximumLevel: 'Maximum level', toLevel: 'To level', points: 'points', allLevelsUnlocked: 'All levels unlocked.', reachMasteryPoints: 'Reach {points} mastery points.',
     bestWeight: 'Best weight', estimatedMax: 'Estimated 1RM', volume: 'Volume', workouts: 'Workouts', sets: 'Sets', repetitions: 'Repetitions', lastPerformed: 'Last performed', notPerformed: 'Not performed yet', personalRecords: 'Personal records', noRecords: 'No records yet', openExercise: 'Open exercise', kg: 'kg',
+    collection: 'Collection', exerciseSearch: 'Search exercises', findExercise: 'Find exercise', collectionFilter: 'Collection filter',
+    collectionLoading: 'Building collection…', masteryLoadError: 'Could not load mastery', showMore: 'Show more', noMatches: 'No matches', noUnlocked: 'No unlocked exercises yet', catalogEmpty: 'Catalog is empty', unlockHint: 'Complete your first working set to unlock a badge.', changeSearch: 'Change the search or filter.',
+    workoutView: 'Workout view', saveError: 'Could not save. Try again.', saving: 'Saving…', workoutEmptyTitle: 'Where shall we start?', workoutEmptyText: 'Add an exercise, then log your weight and reps.', workoutExercises: 'Workout exercises', editExercise: 'Edit exercise', backToList: 'Back to list',
+    backToExercises: 'Back to exercises', front: 'Front', backView: 'Back', equipment: 'Equipment', none: 'None', latestSet: 'Latest logged set', resultLoading: 'Loading result…', resultLoadError: 'Could not load the result.', notCompleted: 'Not completed yet', noLoggedSets: 'No logged sets yet',
     emptyHomeHint: 'Your first set takes 10 seconds', volumeLevel: 'Volume', strengthLevel: 'Strength',
   },
 } as const

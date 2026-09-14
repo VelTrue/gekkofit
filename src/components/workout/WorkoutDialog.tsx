@@ -5,7 +5,7 @@ import { WorkoutIcon } from './WorkoutIcon'
 export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children }: {
   title: string; backLabel?: string; focusSetId?: string; onClose: () => void; children: ReactNode
 }) {
-  const { lang } = useLang()
+  const { t } = useLang()
   const dialog = useRef<HTMLDialogElement>(null)
   const onCloseRef = useRef(onClose)
   const initialSetId = useRef(focusSetId)
@@ -36,7 +36,7 @@ export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children 
   const close = () => history.back()
   return <dialog ref={dialog} aria-labelledby={titleId} className="workout-dialog" onCancel={(event) => { event.preventDefault(); close() }}>
     <div className="workout-dialog-header">
-      <button type="button" className="workout-button" onClick={close}><WorkoutIcon name="back" />{backLabel ?? (lang === 'ru' ? 'Назад' : 'Back')}</button>
+      <button type="button" className="workout-button" onClick={close}><WorkoutIcon name="back" />{backLabel ?? t('back')}</button>
       <h2 id={titleId}>{title}</h2>
     </div>
     {children}
@@ -46,7 +46,7 @@ export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children 
 export function ConfirmAction({ title, description, confirmLabel, historyDelta = -1, onConfirm, onClose }: {
   title: string; description: string; confirmLabel: string; historyDelta?: number; onConfirm: () => Promise<void>; onClose: () => void
 }) {
-  const { lang } = useLang()
+  const { t } = useLang()
   const [pending, setPending] = useState(false)
   const [failed, setFailed] = useState(false)
   const lock = useRef(false)
@@ -62,8 +62,8 @@ export function ConfirmAction({ title, description, confirmLabel, historyDelta =
   return <WorkoutDialog title={title} onClose={onClose}>
     <div className="workout-confirm">
       <p>{description}</p>
-      {failed && <p role="alert" className="workout-error">{lang === 'ru' ? 'Не удалось сохранить. Повторите попытку.' : 'Could not save. Try again.'}</p>}
-      <button type="button" className="workout-button workout-button-danger" disabled={pending} onClick={() => void confirm()}>{pending ? (lang === 'ru' ? 'Сохранение…' : 'Saving…') : failed ? (lang === 'ru' ? 'Повторить' : 'Retry') : confirmLabel}</button>
+      {failed && <p role="alert" className="workout-error">{t('saveError')}</p>}
+      <button type="button" className="workout-button workout-button-danger" disabled={pending} onClick={() => void confirm()}>{pending ? t('saving') : failed ? t('retry') : confirmLabel}</button>
     </div>
   </WorkoutDialog>
 }

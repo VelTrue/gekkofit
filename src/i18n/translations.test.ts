@@ -34,4 +34,14 @@ describe('translation lookup', () => {
     expect(history).not.toMatch(/Training archive|Loading history|Previous month|Back to calendar/)
     expect(mastery).not.toMatch(/Best weight|Maximum level|Personal records|Open exercise/)
   })
+  it('keeps screen and shared dialog state copy in the catalog', () => {
+    const sources = [
+      '../screens/ProgressScreen.tsx',
+      '../screens/HistoryScreen.tsx',
+      '../components/mastery/MasteryDetailSheet.tsx',
+      '../components/workout/ViewModeSwitch.tsx',
+      '../components/workout/WorkoutDialog.tsx',
+    ].map((path) => readFileSync(new URL(path, import.meta.url), 'utf8')).join('\n')
+    expect(sources).not.toMatch(/Building collection|Could not load mastery|Workout view|Could not save\. Try again\.|Training archive/)
+  })
 })
