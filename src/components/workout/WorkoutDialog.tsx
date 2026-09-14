@@ -43,8 +43,8 @@ export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children 
   </dialog>
 }
 
-export function ConfirmAction({ title, description, confirmLabel, onConfirm, onClose }: {
-  title: string; description: string; confirmLabel: string; onConfirm: () => Promise<void>; onClose: () => void
+export function ConfirmAction({ title, description, confirmLabel, historyDelta = -1, onConfirm, onClose }: {
+  title: string; description: string; confirmLabel: string; historyDelta?: number; onConfirm: () => Promise<void>; onClose: () => void
 }) {
   const { lang } = useLang()
   const [pending, setPending] = useState(false)
@@ -55,7 +55,7 @@ export function ConfirmAction({ title, description, confirmLabel, onConfirm, onC
     lock.current = true
     setPending(true)
     setFailed(false)
-    try { await onConfirm(); history.back() }
+    try { await onConfirm(); history.go(historyDelta) }
     catch { setFailed(true) }
     finally { lock.current = false; setPending(false) }
   }

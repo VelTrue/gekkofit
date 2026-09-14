@@ -46,9 +46,9 @@ function recordCounts(workouts: Workout[], sets: WorkoutSet[]) {
   return counts
 }
 
-function Calendar({ items, lang, onSelect }: { items: HistoryItem[]; lang: 'ru' | 'en'; onSelect: (id: string, opener: HTMLButtonElement) => void }) {
+function Calendar({ items, lang, selectedDate, onSelectDate, onSelect }: { items: HistoryItem[]; lang: 'ru' | 'en'; selectedDate: string | null; onSelectDate: (date: string | null) => void; onSelect: (id: string, opener: HTMLButtonElement) => void }) {
   const initial = items[0] ? new Date(items[0].detail.workout.startedAt) : new Date()
-  const [offset, setOffset] = useState(0), [selectedDate, setSelectedDate] = useState<string | null>(null)
+  const [offset, setOffset] = useState(0)
   const base = new Date(initial.getFullYear(), initial.getMonth() + offset, 1), year = base.getFullYear(), month = base.getMonth()
   const first = (new Date(year, month, 1).getDay() + 6) % 7
   const cells: Array<number | null> = [...Array(first).fill(null), ...Array.from({ length: new Date(year, month + 1, 0).getDate() }, (_, index) => index + 1)]
@@ -59,18 +59,18 @@ function Calendar({ items, lang, onSelect }: { items: HistoryItem[]; lang: 'ru' 
   }, [items])
   const weekdays = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   const selectedItems = selectedDate ? byDate.get(selectedDate) ?? [] : []
-  return <div className="history-calendar"><div className="history-calendar-nav"><button type="button" aria-label={lang === 'ru' ? 'Предыдущий месяц' : 'Previous month'} onClick={() => { setSelectedDate(null); setOffset((value) => value - 1) }}><WorkoutIcon name="back" /></button><strong>{base.toLocaleDateString(lang, { month: 'long', year: 'numeric' })}</strong><button type="button" aria-label={lang === 'ru' ? 'Следующий месяц' : 'Next month'} onClick={() => { setSelectedDate(null); setOffset((value) => value + 1) }}><WorkoutIcon name="next" /></button></div><div className="history-weekdays">{weekdays.map((day) => <span key={day}>{day}</span>)}</div><div className="history-days">{cells.map((day, index) => {
+  return <div className="history-calendar"><div className="history-calendar-nav"><button type="button" aria-label={lang === 'ru' ? 'Предыдущий месяц' : 'Previous month'} onClick={() => { onSelectDate(null); setOffset((value) => value - 1) }}><WorkoutIcon name="back" /></button><strong>{base.toLocaleDateString(lang, { month: 'long', year: 'numeric' })}</strong><button type="button" aria-label={lang === 'ru' ? 'Следующий месяц' : 'Next month'} onClick={() => { onSelectDate(null); setOffset((value) => value + 1) }}><WorkoutIcon name="next" /></button></div><div className="history-weekdays">{weekdays.map((day) => <span key={day}>{day}</span>)}</div><div className="history-days">{cells.map((day, index) => {
     if (day === null) return <span key={`blank-${index}`} />
     const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`, dayItems = byDate.get(key) ?? []
     const label = new Date(year, month, day).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })
     const countLabel = dayItems.length > 1 ? lang === 'ru' ? `, ${dayItems.length} тренировки` : `, ${dayItems.length} workouts` : ''
-    return <button type="button" key={key} aria-label={`${label}${countLabel}`} aria-pressed={selectedDate === key} disabled={!dayItems.length} onClick={(event) => dayItems.length === 1 ? onSelect(dayItems[0].detail.workout.id, event.currentTarget) : setSelectedDate(key)}>{day}</button>
+    return <button type="button" key={key} aria-label={`${label}${countLabel}`} aria-pressed={selectedDate === key} disabled={!dayItems.length} onClick={(event) => dayItems.length === 1 ? onSelect(dayItems[0].detail.workout.id, event.currentTarget) : onSelectDate(key)}>{day}</button>
   })}</div>{selectedItems.length > 1 && <section className="history-calendar-results" aria-label={lang === 'ru' ? 'Тренировки за выбранный день' : 'Workouts on selected day'}>{selectedItems.map((item) => <HistoryCard key={item.detail.workout.id} item={item} lang={lang} onOpen={(source) => onSelect(item.detail.workout.id, source)} />)}</section>}</div>
 }
 
 export function HistoryScreen() {
   const { lang, t } = useLang()
-  const [mode, setMode] = useState<Mode>('list'), [items, setItems] = useState<HistoryItem[]>([]), [selectedId, setSelectedId] = useState<string | null>(null)
+  const [mode, setMode] = useState<Mode>('list'), [items, setItems] = useState<HistoryItem[]>([]), [selectedId, setSelectedId] = useState<string | null>(null), [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [loading, setLoading] = useState(true), [failed, setFailed] = useState(false)
   const opener = useRef<HTMLElement | null>(null), openerWorkoutId = useRef<string | null>(null)
   const load = useCallback(async () => { setFailed(false); try { setItems(await loadHistoryItems()) } catch { setFailed(true) } finally { setLoading(false) } }, [])
@@ -85,6 +85,6 @@ export function HistoryScreen() {
   const selected = items.find((item) => item.detail.workout.id === selectedId)
   if (selected) return <HistoryDetail initialDetail={selected.detail} backLabel={mode === 'calendar' ? (lang === 'ru' ? 'Назад к календарю' : 'Back to calendar') : (lang === 'ru' ? 'Назад к истории' : 'Back to history')} onBack={close} onChange={(detail) => { setItems((current) => current.map((item) => item.detail.workout.id === detail.workout.id ? historyItem(detail, item.recordCount) : item)); void load() }} onDiscard={() => { setItems((current) => current.filter((item) => item.detail.workout.id !== selected.detail.workout.id)); setSelectedId(null) }} />
   return <section className="history-screen"><header className="history-header"><div><p className="history-eyebrow">{lang === 'ru' ? 'Архив тренировок' : 'Training archive'}</p><h1>{t('tabHistory')}</h1></div><div className="history-mode" aria-label={lang === 'ru' ? 'Вид истории' : 'History view'}><button type="button" aria-pressed={mode === 'list'} onClick={() => setMode('list')}>{t('historyList')}</button><button type="button" aria-pressed={mode === 'calendar'} onClick={() => setMode('calendar')}>{t('historyCalendar')}</button></div></header>
-    {loading ? <div role="status" className="history-empty">{lang === 'ru' ? 'Загружаем историю...' : 'Loading history...'}</div> : failed ? <div className="history-empty"><p role="alert">{lang === 'ru' ? 'Не удалось загрузить историю.' : 'Could not load history.'}</p><button type="button" className="workout-button" onClick={() => void load()}>{lang === 'ru' ? 'Повторить' : 'Retry'}</button></div> : items.length === 0 ? <div className="history-empty">{lang === 'ru' ? 'Завершенные тренировки появятся здесь.' : 'Completed workouts will appear here.'}</div> : mode === 'calendar' ? <Calendar items={items} lang={lang} onSelect={open} /> : <div className="history-list">{items.map((item) => <HistoryCard key={item.detail.workout.id} item={item} lang={lang} onOpen={(source) => open(item.detail.workout.id, source)} />)}</div>}
+    {loading ? <div role="status" className="history-empty">{lang === 'ru' ? 'Загружаем историю...' : 'Loading history...'}</div> : failed ? <div className="history-empty"><p role="alert">{lang === 'ru' ? 'Не удалось загрузить историю.' : 'Could not load history.'}</p><button type="button" className="workout-button" onClick={() => void load()}>{lang === 'ru' ? 'Повторить' : 'Retry'}</button></div> : items.length === 0 ? <div className="history-empty">{lang === 'ru' ? 'Завершенные тренировки появятся здесь.' : 'Completed workouts will appear here.'}</div> : mode === 'calendar' ? <Calendar items={items} lang={lang} selectedDate={selectedDate} onSelectDate={setSelectedDate} onSelect={open} /> : <div className="history-list">{items.map((item) => <HistoryCard key={item.detail.workout.id} item={item} lang={lang} onOpen={(source) => open(item.detail.workout.id, source)} />)}</div>}
   </section>
 }

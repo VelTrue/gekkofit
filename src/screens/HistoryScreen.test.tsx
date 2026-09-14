@@ -95,7 +95,23 @@ describe('workout history', () => {
     await userEvent.click(within(screen.getByRole('dialog', { name: 'Удалить тренировку?' })).getByRole('button', { name: 'Удалить' }))
 
     expect(await screen.findByText('Завершенные тренировки появятся здесь.')).toBeVisible()
-    expect(history.state?.modal).toBe('workout-history-detail')
+    await waitFor(() => expect(history.state).toBeNull())
+  })
+
+  it('consumes confirmation and deleted detail history before the next detail visit', async () => {
+    await completedWorkout()
+    await db.workouts.add({ id: 'remaining', title: 'Оставшаяся тренировка', startedAt: '2026-09-09T17:00:00.000Z', finishedAt: '2026-09-09T17:30:00.000Z', createdAt: '2026-09-09T17:00:00.000Z', updatedAt: '2026-09-09T17:30:00.000Z' })
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: /Грудь и трицепс/ }))
+    await userEvent.click(screen.getByRole('button', { name: 'Удалить тренировку' }))
+    await userEvent.click(within(screen.getByRole('dialog', { name: 'Удалить тренировку?' })).getByRole('button', { name: 'Удалить' }))
+    await screen.findByRole('button', { name: /Оставшаяся тренировка/ })
+    await waitFor(() => expect(history.state).toBeNull())
+
+    await userEvent.click(screen.getByRole('button', { name: /Оставшаяся тренировка/ }))
+    expect(await screen.findByRole('heading', { name: 'Оставшаяся тренировка' })).toBeVisible()
+    await act(async () => { history.back() })
+    expect(await screen.findByRole('button', { name: /Оставшаяся тренировка/ })).toBeVisible()
   })
 
   it('exposes every workout recorded on the same calendar date', async () => {
@@ -110,6 +126,20 @@ describe('workout history', () => {
     expect(screen.getByRole('button', { name: /Вечерняя тяга/ })).toBeVisible()
     await userEvent.click(screen.getByRole('button', { name: /Вечерняя тяга/ }))
     expect(await screen.findByRole('heading', { name: 'Вечерняя тяга' })).toBeVisible()
+  })
+
+  it('restores the selected calendar date and originating workout focus after detail Back', async () => {
+    await completedWorkout()
+    await db.workouts.add({ id: 'same-day', title: 'Вечерняя тяга', startedAt: '2026-09-10T17:00:00.000Z', finishedAt: '2026-09-10T17:30:00.000Z', createdAt: '2026-09-10T17:00:00.000Z', updatedAt: '2026-09-10T17:30:00.000Z' })
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: 'Календарь' }))
+    await userEvent.click(screen.getByRole('button', { name: /10 сентября.*2 тренировки/ }))
+    await userEvent.click(screen.getByRole('button', { name: /Вечерняя тяга/ }))
+    await act(async () => { history.back() })
+
+    const origin = await screen.findByRole('button', { name: /Вечерняя тяга/ })
+    expect(screen.getByRole('button', { name: /Грудь и трицепс/ })).toBeVisible()
+    await waitFor(() => expect(origin).toHaveFocus())
   })
 
   it('opens the same editable detail from list and calendar and browser Back returns to its origin', async () => {
