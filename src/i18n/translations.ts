@@ -14,6 +14,10 @@ export const translations = {
     confirmDiscardWorkout: 'Удалить тренировку?', emptyState: 'Пока здесь пусто',
     settingsKicker: 'Система', installApp: 'Установить приложение', backupInvalid: 'Файл резервной копии повреждён или несовместим.',
     backupReminderTitle: 'Не потеряйте прогресс', backupReminderText: 'Сохраните свежую резервную копию.', localDataNotice: 'Все данные хранятся только на этом устройстве. Аккаунт и облако не используются.', updateAvailable: 'Доступно обновление - применить',
+    historyArchive: 'Архив тренировок', historyView: 'Вид истории', historyLoading: 'Загружаем историю...', historyLoadError: 'Не удалось загрузить историю.', historyEmpty: 'Завершенные тренировки появятся здесь.',
+    historyBack: 'Назад к истории', historyBackCalendar: 'Назад к календарю', previousMonth: 'Предыдущий месяц', nextMonth: 'Следующий месяц', selectedDayWorkouts: 'Тренировки за выбранный день', workoutsCount: 'тренировки', historyWeekdays: 'Пн,Вт,Ср,Чт,Пт,Сб,Вс',
+    levelProgress: 'Прогресс уровня', maximumLevel: 'Максимальный уровень', toLevel: 'До уровня', points: 'очков', allLevelsUnlocked: 'Все уровни открыты.', reachMasteryPoints: 'Наберите {points} очков мастерства.',
+    bestWeight: 'Лучший вес', estimatedMax: 'Расчетный максимум', volume: 'Объем', workouts: 'Тренировки', sets: 'Подходы', repetitions: 'Повторения', lastPerformed: 'Последний результат', notPerformed: 'Еще не выполнялось', personalRecords: 'Личные рекорды', noRecords: 'Рекордов пока нет', openExercise: 'Открыть упражнение', kg: 'кг',
     emptyHomeHint: 'Первый подход займёт 10 секунд', volumeLevel: 'Объём', strengthLevel: 'Сила',
   },
   en: {
@@ -29,6 +33,10 @@ export const translations = {
     confirmDiscardWorkout: 'Delete workout?', emptyState: 'Nothing here yet',
     settingsKicker: 'System', installApp: 'Install app', backupInvalid: 'The backup file is corrupt or incompatible.',
     backupReminderTitle: 'Keep your progress safe', backupReminderText: 'Save a fresh backup copy.', localDataNotice: 'All data stays on this device. No account or cloud is used.', updateAvailable: 'Update available - apply',
+    historyArchive: 'Training archive', historyView: 'History view', historyLoading: 'Loading history...', historyLoadError: 'Could not load history.', historyEmpty: 'Completed workouts will appear here.',
+    historyBack: 'Back to history', historyBackCalendar: 'Back to calendar', previousMonth: 'Previous month', nextMonth: 'Next month', selectedDayWorkouts: 'Workouts on selected day', workoutsCount: 'workouts', historyWeekdays: 'Mon,Tue,Wed,Thu,Fri,Sat,Sun',
+    levelProgress: 'Level progress', maximumLevel: 'Maximum level', toLevel: 'To level', points: 'points', allLevelsUnlocked: 'All levels unlocked.', reachMasteryPoints: 'Reach {points} mastery points.',
+    bestWeight: 'Best weight', estimatedMax: 'Estimated 1RM', volume: 'Volume', workouts: 'Workouts', sets: 'Sets', repetitions: 'Repetitions', lastPerformed: 'Last performed', notPerformed: 'Not performed yet', personalRecords: 'Personal records', noRecords: 'No records yet', openExercise: 'Open exercise', kg: 'kg',
     emptyHomeHint: 'Your first set takes 10 seconds', volumeLevel: 'Volume', strengthLevel: 'Strength',
   },
 } as const

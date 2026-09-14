@@ -156,6 +156,8 @@ export function parseBackup(json: string): BackupData {
       backup = parsed as unknown as BackupData
     } else throw new Error()
 
+    if (!backup.workouts.every(isWorkout) || !backup.workoutExercises.every(isWorkoutExercise)
+      || !backup.sets.every(isWorkoutSet) || !backup.exerciseProgress.every(isExerciseProgress)) throw new Error()
     assertBackupIntegrity(backup)
     return backup
   } catch {

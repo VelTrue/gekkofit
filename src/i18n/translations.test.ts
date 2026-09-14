@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { t } from './translations'
+import { readFileSync } from 'node:fs'
+import { translations, t } from './translations'
 
 describe('translation lookup', () => {
   it('returns Russian text', () => expect(t('ru', 'startWorkout')).toBe('Начать тренировку'))
@@ -25,5 +26,12 @@ describe('translation lookup', () => {
     expect(t('en', 'masteryAll')).toBe('All exercises')
     expect(t('ru', 'backupInvalid')).toContain('резервной копии')
     expect(t('en', 'retry')).toBe('Retry')
+  })
+  it('keeps both locale catalogs complete and feature UI wired to shared copy', () => {
+    expect(Object.keys(translations.en).sort()).toEqual(Object.keys(translations.ru).sort())
+    const history = readFileSync(new URL('../screens/HistoryScreen.tsx', import.meta.url), 'utf8')
+    const mastery = readFileSync(new URL('../components/mastery/MasteryDetailSheet.tsx', import.meta.url), 'utf8')
+    expect(history).not.toMatch(/Training archive|Loading history|Previous month|Back to calendar/)
+    expect(mastery).not.toMatch(/Best weight|Maximum level|Personal records|Open exercise/)
   })
 })

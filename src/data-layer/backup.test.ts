@@ -71,6 +71,19 @@ describe('backup module', () => {
     expect(legacy.workoutExercises).toEqual([expect.objectContaining({ workoutId: 'workout-1', exerciseId: 1, order: 0 })])
   })
 
+  it('rejects invalid legacy titles and completion values after upgrade', async () => {
+    const timestamp = '2026-09-14T10:00:00.000Z'
+    const legacy = {
+      version: 1, exportedAt: timestamp,
+      workouts: [{ id: 'workout-1', title: 'x'.repeat(81), startedAt: timestamp, finishedAt: null, createdAt: timestamp, updatedAt: timestamp }],
+      sets: [{ id: 'set-1', workoutId: 'workout-1', exerciseId: 1, weight: 60, reps: 8, setOrder: 0, completed: 'yes', createdAt: timestamp, updatedAt: timestamp }],
+      exerciseProgress: [],
+    }
+    expect(() => parseBackup(JSON.stringify(legacy))).toThrow('INVALID_BACKUP_FILE')
+    await expect(importData(database, parseBackup(JSON.stringify({ ...legacy, workouts: [{ ...legacy.workouts[0], title: '' }], sets: [{ ...legacy.sets[0], completed: true }] })))).resolves.toBeUndefined()
+    expect((await database.workouts.get('workout-1'))?.title).toMatch(/^\u0422\u0440\u0435\u043d\u0438\u0440\u043e\u0432\u043a\u0430 /)
+  })
+
   it('rejects malformed, duplicate, orphaned, and non-finite content', () => {
     const timestamp = '2026-09-14T10:00:00.000Z'
     const valid = {

@@ -8,7 +8,7 @@ export default defineConfig({
     registerType: 'prompt',
     manifest: {
       name: 'Workout Tracker', short_name: 'Workout', description: 'Local-first gym workout tracker',
-      display: 'standalone', background_color: '#0b0b0f', theme_color: '#0b0b0f',
+      display: 'standalone', background_color: '#15171a', theme_color: '#15171a',
       icons: [
         { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
         { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
