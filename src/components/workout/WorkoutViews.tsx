@@ -9,7 +9,7 @@ import { WorkoutNoteView } from './WorkoutNoteView'
 export function WorkoutViews({ detail, previousResults, ...actions }: WorkoutEditingActions & {
   detail: WorkoutDetail; previousResults?: Record<number, string>
 }) {
-  const { lang } = useLang()
+  const { lang, t } = useLang()
   const [mode, setMode] = useState<WorkoutViewMode>(() => {
     try { return localStorage.getItem('workout-view-mode') === 'list' ? 'list' : 'cards' }
     catch { return 'cards' }
@@ -30,13 +30,13 @@ export function WorkoutViews({ detail, previousResults, ...actions }: WorkoutEdi
 
   return <div className="workout-views">
     <ViewModeSwitch value={mode} onChange={changeMode} />
-    {entries.length === 0 ? <div className="workout-empty"><h2>{lang === 'ru' ? 'С чего начнём?' : 'Where shall we start?'}</h2><p>{lang === 'ru' ? 'Добавьте упражнение, затем запишите вес и повторы.' : 'Add an exercise, then log your weight and reps.'}</p></div> : <>
+    {entries.length === 0 ? <div className="workout-empty"><h2>{t('workoutEmptyTitle')}</h2><p>{t('workoutEmptyText')}</p></div> : <>
       <div hidden={mode !== 'cards'} className="workout-view-panel">
-        {entries.length > 1 && <nav className="workout-quick-nav" aria-label={lang === 'ru' ? 'Упражнения тренировки' : 'Workout exercises'}>{entries.map(({ exercise }) => <button type="button" key={exercise.id} className="workout-button" aria-pressed={entry.exercise.id === exercise.id} onClick={() => setSelected(exercise.id)}>{lang === 'ru' ? exercise.name_ru : exercise.name_en}</button>)}</nav>}
+        {entries.length > 1 && <nav className="workout-quick-nav" aria-label={t('workoutExercises')}>{entries.map(({ exercise }) => <button type="button" key={exercise.id} className="workout-button" aria-pressed={entry.exercise.id === exercise.id} onClick={() => setSelected(exercise.id)}>{lang === 'ru' ? exercise.name_ru : exercise.name_en}</button>)}</nav>}
         {!editing && card}
       </div>
       <div hidden={mode !== 'list'} className="workout-view-panel"><WorkoutNoteView detail={detail} onEdit={(exerciseId, setId) => { setSelected(exerciseId); setFocusSetId(setId); setEditing(true) }} /></div>
-      {editing && entry && <WorkoutDialog title={lang === 'ru' ? 'Редактирование упражнения' : 'Edit exercise'} backLabel={lang === 'ru' ? 'Назад к списку' : 'Back to list'} focusSetId={focusSetId} onClose={() => setEditing(false)}>{card}</WorkoutDialog>}
+      {editing && entry && <WorkoutDialog title={t('editExercise')} backLabel={t('backToList')} focusSetId={focusSetId} onClose={() => setEditing(false)}>{card}</WorkoutDialog>}
     </>}
   </div>
 }

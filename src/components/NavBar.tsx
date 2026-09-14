@@ -12,7 +12,7 @@ const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabMastery' | 'tab
 export function NavBar({ active, onChange }: { active: ScreenName; onChange: (screen: ScreenName) => void }) {
   const { t } = useLang()
   return (
-    <nav aria-label="Primary" className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-[var(--color-border)] bg-[var(--color-nav)] px-2 pb-[max(8px,var(--safe-area-bottom))] pt-2 backdrop-blur-xl md:static md:h-screen md:w-56 md:grid-cols-1 md:grid-rows-[repeat(4,64px)_1fr] md:border-r md:border-t-0 md:px-3 md:pt-6">
+    <nav aria-label={t('primaryNavigation')} className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-[var(--color-border)] bg-[var(--color-nav)] px-2 pb-[max(8px,var(--safe-area-bottom))] pt-2 backdrop-blur-xl md:static md:h-screen md:w-56 md:grid-cols-1 md:grid-rows-[repeat(4,64px)_1fr] md:border-r md:border-t-0 md:px-3 md:pt-6">
       {tabs.map((tab) => {
         const selected = active === tab.id
         return (

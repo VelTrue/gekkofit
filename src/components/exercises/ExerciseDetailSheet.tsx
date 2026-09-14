@@ -9,8 +9,7 @@ import '../workout/workout.css'
 import './exercises.css'
 
 export function ExerciseDetailSheet({ exercise, onClose }: { exercise: Exercise; onClose: () => void }) {
-  const { lang } = useLang()
-  const ru = lang === 'ru'
+  const { lang, t } = useLang()
   const [result, setResult] = useState<{ value?: WorkoutSet; status: 'loading' | 'ready' | 'error' }>({ status: 'loading' })
   const [attempt, setAttempt] = useState(0)
   useEffect(() => {
@@ -21,18 +20,18 @@ export function ExerciseDetailSheet({ exercise, onClose }: { exercise: Exercise;
     return () => { current = false }
   }, [exercise.id, attempt])
   const number = new Intl.NumberFormat(lang, { maximumFractionDigits: 20 })
-  return <WorkoutDialog title={ru ? exercise.name_ru : exercise.name_en} backLabel={ru ? 'Назад к упражнениям' : 'Back to exercises'} onClose={onClose}>
+  return <WorkoutDialog title={lang === 'ru' ? exercise.name_ru : exercise.name_en} backLabel={t('backToExercises')} onClose={onClose}>
     <div className="exercise-detail">
-      <div className="exercise-detail-map"><AnatomyMap primary={validMuscles(exercise.primary_muscles)} secondary={validMuscles(exercise.secondary_muscles)} view="both" size="lg" label={anatomyLabel(exercise, lang)} /><div className="exercise-body-labels"><span>{ru ? 'Спереди' : 'Front'}</span><span>{ru ? 'Сзади' : 'Back'}</span></div></div>
+      <div className="exercise-detail-map"><AnatomyMap primary={validMuscles(exercise.primary_muscles)} secondary={validMuscles(exercise.secondary_muscles)} view="both" size="lg" label={anatomyLabel(exercise, lang)} /><div className="exercise-body-labels"><span>{t('front')}</span><span>{t('backView')}</span></div></div>
       <dl className="exercise-detail-metadata">
-        <div><dt>{ru ? 'Оборудование' : 'Equipment'}</dt><dd>{equipmentName(exercise.equipment, lang)}</dd></div>
-        <div><dt><span className="exercise-muscle-key" />{ru ? 'Основные мышцы' : 'Primary muscles'}</dt><dd>{muscleNames(exercise.primary_muscles, lang)}</dd></div>
-        <div><dt><span className="exercise-muscle-key exercise-muscle-key-secondary" />{ru ? 'Вспомогательные мышцы' : 'Secondary muscles'}</dt><dd>{muscleNames(exercise.secondary_muscles, lang) || (ru ? 'Нет' : 'None')}</dd></div>
+        <div><dt>{t('equipment')}</dt><dd>{equipmentName(exercise.equipment, lang)}</dd></div>
+        <div><dt><span className="exercise-muscle-key" />{t('primaryMuscles')}</dt><dd>{muscleNames(exercise.primary_muscles, lang)}</dd></div>
+        <div><dt><span className="exercise-muscle-key exercise-muscle-key-secondary" />{t('secondaryMuscles')}</dt><dd>{muscleNames(exercise.secondary_muscles, lang) || t('none')}</dd></div>
       </dl>
-      <section className="exercise-latest"><h3>{ru ? 'Последний записанный подход' : 'Latest logged set'}</h3>
-        {result.status === 'loading' && <p role="status">{ru ? 'Загружаем результат…' : 'Loading result…'}</p>}
-        {result.status === 'error' && <><p role="alert">{ru ? 'Не удалось загрузить результат.' : 'Could not load the result.'}</p><button type="button" className="workout-button" onClick={() => { setResult({ status: 'loading' }); setAttempt((value) => value + 1) }}>{ru ? 'Повторить' : 'Retry'}</button></>}
-        {result.status === 'ready' && (result.value ? <><strong>{number.format(result.value.weight)} {ru ? 'кг' : 'kg'} × {number.format(result.value.reps)}</strong><time dateTime={result.value.createdAt}>{new Date(result.value.createdAt).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</time>{!result.value.completed && <p>{ru ? 'Ещё не выполнен' : 'Not completed yet'}</p>}</> : <p>{ru ? 'Записанных подходов пока нет' : 'No logged sets yet'}</p>)}
+      <section className="exercise-latest"><h3>{t('latestSet')}</h3>
+        {result.status === 'loading' && <p role="status">{t('resultLoading')}</p>}
+        {result.status === 'error' && <><p role="alert">{t('resultLoadError')}</p><button type="button" className="workout-button" onClick={() => { setResult({ status: 'loading' }); setAttempt((value) => value + 1) }}>{t('retry')}</button></>}
+        {result.status === 'ready' && (result.value ? <><strong>{number.format(result.value.weight)} {t('kg')} × {number.format(result.value.reps)}</strong><time dateTime={result.value.createdAt}>{new Date(result.value.createdAt).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</time>{!result.value.completed && <p>{t('notCompleted')}</p>}</> : <p>{t('noLoggedSets')}</p>)}
       </section>
     </div>
   </WorkoutDialog>

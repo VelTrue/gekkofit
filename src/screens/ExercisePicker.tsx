@@ -17,19 +17,18 @@ const PAGE_SIZE = 40
 function ExerciseResultRows({ exercises, count, onMore, onPick, onInfo }: {
   exercises: Exercise[]; count: number; onMore: () => void; onPick: (exercise: Exercise) => void; onInfo: (exercise: Exercise) => void
 }) {
-  const { lang } = useLang()
+  const { t } = useLang()
   const list = useRef<HTMLUListElement>(null)
   useEffect(() => {
     if (count > PAGE_SIZE) list.current?.children[count - PAGE_SIZE]?.querySelector('button')?.focus()
   }, [count])
   return <><ul className="exercise-list" ref={list}>{exercises.slice(0, count).map((exercise) => <ExerciseListItem key={exercise.id} exercise={exercise} onPick={onPick} onInfo={onInfo} />)}</ul>
-    {count < exercises.length && <div className="exercise-pagination"><p role="status">{lang === 'ru' ? 'Показано' : 'Showing'} {Math.min(count, exercises.length)} {lang === 'ru' ? 'из' : 'of'} {exercises.length}</p><button type="button" className="workout-button" onClick={onMore}>{lang === 'ru' ? 'Показать ещё' : 'Show more'}</button></div>}
+    {count < exercises.length && <div className="exercise-pagination"><p role="status">{t('showing')} {Math.min(count, exercises.length)} {t('of')} {exercises.length}</p><button type="button" className="workout-button" onClick={onMore}>{t('showMore')}</button></div>}
   </>
 }
 
 export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercise) => void; onClose: () => void }) {
-  const { lang } = useLang()
-  const ru = lang === 'ru'
+  const { lang, t } = useLang()
   const [catalog, setCatalog] = useState<{ all: Exercise[]; recent: Exercise[]; frequent: Exercise[] } | null>(null)
   const [failed, setFailed] = useState(false)
   const [attempt, setAttempt] = useState(0)
@@ -72,17 +71,17 @@ export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercis
   const rows = (exercises: Exercise[]) => <ul className="exercise-list">{exercises.map((exercise) => <ExerciseListItem key={exercise.id} exercise={exercise} onPick={pick} onInfo={setDetail} />)}</ul>
   const section = (label: string, exercises: Exercise[]) => <section className="exercise-section" aria-label={label}><h3>{label}</h3>{rows(exercises)}</section>
 
-  return <WorkoutDialog title={ru ? 'Выберите упражнение' : 'Choose an exercise'} backLabel={ru ? 'Назад к тренировке' : 'Back to workout'} onClose={close}>
+  return <WorkoutDialog title={t('chooseExercise')} backLabel={t('backToWorkout')} onClose={close}>
     <div className="exercise-picker">
-      <div className="exercise-search"><label htmlFor={searchId}>{ru ? 'Поиск упражнений' : 'Search exercises'}</label><div className="exercise-search-field"><WorkoutIcon name="search" /><input ref={search} id={searchId} type="search" value={query} onChange={(event) => changeQuery(event.target.value)} placeholder={ru ? 'Название, мышца или оборудование' : 'Name, muscle or equipment'} />{query && <button type="button" onClick={clearSearch} aria-label={ru ? 'Очистить поиск' : 'Clear search'}><WorkoutIcon name="close" /></button>}</div></div>
-      {!catalog && !failed && <p className="exercise-message" role="status">{ru ? 'Загружаем упражнения…' : 'Loading exercises…'}</p>}
-      {failed && <div className="exercise-message"><p role="alert">{ru ? 'Не удалось загрузить упражнения. Повторите попытку.' : 'Could not load exercises. Try again.'}</p><button type="button" className="workout-button" onClick={() => { setFailed(false); setAttempt((value) => value + 1) }}>{ru ? 'Повторить' : 'Retry'}</button></div>}
+      <div className="exercise-search"><label htmlFor={searchId}>{t('exerciseSearch')}</label><div className="exercise-search-field"><WorkoutIcon name="search" /><input ref={search} id={searchId} type="search" value={query} onChange={(event) => changeQuery(event.target.value)} placeholder={t('exerciseSearchPlaceholder')} />{query && <button type="button" onClick={clearSearch} aria-label={t('clearSearch')}><WorkoutIcon name="close" /></button>}</div></div>
+      {!catalog && !failed && <p className="exercise-message" role="status">{t('exercisesLoading')}</p>}
+      {failed && <div className="exercise-message"><p role="alert">{t('exercisesLoadError')}</p><button type="button" className="workout-button" onClick={() => { setFailed(false); setAttempt((value) => value + 1) }}>{t('retry')}</button></div>}
       {catalog && <>
-        {!isSearching && !group && <>{catalog.recent.length > 0 && section(ru ? 'Недавние' : 'Recent', catalog.recent)}{catalog.frequent.length > 0 && section(ru ? 'Часто используемые' : 'Frequently used', catalog.frequent)}</>}
-        <section className="exercise-section" aria-labelledby={groupsId}><h3 id={groupsId}>{ru ? 'Группы мышц' : 'Muscle groups'}</h3><div className="exercise-groups"><button type="button" aria-pressed={!group} onClick={() => changeGroup('')}>{ru ? 'Все группы' : 'All groups'}</button>{groups.map((item) => <button key={item} type="button" aria-pressed={group === item} onClick={() => changeGroup(item)}>{muscleGroupName(item, lang)}</button>)}</div></section>
-        <section className="exercise-section" aria-label={isSearching ? (ru ? 'Результаты поиска' : 'Search results') : (ru ? 'Все упражнения' : 'All exercises')}>
-          <div className="exercise-section-heading"><h3>{isSearching ? (ru ? 'Результаты поиска' : 'Search results') : (ru ? 'Все упражнения' : 'All exercises')}</h3><span role="status">{ru ? 'Найдено' : 'Found'}: {matches.length}</span></div>
-          {matches.length > 0 ? <ExerciseResultRows exercises={matches} count={visibleCount} onMore={() => setVisibleCount((value) => value + PAGE_SIZE)} onPick={pick} onInfo={setDetail} /> : <div className="exercise-message"><strong>{ru ? 'Ничего не найдено' : 'No exercises found'}</strong><p>{catalog.all.length === 0 ? (ru ? 'Закройте каталог и откройте приложение снова, чтобы загрузить упражнения.' : 'Close the catalog and reopen the app to load exercises.') : (ru ? 'Попробуйте другое название, мышцу или оборудование.' : 'Try another name, muscle or equipment.')}</p>{group && <button type="button" className="workout-button" onClick={() => changeGroup('')}>{ru ? 'Сбросить группу' : 'Clear muscle group'}</button>}</div>}
+        {!isSearching && !group && <>{catalog.recent.length > 0 && section(t('recent'), catalog.recent)}{catalog.frequent.length > 0 && section(t('frequent'), catalog.frequent)}</>}
+        <section className="exercise-section" aria-labelledby={groupsId}><h3 id={groupsId}>{t('muscleGroups')}</h3><div className="exercise-groups"><button type="button" aria-pressed={!group} onClick={() => changeGroup('')}>{t('allGroups')}</button>{groups.map((item) => <button key={item} type="button" aria-pressed={group === item} onClick={() => changeGroup(item)}>{muscleGroupName(item, lang)}</button>)}</div></section>
+        <section className="exercise-section" aria-label={t(isSearching ? 'searchResults' : 'allExercises')}>
+          <div className="exercise-section-heading"><h3>{t(isSearching ? 'searchResults' : 'allExercises')}</h3><span role="status">{t('found')}: {matches.length}</span></div>
+          {matches.length > 0 ? <ExerciseResultRows exercises={matches} count={visibleCount} onMore={() => setVisibleCount((value) => value + PAGE_SIZE)} onPick={pick} onInfo={setDetail} /> : <div className="exercise-message"><strong>{t('noMatches')}</strong><p>{t(catalog.all.length === 0 ? 'reopenCatalog' : 'searchHint')}</p>{group && <button type="button" className="workout-button" onClick={() => changeGroup('')}>{t('clearGroup')}</button>}</div>}
         </section>
       </>}
     </div>

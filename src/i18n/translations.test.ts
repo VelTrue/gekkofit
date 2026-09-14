@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { translations, t } from './translations'
 
 describe('translation lookup', () => {
@@ -43,5 +43,20 @@ describe('translation lookup', () => {
       '../components/workout/WorkoutDialog.tsx',
     ].map((path) => readFileSync(new URL(path, import.meta.url), 'utf8')).join('\n')
     expect(sources).not.toMatch(/Building collection|Could not load mastery|Workout view|Could not save\. Try again\.|Training archive/)
+  })
+  it('does not keep bilingual interface literals in screens or components', () => {
+    const roots = ['../screens', '../components']
+    const files = roots.flatMap((root) => {
+      const directory = new URL(`${root}/`, import.meta.url)
+      const walk = (url: URL): URL[] => readdirSync(url, { withFileTypes: true }).flatMap((entry) => {
+        const child = new URL(`${entry.name}${entry.isDirectory() ? '/' : ''}`, url)
+        return entry.isDirectory() ? walk(child) : entry.name.endsWith('.tsx') ? [child] : []
+      })
+      return walk(directory)
+    })
+    for (const file of files) {
+      const source = readFileSync(file, 'utf8')
+      expect(source, file.pathname).not.toMatch(/(?:lang\s*===\s*'ru'|\bru)\s*\?\s*[`'"]/)
+    }
   })
 })

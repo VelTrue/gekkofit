@@ -19,7 +19,6 @@ const REST_SECONDS = 90
 
 export function HomeScreen() {
   const { lang, t } = useLang()
-  const ru = lang === 'ru'
   const [workout, setWorkout] = useState<Workout | null>(null)
   const [entries, setEntries] = useState<WorkoutEntry[]>([])
   const [recent, setRecent] = useState<Workout[]>([])
@@ -102,15 +101,15 @@ export function HomeScreen() {
     setRest(null); setConfirm(null)
   }
 
-  const error = retry && <div className="workout-screen-error"><p role="alert">{ru ? 'Не удалось загрузить или сохранить тренировку. Повторите попытку.' : 'Could not load or save the workout. Try again.'}</p><button type="button" className="workout-button" disabled={pending} onClick={() => void perform(retry)}>{ru ? 'Повторить' : 'Retry'}</button></div>
-  if (loading) return <section className="workout-loading" role="status">{ru ? 'Загружаем тренировку…' : 'Loading workout…'}</section>
+  const error = retry && <div className="workout-screen-error"><p role="alert">{t('homeLoadError')}</p><button type="button" className="workout-button" disabled={pending} onClick={() => void perform(retry)}>{t('retry')}</button></div>
+  if (loading) return <section className="workout-loading" role="status">{t('workoutLoading')}</section>
 
   if (!workout) return <section className="workout-home">
     {error}
-    <p className="workout-caption">{ru ? 'Ваш тренировочный дневник' : 'Your training journal'}</p>
-    <h1>{ru ? 'Сегодня можно больше.' : 'Make room for stronger.'}</h1>
-    <p className="workout-muted">{ru ? 'Вес, повторы, прогресс. Всё начинается с первого подхода.' : 'Weight, reps, progress. It starts with your first set.'}</p>
-    <button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => void perform(handleStart)}><WorkoutIcon name="plus" />{pending ? (ru ? 'Создаём…' : 'Starting…') : t('startWorkout')}</button>
+    <p className="workout-caption">{t('journalKicker')}</p>
+    <h1>{t('homeHeadline')}</h1>
+    <p className="workout-muted">{t('homeIntro')}</p>
+    <button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => void perform(handleStart)}><WorkoutIcon name="plus" />{pending ? t('starting') : t('startWorkout')}</button>
     {recent.length > 0 && <section className="workout-recent"><h2 className="workout-caption">{t('recent')}</h2><ul>{recent.map((item) => <li key={item.id}><strong>{item.title}</strong><time dateTime={item.startedAt}>{new Date(item.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'short' })}</time></li>)}</ul></section>}
   </section>
 
@@ -118,15 +117,15 @@ export function HomeScreen() {
   const summary = summarizeWorkout(detail)
   const number = new Intl.NumberFormat(lang, { maximumFractionDigits: 1 })
   return <section className="workout-session">
-    <header className="workout-session-header"><p className="workout-caption">{ru ? 'Тренировка идёт' : 'Session in progress'}</p><WorkoutTitle title={workout.title} onSave={async (title) => { await renameWorkout(db, workout.id, title); await refresh() }} />
-      <div className="workout-session-summary"><span>{ru ? 'Выполнено подходов' : 'Completed sets'} <strong>{summary.setCount}</strong></span><span>{ru ? 'Объём' : 'Volume'} <strong>{number.format(summary.volume)} {ru ? 'кг' : 'kg'}</strong></span></div>
+    <header className="workout-session-header"><p className="workout-caption">{t('sessionInProgress')}</p><WorkoutTitle title={workout.title} onSave={async (title) => { await renameWorkout(db, workout.id, title); await refresh() }} />
+      <div className="workout-session-summary"><span>{t('completedSets')} <strong>{summary.setCount}</strong></span><span>{t('volume')} <strong>{number.format(summary.volume)} {t('kg')}</strong></span></div>
     </header>
-    {rest !== null && <aside className="workout-rest"><div><WorkoutIcon name="clock" /><span>{ru ? 'Отдых' : 'Rest'}</span><output aria-label={ru ? 'Таймер отдыха' : 'Rest timer'}>{Math.floor(rest / 60)}:{String(rest % 60).padStart(2, '0')}</output></div><button type="button" className="workout-text-button" onClick={() => setRest(null)}>{rest === 0 ? (ru ? 'Готово' : 'Done') : (ru ? 'Пропустить' : 'Skip')}</button></aside>}
+    {rest !== null && <aside className="workout-rest"><div><WorkoutIcon name="clock" /><span>{t('rest')}</span><output aria-label={t('restTimer')}>{Math.floor(rest / 60)}:{String(rest % 60).padStart(2, '0')}</output></div><button type="button" className="workout-text-button" onClick={() => setRest(null)}>{t(rest === 0 ? 'done' : 'skip')}</button></aside>}
     {error}
     <WorkoutViews detail={detail} previousResults={previousResults} onAddSet={handleAddSet} onUpdateSet={handleUpdateSet} onDeleteSet={async (setId) => { await deleteSet(db, setId); await refresh() }} onRemoveExercise={async (exerciseId) => { await removeExerciseFromWorkout(db, workout.id, exerciseId); await refresh() }} onMoveExercise={async (exerciseId, order) => { await reorderWorkoutExercise(db, workout.id, exerciseId, order); await refresh() }} />
-    <button type="button" className="workout-button workout-add-exercise" disabled={pending} onClick={() => setPickerOpen(true)}><WorkoutIcon name="plus" />{ru ? 'Добавить упражнение' : 'Add exercise'}</button>
-    <footer className="workout-session-footer"><button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => setConfirm('finish')}><WorkoutIcon name="check" />{t('finishWorkout')}</button><button type="button" className="workout-text-button workout-button-danger" disabled={pending} onClick={() => setConfirm('discard')}>{ru ? 'Удалить тренировку' : 'Discard workout'}</button></footer>
+    <button type="button" className="workout-button workout-add-exercise" disabled={pending} onClick={() => setPickerOpen(true)}><WorkoutIcon name="plus" />{t('addExercisePlain')}</button>
+    <footer className="workout-session-footer"><button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => setConfirm('finish')}><WorkoutIcon name="check" />{t('finishWorkout')}</button><button type="button" className="workout-text-button workout-button-danger" disabled={pending} onClick={() => setConfirm('discard')}>{t('discardWorkout')}</button></footer>
     {pickerOpen && <ExercisePicker onPick={(exercise) => void handlePick(exercise)} onClose={() => setPickerOpen(false)} />}
-    {confirm && <ConfirmAction title={confirm === 'discard' ? (ru ? 'Удалить тренировку?' : 'Discard workout?') : (ru ? 'Завершить тренировку?' : 'Finish workout?')} description={confirm === 'discard' ? (ru ? `«${workout.title}» и все её подходы будут удалены.` : `“${workout.title}” and all its sets will be deleted.`) : (ru ? `«${workout.title}» сохранится в истории. Её можно будет отредактировать.` : `“${workout.title}” will be saved in history and can still be edited.`)} confirmLabel={confirm === 'discard' ? (ru ? 'Удалить' : 'Discard') : (ru ? 'Завершить' : 'Finish')} onConfirm={closeWorkout} onClose={() => setConfirm(null)} />}
+    {confirm && <ConfirmAction title={t(confirm === 'discard' ? 'confirmDiscardWorkout' : 'finishWorkoutConfirm')} description={t(confirm === 'discard' ? 'discardDescription' : 'finishDescription').replace('{title}', workout.title)} confirmLabel={t(confirm === 'discard' ? 'discard' : 'finish')} onConfirm={closeWorkout} onClose={() => setConfirm(null)} />}
   </section>
 }
