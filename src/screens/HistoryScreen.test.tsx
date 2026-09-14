@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import '@testing-library/jest-dom/vitest'
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { addSet } from '../data-layer/sets'
@@ -54,6 +54,62 @@ describe('workout history', () => {
     expect(screen.getByText(/48 минут/)).toBeVisible()
     expect(screen.getByText(/420 кг/)).toBeVisible()
     expect(screen.queryByText('Жим лежа')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Жим гантелей под наклоном, 3 подхода, 29 повторений, Объем 420 кг, Личные рекорды 2/ })).toBeVisible()
+  })
+
+  it('keeps history detail open when browser Back closes a nested workout editor', async () => {
+    await completedWorkout()
+    localStorage.setItem('workout-view-mode', 'list')
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: /Грудь и трицепс/ }))
+    await userEvent.click(screen.getByRole('button', { name: /Редактировать подход 1: 14/ }))
+    expect(screen.getByRole('dialog')).toBeVisible()
+
+    await act(async () => { history.back() })
+
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    expect(screen.getByRole('heading', { name: 'Грудь и трицепс' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Назад к истории' })).toBeVisible()
+  })
+
+  it('closes the picker after selection without leaving history detail', async () => {
+    await completedWorkout()
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: /Грудь и трицепс/ }))
+    await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
+    const picker = await screen.findByRole('dialog', { name: 'Выберите упражнение' })
+    await userEvent.click(within(picker).getAllByRole('button', { name: 'Добавить Жим гантелей лежа' })[0])
+
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Выберите упражнение' })).not.toBeInTheDocument())
+    await waitFor(async () => expect(await db.workoutExercises.count()).toBe(3))
+    expect(await screen.findByRole('button', { name: 'Жим гантелей лежа' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Грудь и трицепс' })).toBeVisible()
+    expect(history.state?.modal).toBe('workout-history-detail')
+  })
+
+  it('returns one level after deleting a workout from nested confirmation', async () => {
+    await completedWorkout()
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: /Грудь и трицепс/ }))
+    await userEvent.click(screen.getByRole('button', { name: 'Удалить тренировку' }))
+    await userEvent.click(within(screen.getByRole('dialog', { name: 'Удалить тренировку?' })).getByRole('button', { name: 'Удалить' }))
+
+    expect(await screen.findByText('Завершенные тренировки появятся здесь.')).toBeVisible()
+    expect(history.state?.modal).toBe('workout-history-detail')
+  })
+
+  it('exposes every workout recorded on the same calendar date', async () => {
+    await completedWorkout()
+    const second = await db.workouts.add({ id: 'same-day', title: 'Вечерняя тяга', startedAt: '2026-09-10T17:00:00.000Z', finishedAt: '2026-09-10T17:30:00.000Z', createdAt: '2026-09-10T17:00:00.000Z', updatedAt: '2026-09-10T17:30:00.000Z' })
+    expect(second).toBe('same-day')
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: 'Календарь' }))
+    await userEvent.click(screen.getByRole('button', { name: /10 сентября.*2 тренировки/ }))
+
+    expect(screen.getByRole('button', { name: /Грудь и трицепс/ })).toBeVisible()
+    expect(screen.getByRole('button', { name: /Вечерняя тяга/ })).toBeVisible()
+    await userEvent.click(screen.getByRole('button', { name: /Вечерняя тяга/ }))
+    expect(await screen.findByRole('heading', { name: 'Вечерняя тяга' })).toBeVisible()
   })
 
   it('opens the same editable detail from list and calendar and browser Back returns to its origin', async () => {
