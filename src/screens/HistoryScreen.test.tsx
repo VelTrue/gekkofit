@@ -142,6 +142,26 @@ describe('workout history', () => {
     await waitFor(() => expect(origin).toHaveFocus())
   })
 
+  it('restores an adjacent calendar month, selected day, and workout focus after detail Back', async () => {
+    await completedWorkout()
+    await db.workouts.bulkAdd([
+      { id: 'august-one', title: 'Утро в августе', startedAt: '2026-08-12T08:00:00.000Z', finishedAt: '2026-08-12T08:30:00.000Z', createdAt: '2026-08-12T08:00:00.000Z', updatedAt: '2026-08-12T08:30:00.000Z' },
+      { id: 'august-two', title: 'Вечер в августе', startedAt: '2026-08-12T18:00:00.000Z', finishedAt: '2026-08-12T18:30:00.000Z', createdAt: '2026-08-12T18:00:00.000Z', updatedAt: '2026-08-12T18:30:00.000Z' },
+    ])
+    renderHistory()
+    await userEvent.click(await screen.findByRole('button', { name: 'Календарь' }))
+    await userEvent.click(screen.getByRole('button', { name: 'Предыдущий месяц' }))
+    expect(screen.getByText(/август 2026/)).toBeVisible()
+    await userEvent.click(screen.getByRole('button', { name: /12 августа.*2 тренировки/ }))
+    await userEvent.click(screen.getByRole('button', { name: /Вечер в августе/ }))
+    await act(async () => { history.back() })
+
+    expect(await screen.findByText(/август 2026/)).toBeVisible()
+    expect(screen.getByRole('button', { name: /Утро в августе/ })).toBeVisible()
+    const origin = screen.getByRole('button', { name: /Вечер в августе/ })
+    await waitFor(() => expect(origin).toHaveFocus())
+  })
+
   it('opens the same editable detail from list and calendar and browser Back returns to its origin', async () => {
     const workoutId = await completedWorkout()
     renderHistory()
