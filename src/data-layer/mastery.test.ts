@@ -36,14 +36,15 @@ const sets: WorkoutSet[] = [
 ]
 
 describe('mastery levels', () => {
-  it.each([[1, 1], [15, 2], [50, 3], [120, 4], [250, 5]])('maps %s points to level %s', (points, level) => {
+  it.each([[1, 1], [25, 2], [75, 3], [150, 4], [250, 5], [500, 6], [750, 7], [1500, 10]])('maps %s points to level %s', (points, level) => {
     expect(masteryLevel(points).level).toBe(level)
   })
 
   it('returns the exact next threshold and remaining points', () => {
     expect(masteryLevel(0)).toEqual({ level: 0, currentThreshold: 0, nextLevelThreshold: 1, pointsToNextLevel: 1 })
-    expect(masteryLevel(49)).toEqual({ level: 2, currentThreshold: 15, nextLevelThreshold: 50, pointsToNextLevel: 1 })
-    expect(masteryLevel(250)).toEqual({ level: 5, currentThreshold: 250, nextLevelThreshold: null, pointsToNextLevel: 0 })
+    expect(masteryLevel(24)).toEqual({ level: 1, currentThreshold: 0, nextLevelThreshold: 25, pointsToNextLevel: 1 })
+    expect(masteryLevel(250)).toEqual({ level: 5, currentThreshold: 250, nextLevelThreshold: 500, pointsToNextLevel: 250 })
+    expect(masteryLevel(749)).toEqual({ level: 6, currentThreshold: 500, nextLevelThreshold: 750, pointsToNextLevel: 1 })
   })
 })
 
@@ -56,9 +57,9 @@ describe('deterministic exercise mastery', () => {
     expect(calculateExerciseMastery(workouts, sets, 4)).toMatchObject({
       exerciseId: 4,
       points: 20,
-      level: 2,
-      nextLevelThreshold: 50,
-      pointsToNextLevel: 30,
+      level: 1,
+      nextLevelThreshold: 25,
+      pointsToNextLevel: 5,
       bestWeight: 20,
       estimatedOneRepMax: 20 * (1 + 1 / 30),
       volume: 400,

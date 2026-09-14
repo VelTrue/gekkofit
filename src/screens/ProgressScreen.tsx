@@ -1,31 +1,65 @@
-import { useEffect, useState } from 'react'
-import { LevelBar } from '../components/LevelBar'
-import { getExercisesWithProgress, getExerciseWeightHistory, type WeightPoint } from '../data-layer/exerciseHistory'
-import { strengthLevelInfo, volumeLevelInfo } from '../data-layer/mastery'
-import { db, type Exercise, type ExerciseProgress } from '../db/schema'
+import { useEffect, useMemo, useState } from 'react'
+import { MasteryDetailSheet } from '../components/mastery/MasteryDetailSheet'
+import { MasteryGrid } from '../components/mastery/MasteryGrid'
+import { ExerciseDetailSheet } from '../components/exercises/ExerciseDetailSheet'
+import '../components/mastery/mastery.css'
+import { calculateExerciseMastery, type MasteryItem } from '../data-layer/mastery'
+import { db } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
 
-function LineChart({ points }: { points: WeightPoint[] }) {
-  if (!points.length) return <div className="grid h-40 place-items-center text-sm text-[var(--color-text-muted)]">No data</div>
-  const weights = points.map(({ weight }) => weight), min = Math.min(...weights), max = Math.max(...weights), range = max - min || 1
-  const coords = points.map((point, index) => `${points.length === 1 ? 150 : index * 300 / (points.length - 1)},${92 - (point.weight - min) / range * 72}`).join(' ')
-  return <div><svg viewBox="0 0 300 110" role="img" aria-label="Weight history" className="h-44 w-full overflow-visible"><defs><linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1"><stop stopColor="var(--color-accent)" stopOpacity=".35"/><stop offset="1" stopColor="var(--color-accent)" stopOpacity="0"/></linearGradient></defs><path d="M0 100H300M0 64H300M0 28H300" stroke="var(--color-chart-grid)" strokeWidth="1"/><polyline points={`0,105 ${coords} 300,105`} fill="url(#chartGlow)" stroke="none"/><polyline points={coords} fill="none" stroke="var(--color-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>{points.map((point, index) => { const x = points.length === 1 ? 150 : index * 300 / (points.length - 1), y = 92 - (point.weight - min) / range * 72; return <circle key={`${point.date}-${index}`} cx={x} cy={y} r="4" fill="var(--color-surface)" stroke="var(--color-accent)" strokeWidth="2"/> })}</svg><div className="flex justify-between text-xs text-[var(--color-text-muted)]"><span>{min} kg</span><span>{max} kg</span></div></div>
+type Filter = 'unlocked' | 'all'
+
+function unlockedLabel(count: number, lang: 'ru' | 'en') {
+  if (lang === 'en') return `${count} ${count === 1 ? 'exercise' : 'exercises'} unlocked`
+  const mod10 = count % 10, mod100 = count % 100
+  const noun = mod10 === 1 && mod100 !== 11 ? 'упражнение' : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? 'упражнения' : 'упражнений'
+  return `${count} ${noun} открыто`
 }
 
 export function ProgressScreen() {
-  const { lang, t } = useLang()
-  const [list, setList] = useState<Array<{ exercise: Exercise; progress: ExerciseProgress }>>([])
-  const [selected, setSelected] = useState<Exercise | null>(null)
-  const [history, setHistory] = useState<WeightPoint[]>([])
-  useEffect(() => { void getExercisesWithProgress(db).then(setList) }, [])
-  useEffect(() => { if (selected) void getExerciseWeightHistory(db, selected.id).then(setHistory) }, [selected])
-  const name = (exercise: Exercise) => lang === 'ru' ? exercise.name_ru : exercise.name_en
+  const { lang } = useLang()
+  const [items, setItems] = useState<MasteryItem[]>([])
+  const [filter, setFilter] = useState<Filter>('unlocked')
+  const [query, setQuery] = useState('')
+  const [selected, setSelected] = useState<MasteryItem | null>(null)
+  const [detailMode, setDetailMode] = useState<'mastery' | 'exercise'>('mastery')
+  const [visibleCount, setVisibleCount] = useState(36)
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
 
-  if (selected) {
-    const entry = list.find(({ exercise }) => exercise.id === selected.id)
-    if (!entry) return null
-    return <section><button type="button" onClick={() => setSelected(null)} className="mb-6 min-h-11 text-sm text-[var(--color-text-muted)]">← {name(selected)}</button><div className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5"><p className="text-xs font-bold uppercase tracking-widest text-[var(--color-text-muted)]">Weight / kg</p><LineChart points={history}/></div><div className="mt-4 grid gap-4 sm:grid-cols-2"><div className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5"><LevelBar label={t('volumeLevel')} info={volumeLevelInfo(entry.progress.totalSets)}/></div><div className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5"><LevelBar label={t('strengthLevel')} info={strengthLevelInfo(entry.progress.totalXp)}/></div></div></section>
+  async function load() {
+    setStatus('loading')
+    try {
+      const [exercises, workouts, sets] = await Promise.all([db.exercises.toArray(), db.workouts.toArray(), db.sets.toArray()])
+      setItems(exercises.map((exercise) => ({ exercise, mastery: calculateExerciseMastery(workouts, sets, exercise.id) })))
+      setStatus('ready')
+    } catch { setStatus('error') }
   }
+  useEffect(() => {
+    let active = true
+    Promise.all([db.exercises.toArray(), db.workouts.toArray(), db.sets.toArray()]).then(([exercises, workouts, sets]) => {
+      if (!active) return
+      setItems(exercises.map((exercise) => ({ exercise, mastery: calculateExerciseMastery(workouts, sets, exercise.id) })))
+      setStatus('ready')
+    }).catch(() => { if (active) setStatus('error') })
+    return () => { active = false }
+  }, [])
+  const unlocked = useMemo(() => items.filter(({ mastery }) => mastery.level > 0), [items])
+  const visible = useMemo(() => {
+    const normalized = query.trim().toLocaleLowerCase(lang).replaceAll('ё', 'е')
+    return (filter === 'unlocked' ? unlocked : items).filter(({ exercise }) => !normalized || [exercise.name_ru, exercise.name_en, ...exercise.aliases_ru].some((value) => value.toLocaleLowerCase(lang).replaceAll('ё', 'е').includes(normalized)))
+  }, [filter, items, lang, query, unlocked])
 
-  return <section><header className="mb-7"><p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">Mastery</p><h1 className="mt-1 text-4xl font-black tracking-tight">{t('tabProgress')}</h1></header>{list.length === 0 ? <div className="rounded-[var(--radius-card)] border border-dashed border-[var(--color-border)] p-8 text-center text-[var(--color-text-muted)]">{lang === 'ru' ? 'Завершите первый подход - прогресс появится здесь.' : 'Complete your first set to see progress.'}</div> : <div className="grid gap-3 sm:grid-cols-2">{list.map(({ exercise, progress }) => <button key={exercise.id} type="button" onClick={() => setSelected(exercise)} className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 text-left transition-colors duration-200 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] active:bg-[var(--color-state-pressed)]"><div className="mb-5 flex justify-between gap-3"><h2 className="font-black">{name(exercise)}</h2><span className="text-xs text-[var(--color-text-muted)]">{progress.bestWeightEver} kg</span></div><div className="space-y-4"><LevelBar label={t('volumeLevel')} info={volumeLevelInfo(progress.totalSets)}/><LevelBar label={t('strengthLevel')} info={strengthLevelInfo(progress.totalXp)}/></div></button>)}</div>}</section>
+  return <section className="mastery-screen">
+    <header className="mastery-header"><div><p className="mastery-kicker">{lang === 'ru' ? 'Коллекция' : 'Collection'}</p><h1>{lang === 'ru' ? 'Мастерство' : 'Mastery'}</h1></div><p className="mastery-unlocked">{unlockedLabel(unlocked.length, lang)}</p></header>
+    <div className="mastery-tools">
+      <label className="mastery-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input type="search" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(36) }} aria-label={lang === 'ru' ? 'Поиск упражнений' : 'Search exercises'} placeholder={lang === 'ru' ? 'Найти упражнение' : 'Find exercise'} /></label>
+      <div className="mastery-filters" role="group" aria-label={lang === 'ru' ? 'Фильтр коллекции' : 'Collection filter'}><button type="button" aria-pressed={filter === 'unlocked'} onClick={() => setFilter('unlocked')}>{lang === 'ru' ? 'Открытые' : 'Unlocked'}</button><button type="button" aria-pressed={filter === 'all'} onClick={() => setFilter('all')}>{lang === 'ru' ? 'Все упражнения' : 'All exercises'}</button></div>
+    </div>
+    {status === 'loading' && <div className="mastery-message" role="status">{lang === 'ru' ? 'Собираем коллекцию…' : 'Building collection…'}</div>}
+    {status === 'error' && <div className="mastery-message"><strong>{lang === 'ru' ? 'Не удалось загрузить мастерство' : 'Could not load mastery'}</strong><button type="button" className="mastery-open" onClick={() => void load()}>{lang === 'ru' ? 'Повторить' : 'Retry'}</button></div>}
+    {status === 'ready' && visible.length > 0 && <><MasteryGrid items={visible.slice(0, visibleCount)} onSelect={(item) => { setSelected(item); setDetailMode('mastery') }} />{visible.length > visibleCount && <button type="button" className="mastery-open" onClick={() => setVisibleCount((count) => count + 36)}>{lang === 'ru' ? 'Показать еще' : 'Show more'}</button>}</>}
+    {status === 'ready' && visible.length === 0 && <div className="mastery-message"><strong>{query ? (lang === 'ru' ? 'Ничего не найдено' : 'No matches') : filter === 'unlocked' ? (lang === 'ru' ? 'Пока нет открытых упражнений' : 'No unlocked exercises yet') : (lang === 'ru' ? 'Каталог пуст' : 'Catalog is empty')}</strong><span>{filter === 'unlocked' && !query ? (lang === 'ru' ? 'Завершите первый рабочий подход, чтобы открыть жетон.' : 'Complete your first working set to unlock a badge.') : (lang === 'ru' ? 'Измените поиск или фильтр.' : 'Change the search or filter.')}</span></div>}
+    {selected && detailMode === 'mastery' && <MasteryDetailSheet item={selected} onClose={() => setSelected(null)} onOpenExercise={() => setDetailMode('exercise')} />}
+    {selected && detailMode === 'exercise' && <ExerciseDetailSheet exercise={selected.exercise} onClose={() => setSelected(null)} />}
+  </section>
 }

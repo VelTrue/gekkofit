@@ -1,6 +1,7 @@
 import type { Exercise, ExerciseProgress, Workout, WorkoutSet } from '../db/schema'
 
-export const MASTERY_THRESHOLDS = [1, 15, 50, 120, 250] as const
+export const MASTERY_THRESHOLDS = [0, 25, 75, 150, 250] as const
+export const MASTERY_HIGH_LEVEL_STEP = 250
 export const SET_POINT = 1
 export const WORKOUT_POINT = 2
 export const RECORD_POINT = 3
@@ -43,13 +44,15 @@ export interface MasteryItem {
 
 export function masteryLevel(points: number): MasteryLevel {
   const normalizedPoints = Number.isFinite(points) ? Math.max(0, Math.floor(points)) : 0
-  let level = 0
-  for (const threshold of MASTERY_THRESHOLDS) {
+  if (normalizedPoints === 0) return { level: 0, currentThreshold: 0, nextLevelThreshold: 1, pointsToNextLevel: 1 }
+  let level = 1
+  for (const threshold of MASTERY_THRESHOLDS.slice(1)) {
     if (normalizedPoints < threshold) break
     level += 1
   }
-  const currentThreshold = level === 0 ? 0 : MASTERY_THRESHOLDS[level - 1]
-  const nextLevelThreshold = MASTERY_THRESHOLDS[level] ?? null
+  if (normalizedPoints >= MASTERY_THRESHOLDS[4]) level = 5 + Math.floor((normalizedPoints - MASTERY_THRESHOLDS[4]) / MASTERY_HIGH_LEVEL_STEP)
+  const currentThreshold = level <= 5 ? MASTERY_THRESHOLDS[level - 1] : MASTERY_THRESHOLDS[4] + (level - 5) * MASTERY_HIGH_LEVEL_STEP
+  const nextLevelThreshold = level < 5 ? MASTERY_THRESHOLDS[level] : currentThreshold + MASTERY_HIGH_LEVEL_STEP
   return {
     level,
     currentThreshold,
