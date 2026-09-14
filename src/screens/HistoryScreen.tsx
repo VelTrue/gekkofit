@@ -1,30 +1,88 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getWorkoutDetail, getWorkoutHistory } from '../data-layer/workouts'
-import { db, type Exercise, type Workout, type WorkoutSet } from '../db/schema'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { HistoryCard } from '../components/history/HistoryCard'
+import { HistoryDetail } from '../components/history/HistoryDetail'
+import { historyItem, type HistoryItem } from '../components/history/historyModel'
+import '../components/history/history.css'
+import { WorkoutIcon } from '../components/workout/WorkoutIcon'
+import { estimateOneRepMax } from '../data-layer/mastery'
+import type { WorkoutDetail } from '../data-layer/workouts'
+import { db, type Workout, type WorkoutSet } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
 
-type WorkoutDetail = { workout: Workout; entries: Array<{ exercise: Exercise; sets: WorkoutSet[] }> }
-const dateKey = (iso: string) => {
+type Mode = 'list' | 'calendar'
+const HISTORY_MARKER = 'workout-history-detail'
+
+function dateKey(iso: string) {
   const date = new Date(iso)
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
 
-function Calendar({ history, onSelect }: { history: Workout[]; onSelect: (ids: string[]) => void }) {
+async function loadHistoryItems(): Promise<HistoryItem[]> {
+  const [allWorkouts, memberships, sets] = await Promise.all([db.workouts.toArray(), db.workoutExercises.toArray(), db.sets.toArray()])
+  const workouts = allWorkouts.filter(({ finishedAt }) => finishedAt !== null).sort((a, b) => b.startedAt.localeCompare(a.startedAt))
+  const exerciseIds = [...new Set(memberships.map(({ exerciseId }) => exerciseId))]
+  const exercises = await db.exercises.bulkGet(exerciseIds)
+  const exerciseById = new Map(exerciseIds.flatMap((id, index) => exercises[index] ? [[id, exercises[index]!] as const] : []))
+  const details = workouts.map<WorkoutDetail>((workout) => ({
+    workout,
+    entries: memberships.filter((row) => row.workoutId === workout.id).sort((a, b) => a.order - b.order).flatMap((workoutExercise) => {
+      const exercise = exerciseById.get(workoutExercise.exerciseId)
+      return exercise ? [{ workoutExercise, exercise, sets: sets.filter((set) => set.workoutId === workout.id && set.exerciseId === exercise.id).sort((a, b) => a.setOrder - b.setOrder) }] : []
+    }),
+  }))
+  const recordsByWorkout = recordCounts(workouts, sets)
+  return details.map((detail) => historyItem(detail, recordsByWorkout.get(detail.workout.id) ?? 0))
+}
+
+function recordCounts(workouts: Workout[], sets: WorkoutSet[]) {
+  const completedIds = new Set(workouts.map(({ id }) => id))
+  const order = new Map(workouts.slice().sort((a, b) => a.startedAt.localeCompare(b.startedAt)).map((workout, index) => [workout.id, index]))
+  const best = new Map<number, { weight: number; oneRepMax: number }>(), counts = new Map<string, number>()
+  sets.filter((set) => set.completed && completedIds.has(set.workoutId)).sort((a, b) => (order.get(a.workoutId)! - order.get(b.workoutId)!) || a.setOrder - b.setOrder).forEach((set) => {
+    const previous = best.get(set.exerciseId) ?? { weight: 0, oneRepMax: 0 }, oneRepMax = estimateOneRepMax(set.weight, set.reps)
+    if (set.weight > previous.weight || oneRepMax > previous.oneRepMax) counts.set(set.workoutId, (counts.get(set.workoutId) ?? 0) + 1)
+    best.set(set.exerciseId, { weight: Math.max(previous.weight, set.weight), oneRepMax: Math.max(previous.oneRepMax, oneRepMax) })
+  })
+  return counts
+}
+
+function Calendar({ items, lang, onSelect }: { items: HistoryItem[]; lang: 'ru' | 'en'; onSelect: (id: string, opener: HTMLButtonElement) => void }) {
+  const initial = items[0] ? new Date(items[0].detail.workout.startedAt) : new Date()
   const [offset, setOffset] = useState(0)
-  const byDate = useMemo(() => { const map = new Map<string, string[]>(); history.forEach((workout) => map.set(dateKey(workout.startedAt), [...(map.get(dateKey(workout.startedAt)) ?? []), workout.id])); return map }, [history])
-  const base = new Date(); base.setDate(1); base.setMonth(base.getMonth() + offset)
-  const year = base.getFullYear(), month = base.getMonth(), days = new Date(year, month + 1, 0).getDate(), first = (new Date(year, month, 1).getDay() + 6) % 7
-  const cells: Array<number | null> = [...Array(first).fill(null), ...Array.from({ length: days }, (_, index) => index + 1)]
-  return <div className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4"><div className="mb-5 flex items-center justify-between"><button type="button" aria-label="Previous month" onClick={() => setOffset((value) => value - 1)} className="h-11 w-11 rounded-xl bg-[var(--color-state-hover)] transition-colors duration-200 active:bg-[var(--color-state-pressed)]">←</button><strong className="capitalize">{base.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</strong><button type="button" aria-label="Next month" onClick={() => setOffset((value) => value + 1)} className="h-11 w-11 rounded-xl bg-[var(--color-state-hover)] transition-colors duration-200 active:bg-[var(--color-state-pressed)]">→</button></div><div className="mb-2 grid grid-cols-7 text-center text-[10px] uppercase text-[var(--color-text-muted)]">{['M','T','W','T','F','S','S'].map((day,index) => <span key={`${day}-${index}`}>{day}</span>)}</div><div className="grid grid-cols-7 gap-1">{cells.map((day, index) => { if (day === null) return <span key={`blank-${index}`}/>; const key = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`, ids = byDate.get(key) ?? []; return <button type="button" key={key} disabled={!ids.length} onClick={() => onSelect(ids)} className={`aspect-square min-h-10 rounded-xl text-sm font-bold ${ids.length ? 'bg-[var(--color-accent-fill)] text-[var(--color-accent-text)]' : 'text-[var(--color-text-muted)]'}`}>{day}</button> })}</div></div>
+  const base = new Date(initial.getFullYear(), initial.getMonth() + offset, 1), year = base.getFullYear(), month = base.getMonth()
+  const first = (new Date(year, month, 1).getDay() + 6) % 7
+  const cells: Array<number | null> = [...Array(first).fill(null), ...Array.from({ length: new Date(year, month + 1, 0).getDate() }, (_, index) => index + 1)]
+  const byDate = useMemo(() => {
+    const map = new Map<string, string>()
+    items.forEach((item) => map.set(dateKey(item.detail.workout.startedAt), item.detail.workout.id))
+    return map
+  }, [items])
+  const weekdays = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  return <div className="history-calendar"><div className="history-calendar-nav"><button type="button" aria-label={lang === 'ru' ? 'Предыдущий месяц' : 'Previous month'} onClick={() => setOffset((value) => value - 1)}><WorkoutIcon name="back" /></button><strong>{base.toLocaleDateString(lang, { month: 'long', year: 'numeric' })}</strong><button type="button" aria-label={lang === 'ru' ? 'Следующий месяц' : 'Next month'} onClick={() => setOffset((value) => value + 1)}><WorkoutIcon name="next" /></button></div><div className="history-weekdays">{weekdays.map((day) => <span key={day}>{day}</span>)}</div><div className="history-days">{cells.map((day, index) => {
+    if (day === null) return <span key={`blank-${index}`} />
+    const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`, id = byDate.get(key)
+    const label = new Date(year, month, day).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })
+    return <button type="button" key={key} aria-label={label} disabled={!id} onClick={(event) => id && onSelect(id, event.currentTarget)}>{day}</button>
+  })}</div></div>
 }
 
 export function HistoryScreen() {
   const { lang, t } = useLang()
-  const [mode, setMode] = useState<'list' | 'calendar'>('list')
-  const [history, setHistory] = useState<Workout[]>([])
-  const [details, setDetails] = useState<WorkoutDetail[] | null>(null)
-  useEffect(() => { void getWorkoutHistory(db).then(setHistory) }, [])
-  async function open(ids: string[]) { if (ids.length) setDetails(await Promise.all(ids.map((id) => getWorkoutDetail(db, id)))) }
-  if (details) return <section><button type="button" onClick={() => setDetails(null)} className="mb-5 min-h-11 text-[var(--color-text-muted)]">← {new Date(details[0].workout.startedAt).toLocaleDateString(lang)}</button><div className="space-y-4">{details.map(({ workout, entries }) => <article key={workout.id} className="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">{entries.map(({ exercise, sets }) => <div key={exercise.id} className="mb-5 last:mb-0"><h2 className="mb-2 font-black">{lang === 'ru' ? exercise.name_ru : exercise.name_en}</h2>{sets.map((set) => <div key={set.id} className="border-t border-[var(--color-divider-subtle)] py-2 text-sm tabular-nums">{set.weight} kg × {set.reps}</div>)}</div>)}</article>)}</div></section>
-  return <section><header className="mb-6 flex items-end justify-between"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">Archive</p><h1 className="mt-1 text-4xl font-black">{t('tabHistory')}</h1></div><div className="flex rounded-xl bg-[var(--color-surface)] p-1"><button type="button" onClick={() => setMode('list')} className={`min-h-10 rounded-lg px-3 text-sm transition-colors duration-200 ${mode === 'list' ? 'bg-[var(--color-state-pressed)] text-[var(--color-text)]' : 'text-[var(--color-text-muted)] hover:bg-[var(--color-state-hover)]'}`}>{t('historyList')}</button><button type="button" onClick={() => setMode('calendar')} className={`min-h-10 rounded-lg px-3 text-sm transition-colors duration-200 ${mode === 'calendar' ? 'bg-[var(--color-state-pressed)] text-[var(--color-text)]' : 'text-[var(--color-text-muted)] hover:bg-[var(--color-state-hover)]'}`}>{t('historyCalendar')}</button></div></header>{history.length === 0 ? <div className="rounded-[var(--radius-card)] border border-dashed border-[var(--color-border)] p-8 text-center text-[var(--color-text-muted)]">{lang === 'ru' ? 'Завершённые тренировки появятся здесь.' : 'Completed workouts will appear here.'}</div> : mode === 'calendar' ? <Calendar history={history} onSelect={open}/> : <div className="space-y-2">{history.map((workout, index) => <button key={workout.id} type="button" onClick={() => open([workout.id])} className="grid min-h-16 w-full grid-cols-[44px_1fr_auto] items-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 text-left transition-colors duration-200 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] active:bg-[var(--color-state-pressed)]"><span className="text-xs font-black text-[var(--color-accent)]">{String(history.length - index).padStart(2,'0')}</span><span><strong className="block">{new Date(workout.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'long' })}</strong><small className="text-[var(--color-text-muted)]">{new Date(workout.startedAt).toLocaleDateString(lang, { weekday: 'long' })}</small></span><span className="text-[var(--color-text-muted)]">→</span></button>)}</div>}</section>
+  const [mode, setMode] = useState<Mode>('list'), [items, setItems] = useState<HistoryItem[]>([]), [selectedId, setSelectedId] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true), [failed, setFailed] = useState(false)
+  const opener = useRef<HTMLElement | null>(null), openerWorkoutId = useRef<string | null>(null)
+  const load = useCallback(async () => { setFailed(false); try { setItems(await loadHistoryItems()) } catch { setFailed(true) } finally { setLoading(false) } }, [])
+  useEffect(() => { void Promise.resolve().then(load) }, [load])
+  useEffect(() => {
+    const pop = () => { if (selectedId) { setSelectedId(null); requestAnimationFrame(() => { const replacement = openerWorkoutId.current ? document.querySelector<HTMLElement>(`[data-workout-id="${openerWorkoutId.current}"]`) : null; (replacement ?? opener.current)?.focus() }) } }
+    window.addEventListener('popstate', pop)
+    return () => window.removeEventListener('popstate', pop)
+  }, [selectedId])
+  function open(id: string, source: HTMLElement) { opener.current = source; openerWorkoutId.current = id; history.pushState({ modal: HISTORY_MARKER }, ''); setSelectedId(id) }
+  function close() { if (history.state?.modal === HISTORY_MARKER) history.back(); else { setSelectedId(null); requestAnimationFrame(() => opener.current?.focus()) } }
+  const selected = items.find((item) => item.detail.workout.id === selectedId)
+  if (selected) return <HistoryDetail initialDetail={selected.detail} backLabel={mode === 'calendar' ? (lang === 'ru' ? 'Назад к календарю' : 'Back to calendar') : (lang === 'ru' ? 'Назад к истории' : 'Back to history')} onBack={close} onChange={(detail) => { setItems((current) => current.map((item) => item.detail.workout.id === detail.workout.id ? historyItem(detail, item.recordCount) : item)); void load() }} onDiscard={() => { setItems((current) => current.filter((item) => item.detail.workout.id !== selected.detail.workout.id)); close() }} />
+  return <section className="history-screen"><header className="history-header"><div><p className="history-eyebrow">{lang === 'ru' ? 'Архив тренировок' : 'Training archive'}</p><h1>{t('tabHistory')}</h1></div><div className="history-mode" aria-label={lang === 'ru' ? 'Вид истории' : 'History view'}><button type="button" aria-pressed={mode === 'list'} onClick={() => setMode('list')}>{t('historyList')}</button><button type="button" aria-pressed={mode === 'calendar'} onClick={() => setMode('calendar')}>{t('historyCalendar')}</button></div></header>
+    {loading ? <div role="status" className="history-empty">{lang === 'ru' ? 'Загружаем историю...' : 'Loading history...'}</div> : failed ? <div className="history-empty"><p role="alert">{lang === 'ru' ? 'Не удалось загрузить историю.' : 'Could not load history.'}</p><button type="button" className="workout-button" onClick={() => void load()}>{lang === 'ru' ? 'Повторить' : 'Retry'}</button></div> : items.length === 0 ? <div className="history-empty">{lang === 'ru' ? 'Завершенные тренировки появятся здесь.' : 'Completed workouts will appear here.'}</div> : mode === 'calendar' ? <Calendar items={items} lang={lang} onSelect={open} /> : <div className="history-list">{items.map((item) => <HistoryCard key={item.detail.workout.id} item={item} lang={lang} onOpen={(source) => open(item.detail.workout.id, source)} />)}</div>}
+  </section>
 }
