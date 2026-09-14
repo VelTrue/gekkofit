@@ -31,6 +31,7 @@ export const translations = {
     noteHint: 'Выберите упражнение или подход для редактирования', editSet: 'Редактировать подход', firstSet: 'Первый подход', titleLengthError: 'От 1 до 80 символов.', titleSaveError: 'Не удалось сохранить название. Повторите попытку.', renameWorkout: 'Изменить название тренировки', workoutTitle: 'Название тренировки', saveTitle: 'Сохранить название',
     addExercisePlain: 'Добавить упражнение', editExerciseAction: 'Редактировать упражнение', primaryNavigation: 'Основная навигация', editValue: 'Изменить', decrease: 'Уменьшить', increase: 'Увеличить', levelUp: 'Новый уровень', russianLanguage: 'Русский', englishLanguage: 'English',
     emptyHomeHint: 'Первый подход займёт 10 секунд', volumeLevel: 'Объём', strengthLevel: 'Сила',
+    unlockedCount: '{count} {noun} открыто', exerciseOne: 'упражнение', exerciseFew: 'упражнения', exerciseMany: 'упражнений', setOne: 'подход', setFew: 'подхода', setMany: 'подходов', repOne: 'повторение', repFew: 'повторения', repMany: 'повторений',
   },
   en: {
     startWorkout: 'Start Workout', continueWorkout: 'Continue Workout', finishWorkout: 'Finish Workout',
@@ -62,6 +63,7 @@ export const translations = {
     noteHint: 'Select an exercise or set to edit', editSet: 'Edit set', firstSet: 'First set', titleLengthError: 'Use 1 to 80 characters.', titleSaveError: 'Could not save the title. Try again.', renameWorkout: 'Rename workout', workoutTitle: 'Workout title', saveTitle: 'Save title',
     addExercisePlain: 'Add exercise', editExerciseAction: 'Edit exercise', primaryNavigation: 'Primary navigation', editValue: 'Edit', decrease: 'Decrease', increase: 'Increase', levelUp: 'Level up', russianLanguage: 'Русский', englishLanguage: 'English',
     emptyHomeHint: 'Your first set takes 10 seconds', volumeLevel: 'Volume', strengthLevel: 'Strength',
+    unlockedCount: '{count} {noun} unlocked', exerciseOne: 'exercise', exerciseFew: 'exercises', exerciseMany: 'exercises', setOne: 'set', setFew: 'sets', setMany: 'sets', repOne: 'rep', repFew: 'reps', repMany: 'reps',
   },
 } as const
 
@@ -69,4 +71,19 @@ export type TranslationKey = keyof typeof translations.ru
 
 export function t(lang: Lang, key: TranslationKey): string {
   return translations[lang][key]
+}
+
+export function plural(lang: Lang, value: number, one: TranslationKey, few: TranslationKey, many: TranslationKey): string {
+  if (lang === 'en') return t(lang, value === 1 ? one : many)
+  const mod100 = value % 100, mod10 = value % 10
+  if (mod100 >= 11 && mod100 <= 14) return t(lang, many)
+  if (mod10 === 1) return t(lang, one)
+  if (mod10 >= 2 && mod10 <= 4) return t(lang, few)
+  return t(lang, many)
+}
+
+export function unlockedCount(lang: Lang, count: number): string {
+  return t(lang, 'unlockedCount')
+    .replace('{count}', String(count))
+    .replace('{noun}', plural(lang, count, 'exerciseOne', 'exerciseFew', 'exerciseMany'))
 }

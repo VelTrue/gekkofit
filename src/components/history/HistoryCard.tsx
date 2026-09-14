@@ -1,14 +1,13 @@
-import type { Lang } from '../../i18n/translations'
-import { t } from '../../i18n/translations'
+import { plural, t, type Lang } from '../../i18n/translations'
 import { WorkoutIcon } from '../workout/WorkoutIcon'
 import './history.css'
-import { exerciseTotals, pluralRu, workoutDurationMinutes, type HistoryItem } from './historyModel'
+import { exerciseTotals, workoutDurationMinutes, type HistoryItem } from './historyModel'
 
 export function HistoryCard({ item, lang, onOpen }: { item: HistoryItem; lang: Lang; onOpen: (source: HTMLButtonElement) => void }) {
   const { detail, summary, recordCount } = item
   const duration = workoutDurationMinutes(detail)
   const date = new Date(detail.workout.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })
-  const durationLabel = duration === null ? null : `${duration} ${lang === 'ru' ? pluralRu(duration, t(lang, 'minuteOne'), t(lang, 'minuteFew'), t(lang, 'minuteMany')) : t(lang, 'minShort')}`
+  const durationLabel = duration === null ? null : `${duration} ${plural(lang, duration, 'minuteOne', 'minuteFew', 'minuteMany')}`
   const meta = [date, durationLabel].filter(Boolean).join(', ')
   const number = new Intl.NumberFormat(lang, { maximumFractionDigits: 1 })
   const exerciseLabel = summary.exercises.map(({ exercise, setCount, repetitionCount }) => `${lang === 'ru' ? exercise.name_ru : exercise.name_en}, ${exerciseTotals(setCount, repetitionCount, lang)}`).join(', ')

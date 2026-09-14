@@ -6,15 +6,9 @@ import '../components/mastery/mastery.css'
 import { calculateExerciseMastery, type MasteryItem } from '../data-layer/mastery'
 import { db } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
+import { unlockedCount } from '../i18n/translations'
 
 type Filter = 'unlocked' | 'all'
-
-function unlockedLabel(count: number, lang: 'ru' | 'en') {
-  if (lang === 'en') return `${count} ${count === 1 ? 'exercise' : 'exercises'} unlocked`
-  const mod10 = count % 10, mod100 = count % 100
-  const noun = mod10 === 1 && mod100 !== 11 ? 'упражнение' : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? 'упражнения' : 'упражнений'
-  return `${count} ${noun} открыто`
-}
 
 export function ProgressScreen() {
   const { lang, t } = useLang()
@@ -50,7 +44,7 @@ export function ProgressScreen() {
   }, [filter, items, lang, query, unlocked])
 
   return <section className="mastery-screen">
-    <header className="mastery-header"><div><p className="mastery-kicker">{t('collection')}</p><h1>{t('tabMastery')}</h1></div><p className="mastery-unlocked">{unlockedLabel(unlocked.length, lang)}</p></header>
+    <header className="mastery-header"><div><p className="mastery-kicker">{t('collection')}</p><h1>{t('tabMastery')}</h1></div><p className="mastery-unlocked">{unlockedCount(lang, unlocked.length)}</p></header>
     <div className="mastery-tools">
       <label className="mastery-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input type="search" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(36) }} aria-label={t('exerciseSearch')} placeholder={t('findExercise')} /></label>
       <div className="mastery-filters" role="group" aria-label={t('collectionFilter')}><button type="button" aria-pressed={filter === 'unlocked'} onClick={() => setFilter('unlocked')}>{t('masteryUnlocked')}</button><button type="button" aria-pressed={filter === 'all'} onClick={() => setFilter('all')}>{t('masteryAll')}</button></div>
