@@ -2,9 +2,9 @@ import { useLang } from '../i18n/LangContext'
 
 export type ScreenName = 'workout' | 'progress' | 'history' | 'settings'
 
-const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabProgress' | 'tabHistory' | 'tabSettings'; icon: string }> = [
+const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabMastery' | 'tabHistory' | 'tabSettings'; icon: string }> = [
   { id: 'workout', labelKey: 'tabWorkout', icon: 'M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12' },
-  { id: 'progress', labelKey: 'tabProgress', icon: 'M4 18l5-6 4 3 7-9M17 6h3v3' },
+  { id: 'progress', labelKey: 'tabMastery', icon: 'M12 3l2.5 5.1 5.6.8-4 3.9.9 5.5-5-2.6-5 2.6.9-5.5-4-3.9 5.6-.8L12 3z' },
   { id: 'history', labelKey: 'tabHistory', icon: 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 011 1v13H4V6a1 1 0 011-1z' },
   { id: 'settings', labelKey: 'tabSettings', icon: 'M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41' },
 ]

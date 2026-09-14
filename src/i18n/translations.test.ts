@@ -18,4 +18,12 @@ describe('translation lookup', () => {
       t('en', 'themeLight'),
     ]).toEqual(['Theme', 'System', 'Dark', 'Light'])
   })
+  it('uses mastery navigation and exposes integrated interface copy', () => {
+    expect(t('ru', 'tabMastery')).toBe('Мастерство')
+    expect(t('en', 'tabMastery')).toBe('Mastery')
+    expect(t('ru', 'back')).toBe('Назад')
+    expect(t('en', 'masteryAll')).toBe('All exercises')
+    expect(t('ru', 'backupInvalid')).toContain('резервной копии')
+    expect(t('en', 'retry')).toBe('Retry')
+  })
 })

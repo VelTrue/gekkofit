@@ -20,9 +20,9 @@ function Screen({ name }: { name: ScreenName }) {
 
 function UpdateBanner() {
   const { needRefresh: [needRefresh], updateServiceWorker } = useRegisterSW()
-  const { lang } = useLang()
+  const { t } = useLang()
   if (!needRefresh) return null
-  return <button type="button" onClick={() => updateServiceWorker(true)} className="fixed inset-x-3 top-3 z-50 mx-auto min-h-12 max-w-md rounded-2xl bg-[var(--color-accent-fill)] px-4 font-bold text-[var(--color-accent-text)] shadow-xl transition-colors duration-200 active:bg-[var(--color-accent-fill-pressed)]">{lang === 'ru' ? 'Доступно обновление - применить' : 'Update available - apply'}</button>
+  return <button type="button" onClick={() => updateServiceWorker(true)} className="fixed inset-x-3 top-3 z-50 mx-auto min-h-12 max-w-md rounded-2xl bg-[var(--color-accent-fill)] px-4 font-bold text-[var(--color-accent-text)] shadow-xl transition-colors duration-200 active:bg-[var(--color-accent-fill-pressed)]">{t('updateAvailable')}</button>
 }
 
 export default function App() {

@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#0b0b0f"/><rect x="104" y="236" width="304" height="40" rx="20" fill="#7cff6b"/><rect x="76" y="166" width="64" height="180" rx="28" fill="#7cff6b"/><rect x="372" y="166" width="64" height="180" rx="28" fill="#7cff6b"/><rect x="48" y="204" width="40" height="104" rx="18" fill="#f2f2f5"/><rect x="424" y="204" width="40" height="104" rx="18" fill="#f2f2f5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Workout mastery">
+  <rect width="512" height="512" rx="112" fill="#15171a"/>
+  <path d="M256 82 300 171l98 14-71 69 17 98-88-46-88 46 17-98-71-69 98-14z" fill="#c8ff3d"/>
+  <circle cx="256" cy="254" r="69" fill="#15171a"/>
+  <path d="M183 242h28v24h90v-24h28v-28h34v80h-34v-28h-28v24h-90v-24h-28v28h-34v-80h34z" fill="#f4f5ef"/>
+  <circle cx="256" cy="254" r="25" fill="#ff7058"/>
+</svg>
