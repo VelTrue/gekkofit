@@ -5,7 +5,13 @@ import { useLang } from '../../i18n/LangContext'
 import { ConfirmAction } from './WorkoutDialog'
 import { WorkoutIcon } from './WorkoutIcon'
 
-export function SetRow({ set, onSave, onDelete }: {
+export function SetRow({ cardio = false, ...props }: {
+  set: WorkoutSet; cardio?: boolean; onSave: (changes: SetChanges) => Promise<void>; onDelete: () => Promise<void>
+}) {
+  return cardio ? <CardioSetRow {...props} /> : <StrengthSetRow {...props} />
+}
+
+function StrengthSetRow({ set, onSave, onDelete }: {
   set: WorkoutSet; onSave: (changes: SetChanges) => Promise<void>; onDelete: () => Promise<void>
 }) {
   const { t } = useLang()
@@ -60,5 +66,27 @@ export function SetRow({ set, onSave, onDelete }: {
     </form>
     {error && <div className="workout-error" id={`${id}-error`}><p role="alert">{error}</p>{retry && <button type="button" className="workout-text-button" onClick={() => void save(undefined, retry)}>{t('retry')}</button>}</div>}
     {deleting && <ConfirmAction title={t('deleteSetConfirm').replace('{index}', String(ordinal))} description={t('deleteSetDescription')} confirmLabel={t('delete')} onConfirm={onDelete} onClose={() => setDeleting(false)} />}
+  </div>
+}
+
+function CardioSetRow({ set, onSave, onDelete }: { set: WorkoutSet; onSave: (changes: SetChanges) => Promise<void>; onDelete: () => Promise<void> }) {
+  const { t } = useLang()
+  const [values, setValues] = useState({ distance: String(set.distance ?? 0), incline: String(set.incline ?? 0), duration: String(set.duration ?? 0), intensity: String(set.intensity ?? 5) })
+  const [pending, setPending] = useState(false)
+  const [deleting, setDeleting] = useState(false)
+  const [error, setError] = useState(false)
+  const fields = [['distance', t('distanceKm'), 'decimal'], ['incline', t('inclinePercent'), 'decimal'], ['duration', t('durationMin'), 'decimal'], ['intensity', t('intensityTen'), 'decimal']] as const
+  async function save(completed = set.completed) {
+    const parsed = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Number(value.replace(',', '.'))])) as unknown as SetChanges
+    if (Object.values(parsed).some((value) => !Number.isFinite(value) || Number(value) < 0) || Number(parsed.intensity) > 10) { setError(true); return }
+    setPending(true); setError(false)
+    try { await onSave({ ...parsed, weight: 0, reps: 1, completed }) } catch { setError(true) } finally { setPending(false) }
+  }
+  return <div className="workout-set workout-set-cardio" data-completed={set.completed}>
+    <span className="workout-set-ordinal">{set.setOrder + 1}</span>
+    <div className="workout-cardio-fields">{fields.map(([key, label, inputMode]) => <label className="workout-field" key={key}><span>{label}</span><input inputMode={inputMode} value={values[key]} disabled={pending} onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
+    <div className="workout-cardio-actions"><button type="button" className="workout-button" disabled={pending} onClick={() => void save()}>{t('save')}</button><button type="button" className="workout-complete" aria-pressed={set.completed} aria-label={t(set.completed ? 'markIncomplete' : 'completeSet')} disabled={pending} onClick={() => void save(!set.completed)}><WorkoutIcon name="check" /></button><button type="button" className="workout-icon-button workout-button-danger" aria-label={t('deleteSet')} onClick={() => setDeleting(true)}><WorkoutIcon name="remove" /></button></div>
+    {error && <p role="alert" className="workout-error">{t('cardioValuesError')}</p>}
+    {deleting && <ConfirmAction title={t('deleteSetConfirm').replace('{index}', String(set.setOrder + 1))} description={t('deleteSetDescription')} confirmLabel={t('delete')} onConfirm={onDelete} onClose={() => setDeleting(false)} />}
   </div>
 }

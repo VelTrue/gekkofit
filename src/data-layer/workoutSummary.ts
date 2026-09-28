@@ -33,8 +33,8 @@ export function summarizeWorkout(detail: WorkoutDetail): WorkoutSummary {
       exerciseId: exercise.id,
       exercise,
       setCount: completedSets.length,
-      repetitionCount: completedSets.reduce((total, set) => total + set.reps, 0),
-      volume: completedSets.reduce((total, set) => total + set.weight * set.reps, 0),
+      repetitionCount: exercise.muscle_group === 'КАРДИО' ? 0 : completedSets.reduce((total, set) => total + set.reps, 0),
+      volume: exercise.muscle_group === 'КАРДИО' ? 0 : completedSets.reduce((total, set) => total + set.weight * set.reps, 0),
     }]
   })
 
@@ -57,7 +57,9 @@ export function formatWorkoutAsNote(detail: WorkoutDetail, locale: Locale): Note
     return [{
       exerciseId: exercise.id,
       title: locale === 'ru' ? exercise.name_ru : exercise.name_en,
-      sets: completedSets.map(({ weight, reps }) => `${number.format(weight)} ${unit} × ${number.format(reps)}`),
+      sets: completedSets.map((set) => exercise.muscle_group === 'КАРДИО'
+        ? `${number.format(set.distance ?? 0)} km · ${number.format(set.duration ?? 0)} min · ${number.format(set.incline ?? 0)}% · ${number.format(set.intensity ?? 0)}/10`
+        : `${number.format(set.weight)} ${unit} × ${number.format(set.reps)}`),
     }]
   })
 }

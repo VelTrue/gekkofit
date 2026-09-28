@@ -1,8 +1,7 @@
 import { formatWorkoutAsNote } from '../../data-layer/workoutSummary'
 import type { WorkoutDetail } from '../../data-layer/workouts'
 import { useLang } from '../../i18n/LangContext'
-import { AnatomyMap } from '../anatomy/AnatomyMap'
-import { anatomyLabel, validMuscles } from './exercisePresentation'
+import { ExerciseVisual } from '../exercises/ExerciseVisual'
 import { WorkoutIcon } from './WorkoutIcon'
 
 export function WorkoutNoteView({ detail, onEdit }: { detail: WorkoutDetail; onEdit: (exerciseId: number, setId?: string) => void }) {
@@ -15,7 +14,7 @@ export function WorkoutNoteView({ detail, onEdit }: { detail: WorkoutDetail; onE
       const note = notes.find((item) => item.exerciseId === exercise.id)
       let completedIndex = 0
       return <article key={exercise.id} className="workout-note-exercise">
-        <div className="workout-note-identity"><AnatomyMap primary={validMuscles(exercise.primary_muscles)} secondary={validMuscles(exercise.secondary_muscles)} view={exercise.preferred_body_view} size="sm" label={anatomyLabel(exercise, lang)} />
+        <div className="workout-note-identity"><ExerciseVisual exercise={exercise} size={88} />
           <h2><button type="button" className="workout-note-name" aria-label={`${t('editExerciseAction')} ${title}`} onClick={() => onEdit(exercise.id)}>{title}<WorkoutIcon name="edit" /></button></h2>
         </div>
         <div className="workout-note-sets">{sets.map((set) => {

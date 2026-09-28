@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { exportData, importData, parseBackup, serializeBackup } from '../data-layer/backup'
 import { shouldShowBackupReminder } from '../data-layer/backupReminder'
 import { getWorkoutHistory } from '../data-layer/workouts'
@@ -6,6 +6,10 @@ import { db } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
 import { useInstallPrompt } from '../pwa/InstallPromptContext'
 import { useTheme, type ThemeMode } from '../theme/ThemeContext'
+
+const LocalAdminPanel = import.meta.env.DEV
+  ? lazy(() => import('./LocalAdminPanel').then((module) => ({ default: module.LocalAdminPanel })))
+  : null
 
 export function SettingsScreen() {
   const { lang, setLang, t } = useLang()
@@ -49,5 +53,6 @@ export function SettingsScreen() {
     <fieldset className="mb-7 border-0 p-0"><legend className="mb-2 text-xs font-bold uppercase tracking-widest text-[var(--color-text-muted)]">{t('settingsLanguage')}</legend><div className="grid grid-cols-2 rounded-2xl bg-[var(--color-surface)] p-1"><button type="button" aria-pressed={lang === 'ru'} onClick={() => setLang('ru')} className={`min-h-12 rounded-xl font-bold transition-colors duration-200 ${lang === 'ru' ? selectedClass : unselectedClass}`}>{t('russianLanguage')}</button><button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')} className={`min-h-12 rounded-xl font-bold transition-colors duration-200 ${lang === 'en' ? selectedClass : unselectedClass}`}>{t('englishLanguage')}</button></div></fieldset>
     <div className="space-y-3"><button type="button" onClick={handleExport} className={actionClass}><span>{t('settingsExport')}</span><span className="text-[var(--color-accent)]">↓</span></button><button type="button" onClick={() => fileInput.current?.click()} className={actionClass}><span>{t('settingsImport')}</span><span className="text-[var(--color-accent)]">↑</span></button><input ref={fileInput} type="file" accept="application/json" onChange={handleFile} className="hidden" /></div>
     <p className="mt-8 text-xs leading-5 text-[var(--color-text-muted)]">{t('localDataNotice')}</p>
+    {LocalAdminPanel && ['127.0.0.1', 'localhost', '[::1]'].includes(window.location.hostname) && <Suspense fallback={null}><LocalAdminPanel /></Suspense>}
   </section>
 }

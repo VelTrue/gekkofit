@@ -3,7 +3,11 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitest/config'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const pagesBase = process.env.PAGES_BASE_PATH?.trim()
+const base = pagesBase ? `${pagesBase.replace(/\/$/, '')}/` : '/'
+
 export default defineConfig({
+  base,
   plugins: [react(), tailwindcss(), VitePWA({
     registerType: 'prompt',
     manifest: {

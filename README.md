@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# Workout Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Локальный дневник тренировок на React и Vite. Данные хранятся в IndexedDB браузера. Сервер для хранения тренировок не требуется.
 
-Currently, two official plugins are available:
+## Запуск на компьютере
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Открывайте терминал в папке приложения, где лежит `package.json`:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Откройте адрес, который напечатает Vite. Двойной щелчок по исходному `index.html` не запускает приложение: браузер не умеет напрямую собирать TypeScript, React и импорты проекта.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Для проверки готовой сборки:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build
+npm run preview
 ```
+
+Папка `dist` содержит готовый сайт, но её тоже нужно открывать через веб-сервер.
+
+## GitHub Pages
+
+Ветка, публикуемая на GitHub, должна содержать `package.json`, `vite.config.ts`, `index.html`, `src`, `data`, `public` и `.github/workflows/pages.yml` в корне репозитория. Сейчас приложение находится в рабочей ветке `feat/workout-tracker-mvp`; один лишь корневой `master` этого локального репозитория приложение не содержит.
+
+После переноса приложения в `main` или `master` и отправки ветки на GitHub:
+
+1. Откройте **Settings > Pages** в репозитории.
+2. В **Build and deployment > Source** выберите **GitHub Actions**.
+3. Дождитесь успешного запуска workflow **Deploy to GitHub Pages** во вкладке **Actions**.
+4. Откройте адрес из результата развёртывания. Для обычного репозитория это `https://ИМЯ-ПОЛЬЗОВАТЕЛЯ.github.io/ИМЯ-РЕПОЗИТОРИЯ/`.
+
+Workflow устанавливает зависимости, запускает тесты, собирает приложение с путём Pages и публикует `dist`. Загружать исходный `index.html` или папку `dist` в интерфейсе GitHub вручную не нужно.
+
+Данные IndexedDB привязаны к адресу сайта и браузеру. Локальные тренировки с `localhost` автоматически на GitHub Pages не появятся. Для переноса используйте экспорт и импорт данных в настройках приложения.

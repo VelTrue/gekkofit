@@ -2,8 +2,8 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { useLang } from '../../i18n/LangContext'
 import { WorkoutIcon } from './WorkoutIcon'
 
-export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children }: {
-  title: string; backLabel?: string; focusSetId?: string; onClose: () => void; children: ReactNode
+export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children, variant = 'default' }: {
+  title: string; backLabel?: string; focusSetId?: string; onClose: () => void; children: ReactNode; variant?: 'default' | 'mastery-sheet'
 }) {
   const { t } = useLang()
   const dialog = useRef<HTMLDialogElement>(null)
@@ -34,10 +34,10 @@ export function WorkoutDialog({ title, backLabel, focusSetId, onClose, children 
   }, [])
 
   const close = () => history.back()
-  return <dialog ref={dialog} aria-labelledby={titleId} className="workout-dialog" onCancel={(event) => { event.preventDefault(); close() }}>
+  return <dialog ref={dialog} aria-labelledby={titleId} className={`workout-dialog${variant === 'mastery-sheet' ? ' mastery-sheet' : ''}`} onCancel={(event) => { event.preventDefault(); close() }}>
     <div className="workout-dialog-header">
-      <button type="button" className="workout-button" onClick={close}><WorkoutIcon name="back" />{backLabel ?? t('back')}</button>
-      <h2 id={titleId}>{title}</h2>
+      <button type="button" className="workout-button" aria-label={variant === 'mastery-sheet' ? backLabel ?? t('close') : undefined} onClick={close}><WorkoutIcon name={variant === 'mastery-sheet' ? 'close' : 'back'} />{variant === 'default' && (backLabel ?? t('back'))}</button>
+      <h2 id={titleId} className={variant === 'mastery-sheet' ? 'sr-only' : undefined}>{title}</h2>
     </div>
     {children}
   </dialog>

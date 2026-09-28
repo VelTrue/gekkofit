@@ -68,6 +68,7 @@ export function calculateExerciseMastery(
   workouts: Workout[],
   sets: WorkoutSet[],
   exerciseId: number,
+  pointAdjustment = 0,
 ): ExerciseMastery {
   const chronologicalWorkouts = [...workouts].sort(compareWorkouts)
   const workoutOrder = new Map(chronologicalWorkouts.map((workout, index) => [workout.id, index]))
@@ -118,7 +119,7 @@ export function calculateExerciseMastery(
 
   const setCount = completedSets.length
   const workoutCount = workoutIds.size
-  const points = setCount * SET_POINT + workoutCount * WORKOUT_POINT + records.length * RECORD_POINT
+  const points = Math.max(0, setCount * SET_POINT + workoutCount * WORKOUT_POINT + records.length * RECORD_POINT + pointAdjustment)
   const lastSet = completedSets.at(-1)
 
   return {
@@ -187,6 +188,7 @@ export function strengthLevelInfo(totalXp: number): LevelInfo {
 
 export function applySetToProgress(progress: ExerciseProgress, weight: number, reps: number): ExerciseProgress {
   return {
+    ...progress,
     exerciseId: progress.exerciseId,
     totalSets: progress.totalSets + 1,
     totalXp: progress.totalXp + xpForSet(weight, reps, progress.bestWeightEver),

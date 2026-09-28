@@ -90,6 +90,7 @@ function isWorkoutExercise(value: unknown): value is WorkoutExercise {
 
 function isExerciseProgress(value: unknown): value is ExerciseProgress {
   return isRecord(value) && typeof value.exerciseId === 'number' && Number.isInteger(value.exerciseId)
+    && (value.masteryPointAdjustment === undefined || (typeof value.masteryPointAdjustment === 'number' && Number.isSafeInteger(value.masteryPointAdjustment)))
     && typeof value.totalSets === 'number' && Number.isInteger(value.totalSets) && value.totalSets >= 0
     && typeof value.totalXp === 'number' && Number.isFinite(value.totalXp) && value.totalXp >= 0
     && typeof value.bestWeightEver === 'number' && Number.isFinite(value.bestWeightEver) && value.bestWeightEver >= 0
@@ -100,6 +101,7 @@ function hasDuplicates<T>(values: T[]): boolean {
 }
 
 function assertBackupIntegrity(data: BackupData): void {
+  if (!data.exerciseProgress.every(isExerciseProgress)) throw new Error('INVALID_BACKUP_FILE')
   const workoutIds = new Set(data.workouts.map(({ id }) => id))
   const membershipPairs = new Set(data.workoutExercises.map(({ workoutId, exerciseId }) => `${workoutId}\u0000${exerciseId}`))
   if (hasDuplicates(data.workouts.map(({ id }) => id))

@@ -10,6 +10,10 @@ export interface WorkoutEntry {
 export interface SetChanges {
   weight?: number
   reps?: number
+  distance?: number
+  incline?: number
+  duration?: number
+  intensity?: number
   completed?: boolean
 }
 
@@ -90,6 +94,10 @@ export async function updateSet(database: AppDatabase, setId: string, changes: S
     || (changes.reps !== undefined && !isValidRepetitions(changes.reps))) {
     throw new Error('INVALID_SET_VALUES')
   }
+  for (const value of [changes.distance, changes.incline, changes.duration, changes.intensity]) {
+    if (value !== undefined && (!Number.isFinite(value) || value < 0)) throw new Error('INVALID_SET_VALUES')
+  }
+  if (changes.intensity !== undefined && changes.intensity > 10) throw new Error('INVALID_SET_VALUES')
 
   await database.transaction('rw', database.sets, database.workouts, async () => {
     const set = await database.sets.get(setId)

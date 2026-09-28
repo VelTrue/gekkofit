@@ -41,6 +41,10 @@ export interface WorkoutSet {
   exerciseId: number
   weight: number
   reps: number
+  distance?: number
+  incline?: number
+  duration?: number
+  intensity?: number
   setOrder: number
   completed: boolean
   createdAt: string
@@ -49,6 +53,7 @@ export interface WorkoutSet {
 
 export interface ExerciseProgress {
   exerciseId: number
+  masteryPointAdjustment?: number
   totalSets: number
   totalXp: number
   bestWeightEver: number
@@ -126,6 +131,13 @@ export class AppDatabase extends Dexie {
       })
 
       if (missingRows.length > 0) await workoutExercises.bulkAdd(missingRows)
+    })
+    this.version(4).stores({
+      exercises: 'id, muscle_group, *aliases_ru, *primary_muscles',
+      workouts: 'id, startedAt, finishedAt, updatedAt, title',
+      workoutExercises: 'id, workoutId, exerciseId, [workoutId+order], &[workoutId+exerciseId]',
+      sets: 'id, workoutId, exerciseId, completed, createdAt, updatedAt',
+      exerciseProgress: 'exerciseId',
     })
   }
 }

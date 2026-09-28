@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ConfirmAction } from '../components/workout/WorkoutDialog'
+import { ConfirmAction, WorkoutDialog } from '../components/workout/WorkoutDialog'
 import { WorkoutTitle } from '../components/workout/WorkoutTitle'
 import { WorkoutViews } from '../components/workout/WorkoutViews'
 import { WorkoutIcon } from '../components/workout/WorkoutIcon'
@@ -29,6 +29,8 @@ export function HomeScreen() {
   const [pending, setPending] = useState(false)
   const [retry, setRetry] = useState<(() => Promise<void>) | null>(null)
   const [confirm, setConfirm] = useState<'finish' | 'discard' | null>(null)
+  const [recentOpen, setRecentOpen] = useState(false)
+  const [selectedExerciseId, setSelectedExerciseId] = useState<number | null>(null)
 
   const load = useCallback(async () => {
     const [active, history] = await Promise.all([getActiveWorkout(db), getWorkoutHistory(db)])
@@ -75,14 +77,16 @@ export function HomeScreen() {
   async function handlePick(exercise: Exercise) {
     if (!workout) return
     setPickerOpen(false)
-    await perform(async () => { await addExerciseToWorkout(db, workout.id, exercise.id); await refresh() })
+    await perform(async () => { await addExerciseToWorkout(db, workout.id, exercise.id); await refresh(); setSelectedExerciseId(exercise.id) })
   }
 
   async function handleAddSet(exerciseId: number) {
     if (!workout) return
-    const last = entries.find(({ exercise }) => exercise.id === exerciseId)?.sets.at(-1)
+    const workoutEntry = entries.find(({ exercise }) => exercise.id === exerciseId)
+    const last = workoutEntry?.sets.at(-1)
       ?? await getLastSetForExercise(db, exerciseId)
-    await addSet(db, workout.id, exerciseId, last?.weight ?? 20, last?.reps ?? 8)
+    const cardio = workoutEntry?.exercise.muscle_group === 'КАРДИО'
+    await addSet(db, workout.id, exerciseId, cardio ? 0 : last?.weight ?? 20, cardio ? 1 : last?.reps ?? 8)
     await refresh()
   }
 
@@ -110,7 +114,8 @@ export function HomeScreen() {
     <h1>{t('homeHeadline')}</h1>
     <p className="workout-muted">{t('homeIntro')}</p>
     <button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => void perform(handleStart)}><WorkoutIcon name="plus" />{pending ? t('starting') : t('startWorkout')}</button>
-    {recent.length > 0 && <section className="workout-recent"><h2 className="workout-caption">{t('recent')}</h2><ul>{recent.map((item) => <li key={item.id}><strong>{item.title}</strong><time dateTime={item.startedAt}>{new Date(item.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'short' })}</time></li>)}</ul></section>}
+    {recent.length > 0 && <section className="workout-recent"><button type="button" className="workout-button" onClick={() => setRecentOpen(true)}>{t('recent')}<WorkoutIcon name="next" /></button></section>}
+    {recentOpen && <WorkoutDialog title={t('recent')} onClose={() => setRecentOpen(false)}><ul className="workout-recent-list">{recent.map((item) => <li key={item.id}><strong>{item.title}</strong><time dateTime={item.startedAt}>{new Date(item.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'short' })}</time></li>)}</ul></WorkoutDialog>}
   </section>
 
   const detail = { workout, entries }
@@ -122,9 +127,9 @@ export function HomeScreen() {
     </header>
     {rest !== null && <aside className="workout-rest"><div><WorkoutIcon name="clock" /><span>{t('rest')}</span><output aria-label={t('restTimer')}>{Math.floor(rest / 60)}:{String(rest % 60).padStart(2, '0')}</output></div><button type="button" className="workout-text-button" onClick={() => setRest(null)}>{t(rest === 0 ? 'done' : 'skip')}</button></aside>}
     {error}
-    <WorkoutViews detail={detail} previousResults={previousResults} onAddSet={handleAddSet} onUpdateSet={handleUpdateSet} onDeleteSet={async (setId) => { await deleteSet(db, setId); await refresh() }} onRemoveExercise={async (exerciseId) => { await removeExerciseFromWorkout(db, workout.id, exerciseId); await refresh() }} onMoveExercise={async (exerciseId, order) => { await reorderWorkoutExercise(db, workout.id, exerciseId, order); await refresh() }} />
+    <WorkoutViews key={selectedExerciseId ?? 'workout-views'} detail={detail} previousResults={previousResults} selectedExerciseId={selectedExerciseId} onAddSet={handleAddSet} onUpdateSet={handleUpdateSet} onDeleteSet={async (setId) => { await deleteSet(db, setId); await refresh() }} onRemoveExercise={async (exerciseId) => { await removeExerciseFromWorkout(db, workout.id, exerciseId); await refresh() }} onMoveExercise={async (exerciseId, order) => { await reorderWorkoutExercise(db, workout.id, exerciseId, order); await refresh() }} />
     <button type="button" className="workout-button workout-add-exercise" disabled={pending} onClick={() => setPickerOpen(true)}><WorkoutIcon name="plus" />{t('addExercisePlain')}</button>
-    <footer className="workout-session-footer"><button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => setConfirm('finish')}><WorkoutIcon name="check" />{t('finishWorkout')}</button><button type="button" className="workout-text-button workout-button-danger" disabled={pending} onClick={() => setConfirm('discard')}>{t('discardWorkout')}</button></footer>
+    <footer className="workout-session-footer"><button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => setConfirm('finish')}><WorkoutIcon name="check" />{t('finishWorkout')}</button><button type="button" className="workout-button workout-button-danger" disabled={pending} onClick={() => setConfirm('discard')}>{t('discardWorkout')}</button></footer>
     {pickerOpen && <ExercisePicker onPick={(exercise) => void handlePick(exercise)} onClose={() => setPickerOpen(false)} />}
     {confirm && <ConfirmAction title={t(confirm === 'discard' ? 'confirmDiscardWorkout' : 'finishWorkoutConfirm')} description={t(confirm === 'discard' ? 'discardDescription' : 'finishDescription').replace('{title}', workout.title)} confirmLabel={t(confirm === 'discard' ? 'discard' : 'finish')} onConfirm={closeWorkout} onClose={() => setConfirm(null)} />}
   </section>

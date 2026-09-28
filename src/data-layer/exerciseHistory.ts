@@ -26,15 +26,17 @@ export async function getExerciseWeightHistory(database: AppDatabase, exerciseId
 }
 
 export async function getMasteryCollection(database: AppDatabase): Promise<MasteryItem[]> {
-  const [exercises, workouts, sets] = await Promise.all([
+  const [exercises, workouts, sets, progress] = await Promise.all([
     database.exercises.toArray(),
     database.workouts.toArray(),
     database.sets.toArray(),
+    database.exerciseProgress.toArray(),
   ])
+  const adjustments = new Map(progress.map((item) => [item.exerciseId, item.masteryPointAdjustment ?? 0]))
   return exercises
     .sort((left, right) => left.id - right.id)
     .map((exercise) => ({
       exercise,
-      mastery: calculateExerciseMastery(workouts, sets, exercise.id),
+      mastery: calculateExerciseMastery(workouts, sets, exercise.id, adjustments.get(exercise.id)),
     }))
 }

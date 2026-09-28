@@ -82,7 +82,10 @@ describe('workout history', () => {
 
     await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Выберите упражнение' })).not.toBeInTheDocument())
     await waitFor(async () => expect(await db.workoutExercises.count()).toBe(3))
-    expect(await screen.findByRole('button', { name: 'Жим гантелей лежа' })).toBeVisible()
+    await userEvent.click(await screen.findByRole('button', { name: /Добавленные/ }))
+    expect(await screen.findByRole('button', { name: /Жим гантелей лежа/ })).toBeVisible()
+    await userEvent.click(within(screen.getByRole('dialog', { name: 'Добавленные' })).getByRole('button', { name: 'Назад' }))
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Добавленные' })).not.toBeInTheDocument())
     expect(screen.getByRole('heading', { name: 'Грудь и трицепс' })).toBeVisible()
     expect(history.state?.modal).toBe('workout-history-detail')
   })

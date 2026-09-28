@@ -37,7 +37,7 @@ describe('mastery collection components', () => {
     const advanced = { ...item, mastery: { ...item.mastery, level: 10, currentThreshold: 1500, nextLevelThreshold: 1750, pointsToNextLevel: 250 } }
     render(<LangProvider><MasteryGrid items={[advanced]} onSelect={vi.fn()} /></LangProvider>)
     const badge = screen.getByRole('button', { name: /уровень 10, Мастер/ })
-    expect(badge).toHaveAttribute('data-tier', '5')
+    expect(badge.closest('.mastery-badge')).toHaveAttribute('data-tier', '5')
     expect(screen.getByText('10')).toBeVisible()
   })
 
@@ -59,5 +59,23 @@ describe('mastery collection components', () => {
     fireEvent(screen.getByRole('dialog'), new Event('cancel', { bubbles: true, cancelable: true }))
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
     await waitFor(() => expect(badge).toHaveFocus())
+  })
+
+  it('shows progress within the level, expands records and opens the exercise', async () => {
+    HTMLDialogElement.prototype.showModal = function () { this.open = true }
+    HTMLDialogElement.prototype.close = function () { this.open = false }
+    const openExercise = vi.fn()
+    render(<LangProvider><MasteryDetailSheet item={item} onClose={vi.fn()} onOpenExercise={openExercise} /></LangProvider>)
+    expect(screen.getByRole('dialog')).toHaveClass('mastery-sheet')
+    expect(screen.getByRole('button', { name: 'Закрыть' })).toHaveFocus()
+    expect(screen.getByRole('progressbar', { name: 'Прогресс уровня' })).toHaveAttribute('aria-valuenow', '31')
+    expect(screen.getByText('72 / 120')).toBeVisible()
+    const details = screen.getByText('Подробнее и рекорды').closest('details')!
+    expect(details.open).toBe(false)
+    await userEvent.click(screen.getByText('Подробнее и рекорды'))
+    expect(details.open).toBe(true)
+    expect(screen.getByText('42,5 кг × 8')).toBeVisible()
+    await userEvent.click(screen.getByRole('button', { name: 'Открыть упражнение' }))
+    expect(openExercise).toHaveBeenCalledWith(item)
   })
 })

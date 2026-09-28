@@ -2,11 +2,11 @@ import { useLang } from '../i18n/LangContext'
 
 export type ScreenName = 'workout' | 'progress' | 'history' | 'settings'
 
-const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabMastery' | 'tabHistory' | 'tabSettings'; icon: string }> = [
-  { id: 'workout', labelKey: 'tabWorkout', icon: 'M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12' },
-  { id: 'progress', labelKey: 'tabMastery', icon: 'M12 3l2.5 5.1 5.6.8-4 3.9.9 5.5-5-2.6-5 2.6.9-5.5-4-3.9 5.6-.8L12 3z' },
-  { id: 'history', labelKey: 'tabHistory', icon: 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 011 1v13H4V6a1 1 0 011-1z' },
-  { id: 'settings', labelKey: 'tabSettings', icon: 'M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41' },
+const tabs: Array<{ id: ScreenName; labelKey: 'tabWorkout' | 'tabMastery' | 'tabHistory' | 'tabSettings'; iconName: string; icon: string }> = [
+  { id: 'workout', labelKey: 'tabWorkout', iconName: 'dumbbell', icon: 'M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12' },
+  { id: 'progress', labelKey: 'tabMastery', iconName: 'mastery', icon: 'M12 3l2.5 5.1 5.6.8-4 3.9.9 5.5-5-2.6-5 2.6.9-5.5-4-3.9 5.6-.8L12 3z' },
+  { id: 'history', labelKey: 'tabHistory', iconName: 'calendar', icon: 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 011 1v13H4V6a1 1 0 011-1z' },
+  { id: 'settings', labelKey: 'tabSettings', iconName: 'gear', icon: 'M12 2l1.4 2.1 2.5-.4.7 2.4 2.3 1.1-.8 2.4 1.8 1.8-1.8 1.8.8 2.4-2.3 1.1-.7 2.4-2.5-.4L12 22l-1.4-2.1-2.5.4-.7-2.4-2.3-1.1.8-2.4L4.1 12l1.8-1.8-.8-2.4 2.3-1.1.7-2.4 2.5.4L12 2zM12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z' },
 ]
 
 export function NavBar({ active, onChange }: { active: ScreenName; onChange: (screen: ScreenName) => void }) {
@@ -17,7 +17,7 @@ export function NavBar({ active, onChange }: { active: ScreenName; onChange: (sc
         const selected = active === tab.id
         return (
           <button key={tab.id} type="button" onClick={() => onChange(tab.id)} aria-current={selected ? 'page' : undefined} className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-2 text-[11px] font-semibold transition-colors duration-200 md:justify-start md:px-4 md:text-sm ${selected ? 'bg-[var(--color-accent-fill)] text-[var(--color-accent-text)]' : 'text-[var(--color-text-muted)] hover:bg-[var(--color-state-hover)] hover:text-[var(--color-text)] active:bg-[var(--color-state-pressed)]'}`}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-2"><path d={tab.icon} strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" data-icon={tab.iconName} className="h-5 w-5 fill-none stroke-current stroke-2"><path d={tab.icon} strokeLinecap="round" strokeLinejoin="round" /></svg>
             <span className="hidden sm:inline">{t(tab.labelKey)}</span>
           </button>
         )
