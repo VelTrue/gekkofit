@@ -1,7 +1,7 @@
 /** Match exact catalog slugs; variants need their own exercise illustrations. */
 const artwork: Record<string, string> = {
   'zhim-lezha-shtanga-1': 'barbell-bench-press.png',
-  'zhim-lezha-ganteli-2': 'dumbbell-bench-press.png',
+  'zhim-lezha-ganteli-2': 'dumbbell-bench-press-v2.png',
   'zhim-lezha-nizhniy-blok-3': 'cable-bench-press.png',
   'zhim-lezha-trenazher-smita-4': 'smith-bench-press.png',
   'zhim-ot-grudi-sidya-trenazher-5': 'seated-machine-chest-press.png',
