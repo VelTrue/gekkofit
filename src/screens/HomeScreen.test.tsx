@@ -32,6 +32,14 @@ describe('active workout', () => {
   })
   afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks() })
 
+  it('opens the exercise picker from the empty workout invitation', async () => {
+    await startWorkout(db, 'ru')
+    renderHome()
+    await screen.findByText('Добавьте первое упражнение')
+    await userEvent.click(within(document.querySelector('.workout-empty')!).getByRole('button', { name: 'Добавить упражнение' }))
+    expect(await screen.findByRole('dialog')).toHaveTextContent('Выберите упражнение')
+  })
+
   it('switches to an editable note, remembers it, and saves an edited set', async () => {
     const { set } = await activeFixture()
     const view = renderHome()

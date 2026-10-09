@@ -2,6 +2,7 @@ export type Lang = 'ru' | 'en'
 
 export const translations = {
   ru: {
+    activeWorkoutLabel: 'Активная тренировка', workoutTime: 'время тренировки', exercisesHeading: 'Упражнения', firstExerciseTitle: 'Добавьте первое упражнение', firstExerciseText: 'Выберите упражнение и начните записывать подходы.', workoutPlan: 'План тренировки', planChooseTitle: 'Выберите упражнение', planChooseText: 'Найдите упражнение в базе и добавьте его в тренировку.', planLogTitle: 'Запишите вес и повторы', planLogText: 'Укажите рабочий вес и количество повторов для каждого подхода.', planCompleteTitle: 'Отметьте выполненные подходы', planCompleteText: 'После выполнения подхода отметьте его, чтобы отслеживать прогресс.',
     showMuscleMap: 'Показать мышцы', showIllustration: 'Показать упражнение',
     close: 'Закрыть', masteryMore: 'Подробнее и рекорды', masteryRemaining: 'Осталось до следующего уровня',
     startWorkout: 'Начать тренировку', continueWorkout: 'Продолжить тренировку', finishWorkout: 'Завершить тренировку',
@@ -36,6 +37,7 @@ export const translations = {
     unlockedCount: '{count} {noun} открыто', exerciseOne: 'упражнение', exerciseFew: 'упражнения', exerciseMany: 'упражнений', setOne: 'подход', setFew: 'подхода', setMany: 'подходов', repOne: 'повторение', repFew: 'повторения', repMany: 'повторений',
   },
   en: {
+    activeWorkoutLabel: 'Active workout', workoutTime: 'workout time', exercisesHeading: 'Exercises', firstExerciseTitle: 'Add your first exercise', firstExerciseText: 'Choose an exercise and start logging sets.', workoutPlan: 'Workout plan', planChooseTitle: 'Choose an exercise', planChooseText: 'Find an exercise and add it to the workout.', planLogTitle: 'Log weight and reps', planLogText: 'Enter weight and reps for each set.', planCompleteTitle: 'Mark completed sets', planCompleteText: 'Mark sets as done to track progress.',
     showMuscleMap: 'Show muscles', showIllustration: 'Show exercise',
     close: 'Close', masteryMore: 'Details and records', masteryRemaining: 'Remaining to the next level',
     startWorkout: 'Start Workout', continueWorkout: 'Continue Workout', finishWorkout: 'Finish Workout',

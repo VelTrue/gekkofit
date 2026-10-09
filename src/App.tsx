@@ -32,7 +32,7 @@ export default function App() {
       <InstallPromptProvider><div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] md:flex">
         <UpdateBanner />
         <NavBar active={active} onChange={setActive} />
-        <main className="mx-auto w-full max-w-5xl flex-1 p-4 pb-24 sm:p-6 sm:pb-24 md:p-8">
+        <main className={`mx-auto w-full flex-1 p-4 pb-24 sm:p-6 sm:pb-24 md:p-8 ${active === 'workout' ? 'max-w-none' : 'max-w-5xl'}`}>
           <Suspense fallback={<div className="h-1 w-24 animate-pulse rounded-full bg-[var(--color-accent)]" />}>
             <Screen name={active} />
           </Suspense>
