@@ -126,6 +126,7 @@
 .workout-home-content { position: relative; z-index: 1; }
 .workout-home-brand { display: flex; align-items: center; gap: 14px; }
 .workout-home-brand-icon { display: grid; flex: 0 0 40px; place-items: center; width: 40px; height: 40px; border: 1.5px solid var(--color-accent-fill); border-radius: 50%; color: var(--color-accent-fill); }
+:root[data-theme='light'] .workout-home-brand-icon { border-color: #97d32c; color: #86bc23; }
 .workout-home-brand-icon svg { width: 24px; height: 24px; }
 .workout-home-brand .workout-caption { margin: 0; font-size: clamp(.62rem, 2.5vw, .8rem); letter-spacing: .12em; }
 .workout-home h1 { display: grid; gap: 0; max-width: 680px; margin: clamp(16px, 2vh, 24px) 0 12px; font-size: clamp(2.5rem, 10vw, 5rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 850; }
@@ -136,7 +137,18 @@
 .workout-home .workout-home-recent { justify-content: space-between; width: 100%; min-height: 58px; margin-top: 14px; padding-inline: 18px; border-color: var(--color-border); border-radius: 12px; background: transparent; font-size: 1rem; font-weight: 750; }
 .workout-home-recent svg { width: 22px; height: 22px; }
 .workout-home-arcs { position: absolute; inset: 0; background: url('/home-screen-artwork.png') center calc(100% + 21.5vw) / calc(100% + 32px) auto no-repeat; mask-image: linear-gradient(to bottom, transparent 61%, #000 63%); pointer-events: none; }
-:root[data-theme='light'] .workout-home-arcs { display: none; }
+:root[data-theme='light'] .workout-home-arcs { background-image: url('/home-screen-artwork-light.png'); }
+:root[data-theme='light'] body:has(.workout-home),
+:root[data-theme='light'] #root:has(.workout-home) > div { background-color: #f1f5f5; }
+@media (max-width: 767px) {
+  body:has(.workout-home) { overscroll-behavior-y: none; }
+  #root:has(.workout-home) > div { min-height: 100dvh; }
+  main:has(> .workout-home) { padding-bottom: calc(65px + var(--safe-area-bottom)); }
+  .workout-home { min-height: calc(100dvh - 81px - var(--safe-area-bottom)); }
+}
+@media (min-width: 640px) and (max-width: 767px) {
+  .workout-home { min-height: calc(100dvh - 89px - var(--safe-area-bottom)); }
+}
 @media (min-width: 768px) {
   .workout-home { min-height: min(780px, calc(100dvh - 64px)); padding-block: 48px 28px; }
   .workout-home h1 { margin-top: 40px; }
