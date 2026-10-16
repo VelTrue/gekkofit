@@ -144,7 +144,7 @@
   body:has(.workout-home) { overscroll-behavior-y: none; }
   #root:has(.workout-home) > div { min-height: 100dvh; }
   main:has(> .workout-home) { padding-bottom: calc(65px + var(--safe-area-bottom)); }
-  .workout-home { min-height: calc(100dvh - 81px - var(--safe-area-bottom)); }
+  .workout-home { min-height: calc(100dvh - 81px - var(--safe-area-bottom)); padding-top: clamp(16px, 3dvh, 30px); }
 }
 @media (min-width: 640px) and (max-width: 767px) {
   .workout-home { min-height: calc(100dvh - 89px - var(--safe-area-bottom)); }
