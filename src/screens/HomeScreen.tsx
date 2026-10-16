@@ -117,12 +117,15 @@ export function HomeScreen() {
 
   if (!workout) return <section className="workout-home">
     {error}
-    <p className="workout-caption">{t('journalKicker')}</p>
-    <h1>{t('homeHeadline')}</h1>
-    <p className="workout-muted">{t('homeIntro')}</p>
-    <button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => void perform(handleStart)}><WorkoutIcon name="plus" />{pending ? t('starting') : t('startWorkout')}</button>
-    {recent.length > 0 && <section className="workout-recent"><button type="button" className="workout-button" onClick={() => setRecentOpen(true)}>{t('recent')}<WorkoutIcon name="next" /></button></section>}
-    {recentOpen && <WorkoutDialog title={t('recent')} onClose={() => setRecentOpen(false)}><ul className="workout-recent-list">{recent.map((item) => <li key={item.id}><strong>{item.title}</strong><time dateTime={item.startedAt}>{new Date(item.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'short' })}</time></li>)}</ul></WorkoutDialog>}
+    <div className="workout-home-content">
+      <div className="workout-home-brand"><span className="workout-home-brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12" /></svg></span><p className="workout-caption">{t('journalKicker')}</p></div>
+      <h1><span>{t('homeHeadlineLead')} </span><span className="workout-home-headline-accent">{t('homeHeadlineAccent')}</span></h1>
+      <p className="workout-muted">{t('homeIntro')}</p>
+      <button type="button" className="workout-button workout-button-primary workout-home-start" disabled={pending} onClick={() => void perform(handleStart)}><WorkoutIcon name="plus" />{pending ? t('starting') : t('startWorkout')}</button>
+      <button type="button" className="workout-button workout-home-recent" onClick={() => setRecentOpen(true)}>{t('recent')}<WorkoutIcon name="next" /></button>
+    </div>
+    <div className="workout-home-arcs" aria-hidden="true" />
+    {recentOpen && <WorkoutDialog title={t('recent')} onClose={() => setRecentOpen(false)}>{recent.length > 0 ? <ul className="workout-recent-list">{recent.map((item) => <li key={item.id}><strong>{item.title}</strong><time dateTime={item.startedAt}>{new Date(item.startedAt).toLocaleDateString(lang, { day: 'numeric', month: 'short' })}</time></li>)}</ul> : <p className="workout-muted">{t('historyEmpty')}</p>}</WorkoutDialog>}
   </section>
 
   const detail = { workout, entries }

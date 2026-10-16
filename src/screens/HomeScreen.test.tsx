@@ -32,6 +32,12 @@ describe('active workout', () => {
   })
   afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks() })
 
+  it('opens recent workouts with an empty state before the first session', async () => {
+    renderHome()
+    await userEvent.click(await screen.findByRole('button', { name: 'Недавние' }))
+    expect(await screen.findByRole('dialog', { name: 'Недавние' })).toHaveTextContent('Завершенные тренировки появятся здесь.')
+  })
+
   it('opens the exercise picker from the empty workout invitation', async () => {
     await startWorkout(db, 'ru')
     renderHome()
