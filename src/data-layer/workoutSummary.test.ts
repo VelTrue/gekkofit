@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Exercise, Workout, WorkoutExercise, WorkoutSet } from '../db/schema'
 import type { WorkoutDetail } from './workouts'
-import { formatWorkoutAsNote, summarizeWorkout } from './workoutSummary'
+import { formatExerciseHistory, formatWorkoutAsNote, summarizeWorkout } from './workoutSummary'
 
 const workout: Workout = {
   id: 'workout-1',
@@ -75,6 +75,21 @@ const detail: WorkoutDetail = {
 }
 
 describe('workout summaries', () => {
+  it('keeps each previous workout and its numbered sets separate', () => {
+    const session: WorkoutDetail = {
+      workout: { ...workout, title: 'Тренировка 28 сентября', startedAt: '2026-09-28T10:00:00.000Z' },
+      entries: [entry(benchPress, 0, [
+        ['first', 40, 8, true], ['second', 50, 13, true], ['third', 50, 13, true], ['draft', 60, 5, false],
+      ])],
+    }
+    expect(formatExerciseHistory(session, benchPress.id, 'ru')).toEqual({
+      workoutId: workout.id,
+      title: 'Тренировка 28 сентября',
+      date: '28 сентября',
+      weekday: 'пн',
+      sets: ['40 кг × 8 раз', '50 кг × 13 раз', '50 кг × 13 раз'],
+    })
+  })
   it('summarizes actual exercises, sets, reps, and volume', () => {
     expect(summarizeWorkout(detail)).toMatchObject({
       exerciseCount: 2,
@@ -105,5 +120,13 @@ describe('workout summaries', () => {
     const draftOnly = { ...detail, entries: [entry(inclinePress, 0, [['draft', 20, 8, false]])] }
     expect(summarizeWorkout(draftOnly).exercises).toEqual([])
     expect(formatWorkoutAsNote(draftOnly, 'ru')).toEqual([])
+  })
+
+  it('formats cardio distance with matching speed and pace', () => {
+    const cardio: Exercise = { ...benchPress, id: 99, muscle_group: 'КАРДИО', name_ru: 'Бег', name_en: 'Running' }
+    const cardioEntry = entry(cardio, 0, [['run', 0, 1, true]])
+    cardioEntry.sets[0] = { ...cardioEntry.sets[0], distance: 2, duration: 10, incline: 1, intensity: 6 }
+    expect(formatWorkoutAsNote({ ...detail, entries: [cardioEntry] }, 'ru')[0].sets[0]).toBe('2 км · 10 мин · 12 км/ч · 5:00 мин/км · 1% · 6/10')
+    expect(formatExerciseHistory({ ...detail, entries: [cardioEntry] }, cardio.id, 'ru')?.sets).toEqual(['2 км · 10 мин · 12 км/ч · 5:00 мин/км · 1% · 6/10'])
   })
 })

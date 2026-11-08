@@ -8,6 +8,7 @@ export async function addSet(
   exerciseId: number,
   weight: number,
   reps: number,
+  cardioValues?: Pick<WorkoutSet, 'distance' | 'incline' | 'duration' | 'intensity'>,
 ): Promise<WorkoutSet> {
   if (!Number.isFinite(weight) || weight < 0 || !Number.isInteger(reps) || reps <= 0) {
     throw new Error('INVALID_SET_VALUES')
@@ -21,6 +22,7 @@ export async function addSet(
       exerciseId,
       weight,
       reps,
+      ...cardioValues,
       setOrder,
       completed: false,
       createdAt: now,

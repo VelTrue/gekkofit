@@ -3,7 +3,7 @@ import { AppDatabase } from '../db/schema'
 import { initExerciseCatalog } from '../db/seedExercises'
 import { addSet } from './sets'
 import { addExerciseToWorkout, getEntriesForWorkouts, getWorkoutEntries, updateSet } from './workoutEditor'
-import { finishWorkout, getActiveWorkout, getLatestExerciseResults, getWorkoutHistory, startWorkout } from './workouts'
+import { finishWorkout, getActiveWorkout, getExerciseHistoryResults, getWorkoutHistory, startWorkout } from './workouts'
 
 describe('workouts data layer', () => {
   let database: AppDatabase
@@ -75,7 +75,7 @@ describe('workouts data layer', () => {
     expect(bulk.get(first.id)?.map(({ exercise }) => exercise.id)).toEqual([2, 1])
   })
 
-  it('returns the most recent completed result for each exercise', async () => {
+  it('returns completed sessions per exercise, newest first', async () => {
     await initExerciseCatalog(database)
     const older = await startWorkout(database, 'en')
     await addExerciseToWorkout(database, older.id, 1)
@@ -89,6 +89,8 @@ describe('workouts data layer', () => {
     await addSet(database, newer.id, 1, 70, 3)
     await finishWorkout(database, newer.id)
 
-    expect(await getLatestExerciseResults(database, 'en')).toEqual({ 1: '60 kg × 5', 2: '20 kg × 10' })
+    const results = await getExerciseHistoryResults(database, 'en')
+    expect(results[1].map(({ workoutId, sets }) => [workoutId, sets])).toEqual([[newer.id, ['60 kg × 5 reps']], [older.id, ['50 kg × 8 reps']]])
+    expect(results[2].map(({ sets }) => sets)).toEqual([['20 kg × 10 reps']])
   })
 })

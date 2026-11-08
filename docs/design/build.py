@@ -131,6 +131,7 @@ ST = {
     'sys': '<span class="st ok">есть</span><span class="st sys">окно браузера</span>',
     'todo': '<span class="st todo">достроить</span>',
     'new': '<span class="st ok">есть · новое 08.11</span>',
+    'part': '<span class="st ok">есть</span><span class="st todo">доработать</span>',
 }
 
 # ---------------------------------------------------------------- Сценарий 1
@@ -202,18 +203,19 @@ cell('G1', 'Доступно обновление', 'баннер поверх �
 # ---------------------------------------------------------------- Сценарий 2
 zone('s2', 'Сценарий 2 · Тренировка идёт: подходы, отдых, порядок упражнений, режим «Список» · #/workout')
 row(2)
-cell('A2', 'Карточка упражнения', 'режим «Карточки» · ExerciseCard.tsx + SetRow.tsx', 'ok',
-     '<div class="row"><div class="btn grow" data-to="C2">Добавленные <span class="badge">3</span></div><div class="seg" style="width:150px"><span class="on">Карточки</span><span data-to="D2">Список</span></div></div>'
-     '<div class="row"><div class="img" style="width:112px;height:112px">мышцы / фото</div><div class="grow"><p class="muted small">Упражнение 1 из 3</p><h2>Жим штанги лежа</h2><p class="muted small">Штанга · грудь</p></div></div>'
-     '<div class="card"><span class="muted small">В прошлый раз</span><b>60 кг × 5 · 60 кг × 5 · 57,5 кг × 6</b></div>'
-     + SET_LABELS + set_row(1, '60', '5', True) + '<p class="hint">Выполнен</p>' + set_row(2, '62,5', '5', done_to='B2') + '<p class="hint">Не выполнен</p>'
+cell('A2', 'Карточка упражнения', 'режим «Карточки» · ExerciseCard.tsx + SetRow.tsx · обновлено 08.11', 'ok',
+     '<div class="row"><div class="btn" data-to="C2">Добавленные <span class="badge">3</span></div><div class="grow" data-to="D2"><div class="input" style="justify-content:space-between"><span><span class="muted">Вид:</span> Карточки</span><span>▾</span></div></div></div>'
+     '<div class="card"><div class="row"><div class="img" style="width:150px;height:150px">мышцы / фото</div><div class="grow"><p class="muted small">УПРАЖНЕНИЕ 1 ИЗ 3</p><h2>Жим штанги лежа</h2><p class="muted small">штанга · грудь</p></div></div>'
+     '<p class="hint" style="text-align:center">‹ ● ○ ›  иллюстрация / карта мышц</p>'
+     '<div class="row"><div class="btn grow" data-to="D3">◷ История</div><div class="btn grow" data-to="F3">⇄ Заменить</div></div></div>'
+     + SET_LABELS + set_row(1, '60', '5', True) + set_row(2, '62,5', '5', done_to='B2') +
      '<div class="row"><div class="btn grow">+ Добавить подход</div><span class="ic">↑</span><span class="ic">↓</span><span class="ic" data-to="G2">✕</span></div>'
-     '<div class="row"><div class="btn grow todo-el" data-to="D3">История</div><div class="btn grow todo-el" data-to="F3">Заменить</div></div>'
      '<div class="row"><div class="btn grow">‹ Предыдущее</div><div class="btn grow">Следующее ›</div></div>',
      ['новый подход подставляет вес и повторы прошлого подхода (или 20 кг × 8)',
-      'кнопки «История» и «Заменить» описаны в updlog 0.02-0.07, в коде их нет'],
-     top='<div class="appbar"><span class="title">Тренировка 8 нояб. · 00:24</span></div>',
-     bottom='<div class="sticky"><div class="btn" data-to="D1">+ Добавить упражнение</div><div class="btn primary" data-to="A3">✓ Завершить тренировку</div></div>' + bnav('Тренировка'))
+      'блок «В прошлый раз» убран: прошлые результаты теперь в «Истории» (D3)',
+      'нижняя панель с кнопками закрывает первую строку подхода, видно только после прокрутки'],
+     top='<div class="appbar"><span class="title">Тренировка 8 ноября</span><span class="ic">✎</span></div>',
+     bottom='<div class="sticky"><div class="row"><div class="btn primary grow" data-to="A3">✓ Завершить тренировку</div><div class="btn ghost danger grow" data-to="B3">Удалить тренировку</div></div></div>' + bnav('Тренировка'))
 cell('B2', 'Отдых после подхода', 'A2 после отметки ✓ · 90 секунд, фиксировано', 'state',
      '<div class="rest"><span class="ic">◷</span><span class="t">Отдых 1:24</span><span class="lnk">Пропустить</span></div>'
      + SET_LABELS + set_row(1, '60', '5', True) + set_row(2, '62,5', '5', True) + set_row(3, '62,5', '5') +
@@ -228,26 +230,27 @@ cell('C2', 'Добавленные упражнения', 'диалог из A2 
      ['порядок меняется стрелками ↑ ↓ в карточке A2, перетаскивания нет'],
      top=appbar('Добавленные', right='<span class="ic">✕</span>'))
 cell('D2', 'Тренировка · режим «Список»', 'WorkoutNoteView.tsx · выбор режима запоминается', 'ok',
-     '<div class="row"><h2 class="grow">Упражнения</h2><div class="seg" style="width:170px"><span data-to="A2">Карточки</span><span class="on">Список</span></div></div>'
+     '<h2>Упражнения</h2><div data-to="A2"><div class="input" style="justify-content:space-between"><span><span class="muted">Вид:</span> Список</span><span>▾</span></div></div>'
      '<p class="muted small">Выберите упражнение или подход для редактирования</p>'
      '<div class="card"><div class="row"><span class="img" style="width:60px;height:60px"></span><b class="grow" data-to="E2">Жим штанги лежа ✎</b></div>'
      '<div class="chips"><span>✓ 60 кг × 5</span><span>✓ 62,5 кг × 5</span><span>62,5 кг × 5 · не выполнен</span></div></div>'
      '<div class="card"><div class="row"><span class="img" style="width:60px;height:60px"></span><b class="grow">Беговая дорожка ✎</b></div>'
-     '<div class="chips"><span>✓ 3 km · 20 min · 2% · 6/10</span></div></div>'
+     '<div class="chips"><span>✓ 3 км · 20 мин · 9 км/ч · 6:40 мин/км · 2% · 6/10</span></div></div>'
      '<div class="card"><div class="row"><span class="img" style="width:60px;height:60px"></span><b class="grow">Разводка гантелей ✎</b></div><div class="btn">+ Первый подход</div></div>',
-     [], top='<div class="appbar"><span class="title">Тренировка 8 нояб.</span></div>', bottom=bnav('Тренировка'))
+     ['режим выбирается выпадающим меню «Вид» вместо переключателя'], top='<div class="appbar"><span class="title">Тренировка 8 ноября</span></div>', bottom=bnav('Тренировка'))
 cell('E2', 'Редактирование упражнения', 'диалог из D2 · внутри та же карточка A2', 'ok',
      '<div class="row"><div class="img" style="width:90px;height:90px"></div><div class="grow"><h2>Жим штанги лежа</h2></div></div>'
      + SET_LABELS + set_row(1, '60', '5', True) + set_row(2, '62,5', '5', True) +
      '<div class="btn">+ Добавить подход</div>',
      ['фокус ставится на подход, по которому нажали в D2'],
      top=appbar('‹ Назад к списку', back=False, right='<span class="ic" data-to="D2">✕</span>'))
-cell('F2', 'Кардио-подход', 'упражнения группы «Кардио» · CardioSetRow', 'ok',
-     '<div class="row"><div class="img" style="width:112px;height:112px">дорожка</div><div class="grow"><p class="muted small">Упражнение 3 из 3</p><h2>Беговая дорожка</h2></div></div>'
-     '<div class="kv"><div><span>Расстояние, км</span><b>3</b></div><div><span>Наклон, %</span><b>2</b></div><div><span>Время, мин</span><b>20</b></div><div><span>Интенсивность, 0-10</span><b>6</b></div></div>'
+cell('F2', 'Кардио-подход', 'упражнения группы «Кардио» · CardioSetRow · обновлено 08.11', 'ok',
+     '<div class="row"><div class="img" style="width:112px;height:112px">дорожка</div><div class="grow"><p class="muted small">УПРАЖНЕНИЕ 3 ИЗ 3</p><h2>Беговая дорожка</h2></div></div>'
+     '<div class="kv"><div><span>Расстояние, км</span><b>3</b></div><div><span>Наклон, %</span><b>2</b></div><div><span>Время, мин</span><b>20</b></div><div><span>Интенсивность, 0-10</span><b>6</b></div>'
+     '<div><span>Скорость, км/ч</span><b>9</b></div><div><span>Темп, мин/км</span><b>6:40</b></div></div>'
      '<div class="row"><div class="btn grow">Сохранить</div><span class="chk">✓</span><span class="ic">✕</span></div>',
-     ['скорость и темп не считаются (в updlog 0.02 обещаны)', 'единицы в заметке на английском: km, min'],
-     top='<div class="appbar"><span class="title">Тренировка 8 нояб.</span></div>', bottom=bnav('Тренировка'))
+     ['скорость и темп считаются из расстояния и времени', 'в заметке и истории единицы по-русски: км, мин, км/ч, мин/км'],
+     top='<div class="appbar"><span class="title">Тренировка 8 ноября</span></div>', bottom=bnav('Тренировка'))
 cell('G2', 'Удалить подход / упражнение', 'подтверждение · ConfirmAction', 'ok',
      '<div class="img" style="height:300px">A2 под затемнением</div>',
      ['то же окно для «Удалить упражнение?»: «Жим штанги лежа» и все его подходы будут удалены из тренировки'],
@@ -259,7 +262,8 @@ zone('s3', 'Сценарий 3 · Завершение тренировки и �
 row(3)
 cell('A3', 'Завершить тренировку?', 'подтверждение из C1 / A2', 'ok',
      '<div class="img" style="height:300px">тренировка под затемнением</div>',
-     ['сейчас после «Завершить» сразу открывается главная A1 без итогов → предлагаем C3'],
+     ['сейчас после «Завершить» сразу открывается главная A1 без итогов → предлагаем C3',
+      'на сайте кнопка «Завершить» в этом окне красная, как опасное действие, хотя ничего не удаляет'],
      bottom='<div class="sheet" style="position:relative"><div class="grabber"></div><h2>Завершить тренировку?</h2><p class="muted">«Тренировка 8 нояб.» сохранится в истории. Ее можно будет отредактировать.</p>'
             '<div class="row" style="margin-top:12px"><div class="btn grow">Отмена</div><div class="btn primary grow" data-to="C3">Завершить</div></div></div>')
 cell('B3', 'Удалить тренировку?', 'подтверждение из C1 · случайно начатая', 'ok',
@@ -273,26 +277,27 @@ cell('C3', 'Итог тренировки', 'после «Завершить» �
      '<div class="card"><b>Мастерство +23 очка</b><span class="small">Жим штанги лежа: уровень 3 · Атлет</span><div class="progress"><i style="width:40%"></i></div></div>'
      '<div class="btn primary" data-to="A1">Готово</div><div class="btn" data-to="D4">Открыть в истории</div>',
      ['источник цифр: summarizeWorkout, recordCounts, calculateExerciseMastery', 'новый уровень → G5'])
-cell('D3', 'История упражнения', 'лист из A2 «История» · описан в updlog 0.02-0.05', 'todo',
-     '<div class="grabber"></div><div class="row"><h2 class="grow">Жим штанги лежа</h2><span class="ic">✕</span></div>'
-     '<p class="label">Пт, 2 ноября</p><div class="list"><div class="item"><span class="badge">1</span><span class="grow">60 кг × 5</span></div><div class="item"><span class="badge">2</span><span class="grow">60 кг × 5</span></div><div class="item"><span class="badge">3</span><span class="grow">57,5 кг × 6</span></div></div>'
-     '<div class="btn ghost">Показать ещё 4 тренировки</div>'
-     '<div class="btn" data-to="E3">Вся история</div>',
-     ['сначала последняя тренировка, остальные раскрываются', 'на телефоне - во всю ширину, без рамок между подходами'])
-cell('E3', 'Вся история упражнения', 'из D3 · getExerciseWeightHistory уже есть в data-layer', 'todo',
-     '<h1>Жим штанги лежа</h1><div class="spark"><svg viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="#555" stroke-width="2" points="0,34 15,30 30,30 45,24 60,22 75,16 90,12 100,10"/></svg></div>'
-     '<p class="muted small">Лучший вес по тренировкам</p>'
-     '<div class="list"><div class="item"><span class="grow"><b>2 ноября</b><br><span class="muted small">3 подхода · 16 повторений</span></span><b>60 кг</b></div>'
-     '<div class="item"><span class="grow"><b>29 октября</b><br><span class="muted small">4 подхода · 20 повторений</span></span><b>57,5 кг</b></div>'
-     '<div class="item"><span class="grow"><b>25 октября</b><br><span class="muted small">3 подхода</span></span><b>55 кг</b></div></div>',
-     ['нажатие на дату → D4 (тренировка в истории)'], top=appbar('Вся история'))
-cell('F3', 'Заменить упражнение', 'лист из A2 «Заменить» · updlog 0.07 · getExerciseAlternatives есть', 'todo',
-     '<div class="grabber"></div><h2>Заменить: Жим штанги лежа</h2><p class="muted small">Те же основные мышцы и похожее движение</p>'
-     '<div class="list"><div class="item" data-to="A2"><span class="img" style="width:44px;height:44px"></span><span class="grow"><b>Жим гантелей лежа</b><br><span class="muted small">гантели</span></span></div>'
-     '<div class="item"><span class="img" style="width:44px;height:44px"></span><span class="grow"><b>Жим в тренажере Смита</b><br><span class="muted small">Смит</span></span></div>'
-     '<div class="item"><span class="img" style="width:44px;height:44px"></span><span class="grow"><b>Жим от груди сидя</b><br><span class="muted small">тренажер</span></span></div></div>',
-     ['упражнения, уже добавленные в тренировку, исключены', 'аналога нет → «Близкой замены в каталоге нет», без случайных вариантов',
-      'что с подходами заменяемого: перенести или удалить - решить'])
+cell('D3', 'История упражнения', 'лист из A2 «История» · ExerciseCard.tsx · сделано 08.11', 'ok',
+     '<div class="grabber"></div><div class="row"><h2 class="grow" style="text-align:center">История</h2><span class="ic">✕</span></div><p class="label">8 ноября, вс</p><div class="list"><div class="item"><span class="badge">1</span><span class="grow">60 кг × 5 раз</span></div><div class="item"><span class="badge">2</span><span class="grow">60 кг × 5 раз</span></div><div class="item"><span class="badge">3</span><span class="grow">57,5 кг × 6 раз</span></div></div>'
+     '<div style="height:200px"></div><div class="btn" data-to="E3">ВСЯ ИСТОРИЯ</div>',
+     ['показывается последняя тренировка с этим упражнением; если название тренировки не дата, оно выводится тегом',
+      'в заголовке нет названия упражнения', 'упражнение ещё не выполнялось → «Еще не выполнялось»'])
+cell('E3', 'Вся история упражнения', 'тот же лист D3, развёрнутый · план: отдельный экран с графиком', 'part',
+     '<div class="grabber"></div><div class="row"><h2 class="grow" style="text-align:center">История</h2><span class="ic">✕</span></div><p class="label">8 ноября, вс</p><div class="list"><div class="item"><span class="badge">1</span><span class="grow">60 кг × 5 раз</span></div><div class="item"><span class="badge">2</span><span class="grow">57,5 кг × 6 раз</span></div></div>'
+     '<p class="label">2 ноября, пн</p><div class="list"><div class="item"><span class="badge">1</span><span class="grow">57,5 кг × 5 раз</span></div><div class="item"><span class="badge">2</span><span class="grow">55 кг × 8 раз</span></div></div><p class="label">29 октября, чт</p><div class="list"><div class="item"><span class="badge">1</span><span class="grow">55 кг × 6 раз</span></div></div>'
+     '<div class="card todo-el" data-to="F5"><b>График лучшего веса</b><span class="small">доработать: тренд и итоги по датам</span></div>'
+     '<div class="btn" data-to="D3">ПОСЛЕДНЯЯ ТРЕНИРОВКА</div>',
+     ['сделано: все тренировки списком в той же панели', 'не сделано: график, итоги по датам, переход к тренировке в истории (D4)'])
+cell('F3', 'Заменить упражнение', 'из A2 «Заменить» · ExercisePicker с replacementFor · сделано 08.11', 'ok',
+     '<h1>Заменить</h1><div class="input"><span class="ph">⌕ Название, мышца или оборудование</span></div>'
+     '<div class="row"><p class="label grow">Похожие упражнения</p><span class="muted small">Найдено: 5</span></div>'
+     '<div class="list"><div class="item" data-to="A2"><span class="img" style="width:56px;height:56px"></span><span class="grow"><b>Жим гантелей лежа</b><br><span class="muted small">гантели · грудь</span></span><span class="ic">?</span><span class="ic">i</span></div>'
+     '<div class="item"><span class="img" style="width:56px;height:56px"></span><span class="grow"><b>Жим на нижних блоках лежа</b><br><span class="muted small">нижний блок · грудь</span></span><span class="ic">?</span><span class="ic">i</span></div>'
+     '<div class="item"><span class="img" style="width:56px;height:56px"></span><span class="grow"><b>Жим в тренажере Смита лежа</b><br><span class="muted small">тренажер Смита · грудь</span></span><span class="ic">?</span><span class="ic">i</span></div></div>'
+     '<div class="sheet"><h2>Заменить упражнение?</h2><p class="muted">Подходы прежнего упражнения будут удалены.</p><div class="row"><div class="btn grow">Отмена</div><div class="btn primary grow" data-to="A2">Заменить</div></div></div>',
+     ['поиск только среди похожих: те же основные мышцы и похожее движение', 'уже добавленные в тренировку исключены',
+      'нет аналога → «Похожая замена не найдена»', 'в подсказке «?» у похожего упражнения показывается и само заменяемое'],
+     top=appbar('‹ Назад к тренировке', back=False))
 cell('G3', 'Быстрый ввод: степпер', 'Stepper.tsx уже есть, не подключён · research.md п.3', 'todo',
      '<h2>Жим штанги лежа</h2>' + SET_LABELS +
      '<div class="set"><span class="n">2</span><div class="input" style="justify-content:space-between"><b>−</b>62,5<b>+</b></div><div class="input" style="justify-content:space-between"><b>−</b>5<b>+</b></div><span class="chk">✓</span><span class="ic">✕</span></div>'
@@ -476,7 +481,7 @@ def render_cell(code, title, meta, status, body, branches, top, bottom, todo):
     branch_html = ''
     if branches:
         branch_html = '<div class="branches">' + ''.join(f'<span class="branch">{b}</span>' for b in branches) + '</div>'
-    phone_cls = 'phone todo' if todo or status == 'todo' else 'phone'
+    phone_cls = 'phone todo' if todo or status in ('todo', 'part') else 'phone'
     return (f'  <div class="cell"><div class="cap"><b>{code}</b>{title}{ST[status]}<br><span class="meta">{meta}</span></div>\n'
             f'    <div class="{phone_cls}" id="{code}">{STATUS}{top}<div class="body">{body}</div>{bottom}</div>\n'
             f'    {branch_html}\n  </div>\n')
@@ -489,7 +494,7 @@ for item in screens:
         zone_stats[current] = [item[2], 0, 0]
     elif item[0] == 'cell':
         zone_stats[current][1] += 1
-        if item[4] == 'todo':
+        if item[4] in ('todo', 'part'):
             zone_stats[current][2] += 1
 
 for item in screens:
@@ -587,6 +592,7 @@ CAB_STATUS = {
     'sys': '<em class="st ok">есть</em><em class="st sys">окно браузера</em>',
     'todo': '<em class="st todo">достроить</em>',
     'new': '<em class="st ok">есть · новое 08.11</em>',
+    'part': '<em class="st ok">есть</em><em class="st todo">доработать</em>',
 }
 # заглушки, вместо которых в кабинете показываются настоящие картинки приложения
 PUBLIC = '../../../public/'
@@ -647,7 +653,7 @@ def shot(item, own_page):
     moves = transitions(top + body + bottom, own_page)
     to = f'<span class="to">Переходы: {" · ".join(moves)}</span>' if moves else ''
     notes = ''.join(f'<span class="note">{b}</span>' for b in branches)
-    data_status = 'todo' if status == 'todo' else 'ok'
+    data_status = 'todo' if status in ('todo', 'part') else 'ok'
     return (f'  <section class="shot" id="{code}" data-status="{data_status}" aria-label="{code} {html_lib.escape(title)}">\n'
             f'    <div class="cap"><b><span>{code}</span>{title}{CAB_STATUS[status]}</b><small>{meta}</small>{to}{notes}</div>\n'
             f'    <div class="device"><div class="screen" data-mode="dark">{inner}</div></div>\n'
@@ -709,7 +715,7 @@ cards = ['<a class="s cta" href="../flow.html"><b>Доска со стрелка
 for zid in zone_ids:
     file, title, desc = PAGES[zid]
     items = cells_by_zone[zid]
-    todo = sum(1 for item in items if item[4] == 'todo')
+    todo = sum(1 for item in items if item[4] in ('todo', 'part'))
     todo_html = f'<em>достроить: {todo}</em>' if todo else ''
     cards.append(f'<a class="s" href="{file}"><i>{codes_range(items)} · {len(items)} {plural_screens(len(items))}</i>'
                  f'<b>{title}</b><span>{desc}</span>{todo_html}</a>')

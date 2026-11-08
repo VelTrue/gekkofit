@@ -1,5 +1,6 @@
 ﻿import { useState } from 'react'
 import type { WorkoutDetail } from '../../data-layer/workouts'
+import type { ExerciseHistorySession } from '../../data-layer/workoutSummary'
 import { useLang } from '../../i18n/LangContext'
 import { ExerciseCard, type WorkoutEditingActions } from './ExerciseCard'
 import { ViewModeSwitch, type WorkoutViewMode } from './ViewModeSwitch'
@@ -7,8 +8,8 @@ import { WorkoutDialog } from './WorkoutDialog'
 import { WorkoutNoteView } from './WorkoutNoteView'
 import { WorkoutIcon } from './WorkoutIcon'
 
-export function WorkoutViews({ detail, previousResults, selectedExerciseId, ...actions }: WorkoutEditingActions & {
-  detail: WorkoutDetail; previousResults?: Record<number, string>; selectedExerciseId?: number | null; onAddExercise?: () => void
+export function WorkoutViews({ detail, historyResults, selectedExerciseId, ...actions }: WorkoutEditingActions & {
+  detail: WorkoutDetail; historyResults?: Record<number, ExerciseHistorySession[]>; selectedExerciseId?: number | null; onAddExercise?: () => void; onReplaceExercise?: (exerciseId: number) => void
 }) {
   const { lang, t } = useLang()
   const [mode, setMode] = useState<WorkoutViewMode>(() => {
@@ -28,7 +29,7 @@ export function WorkoutViews({ detail, previousResults, selectedExerciseId, ...a
     try { localStorage.setItem('workout-view-mode', next) } catch { /* The view still works when storage is unavailable. */ }
   }
 
-  const card = entry && <ExerciseCard key={entry.exercise.id} entry={entry} index={index} total={entries.length} previousResult={previousResults?.[entry.exercise.id]} onPrevious={index > 0 ? () => setSelected(entries[index - 1].exercise.id) : undefined} onNext={index < entries.length - 1 ? () => setSelected(entries[index + 1].exercise.id) : undefined} {...actions} />
+  const card = entry && <ExerciseCard key={entry.exercise.id} entry={entry} index={index} total={entries.length} historyResults={historyResults?.[entry.exercise.id]} onPrevious={index > 0 ? () => setSelected(entries[index - 1].exercise.id) : undefined} onNext={index < entries.length - 1 ? () => setSelected(entries[index + 1].exercise.id) : undefined} onReplace={actions.onReplaceExercise} {...actions} />
 
   return <div className={`workout-views${entries.length === 0 ? ' workout-views-empty' : ''}`}>
     <div className="workout-views-heading"><h2>{t('exercisesHeading')}</h2><ViewModeSwitch value={mode} onChange={changeMode} /></div>
