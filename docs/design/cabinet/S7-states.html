@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GekkoFit · Общие состояния</title>
+<!-- Собрано docs/design/build.py. Правьте описание экранов там и пересоберите. -->
+<link rel="stylesheet" href="cabinet.css">
+</head>
+<body class="board">
+<header class="board-head"><div><h1>GekkoFit · Общие состояния</h1><p>Общие состояния: загрузка и ошибки на всех вкладках. Нажатие на кнопку в макете переводит к экрану, куда она ведёт. Розовая пунктирная рамка: экрана нет в коде, его нужно достроить.</p><nav><a href="index.html">Все сценарии</a><a href="../flow.html#s7">Эта группа на доске со стрелками</a><a href="S6-settings.html">← 6. Настройки и данные</a></nav></div><div class="board-tools" role="group" aria-label="Тема экранов"><button type="button" data-mode="dark" aria-pressed="true">Тёмная</button><button type="button" data-mode="light" aria-pressed="false">Светлая</button></div></header>
+<main class="flow">
+  <section class="shot" id="A7" data-status="ok" aria-label="A7 Загрузка">
+    <div class="cap"><b><span>A7</span>Загрузка<em class="st ok">есть</em><em class="st state">состояние</em></b><small>все вкладки · полоса и текст</small><span class="note">История: «Загружаем историю...» · Мастерство: «Собираем коллекцию…» · каталог: «Загружаем упражнения…»</span></div>
+    <div class="device"><div class="screen" data-mode="dark"><div class="status"><span>9:41</span><span>▮▮▮</span></div><div class="body"><div style="height:260px"></div><div class="progress" style="width:120px;margin:0 auto"><i style="width:60%"></i></div><p class="muted" style="text-align:center">Загружаем тренировку…</p></div><div class="bnav"><span class="on">Тренировка</span><span>Мастерство</span><span>История</span><span>Настройки</span></div></div></div>
+  </section>
+  <section class="shot" id="B7" data-status="ok" aria-label="B7 Ошибка тренировки">
+    <div class="cap"><b><span>B7</span>Ошибка тренировки<em class="st ok">есть</em><em class="st state">состояние</em></b><small>HomeScreen · не удалось прочитать или записать</small></div>
+    <div class="device"><div class="screen" data-mode="dark"><div class="status"><span>9:41</span><span>▮▮▮</span></div><div class="body"><div class="alert"><span>Не удалось загрузить или сохранить тренировку. Повторите попытку.</span><div class="btn">Повторить</div></div><div class="img" style="height:380px">экран тренировки</div></div><div class="bnav"><span class="on">Тренировка</span><span>Мастерство</span><span>История</span><span>Настройки</span></div></div></div>
+  </section>
+  <section class="shot" id="C7" data-status="ok" aria-label="C7 Ошибка в подходе">
+    <div class="cap"><b><span>C7</span>Ошибка в подходе<em class="st ok">есть</em><em class="st state">состояние</em></b><small>SetRow · проверка до сохранения</small><span class="note">кардио: «Введите неотрицательные значения, интенсивность от 0 до 10.»</span></div>
+    <div class="device"><div class="screen" data-mode="dark"><div class="status"><span>9:41</span><span>▮▮▮</span></div><div class="body"><div class="set-label"><span></span><span>Вес, кг</span><span>Повторы</span><span></span><span></span></div><div class="set"><span class="n">2</span><div class="input err">-5</div><div class="input">5</div><span class="chk">✓</span><span class="ic">✕</span></div><p class="errtxt">Вес должен быть числом от 0.</p><div class="set"><span class="n">3</span><div class="input">60</div><div class="input">0</div><span class="chk">✓</span><span class="ic">✕</span></div><p class="errtxt">Повторы должны быть целым числом от 1.</p><div class="alert"><span>Не удалось сохранить. Значения остались в строке.</span><span class="lnk">Повторить</span></div></div></div></div>
+  </section>
+  <section class="shot" id="D7" data-status="ok" aria-label="D7 Ошибка истории">
+    <div class="cap"><b><span>D7</span>Ошибка истории<em class="st ok">есть</em><em class="st state">состояние</em></b><small>HistoryScreen</small></div>
+    <div class="device"><div class="screen" data-mode="dark"><div class="status"><span>9:41</span><span>▮▮▮</span></div><div class="body"><p class="muted small">АРХИВ ТРЕНИРОВОК</p><h1>История</h1><div style="height:150px"></div><p style="text-align:center">Не удалось загрузить историю.</p><div class="btn">Повторить</div></div><div class="bnav"><span>Тренировка</span><span>Мастерство</span><span class="on">История</span><span>Настройки</span></div></div></div>
+  </section>
+  <section class="shot" id="E7" data-status="ok" aria-label="E7 Ошибка мастерства">
+    <div class="cap"><b><span>E7</span>Ошибка мастерства<em class="st ok">есть</em><em class="st state">состояние</em></b><small>ProgressScreen</small></div>
+    <div class="device"><div class="screen" data-mode="dark"><div class="status"><span>9:41</span><span>▮▮▮</span></div><div class="body"><p class="muted small">КОЛЛЕКЦИЯ</p><h1>Мастерство</h1><div style="height:150px"></div><b style="text-align:center">Не удалось загрузить мастерство</b><div class="btn">Повторить</div></div><div class="bnav"><span>Тренировка</span><span class="on">Мастерство</span><span>История</span><span>Настройки</span></div></div></div>
+  </section>
+</main>
+<script src="cabinet.js"></script>
+</body>
+</html>

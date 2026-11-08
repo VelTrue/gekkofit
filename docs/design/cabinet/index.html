@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GekkoFit · макеты всех экранов</title>
+<!-- Собрано docs/design/build.py. Правьте описание экранов там и пересоберите. -->
+<link rel="stylesheet" href="cabinet.css">
+</head>
+<body class="index">
+<main>
+  <header class="board-head" style="margin:0;max-width:none"><div><h1>GekkoFit · макеты всех экранов</h1>
+  <p>Все экраны дневника тренировок по группам: что есть в коде на 8 ноября 2026 и что нужно достроить на втором этапе.
+  Экраны нарисованы в цветах приложения (<code>src/theme.css</code>), тёмная и светлая тема переключаются на каждой странице, <code>?light</code> открывает сразу светлую. Телефон 375 px.</p></div><div class="board-tools" role="group" aria-label="Тема экранов"><button type="button" data-mode="dark" aria-pressed="true">Тёмная</button><button type="button" data-mode="light" aria-pressed="false">Светлая</button></div></header>
+  <div class="counts"><span><b>47</b>экранов и состояний</span><span><b>38</b>есть</span><span><b>9</b>достроить</span><span><b>7</b>групп</span></div>
+  <div class="grid">
+    <a class="s cta" href="../flow.html"><b>Доска со стрелками →</b><span>Все экраны на одном полотне: сетка A–G по сценариям и стрелки от каждой кнопки к экрану, куда она ведёт</span></a>
+    <a class="s" href="S1-start.html"><i>A1–G1 · 7 экранов</i><b>1. Старт и выбор упражнения</b><span>Главная, недавние, пустая тренировка, каталог упражнений, карточка упражнения, ошибка запуска, обновление</span></a>
+    <a class="s" href="S2-workout.html"><i>A2–G2 · 7 экранов</i><b>2. Тренировка идёт</b><span>Карточка упражнения и подходы, отдых, добавленные упражнения, режим «Список», кардио, удаление</span></a>
+    <a class="s" href="S3-finish.html"><i>A3–G3 · 7 экранов</i><b>3. Завершение и работа с упражнением</b><span>Завершить и удалить, итог тренировки, история упражнения, замена, быстрый ввод</span><em>достроить: 5</em></a>
+    <a class="s" href="S4-history.html"><i>A4–G4 · 7 экранов</i><b>4. История</b><span>Список и календарь, несколько тренировок за день, завершённая тренировка, удаление, пусто, шаблоны</span><em>достроить: 1</em></a>
+    <a class="s" href="S5-mastery.html"><i>A5–G5 · 7 экранов</i><b>5. Мастерство</b><span>Коллекция жетонов, пусто, жетон с уровнем, рекорды, упражнение, график, новый уровень</span><em>достроить: 2</em></a>
+    <a class="s" href="S6-settings.html"><i>A6–G6 · 7 экранов</i><b>6. Настройки и данные</b><span>Тема и язык, экспорт и импорт копии, ошибка файла, установка, админ-панель, настройки тренировки</span><em>достроить: 1</em></a>
+    <a class="s" href="S7-states.html"><i>A7–E7 · 5 экранов</i><b>Общие состояния</b><span>Загрузка, ошибка тренировки, ошибка в подходе, ошибки истории и мастерства</span></a>
+  </div>
+  <p class="note"><b>Как устроено:</b> все экраны описаны один раз в <code>docs/design/build.py</code>. Команда <code>python docs/design/build.py</code> собирает из них и доску со стрелками <code>flow.html</code>, и эти страницы.
+  Общие файлы: <code>cabinet.css</code> (скин экранов и страниц), <code>cabinet.js</code> (тема и переходы), <code>../board/</code> (основа доски из LMS).</p>
+</main>
+<script src="cabinet.js"></script>
+</body>
+</html>

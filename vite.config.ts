@@ -19,11 +19,13 @@ export default defineConfig({
         { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
       ],
     },
-    workbox: { globPatterns: ['**/*.{js,css,html,png,svg,json}'] },
+    workbox: { globPatterns: ['**/*.{js,css,html,png,webp,svg,json}'] },
   })],
   test: {
     environment: 'node',
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
+    // jsdom screens with the full catalog can exceed 5s when all files run in parallel
+    testTimeout: 15_000,
   },
 })

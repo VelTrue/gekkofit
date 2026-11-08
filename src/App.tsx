@@ -1,5 +1,6 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { NavBar, type ScreenName } from './components/NavBar'
+import { screenFromHash, screenHash } from './navigation'
 import { LangProvider, useLang } from './i18n/LangContext'
 import { InstallPromptProvider } from './pwa/InstallPromptContext'
 import { useRegisterSW } from 'virtual:pwa-register/react'
@@ -26,7 +27,16 @@ function UpdateBanner() {
 }
 
 export default function App() {
-  const [active, setActive] = useState<ScreenName>('workout')
+  const [active, setActiveState] = useState<ScreenName>(() => screenFromHash(window.location.hash))
+  useEffect(() => {
+    const sync = () => setActiveState(screenFromHash(window.location.hash))
+    window.addEventListener('hashchange', sync)
+    return () => window.removeEventListener('hashchange', sync)
+  }, [])
+  const setActive = useCallback((screen: ScreenName) => {
+    if (window.location.hash !== screenHash(screen)) window.location.hash = screenHash(screen)
+    setActiveState(screen)
+  }, [])
   return (
     <LangProvider>
       <InstallPromptProvider><div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] md:flex">

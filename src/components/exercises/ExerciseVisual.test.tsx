@@ -26,7 +26,7 @@ afterEach(() => cleanup())
 describe('exercise illustrations and muscle maps', () => {
   it('switches to both muscle views and back using an accessible control', async () => {
     render(<LangProvider><ExerciseVisual exercise={exercise} bothViews /></LangProvider>)
-    expect(screen.getByRole('img', { name: exercise.name_ru })).toHaveAttribute('src', '/exercises/barbell-bench-press.png')
+    expect(screen.getByRole('img', { name: exercise.name_ru })).toHaveAttribute('src', '/exercises/barbell-bench-press.webp')
     expect(screen.queryByText('Спереди')).not.toBeInTheDocument()
     await userEvent.click(screen.getByRole('button', { name: `Показать мышцы: ${exercise.name_ru}` }))
     expect(screen.getByRole('img', { name: /Основные мышцы/ }).querySelectorAll('[data-body-view]')).toHaveLength(2)
@@ -81,7 +81,7 @@ describe('exercise illustrations and muscle maps', () => {
     expect(screen.getByRole('img', { name: /Основные мышцы/ })).toBeVisible()
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
     view.rerender(<LangProvider><ExerciseVisual exercise={{ ...exercise, slug: 'begovaya-dorozhka-trenazher-321' }} /></LangProvider>)
-    expect(screen.getByRole('img', { name: exercise.name_ru })).toHaveAttribute('src', '/exercises/treadmill.png')
+    expect(screen.getByRole('img', { name: exercise.name_ru })).toHaveAttribute('src', '/exercises/treadmill.webp')
     view.rerender(<LangProvider><ExerciseVisual exercise={{ ...exercise, slug: 'unillustrated-exercise' }} /></LangProvider>)
     expect(screen.getByRole('img', { name: /Основные мышцы/ })).toBeVisible()
     expect(screen.queryByRole('button')).not.toBeInTheDocument()

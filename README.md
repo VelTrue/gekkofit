@@ -1,4 +1,4 @@
-# Workout Tracker
+# GekkoFit · Workout Tracker
 
 Локальный дневник тренировок на React и Vite. Данные хранятся в IndexedDB браузера. Сервер для хранения тренировок не требуется.
 
@@ -24,9 +24,9 @@ npm run preview
 
 ## GitHub Pages
 
-Ветка, публикуемая на GitHub, должна содержать `package.json`, `vite.config.ts`, `index.html`, `src`, `data`, `public` и `.github/workflows/pages.yml` в корне репозитория. Сейчас приложение находится в рабочей ветке `feat/workout-tracker-mvp`; один лишь корневой `master` этого локального репозитория приложение не содержит.
+Приложение находится в ветке `main`. При каждой отправке в `main` workflow `.github/workflows/pages.yml` запускает тесты, собирает сайт и публикует его.
 
-После переноса приложения в `main` или `master` и отправки ветки на GitHub:
+Чтобы включить публикацию в новом репозитории:
 
 1. Откройте **Settings > Pages** в репозитории.
 2. В **Build and deployment > Source** выберите **GitHub Actions**.
@@ -36,3 +36,18 @@ npm run preview
 Workflow устанавливает зависимости, запускает тесты, собирает приложение с путём Pages и публикует `dist`. Загружать исходный `index.html` или папку `dist` в интерфейсе GitHub вручную не нужно.
 
 Данные IndexedDB привязаны к адресу сайта и браузеру. Локальные тренировки с `localhost` автоматически на GitHub Pages не появятся. Для переноса используйте экспорт и импорт данных в настройках приложения.
+
+## Структура
+
+- `src/screens` - экраны: тренировка, мастерство, история, настройки, выбор упражнения.
+- `src/components` - компоненты по разделам (`workout`, `history`, `mastery`, `exercises`, `anatomy`).
+- `src/data-layer` - логика без интерфейса: тренировки, подходы, история, мастерство, резервная копия.
+- `src/db` - схема IndexedDB (Dexie) и миграции, синхронизация каталога из `data/exercises.json`.
+- `docs/superpowers` - спецификации и планы.
+- `docs/design/cabinet/index.html` - макеты всех экранов по группам сценариев, `docs/design/flow.html` - те же экраны на одной доске со стрелками. Оба собираются командой `python docs/design/build.py` из описания экранов в этом файле.
+
+Вкладки адресуются через hash: `#/workout`, `#/progress`, `#/history`, `#/settings`.
+
+## Правила
+
+См. `AGENTS.md`.

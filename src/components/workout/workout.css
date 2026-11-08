@@ -136,8 +136,8 @@
 .workout-home-start svg { width: 24px; height: 24px; margin-right: 6px; }
 .workout-home .workout-home-recent { justify-content: space-between; width: 100%; min-height: 58px; margin-top: 14px; padding-inline: 18px; border-color: var(--color-border); border-radius: 12px; background: transparent; font-size: 1rem; font-weight: 750; }
 .workout-home-recent svg { width: 22px; height: 22px; }
-.workout-home-arcs { position: absolute; inset: 0; background: url('/home-screen-artwork.png') center calc(100% + 21.5vw) / calc(100% + 32px) auto no-repeat; mask-image: linear-gradient(to bottom, transparent 61%, #000 63%); pointer-events: none; }
-:root[data-theme='light'] .workout-home-arcs { background-image: url('/home-screen-artwork-light.png'); }
+.workout-home-arcs { position: absolute; inset: 0; background: url('/home-screen-artwork.webp') center calc(100% + 21.5vw) / calc(100% + 32px) auto no-repeat; mask-image: linear-gradient(to bottom, transparent 61%, #000 63%); pointer-events: none; }
+:root[data-theme='light'] .workout-home-arcs { background-image: url('/home-screen-artwork-light.webp'); }
 :root[data-theme='light'] body:has(.workout-home),
 :root[data-theme='light'] #root:has(.workout-home) > div { background-color: #f1f5f5; }
 @media (max-width: 767px) {
@@ -213,7 +213,7 @@
   .workout-empty::before { content: ''; position: absolute; inset: 22px; border: 1px dashed #354047; border-radius: 10px; pointer-events: none; }
   .workout-empty > * { position: relative; }
   .workout-empty-illustration { display: block; width: 350px; max-width: 100%; margin: 0 auto 8px; }
-  .workout-barbell-reference { display: block; width: 100%; height: 142px; background: url('/workout-barbell-reference.png') -600px -418px / 1672px 941px no-repeat; mix-blend-mode: lighten; }
+  .workout-barbell-reference { display: block; width: 100%; height: 142px; background: url('/workout-barbell-reference.webp') -600px -418px / 1672px 941px no-repeat; mix-blend-mode: lighten; }
   .workout-empty-mobile-copy { display: none; }
   .workout-empty-desktop-copy { display: block; }
   .workout-empty h2 { margin: 0 0 10px; font-size: clamp(26px, 2vw, 32px); font-weight: 800; letter-spacing: -.03em; }

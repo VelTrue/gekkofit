@@ -132,23 +132,40 @@ export async function discardWorkout(database: AppDatabase, workoutId: string): 
 }
 
 export async function getWorkoutEntries(database: AppDatabase, workoutId: string): Promise<WorkoutEntry[]> {
-  const [rows, sets] = await Promise.all([
-    orderedWorkoutExercises(database, workoutId),
-    database.sets.where('workoutId').equals(workoutId).toArray(),
-  ])
-  const exercises = await database.exercises.bulkGet(rows.map(({ exerciseId }) => exerciseId))
+  return (await getEntriesForWorkouts(database, [workoutId])).get(workoutId) ?? []
+}
 
-  return rows.flatMap((workoutExercise, index) => {
-    const exercise = exercises[index]
-    if (!exercise) return []
-    return [{
+/** Loads entries of many workouts with three bulk queries instead of a query pair per workout. */
+export async function getEntriesForWorkouts(
+  database: AppDatabase,
+  workoutIds: string[],
+): Promise<Map<string, WorkoutEntry[]>> {
+  const result = new Map<string, WorkoutEntry[]>(workoutIds.map((id) => [id, []]))
+  if (workoutIds.length === 0) return result
+  const [rows, sets] = await Promise.all([
+    database.workoutExercises.where('workoutId').anyOf(workoutIds).toArray(),
+    database.sets.where('workoutId').anyOf(workoutIds).toArray(),
+  ])
+  const exerciseIds = [...new Set(rows.map(({ exerciseId }) => exerciseId))]
+  const exercises = new Map((await database.exercises.bulkGet(exerciseIds)).flatMap((exercise) => exercise ? [[exercise.id, exercise] as const] : []))
+  const setsByPair = new Map<string, WorkoutSet[]>()
+  for (const set of sets) {
+    const key = `${set.workoutId}\u0000${set.exerciseId}`
+    const list = setsByPair.get(key)
+    if (list) list.push(set)
+    else setsByPair.set(key, [set])
+  }
+
+  for (const workoutExercise of rows.sort(compareWorkoutExercises)) {
+    const exercise = exercises.get(workoutExercise.exerciseId)
+    if (!exercise) continue
+    result.get(workoutExercise.workoutId)?.push({
       workoutExercise,
       exercise,
-      sets: sets
-        .filter(({ exerciseId }) => exerciseId === workoutExercise.exerciseId)
-        .sort(compareSets),
-    }]
-  })
+      sets: (setsByPair.get(`${workoutExercise.workoutId}\u0000${workoutExercise.exerciseId}`) ?? []).sort(compareSets),
+    })
+  }
+  return result
 }
 
 function isValidWeight(weight: number): boolean {
@@ -161,9 +178,13 @@ function isValidRepetitions(reps: number): boolean {
 
 async function orderedWorkoutExercises(database: AppDatabase, workoutId: string): Promise<WorkoutExercise[]> {
   const rows = await database.workoutExercises.where('workoutId').equals(workoutId).toArray()
-  return rows.sort((left, right) => left.order - right.order
+  return rows.sort(compareWorkoutExercises)
+}
+
+function compareWorkoutExercises(left: WorkoutExercise, right: WorkoutExercise): number {
+  return left.order - right.order
     || left.createdAt.localeCompare(right.createdAt)
-    || left.id.localeCompare(right.id))
+    || left.id.localeCompare(right.id)
 }
 
 function compareSets(left: WorkoutSet, right: WorkoutSet): number {

@@ -9,8 +9,8 @@ import {
   addExerciseToWorkout, deleteSet, discardWorkout, getWorkoutEntries, removeExerciseFromWorkout,
   renameWorkout, reorderWorkoutExercise, updateSet, type SetChanges, type WorkoutEntry,
 } from '../data-layer/workoutEditor'
-import { formatWorkoutAsNote, summarizeWorkout } from '../data-layer/workoutSummary'
-import { finishWorkout, getActiveWorkout, getWorkoutDetail, getWorkoutHistory, startWorkout } from '../data-layer/workouts'
+import { summarizeWorkout } from '../data-layer/workoutSummary'
+import { finishWorkout, getActiveWorkout, getLatestExerciseResults, getWorkoutDetail, getWorkoutHistory, startWorkout } from '../data-layer/workouts'
 import { db, type Exercise, type Workout } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
 import { ExercisePicker } from './ExercisePicker'
@@ -35,12 +35,10 @@ export function HomeScreen() {
 
   const load = useCallback(async () => {
     const [active, history] = await Promise.all([getActiveWorkout(db), getWorkoutHistory(db)])
-    const loadedEntries = active ? await getWorkoutEntries(db, active.id) : []
-    const previous: Record<number, string> = {}
-    for (const item of history) {
-      const detail = await getWorkoutDetail(db, item.id)
-      for (const note of formatWorkoutAsNote(detail, lang)) previous[note.exerciseId] ??= note.sets.join(' · ')
-    }
+    const [loadedEntries, previous] = await Promise.all([
+      active ? getWorkoutEntries(db, active.id) : Promise.resolve([]),
+      getLatestExerciseResults(db, lang, history),
+    ])
     setWorkout(active ?? null); setEntries(loadedEntries); setRecent(history.slice(0, 4)); setPreviousResults(previous)
   }, [lang])
 

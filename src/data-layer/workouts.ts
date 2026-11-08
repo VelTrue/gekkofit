@@ -1,7 +1,8 @@
 import type { AppDatabase, Workout } from '../db/schema'
 import { defaultWorkoutTitle, type WorkoutTitleLocale } from '../db/workoutTitle'
 import { nextTimestamp } from './timestamps'
-import { getWorkoutEntries, type WorkoutEntry } from './workoutEditor'
+import { getEntriesForWorkouts, getWorkoutEntries, type WorkoutEntry } from './workoutEditor'
+import { formatWorkoutAsNote, type Locale } from './workoutSummary'
 
 export interface WorkoutDetail {
   workout: Workout
@@ -49,4 +50,23 @@ export async function getWorkoutDetail(
   const workout = await database.workouts.get(workoutId)
   if (!workout) throw new Error(`Workout ${workoutId} not found`)
   return { workout, entries: await getWorkoutEntries(database, workoutId) }
+}
+
+/**
+ * Last completed result per exercise across finished workouts, formatted as note lines.
+ * Newer workouts win, so each exercise shows its most recent session.
+ */
+export async function getLatestExerciseResults(
+  database: AppDatabase,
+  locale: Locale,
+  history?: Workout[],
+): Promise<Record<number, string>> {
+  const workouts = history ?? await getWorkoutHistory(database)
+  const entriesByWorkout = await getEntriesForWorkouts(database, workouts.map(({ id }) => id))
+  const results: Record<number, string> = {}
+  for (const workout of workouts) {
+    const detail = { workout, entries: entriesByWorkout.get(workout.id) ?? [] }
+    for (const note of formatWorkoutAsNote(detail, locale)) results[note.exerciseId] ??= note.sets.join(' · ')
+  }
+  return results
 }
