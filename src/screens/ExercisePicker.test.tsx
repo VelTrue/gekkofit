@@ -10,11 +10,12 @@ import { addSet } from '../data-layer/sets'
 import { startWorkout } from '../data-layer/workouts'
 import { LangProvider } from '../i18n/LangContext'
 import { ExercisePicker } from './ExercisePicker'
+import exerciseCatalog from '../../data/exercises.json'
 
-function Harness({ onPick = vi.fn() }: { onPick?: (exercise: Exercise) => void }) {
+function Harness({ onPick = vi.fn(), replacementFor }: { onPick?: (exercise: Exercise) => void; replacementFor?: Exercise }) {
   const [open, setOpen] = useState(false)
   return <LangProvider><button onClick={() => setOpen(true)}>Добавить упражнение</button>
-    {open && <ExercisePicker onPick={(exercise) => { onPick(exercise); setOpen(false) }} onClose={() => setOpen(false)} />}
+    {open && <ExercisePicker replacementFor={replacementFor} onPick={(exercise) => { onPick(exercise); setOpen(false) }} onClose={() => setOpen(false)} />}
   </LangProvider>
 }
 
@@ -58,6 +59,23 @@ describe('visual exercise picker', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
     expect(history.state).toEqual({ screen: 'workout' })
     expect(screen.getByRole('button', { name: 'Добавить упражнение' })).toHaveFocus()
+  })
+
+  it('shows only similar replacements for treadmill running', async () => {
+    render(<Harness replacementFor={(exerciseCatalog as Exercise[])[320]} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
+    const results = await screen.findByRole('region', { name: 'Похожие упражнения' })
+    expect(within(results).getByText('Бег с высоким подниманием бедра')).toBeVisible()
+    expect(within(results).queryByText('Езда на велотренажере')).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Группы мышц' })).not.toBeInTheDocument()
+  })
+
+  it('explains when the catalog has no similar replacement', async () => {
+    render(<Harness replacementFor={(exerciseCatalog as Exercise[])[97]} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
+    const results = await screen.findByRole('region', { name: 'Похожие упражнения' })
+    expect(within(results).getByText('Похожая замена не найдена')).toBeVisible()
+    expect(within(results).queryByRole('button', { name: /^Добавить / })).not.toBeInTheDocument()
   })
 
   it('opens the full detail sheet without selecting and restores focus on visible Back and Escape', async () => {

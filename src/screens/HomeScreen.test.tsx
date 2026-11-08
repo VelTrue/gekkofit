@@ -46,10 +46,20 @@ describe('active workout', () => {
     expect(await screen.findByRole('dialog')).toHaveTextContent('Выберите упражнение')
   })
 
+  it('limits replacement to a similar movement', async () => {
+    const workout = await startWorkout(db, 'ru')
+    await addExerciseToWorkout(db, workout.id, 321)
+    renderHome()
+    await userEvent.click(await screen.findByRole('button', { name: 'Заменить' }))
+    const picker = await screen.findByRole('region', { name: 'Похожие упражнения' })
+    expect(within(picker).getByText('Бег с высоким подниманием бедра')).toBeVisible()
+    expect(within(picker).queryByText('Езда на велотренажере')).not.toBeInTheDocument()
+  })
+
   it('switches to an editable note, remembers it, and saves an edited set', async () => {
     const { set } = await activeFixture()
     const view = renderHome()
-    await userEvent.click(await screen.findByRole('button', { name: 'Список' }))
+    await userEvent.selectOptions(await screen.findByRole('combobox', { name: 'Вид тренировки' }), 'list')
     expect(screen.getByText('14 кг × 12')).toBeVisible()
     expect(localStorage.getItem('workout-view-mode')).toBe('list')
     await userEvent.click(screen.getByRole('button', { name: /Редактировать подход 1/ }))
@@ -63,7 +73,7 @@ describe('active workout', () => {
     expect(screen.getByText('16 кг × 12')).toBeVisible()
     view.unmount()
     renderHome()
-    expect(await screen.findByRole('button', { name: 'Список' })).toHaveAttribute('aria-pressed', 'true')
+    expect(await screen.findByRole('combobox', { name: 'Вид тренировки' })).toHaveValue('list')
   })
 
   it('starts rest on completion but does not restart it when editing a completed set', async () => {
@@ -77,6 +87,44 @@ describe('active workout', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Сохранить подход 1' }))
     await screen.findByText('Сохранено')
     expect(screen.getByLabelText('Таймер отдыха')).not.toHaveTextContent('1:30')
+  })
+
+  it('adds an unchecked set and shows structured history without an inline previous result', async () => {
+    const previous = await startWorkout(db, 'ru')
+    await addExerciseToWorkout(db, previous.id, 19)
+    const oldSet = await addSet(db, previous.id, 19, 40, 8)
+    await updateSet(db, oldSet.id, { completed: true })
+    await finishWorkout(db, previous.id)
+    const active = await startWorkout(db, 'ru')
+    await addExerciseToWorkout(db, active.id, 19)
+    renderHome()
+    await userEvent.click(await screen.findByRole('button', { name: 'Добавить подход' }))
+    expect(await screen.findByRole('button', { name: 'Завершить подход 1' })).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.queryByText('В прошлый раз')).not.toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'История' }))
+    const dialog = screen.getByRole('dialog', { name: 'История' })
+    expect(within(dialog).getByRole('heading', { name: /^\d{1,2} [а-яё]+, [а-яё]{2}$/i })).toBeVisible()
+    expect(within(dialog).getByRole('listitem')).toHaveTextContent('40 кг × 8 раз')
+  })
+
+  it('opens history as a sheet with the latest session and expands all sessions on request', async () => {
+    const older = await activeFixture()
+    await finishWorkout(db, older.workout.id)
+    await db.workouts.update(older.workout.id, { title: 'Первый день', startedAt: '2026-09-28T10:00:00.000Z' })
+    const newer = await activeFixture()
+    await finishWorkout(db, newer.workout.id)
+    await db.workouts.update(newer.workout.id, { title: 'Силовая', startedAt: '2026-10-16T10:00:00.000Z' })
+    const active = await startWorkout(db, 'ru')
+    await addExerciseToWorkout(db, active.id, 19)
+    renderHome()
+    await userEvent.click(await screen.findByRole('button', { name: 'История' }))
+    const dialog = screen.getByRole('dialog', { name: 'История' })
+    expect(dialog).toHaveClass('workout-history-sheet')
+    expect(within(dialog).getByText('16 октября, пт')).toBeVisible()
+    expect(within(dialog).getByText('Силовая')).toBeVisible()
+    expect(within(dialog).queryByText('28 сентября, пн')).not.toBeInTheDocument()
+    await userEvent.click(within(dialog).getByRole('button', { name: 'Вся история' }))
+    expect(within(dialog).getByText('28 сентября, пн')).toBeVisible()
   })
 
   it('keeps an exercise without sets after reloading and opens its editor in list mode', async () => {
@@ -150,15 +198,16 @@ describe('active workout', () => {
     expect(await db.sets.count()).toBe(1)
   })
 
-  it('shows the previous completed session separately from active set values', async () => {
+  it('shows the previous completed session in history, separate from active set values', async () => {
     const previous = await activeFixture()
     await finishWorkout(db, previous.workout.id)
     const active = await startWorkout(db, 'ru')
     await addExerciseToWorkout(db, active.id, 19)
     await addSet(db, active.id, 19, 18, 8)
     renderHome()
-    expect(await screen.findByText('14 кг × 12')).toBeVisible()
-    expect(screen.getByLabelText('Вес, подход 1')).toHaveValue('18')
+    expect(await screen.findByLabelText('Вес, подход 1')).toHaveValue('18')
+    await userEvent.click(screen.getByRole('button', { name: 'История' }))
+    expect(within(screen.getByRole('dialog', { name: 'История' })).getByText('14 кг × 12 раз')).toBeVisible()
   })
 
   it('retries a failed initial load', async () => {

@@ -9,6 +9,7 @@ import {
   removeExerciseFromWorkout,
   renameWorkout,
   reorderWorkoutExercise,
+  replaceWorkoutExercise,
   updateSet,
 } from './workoutEditor'
 import { finishWorkout, startWorkout } from './workouts'
@@ -85,6 +86,15 @@ describe('workout editor', () => {
     await expect(updateSet(database, set.id, { reps: 0 })).rejects.toThrow('INVALID_SET_VALUES')
 
     expect(await database.sets.get(set.id)).toMatchObject({ weight: 50, reps: 8 })
+  })
+
+  it('replaces an exercise in place with its sets in one transaction', async () => {
+    const workout = await startWorkout(database, 'ru')
+    await addExerciseToWorkout(database, workout.id, bench.id)
+    const set = await addSet(database, workout.id, bench.id, 50, 8)
+    await replaceWorkoutExercise(database, workout.id, bench.id, squat.id)
+    expect((await getWorkoutEntries(database, workout.id)).map(({ exercise }) => exercise.id)).toEqual([squat.id])
+    expect(await database.sets.get(set.id)).toBeUndefined()
   })
 
   it('keeps exercises with no sets in workout order', async () => {

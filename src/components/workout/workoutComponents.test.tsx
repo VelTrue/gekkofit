@@ -62,6 +62,19 @@ describe('workout editing controls', () => {
     expect(onSave).toHaveBeenCalledExactlyOnceWith({ weight: 50, reps: 8, completed: true })
   })
 
+  it('calculates cardio speed and pace from distance and duration', async () => {
+    const onSave = vi.fn().mockResolvedValue(undefined)
+    render(<LangProvider><SetRow cardio set={{ ...set, distance: 2, duration: 10, incline: 1, intensity: 6 }} onSave={onSave} onDelete={vi.fn()} /></LangProvider>)
+    expect(screen.getByText('12', { selector: 'strong' })).toBeVisible()
+    expect(screen.getByText('5:00')).toBeVisible()
+    await userEvent.clear(screen.getByLabelText('Расстояние, км'))
+    await userEvent.type(screen.getByLabelText('Расстояние, км'), '2,5')
+    expect(screen.getByText('15', { selector: 'strong' })).toBeVisible()
+    expect(screen.getByText('4:00')).toBeVisible()
+    await userEvent.click(screen.getByRole('button', { name: 'Сохранить' }))
+    expect(onSave).toHaveBeenCalledWith({ distance: 2.5, incline: 1, duration: 10, intensity: 6, weight: 0, reps: 1, completed: true })
+  })
+
   it('validates and saves the workout title', async () => {
     const onSave = vi.fn().mockResolvedValue(undefined)
     render(<LangProvider><WorkoutTitle title="Тренировка груди" onSave={onSave} /></LangProvider>)
@@ -77,8 +90,8 @@ describe('workout editing controls', () => {
   it('exposes the selected presentation mode', async () => {
     const onChange = vi.fn()
     render(<LangProvider><ViewModeSwitch value="cards" onChange={onChange} /></LangProvider>)
-    expect(screen.getByRole('button', { name: 'Карточки' })).toHaveAttribute('aria-pressed', 'true')
-    await userEvent.click(screen.getByRole('button', { name: 'Список' }))
+    expect(screen.getByRole('combobox', { name: 'Вид тренировки' })).toHaveValue('cards')
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Вид тренировки' }), 'list')
     expect(onChange).toHaveBeenCalledWith('list')
   })
 

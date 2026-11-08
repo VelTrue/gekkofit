@@ -70,12 +70,18 @@ function StrengthSetRow({ set, onSave, onDelete }: {
 }
 
 function CardioSetRow({ set, onSave, onDelete }: { set: WorkoutSet; onSave: (changes: SetChanges) => Promise<void>; onDelete: () => Promise<void> }) {
-  const { t } = useLang()
+  const { lang, t } = useLang()
   const [values, setValues] = useState({ distance: String(set.distance ?? 0), incline: String(set.incline ?? 0), duration: String(set.duration ?? 0), intensity: String(set.intensity ?? 5) })
   const [pending, setPending] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [error, setError] = useState(false)
   const fields = [['distance', t('distanceKm'), 'decimal'], ['incline', t('inclinePercent'), 'decimal'], ['duration', t('durationMin'), 'decimal'], ['intensity', t('intensityTen'), 'decimal']] as const
+  const distance = Number(values.distance.replace(',', '.'))
+  const duration = Number(values.duration.replace(',', '.'))
+  const hasMotion = Number.isFinite(distance) && Number.isFinite(duration) && distance > 0 && duration > 0
+  const speed = hasMotion ? new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(distance * 60 / duration) : '-'
+  const paceSeconds = hasMotion ? Math.round(duration * 60 / distance) : 0
+  const pace = hasMotion ? `${Math.floor(paceSeconds / 60)}:${String(paceSeconds % 60).padStart(2, '0')}` : '-'
   async function save(completed = set.completed) {
     const parsed = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Number(value.replace(',', '.'))])) as unknown as SetChanges
     if (Object.values(parsed).some((value) => !Number.isFinite(value) || Number(value) < 0) || Number(parsed.intensity) > 10) { setError(true); return }
@@ -84,8 +90,8 @@ function CardioSetRow({ set, onSave, onDelete }: { set: WorkoutSet; onSave: (cha
   }
   return <div className="workout-set workout-set-cardio" data-completed={set.completed}>
     <span className="workout-set-ordinal">{set.setOrder + 1}</span>
-    <div className="workout-cardio-fields">{fields.map(([key, label, inputMode]) => <label className="workout-field" key={key}><span>{label}</span><input inputMode={inputMode} value={values[key]} disabled={pending} onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
-    <div className="workout-cardio-actions"><button type="button" className="workout-button" disabled={pending} onClick={() => void save()}>{t('save')}</button><button type="button" className="workout-complete" aria-pressed={set.completed} aria-label={t(set.completed ? 'markIncomplete' : 'completeSet')} disabled={pending} onClick={() => void save(!set.completed)}><WorkoutIcon name="check" /></button><button type="button" className="workout-icon-button workout-button-danger" aria-label={t('deleteSet')} onClick={() => setDeleting(true)}><WorkoutIcon name="remove" /></button></div>
+    <div className="workout-cardio-fields">{fields.map(([key, label, inputMode]) => <label className="workout-field" key={key}><span>{label}</span><input inputMode={inputMode} value={values[key]} disabled={pending} onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))} /></label>)}<div className="workout-cardio-derived"><span>{t('speedKmh')} <strong>{speed}</strong></span><span>{t('paceMinKm')} <strong>{pace}</strong></span></div></div>
+    <div className="workout-cardio-actions"><button type="button" className="workout-button" disabled={pending} onClick={() => void save()}>{t('save')}</button><button type="button" className="workout-complete" aria-pressed={set.completed} aria-label={t(set.completed ? 'markIncomplete' : 'completeSet')} disabled={pending} onClick={() => void save(!set.completed)}><WorkoutIcon name="check" /></button><button type="button" className="workout-icon-button workout-button-danger" aria-label={t('deleteSet')} disabled={pending} onClick={() => setDeleting(true)}><WorkoutIcon name="remove" /></button></div>
     {error && <p role="alert" className="workout-error">{t('cardioValuesError')}</p>}
     {deleting && <ConfirmAction title={t('deleteSetConfirm').replace('{index}', String(set.setOrder + 1))} description={t('deleteSetDescription')} confirmLabel={t('delete')} onConfirm={onDelete} onClose={() => setDeleting(false)} />}
   </div>

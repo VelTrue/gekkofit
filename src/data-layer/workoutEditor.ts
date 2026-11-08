@@ -69,6 +69,21 @@ export async function removeExerciseFromWorkout(
   })
 }
 
+export async function replaceWorkoutExercise(database: AppDatabase, workoutId: string, oldExerciseId: number, newExerciseId: number): Promise<void> {
+  if (oldExerciseId === newExerciseId) return
+  await database.transaction('rw', database.workoutExercises, database.sets, database.workouts, async () => {
+    const current = await database.workoutExercises.where('[workoutId+exerciseId]').equals([workoutId, oldExerciseId]).first()
+    if (!current) throw new Error('WORKOUT_EXERCISE_NOT_FOUND')
+    if (await database.workoutExercises.where('[workoutId+exerciseId]').equals([workoutId, newExerciseId]).first()) {
+      throw new Error('WORKOUT_EXERCISE_ALREADY_EXISTS')
+    }
+    const now = nextTimestamp()
+    await database.sets.where('workoutId').equals(workoutId).and((set) => set.exerciseId === oldExerciseId).delete()
+    await database.workoutExercises.update(current.id, { exerciseId: newExerciseId, updatedAt: now })
+    await database.workouts.update(workoutId, { updatedAt: now })
+  })
+}
+
 export async function reorderWorkoutExercise(
   database: AppDatabase,
   workoutId: string,

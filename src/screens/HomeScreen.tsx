@@ -7,9 +7,9 @@ import '../components/workout/workout.css'
 import { addSet, getLastSetForExercise } from '../data-layer/sets'
 import {
   addExerciseToWorkout, deleteSet, discardWorkout, getWorkoutEntries, removeExerciseFromWorkout,
-  renameWorkout, reorderWorkoutExercise, updateSet, type SetChanges, type WorkoutEntry,
+  renameWorkout, reorderWorkoutExercise, replaceWorkoutExercise, updateSet, type SetChanges, type WorkoutEntry,
 } from '../data-layer/workoutEditor'
-import { formatWorkoutAsNote, summarizeWorkout } from '../data-layer/workoutSummary'
+import { formatExerciseHistory, summarizeWorkout, type ExerciseHistorySession } from '../data-layer/workoutSummary'
 import { finishWorkout, getActiveWorkout, getWorkoutDetail, getWorkoutHistory, startWorkout } from '../data-layer/workouts'
 import { db, type Exercise, type Workout } from '../db/schema'
 import { useLang } from '../i18n/LangContext'
@@ -22,8 +22,10 @@ export function HomeScreen() {
   const [workout, setWorkout] = useState<Workout | null>(null)
   const [entries, setEntries] = useState<WorkoutEntry[]>([])
   const [recent, setRecent] = useState<Workout[]>([])
-  const [previousResults, setPreviousResults] = useState<Record<number, string>>({})
+  const [historyResults, setHistoryResults] = useState<Record<number, ExerciseHistorySession[]>>({})
   const [pickerOpen, setPickerOpen] = useState(false)
+  const [replacingId, setReplacingId] = useState<number | null>(null)
+  const [replacement, setReplacement] = useState<Exercise | null>(null)
   const [rest, setRest] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
   const [pending, setPending] = useState(false)
@@ -36,12 +38,15 @@ export function HomeScreen() {
   const load = useCallback(async () => {
     const [active, history] = await Promise.all([getActiveWorkout(db), getWorkoutHistory(db)])
     const loadedEntries = active ? await getWorkoutEntries(db, active.id) : []
-    const previous: Record<number, string> = {}
+    const results: Record<number, ExerciseHistorySession[]> = {}
     for (const item of history) {
       const detail = await getWorkoutDetail(db, item.id)
-      for (const note of formatWorkoutAsNote(detail, lang)) previous[note.exerciseId] ??= note.sets.join(' · ')
+      for (const { exercise } of detail.entries) {
+        const session = formatExerciseHistory(detail, exercise.id, lang)
+        if (session) (results[exercise.id] ??= []).push(session)
+      }
     }
-    setWorkout(active ?? null); setEntries(loadedEntries); setRecent(history.slice(0, 4)); setPreviousResults(previous)
+    setWorkout(active ?? null); setEntries(loadedEntries); setRecent(history.slice(0, 4)); setHistoryResults(results)
   }, [lang])
 
   useEffect(() => {
@@ -84,7 +89,23 @@ export function HomeScreen() {
   async function handlePick(exercise: Exercise) {
     if (!workout) return
     setPickerOpen(false)
+    if (replacingId !== null) {
+      if (replacingId === exercise.id) setReplacingId(null)
+      else if (entries.some((entry) => entry.exercise.id === exercise.id)) {
+        setSelectedExerciseId(exercise.id)
+        setReplacingId(null)
+      } else setReplacement(exercise)
+      return
+    }
     await perform(async () => { await addExerciseToWorkout(db, workout.id, exercise.id); await refresh(); setSelectedExerciseId(exercise.id) })
+  }
+
+  async function handleReplace() {
+    if (!workout || replacingId === null || !replacement) return
+    await replaceWorkoutExercise(db, workout.id, replacingId, replacement.id)
+    setSelectedExerciseId(replacement.id)
+    setReplacingId(null); setReplacement(null)
+    await refresh()
   }
 
   async function handleAddSet(exerciseId: number) {
@@ -93,7 +114,8 @@ export function HomeScreen() {
     const last = workoutEntry?.sets.at(-1)
       ?? await getLastSetForExercise(db, exerciseId)
     const cardio = workoutEntry?.exercise.muscle_group === 'КАРДИО'
-    await addSet(db, workout.id, exerciseId, cardio ? 0 : last?.weight ?? 20, cardio ? 1 : last?.reps ?? 8)
+    await addSet(db, workout.id, exerciseId, cardio ? 0 : last?.weight ?? 20, cardio ? 1 : last?.reps ?? 8,
+      cardio ? { distance: last?.distance ?? 0, duration: last?.duration ?? 0, incline: last?.incline ?? 0, intensity: last?.intensity ?? 5 } : undefined)
     await refresh()
   }
 
@@ -140,12 +162,13 @@ export function HomeScreen() {
     </header>
     {rest !== null && <aside className="workout-rest"><div><WorkoutIcon name="clock" /><span>{t('rest')}</span><output aria-label={t('restTimer')}>{Math.floor(rest / 60)}:{String(rest % 60).padStart(2, '0')}</output></div><button type="button" className="workout-text-button" onClick={() => setRest(null)}>{t(rest === 0 ? 'done' : 'skip')}</button></aside>}
     {error}
-    <WorkoutViews key={selectedExerciseId ?? 'workout-views'} detail={detail} previousResults={previousResults} selectedExerciseId={selectedExerciseId} onAddExercise={() => setPickerOpen(true)} onAddSet={handleAddSet} onUpdateSet={handleUpdateSet} onDeleteSet={async (setId) => { await deleteSet(db, setId); await refresh() }} onRemoveExercise={async (exerciseId) => { await removeExerciseFromWorkout(db, workout.id, exerciseId); await refresh() }} onMoveExercise={async (exerciseId, order) => { await reorderWorkoutExercise(db, workout.id, exerciseId, order); await refresh() }} />
+    <WorkoutViews key={selectedExerciseId ?? 'workout-views'} detail={detail} historyResults={historyResults} selectedExerciseId={selectedExerciseId} onAddExercise={() => setPickerOpen(true)} onReplaceExercise={(exerciseId) => { setReplacingId(exerciseId); setPickerOpen(true) }} onAddSet={handleAddSet} onUpdateSet={handleUpdateSet} onDeleteSet={async (setId) => { await deleteSet(db, setId); await refresh() }} onRemoveExercise={async (exerciseId) => { await removeExerciseFromWorkout(db, workout.id, exerciseId); await refresh() }} onMoveExercise={async (exerciseId, order) => { await reorderWorkoutExercise(db, workout.id, exerciseId, order); await refresh() }} />
     <div className={`workout-bottom-actions${entries.length === 0 ? ' workout-bottom-actions-empty' : ''}`}>
       <button type="button" className="workout-button workout-add-exercise" disabled={pending} onClick={() => setPickerOpen(true)}><WorkoutIcon name="plus" />{t('addExercisePlain')}</button>
       <footer className="workout-session-footer"><button type="button" className="workout-button workout-button-primary" disabled={pending} onClick={() => setConfirm('finish')}><WorkoutIcon name="check" />{t('finishWorkout')}</button><button type="button" className="workout-button workout-button-danger" disabled={pending} onClick={() => setConfirm('discard')}><span className="workout-discard-icon"><WorkoutIcon name="remove" /></span>{t('discardWorkout')}</button></footer>
     </div>
-    {pickerOpen && <ExercisePicker onPick={(exercise) => void handlePick(exercise)} onClose={() => setPickerOpen(false)} />}
+    {pickerOpen && <ExercisePicker replacementFor={entries.find(({ exercise }) => exercise.id === replacingId)?.exercise} excludedExerciseIds={entries.map(({ exercise }) => exercise.id)} onPick={(exercise) => void handlePick(exercise)} onClose={() => { setPickerOpen(false); setReplacingId(null) }} />}
+    {replacement && <ConfirmAction title={t('replaceExerciseConfirm')} description={t('replaceExerciseDescription')} confirmLabel={t('replaceExercise')} onConfirm={handleReplace} onClose={() => { setReplacement(null); setReplacingId(null) }} />}
     {confirm && <ConfirmAction title={t(confirm === 'discard' ? 'confirmDiscardWorkout' : 'finishWorkoutConfirm')} description={t(confirm === 'discard' ? 'discardDescription' : 'finishDescription').replace('{title}', workout.title)} confirmLabel={t(confirm === 'discard' ? 'discard' : 'finish')} onConfirm={closeWorkout} onClose={() => setConfirm(null)} />}
   </section>
 }

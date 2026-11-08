@@ -28,7 +28,9 @@ function ExerciseResultRows({ exercises, catalog, count, onMore, onPick, onInfo 
   </>
 }
 
-export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercise) => void; onClose: () => void }) {
+export function ExercisePicker({ onPick, onClose, replacementFor, excludedExerciseIds = [] }: {
+  onPick: (exercise: Exercise) => void; onClose: () => void; replacementFor?: Exercise; excludedExerciseIds?: number[]
+}) {
   const { lang, t } = useLang()
   const [catalog, setCatalog] = useState<{ all: Exercise[]; recent: Exercise[]; frequent: Exercise[] } | null>(null)
   const [failed, setFailed] = useState(false)
@@ -55,8 +57,14 @@ export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercis
 
   const groups = useMemo(() => [...new Set(catalog?.all.map(({ muscle_group }) => muscle_group) ?? [])], [catalog])
   const isSearching = normalizeExerciseQuery(query).length > 0
-  const matches = useMemo(() => catalog ? rankExercises(catalog.all, query, catalog.recent)
-    .filter((exercise) => !group || exercise.muscle_group === group) : [], [catalog, query, group])
+  const matches = useMemo(() => {
+    if (!catalog) return []
+    const available = replacementFor
+      ? getExerciseAlternatives(replacementFor, catalog.all, Infinity).filter(({ id }) => !excludedExerciseIds.includes(id))
+      : catalog.all
+    return (replacementFor && !isSearching ? available : rankExercises(available, query, replacementFor ? [] : catalog.recent))
+      .filter((exercise) => replacementFor || !group || exercise.muscle_group === group)
+  }, [catalog, query, group, replacementFor, excludedExerciseIds, isSearching])
   const pick = useCallback((exercise: Exercise) => {
     if (selected.current) return
     selected.current = exercise
@@ -72,17 +80,17 @@ export function ExercisePicker({ onPick, onClose }: { onPick: (exercise: Exercis
   const rows = (exercises: Exercise[]) => <ul className="exercise-list">{exercises.map((exercise) => <ExerciseListItem key={exercise.id} exercise={exercise} alternatives={getExerciseAlternatives(exercise, catalog?.all ?? [])} onPick={pick} onInfo={setDetail} />)}</ul>
   const section = (label: string, exercises: Exercise[]) => <section className="exercise-section" aria-label={label}><h3>{label}</h3>{rows(exercises)}</section>
 
-  return <WorkoutDialog title={t('chooseExercise')} backLabel={t('backToWorkout')} onClose={close}>
+  return <WorkoutDialog title={t(replacementFor ? 'replaceExercise' : 'chooseExercise')} backLabel={t('backToWorkout')} onClose={close}>
     <div className="exercise-picker">
       <div className="exercise-search"><label htmlFor={searchId}>{t('exerciseSearch')}</label><div className="exercise-search-field"><WorkoutIcon name="search" /><input ref={search} id={searchId} type="search" value={query} onChange={(event) => changeQuery(event.target.value)} placeholder={t('exerciseSearchPlaceholder')} />{query && <button type="button" onClick={clearSearch} aria-label={t('clearSearch')}><WorkoutIcon name="close" /></button>}</div></div>
       {!catalog && !failed && <p className="exercise-message" role="status">{t('exercisesLoading')}</p>}
       {failed && <div className="exercise-message"><p role="alert">{t('exercisesLoadError')}</p><button type="button" className="workout-button" onClick={() => { setFailed(false); setAttempt((value) => value + 1) }}>{t('retry')}</button></div>}
       {catalog && <>
-        {!isSearching && !group && <>{catalog.recent.length > 0 && section(t('recent'), catalog.recent)}{catalog.frequent.length > 0 && section(t('frequent'), catalog.frequent)}</>}
-        <section className="exercise-section" aria-labelledby={groupsId}><h3 id={groupsId}>{t('muscleGroups')}</h3><div className="exercise-groups"><button type="button" aria-pressed={!group} onClick={() => changeGroup('')}>{t('allGroups')}</button>{groups.map((item) => <button key={item} type="button" aria-pressed={group === item} onClick={() => changeGroup(item)}>{muscleGroupName(item, lang)}</button>)}</div></section>
-        <section className="exercise-section" aria-label={t(isSearching ? 'searchResults' : 'allExercises')}>
-          <div className="exercise-section-heading"><h3>{t(isSearching ? 'searchResults' : 'allExercises')}</h3><span role="status">{t('found')}: {matches.length}</span></div>
-          {matches.length > 0 ? <ExerciseResultRows exercises={matches} catalog={catalog.all} count={visibleCount} onMore={() => setVisibleCount((value) => value + PAGE_SIZE)} onPick={pick} onInfo={setDetail} /> : <div className="exercise-message"><strong>{t('noMatches')}</strong><p>{t(catalog.all.length === 0 ? 'reopenCatalog' : 'searchHint')}</p>{group && <button type="button" className="workout-button" onClick={() => changeGroup('')}>{t('clearGroup')}</button>}</div>}
+        {!replacementFor && !isSearching && !group && <>{catalog.recent.length > 0 && section(t('recent'), catalog.recent)}{catalog.frequent.length > 0 && section(t('frequent'), catalog.frequent)}</>}
+        {!replacementFor && <section className="exercise-section" aria-labelledby={groupsId}><h3 id={groupsId}>{t('muscleGroups')}</h3><div className="exercise-groups"><button type="button" aria-pressed={!group} onClick={() => changeGroup('')}>{t('allGroups')}</button>{groups.map((item) => <button key={item} type="button" aria-pressed={group === item} onClick={() => changeGroup(item)}>{muscleGroupName(item, lang)}</button>)}</div></section>}
+        <section className="exercise-section" aria-label={t(replacementFor ? 'similarExercises' : isSearching ? 'searchResults' : 'allExercises')}>
+          <div className="exercise-section-heading"><h3>{t(replacementFor ? 'similarExercises' : isSearching ? 'searchResults' : 'allExercises')}</h3><span role="status">{t('found')}: {matches.length}</span></div>
+          {matches.length > 0 ? <ExerciseResultRows exercises={matches} catalog={catalog.all} count={visibleCount} onMore={() => setVisibleCount((value) => value + PAGE_SIZE)} onPick={pick} onInfo={setDetail} /> : <div className="exercise-message"><strong>{t(replacementFor && !isSearching ? 'noSimilarExercise' : 'noMatches')}</strong><p>{t(replacementFor && !isSearching ? 'noSimilarExerciseHint' : catalog.all.length === 0 ? 'reopenCatalog' : 'searchHint')}</p>{group && <button type="button" className="workout-button" onClick={() => changeGroup('')}>{t('clearGroup')}</button>}</div>}
         </section>
       </>}
     </div>
