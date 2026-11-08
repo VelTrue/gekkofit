@@ -255,3 +255,9 @@ body[data-size="s"] .live-tools button { min-height: 34px; padding: 0 10px; font
 .to-filters { position: fixed; right: 18px; bottom: 18px; z-index: 6; min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 22px; background: #b8ff3d; color: #0e1804; font-weight: 800; text-decoration: none; box-shadow: 0 6px 20px rgb(0 0 0 / 35%); }
 .group { scroll-margin-top: 16px; }
 .shot { scroll-margin-top: 16px; }
+
+/* живой телефон: строка статуса сверху и отступ снизу, чтобы скругления не срезали содержимое */
+.live-frame.phone iframe { top: 30px; }
+.live-status { position: absolute; left: 0; right: 0; top: 0; height: 30px; display: flex; justify-content: space-between; align-items: center; padding: 4px 30px 0; font-size: 13px; font-weight: 700; color: #f4f7f8; background: #0b0d0f; }
+body[data-page-mode="light"] .live-frame { background: #eef1f2; }
+body[data-page-mode="light"] .live-status { background: #eef1f2; color: #121517; }

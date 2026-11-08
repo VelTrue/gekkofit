@@ -98,7 +98,8 @@
     const iframe = frame.querySelector('iframe')
     const scale = frame.clientWidth / Number(iframe.width)
     iframe.style.transform = `scale(${scale})`
-    frame.style.height = `${Number(iframe.height) * scale}px`
+    const bars = frame.classList.contains('phone') ? 30 + 18 : 0  // строка статуса сверху и отступ снизу, как у телефона
+    frame.style.height = `${Number(iframe.height) * scale + bars}px`
   }
   function goLive(shot) {
     const button = shot.querySelector('.live-on')
@@ -107,7 +108,8 @@
     const desktop = DESKTOP.test(code)
     const device = shot.querySelector('.device')
     const frame = document.createElement('div')
-    frame.className = 'live-frame'
+    frame.className = desktop ? 'live-frame' : 'live-frame phone'
+    if (!desktop) frame.innerHTML = '<div class="live-status" aria-hidden="true"><span>9:41</span><span>▮▮▮</span></div>'
     const iframe = document.createElement('iframe')
     iframe.title = `Живой экран ${code}`
     iframe.width = desktop ? 1440 : 390

@@ -44,6 +44,13 @@ storage.setItem('lang', 'ru')
   history.forward = () => history.go(1)
 }
 
+// полосы прокрутки не видны (листать можно), иначе они отнимают ширину и подсказки уезжают за край
+{
+  const style = document.createElement('style')
+  style.textContent = '*{scrollbar-width:none!important}*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}'
+  document.head.append(style)
+}
+
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function waitFor<T>(find: () => T | null | undefined, timeout = 12000): Promise<T | null> {
