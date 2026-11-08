@@ -1,0 +1,1748 @@
+{
+ "version": 2,
+ "exportedAt": "2026-11-08T12:00:00.000Z",
+ "workouts": [
+  {
+   "id": "demo-workout-00",
+   "startedAt": "2026-10-05T16:00:00.000Z",
+   "finishedAt": "2026-10-05T16:48:00.000Z",
+   "createdAt": "2026-10-05T16:00:00.000Z",
+   "updatedAt": "2026-10-05T16:48:00.000Z",
+   "title": "Грудь и трицепс"
+  },
+  {
+   "id": "demo-workout-01",
+   "startedAt": "2026-10-07T16:00:00.000Z",
+   "finishedAt": "2026-10-07T16:55:00.000Z",
+   "createdAt": "2026-10-07T16:00:00.000Z",
+   "updatedAt": "2026-10-07T16:55:00.000Z",
+   "title": "Спина и ноги"
+  },
+  {
+   "id": "demo-workout-02",
+   "startedAt": "2026-10-09T16:00:00.000Z",
+   "finishedAt": "2026-10-09T17:02:00.000Z",
+   "createdAt": "2026-10-09T16:00:00.000Z",
+   "updatedAt": "2026-10-09T17:02:00.000Z",
+   "title": "Кардио и пресс"
+  },
+  {
+   "id": "demo-workout-03",
+   "startedAt": "2026-10-12T16:00:00.000Z",
+   "finishedAt": "2026-10-12T16:48:00.000Z",
+   "createdAt": "2026-10-12T16:00:00.000Z",
+   "updatedAt": "2026-10-12T16:48:00.000Z",
+   "title": "Грудь и трицепс"
+  },
+  {
+   "id": "demo-workout-04",
+   "startedAt": "2026-10-14T16:00:00.000Z",
+   "finishedAt": "2026-10-14T16:55:00.000Z",
+   "createdAt": "2026-10-14T16:00:00.000Z",
+   "updatedAt": "2026-10-14T16:55:00.000Z",
+   "title": "Спина и ноги"
+  },
+  {
+   "id": "demo-workout-05",
+   "startedAt": "2026-10-16T16:00:00.000Z",
+   "finishedAt": "2026-10-16T17:02:00.000Z",
+   "createdAt": "2026-10-16T16:00:00.000Z",
+   "updatedAt": "2026-10-16T17:02:00.000Z",
+   "title": "Кардио и пресс"
+  },
+  {
+   "id": "demo-workout-06",
+   "startedAt": "2026-10-19T16:00:00.000Z",
+   "finishedAt": "2026-10-19T16:48:00.000Z",
+   "createdAt": "2026-10-19T16:00:00.000Z",
+   "updatedAt": "2026-10-19T16:48:00.000Z",
+   "title": "Грудь и трицепс"
+  },
+  {
+   "id": "demo-workout-07",
+   "startedAt": "2026-10-21T16:00:00.000Z",
+   "finishedAt": "2026-10-21T16:55:00.000Z",
+   "createdAt": "2026-10-21T16:00:00.000Z",
+   "updatedAt": "2026-10-21T16:55:00.000Z",
+   "title": "Спина и ноги"
+  },
+  {
+   "id": "demo-workout-08",
+   "startedAt": "2026-10-23T16:00:00.000Z",
+   "finishedAt": "2026-10-23T17:02:00.000Z",
+   "createdAt": "2026-10-23T16:00:00.000Z",
+   "updatedAt": "2026-10-23T17:02:00.000Z",
+   "title": "Кардио и пресс"
+  },
+  {
+   "id": "demo-workout-09",
+   "startedAt": "2026-10-26T16:00:00.000Z",
+   "finishedAt": "2026-10-26T16:48:00.000Z",
+   "createdAt": "2026-10-26T16:00:00.000Z",
+   "updatedAt": "2026-10-26T16:48:00.000Z",
+   "title": "Грудь и трицепс"
+  },
+  {
+   "id": "demo-workout-10",
+   "startedAt": "2026-10-28T16:00:00.000Z",
+   "finishedAt": "2026-10-28T16:55:00.000Z",
+   "createdAt": "2026-10-28T16:00:00.000Z",
+   "updatedAt": "2026-10-28T16:55:00.000Z",
+   "title": "Тренировка 28 "
+  },
+  {
+   "id": "demo-workout-11",
+   "startedAt": "2026-10-30T16:00:00.000Z",
+   "finishedAt": "2026-10-30T17:02:00.000Z",
+   "createdAt": "2026-10-30T16:00:00.000Z",
+   "updatedAt": "2026-10-30T17:02:00.000Z",
+   "title": "Кардио и пресс"
+  },
+  {
+   "id": "demo-workout-12",
+   "startedAt": "2026-11-02T16:00:00.000Z",
+   "finishedAt": "2026-11-02T16:48:00.000Z",
+   "createdAt": "2026-11-02T16:00:00.000Z",
+   "updatedAt": "2026-11-02T16:48:00.000Z",
+   "title": "Грудь и трицепс"
+  },
+  {
+   "id": "demo-workout-13",
+   "startedAt": "2026-11-04T16:00:00.000Z",
+   "finishedAt": "2026-11-04T16:55:00.000Z",
+   "createdAt": "2026-11-04T16:00:00.000Z",
+   "updatedAt": "2026-11-04T16:55:00.000Z",
+   "title": "Спина и ноги"
+  },
+  {
+   "id": "demo-workout-14",
+   "startedAt": "2026-11-06T05:00:00.000Z",
+   "finishedAt": "2026-11-06T06:02:00.000Z",
+   "createdAt": "2026-11-06T05:00:00.000Z",
+   "updatedAt": "2026-11-06T06:02:00.000Z",
+   "title": "Утро · плечи"
+  },
+  {
+   "id": "demo-workout-15",
+   "startedAt": "2026-11-06T16:00:00.000Z",
+   "finishedAt": "2026-11-06T16:48:00.000Z",
+   "createdAt": "2026-11-06T16:00:00.000Z",
+   "updatedAt": "2026-11-06T16:48:00.000Z",
+   "title": "Кардио и пресс"
+  }
+ ],
+ "workoutExercises": [
+  {
+   "id": "demo-workout-00-ex-1",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 1,
+   "order": 0,
+   "createdAt": "2026-10-05T16:00:00.000Z",
+   "updatedAt": "2026-10-05T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-00-ex-2",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 2,
+   "order": 1,
+   "createdAt": "2026-10-05T16:09:00.000Z",
+   "updatedAt": "2026-10-05T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-00-ex-7",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 7,
+   "order": 2,
+   "createdAt": "2026-10-05T16:15:00.000Z",
+   "updatedAt": "2026-10-05T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-00-ex-235",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 235,
+   "order": 3,
+   "createdAt": "2026-10-05T16:21:00.000Z",
+   "updatedAt": "2026-10-05T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-01-ex-71",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 71,
+   "order": 0,
+   "createdAt": "2026-10-07T16:00:00.000Z",
+   "updatedAt": "2026-10-07T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-01-ex-48",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 48,
+   "order": 1,
+   "createdAt": "2026-10-07T16:09:00.000Z",
+   "updatedAt": "2026-10-07T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-01-ex-116",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 116,
+   "order": 2,
+   "createdAt": "2026-10-07T16:15:00.000Z",
+   "updatedAt": "2026-10-07T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-01-ex-93",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 93,
+   "order": 3,
+   "createdAt": "2026-10-07T16:21:00.000Z",
+   "updatedAt": "2026-10-07T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-02-ex-321",
+   "workoutId": "demo-workout-02",
+   "exerciseId": 321,
+   "order": 0,
+   "createdAt": "2026-10-09T16:00:00.000Z",
+   "updatedAt": "2026-10-09T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-02-ex-281",
+   "workoutId": "demo-workout-02",
+   "exerciseId": 281,
+   "order": 1,
+   "createdAt": "2026-10-09T16:03:00.000Z",
+   "updatedAt": "2026-10-09T16:03:00.000Z"
+  },
+  {
+   "id": "demo-workout-03-ex-1",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 1,
+   "order": 0,
+   "createdAt": "2026-10-12T16:00:00.000Z",
+   "updatedAt": "2026-10-12T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-03-ex-2",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 2,
+   "order": 1,
+   "createdAt": "2026-10-12T16:09:00.000Z",
+   "updatedAt": "2026-10-12T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-03-ex-7",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 7,
+   "order": 2,
+   "createdAt": "2026-10-12T16:15:00.000Z",
+   "updatedAt": "2026-10-12T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-03-ex-235",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 235,
+   "order": 3,
+   "createdAt": "2026-10-12T16:21:00.000Z",
+   "updatedAt": "2026-10-12T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-04-ex-71",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 71,
+   "order": 0,
+   "createdAt": "2026-10-14T16:00:00.000Z",
+   "updatedAt": "2026-10-14T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-04-ex-48",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 48,
+   "order": 1,
+   "createdAt": "2026-10-14T16:09:00.000Z",
+   "updatedAt": "2026-10-14T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-04-ex-116",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 116,
+   "order": 2,
+   "createdAt": "2026-10-14T16:15:00.000Z",
+   "updatedAt": "2026-10-14T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-04-ex-93",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 93,
+   "order": 3,
+   "createdAt": "2026-10-14T16:21:00.000Z",
+   "updatedAt": "2026-10-14T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-05-ex-321",
+   "workoutId": "demo-workout-05",
+   "exerciseId": 321,
+   "order": 0,
+   "createdAt": "2026-10-16T16:00:00.000Z",
+   "updatedAt": "2026-10-16T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-05-ex-281",
+   "workoutId": "demo-workout-05",
+   "exerciseId": 281,
+   "order": 1,
+   "createdAt": "2026-10-16T16:03:00.000Z",
+   "updatedAt": "2026-10-16T16:03:00.000Z"
+  },
+  {
+   "id": "demo-workout-06-ex-1",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 1,
+   "order": 0,
+   "createdAt": "2026-10-19T16:00:00.000Z",
+   "updatedAt": "2026-10-19T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-06-ex-2",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 2,
+   "order": 1,
+   "createdAt": "2026-10-19T16:09:00.000Z",
+   "updatedAt": "2026-10-19T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-06-ex-7",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 7,
+   "order": 2,
+   "createdAt": "2026-10-19T16:15:00.000Z",
+   "updatedAt": "2026-10-19T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-06-ex-235",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 235,
+   "order": 3,
+   "createdAt": "2026-10-19T16:21:00.000Z",
+   "updatedAt": "2026-10-19T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-07-ex-71",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 71,
+   "order": 0,
+   "createdAt": "2026-10-21T16:00:00.000Z",
+   "updatedAt": "2026-10-21T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-07-ex-48",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 48,
+   "order": 1,
+   "createdAt": "2026-10-21T16:09:00.000Z",
+   "updatedAt": "2026-10-21T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-07-ex-116",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 116,
+   "order": 2,
+   "createdAt": "2026-10-21T16:15:00.000Z",
+   "updatedAt": "2026-10-21T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-07-ex-93",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 93,
+   "order": 3,
+   "createdAt": "2026-10-21T16:21:00.000Z",
+   "updatedAt": "2026-10-21T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-08-ex-321",
+   "workoutId": "demo-workout-08",
+   "exerciseId": 321,
+   "order": 0,
+   "createdAt": "2026-10-23T16:00:00.000Z",
+   "updatedAt": "2026-10-23T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-08-ex-281",
+   "workoutId": "demo-workout-08",
+   "exerciseId": 281,
+   "order": 1,
+   "createdAt": "2026-10-23T16:03:00.000Z",
+   "updatedAt": "2026-10-23T16:03:00.000Z"
+  },
+  {
+   "id": "demo-workout-09-ex-1",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 1,
+   "order": 0,
+   "createdAt": "2026-10-26T16:00:00.000Z",
+   "updatedAt": "2026-10-26T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-09-ex-2",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 2,
+   "order": 1,
+   "createdAt": "2026-10-26T16:09:00.000Z",
+   "updatedAt": "2026-10-26T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-09-ex-7",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 7,
+   "order": 2,
+   "createdAt": "2026-10-26T16:15:00.000Z",
+   "updatedAt": "2026-10-26T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-09-ex-235",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 235,
+   "order": 3,
+   "createdAt": "2026-10-26T16:21:00.000Z",
+   "updatedAt": "2026-10-26T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-10-ex-71",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 71,
+   "order": 0,
+   "createdAt": "2026-10-28T16:00:00.000Z",
+   "updatedAt": "2026-10-28T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-10-ex-48",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 48,
+   "order": 1,
+   "createdAt": "2026-10-28T16:09:00.000Z",
+   "updatedAt": "2026-10-28T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-10-ex-116",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 116,
+   "order": 2,
+   "createdAt": "2026-10-28T16:15:00.000Z",
+   "updatedAt": "2026-10-28T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-10-ex-93",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 93,
+   "order": 3,
+   "createdAt": "2026-10-28T16:21:00.000Z",
+   "updatedAt": "2026-10-28T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-11-ex-321",
+   "workoutId": "demo-workout-11",
+   "exerciseId": 321,
+   "order": 0,
+   "createdAt": "2026-10-30T16:00:00.000Z",
+   "updatedAt": "2026-10-30T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-11-ex-281",
+   "workoutId": "demo-workout-11",
+   "exerciseId": 281,
+   "order": 1,
+   "createdAt": "2026-10-30T16:03:00.000Z",
+   "updatedAt": "2026-10-30T16:03:00.000Z"
+  },
+  {
+   "id": "demo-workout-12-ex-1",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 1,
+   "order": 0,
+   "createdAt": "2026-11-02T16:00:00.000Z",
+   "updatedAt": "2026-11-02T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-12-ex-2",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 2,
+   "order": 1,
+   "createdAt": "2026-11-02T16:09:00.000Z",
+   "updatedAt": "2026-11-02T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-12-ex-7",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 7,
+   "order": 2,
+   "createdAt": "2026-11-02T16:15:00.000Z",
+   "updatedAt": "2026-11-02T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-12-ex-235",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 235,
+   "order": 3,
+   "createdAt": "2026-11-02T16:21:00.000Z",
+   "updatedAt": "2026-11-02T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-13-ex-71",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 71,
+   "order": 0,
+   "createdAt": "2026-11-04T16:00:00.000Z",
+   "updatedAt": "2026-11-04T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-13-ex-48",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 48,
+   "order": 1,
+   "createdAt": "2026-11-04T16:09:00.000Z",
+   "updatedAt": "2026-11-04T16:09:00.000Z"
+  },
+  {
+   "id": "demo-workout-13-ex-116",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 116,
+   "order": 2,
+   "createdAt": "2026-11-04T16:15:00.000Z",
+   "updatedAt": "2026-11-04T16:15:00.000Z"
+  },
+  {
+   "id": "demo-workout-13-ex-93",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 93,
+   "order": 3,
+   "createdAt": "2026-11-04T16:21:00.000Z",
+   "updatedAt": "2026-11-04T16:21:00.000Z"
+  },
+  {
+   "id": "demo-workout-14-ex-180",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 180,
+   "order": 0,
+   "createdAt": "2026-11-06T05:00:00.000Z",
+   "updatedAt": "2026-11-06T05:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-14-ex-200",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 200,
+   "order": 1,
+   "createdAt": "2026-11-06T05:06:00.000Z",
+   "updatedAt": "2026-11-06T05:06:00.000Z"
+  },
+  {
+   "id": "demo-workout-15-ex-321",
+   "workoutId": "demo-workout-15",
+   "exerciseId": 321,
+   "order": 0,
+   "createdAt": "2026-11-06T16:00:00.000Z",
+   "updatedAt": "2026-11-06T16:00:00.000Z"
+  },
+  {
+   "id": "demo-workout-15-ex-281",
+   "workoutId": "demo-workout-15",
+   "exerciseId": 281,
+   "order": 1,
+   "createdAt": "2026-11-06T16:03:00.000Z",
+   "updatedAt": "2026-11-06T16:03:00.000Z"
+  }
+ ],
+ "sets": [
+  {
+   "id": "demo-workout-00-set-1-0",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 1,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-05T16:03:00.000Z",
+   "updatedAt": "2026-10-05T16:03:00.000Z",
+   "weight": 50.0,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-00-set-1-1",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 1,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-05T16:06:00.000Z",
+   "updatedAt": "2026-10-05T16:06:00.000Z",
+   "weight": 52.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-00-set-1-2",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 1,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-05T16:09:00.000Z",
+   "updatedAt": "2026-10-05T16:09:00.000Z",
+   "weight": 52.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-00-set-2-0",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 2,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-05T16:12:00.000Z",
+   "updatedAt": "2026-10-05T16:12:00.000Z",
+   "weight": 18,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-00-set-2-1",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 2,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-05T16:15:00.000Z",
+   "updatedAt": "2026-10-05T16:15:00.000Z",
+   "weight": 18,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-00-set-7-0",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 7,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-05T16:18:00.000Z",
+   "updatedAt": "2026-10-05T16:18:00.000Z",
+   "weight": 10,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-00-set-7-1",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 7,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-05T16:21:00.000Z",
+   "updatedAt": "2026-10-05T16:21:00.000Z",
+   "weight": 10,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-00-set-235-0",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 235,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-05T16:24:00.000Z",
+   "updatedAt": "2026-10-05T16:24:00.000Z",
+   "weight": 25.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-00-set-235-1",
+   "workoutId": "demo-workout-00",
+   "exerciseId": 235,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-05T16:27:00.000Z",
+   "updatedAt": "2026-10-05T16:27:00.000Z",
+   "weight": 25.0,
+   "reps": 9
+  },
+  {
+   "id": "demo-workout-01-set-71-0",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 71,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-07T16:03:00.000Z",
+   "updatedAt": "2026-10-07T16:03:00.000Z",
+   "weight": 70,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-01-set-71-1",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 71,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-07T16:06:00.000Z",
+   "updatedAt": "2026-10-07T16:06:00.000Z",
+   "weight": 70,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-01-set-71-2",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 71,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-07T16:09:00.000Z",
+   "updatedAt": "2026-10-07T16:09:00.000Z",
+   "weight": 75,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-01-set-48-0",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 48,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-07T16:12:00.000Z",
+   "updatedAt": "2026-10-07T16:12:00.000Z",
+   "weight": 45.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-01-set-48-1",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 48,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-07T16:15:00.000Z",
+   "updatedAt": "2026-10-07T16:15:00.000Z",
+   "weight": 47.5,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-01-set-116-0",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 116,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-07T16:18:00.000Z",
+   "updatedAt": "2026-10-07T16:18:00.000Z",
+   "weight": 90,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-01-set-116-1",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 116,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-07T16:21:00.000Z",
+   "updatedAt": "2026-10-07T16:21:00.000Z",
+   "weight": 95,
+   "reps": 3
+  },
+  {
+   "id": "demo-workout-01-set-93-0",
+   "workoutId": "demo-workout-01",
+   "exerciseId": 93,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-07T16:24:00.000Z",
+   "updatedAt": "2026-10-07T16:24:00.000Z",
+   "weight": 120,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-02-set-321-0",
+   "workoutId": "demo-workout-02",
+   "exerciseId": 321,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-09T16:03:00.000Z",
+   "updatedAt": "2026-10-09T16:03:00.000Z",
+   "weight": 0,
+   "reps": 1,
+   "distance": 3.0,
+   "duration": 20,
+   "incline": 2,
+   "intensity": 6
+  },
+  {
+   "id": "demo-workout-02-set-281-0",
+   "workoutId": "demo-workout-02",
+   "exerciseId": 281,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-09T16:06:00.000Z",
+   "updatedAt": "2026-10-09T16:06:00.000Z",
+   "weight": 0,
+   "reps": 60
+  },
+  {
+   "id": "demo-workout-02-set-281-1",
+   "workoutId": "demo-workout-02",
+   "exerciseId": 281,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-09T16:09:00.000Z",
+   "updatedAt": "2026-10-09T16:09:00.000Z",
+   "weight": 0,
+   "reps": 45
+  },
+  {
+   "id": "demo-workout-03-set-1-0",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 1,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-12T16:03:00.000Z",
+   "updatedAt": "2026-10-12T16:03:00.000Z",
+   "weight": 52.5,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-03-set-1-1",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 1,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-12T16:06:00.000Z",
+   "updatedAt": "2026-10-12T16:06:00.000Z",
+   "weight": 55.0,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-03-set-1-2",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 1,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-12T16:09:00.000Z",
+   "updatedAt": "2026-10-12T16:09:00.000Z",
+   "weight": 55.0,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-03-set-2-0",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 2,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-12T16:12:00.000Z",
+   "updatedAt": "2026-10-12T16:12:00.000Z",
+   "weight": 20,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-03-set-2-1",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 2,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-12T16:15:00.000Z",
+   "updatedAt": "2026-10-12T16:15:00.000Z",
+   "weight": 20,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-03-set-7-0",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 7,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-12T16:18:00.000Z",
+   "updatedAt": "2026-10-12T16:18:00.000Z",
+   "weight": 11,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-03-set-7-1",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 7,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-12T16:21:00.000Z",
+   "updatedAt": "2026-10-12T16:21:00.000Z",
+   "weight": 11,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-03-set-235-0",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 235,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-12T16:24:00.000Z",
+   "updatedAt": "2026-10-12T16:24:00.000Z",
+   "weight": 27.5,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-03-set-235-1",
+   "workoutId": "demo-workout-03",
+   "exerciseId": 235,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-12T16:27:00.000Z",
+   "updatedAt": "2026-10-12T16:27:00.000Z",
+   "weight": 27.5,
+   "reps": 9
+  },
+  {
+   "id": "demo-workout-04-set-71-0",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 71,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-14T16:03:00.000Z",
+   "updatedAt": "2026-10-14T16:03:00.000Z",
+   "weight": 75,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-04-set-71-1",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 71,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-14T16:06:00.000Z",
+   "updatedAt": "2026-10-14T16:06:00.000Z",
+   "weight": 75,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-04-set-71-2",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 71,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-14T16:09:00.000Z",
+   "updatedAt": "2026-10-14T16:09:00.000Z",
+   "weight": 80,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-04-set-48-0",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 48,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-14T16:12:00.000Z",
+   "updatedAt": "2026-10-14T16:12:00.000Z",
+   "weight": 47.5,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-04-set-48-1",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 48,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-14T16:15:00.000Z",
+   "updatedAt": "2026-10-14T16:15:00.000Z",
+   "weight": 50.0,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-04-set-116-0",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 116,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-14T16:18:00.000Z",
+   "updatedAt": "2026-10-14T16:18:00.000Z",
+   "weight": 95,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-04-set-116-1",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 116,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-14T16:21:00.000Z",
+   "updatedAt": "2026-10-14T16:21:00.000Z",
+   "weight": 100,
+   "reps": 3
+  },
+  {
+   "id": "demo-workout-04-set-93-0",
+   "workoutId": "demo-workout-04",
+   "exerciseId": 93,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-14T16:24:00.000Z",
+   "updatedAt": "2026-10-14T16:24:00.000Z",
+   "weight": 130,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-05-set-321-0",
+   "workoutId": "demo-workout-05",
+   "exerciseId": 321,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-16T16:03:00.000Z",
+   "updatedAt": "2026-10-16T16:03:00.000Z",
+   "weight": 0,
+   "reps": 1,
+   "distance": 3.5,
+   "duration": 21,
+   "incline": 2,
+   "intensity": 6
+  },
+  {
+   "id": "demo-workout-05-set-281-0",
+   "workoutId": "demo-workout-05",
+   "exerciseId": 281,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-16T16:06:00.000Z",
+   "updatedAt": "2026-10-16T16:06:00.000Z",
+   "weight": 0,
+   "reps": 60
+  },
+  {
+   "id": "demo-workout-05-set-281-1",
+   "workoutId": "demo-workout-05",
+   "exerciseId": 281,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-16T16:09:00.000Z",
+   "updatedAt": "2026-10-16T16:09:00.000Z",
+   "weight": 0,
+   "reps": 45
+  },
+  {
+   "id": "demo-workout-06-set-1-0",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 1,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-19T16:03:00.000Z",
+   "updatedAt": "2026-10-19T16:03:00.000Z",
+   "weight": 55.0,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-06-set-1-1",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 1,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-19T16:06:00.000Z",
+   "updatedAt": "2026-10-19T16:06:00.000Z",
+   "weight": 57.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-06-set-1-2",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 1,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-19T16:09:00.000Z",
+   "updatedAt": "2026-10-19T16:09:00.000Z",
+   "weight": 57.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-06-set-2-0",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 2,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-19T16:12:00.000Z",
+   "updatedAt": "2026-10-19T16:12:00.000Z",
+   "weight": 22,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-06-set-2-1",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 2,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-19T16:15:00.000Z",
+   "updatedAt": "2026-10-19T16:15:00.000Z",
+   "weight": 22,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-06-set-7-0",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 7,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-19T16:18:00.000Z",
+   "updatedAt": "2026-10-19T16:18:00.000Z",
+   "weight": 12,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-06-set-7-1",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 7,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-19T16:21:00.000Z",
+   "updatedAt": "2026-10-19T16:21:00.000Z",
+   "weight": 12,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-06-set-235-0",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 235,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-19T16:24:00.000Z",
+   "updatedAt": "2026-10-19T16:24:00.000Z",
+   "weight": 30.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-06-set-235-1",
+   "workoutId": "demo-workout-06",
+   "exerciseId": 235,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-19T16:27:00.000Z",
+   "updatedAt": "2026-10-19T16:27:00.000Z",
+   "weight": 30.0,
+   "reps": 9
+  },
+  {
+   "id": "demo-workout-07-set-71-0",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 71,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-21T16:03:00.000Z",
+   "updatedAt": "2026-10-21T16:03:00.000Z",
+   "weight": 80,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-07-set-71-1",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 71,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-21T16:06:00.000Z",
+   "updatedAt": "2026-10-21T16:06:00.000Z",
+   "weight": 80,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-07-set-71-2",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 71,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-21T16:09:00.000Z",
+   "updatedAt": "2026-10-21T16:09:00.000Z",
+   "weight": 85,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-07-set-48-0",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 48,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-21T16:12:00.000Z",
+   "updatedAt": "2026-10-21T16:12:00.000Z",
+   "weight": 50.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-07-set-48-1",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 48,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-21T16:15:00.000Z",
+   "updatedAt": "2026-10-21T16:15:00.000Z",
+   "weight": 52.5,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-07-set-116-0",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 116,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-21T16:18:00.000Z",
+   "updatedAt": "2026-10-21T16:18:00.000Z",
+   "weight": 100,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-07-set-116-1",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 116,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-21T16:21:00.000Z",
+   "updatedAt": "2026-10-21T16:21:00.000Z",
+   "weight": 105,
+   "reps": 3
+  },
+  {
+   "id": "demo-workout-07-set-93-0",
+   "workoutId": "demo-workout-07",
+   "exerciseId": 93,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-21T16:24:00.000Z",
+   "updatedAt": "2026-10-21T16:24:00.000Z",
+   "weight": 140,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-08-set-321-0",
+   "workoutId": "demo-workout-08",
+   "exerciseId": 321,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-23T16:03:00.000Z",
+   "updatedAt": "2026-10-23T16:03:00.000Z",
+   "weight": 0,
+   "reps": 1,
+   "distance": 4.0,
+   "duration": 22,
+   "incline": 2,
+   "intensity": 6
+  },
+  {
+   "id": "demo-workout-08-set-281-0",
+   "workoutId": "demo-workout-08",
+   "exerciseId": 281,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-23T16:06:00.000Z",
+   "updatedAt": "2026-10-23T16:06:00.000Z",
+   "weight": 0,
+   "reps": 60
+  },
+  {
+   "id": "demo-workout-08-set-281-1",
+   "workoutId": "demo-workout-08",
+   "exerciseId": 281,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-23T16:09:00.000Z",
+   "updatedAt": "2026-10-23T16:09:00.000Z",
+   "weight": 0,
+   "reps": 45
+  },
+  {
+   "id": "demo-workout-09-set-1-0",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 1,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-26T16:03:00.000Z",
+   "updatedAt": "2026-10-26T16:03:00.000Z",
+   "weight": 57.5,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-09-set-1-1",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 1,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-26T16:06:00.000Z",
+   "updatedAt": "2026-10-26T16:06:00.000Z",
+   "weight": 60.0,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-09-set-1-2",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 1,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-26T16:09:00.000Z",
+   "updatedAt": "2026-10-26T16:09:00.000Z",
+   "weight": 60.0,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-09-set-2-0",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 2,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-26T16:12:00.000Z",
+   "updatedAt": "2026-10-26T16:12:00.000Z",
+   "weight": 24,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-09-set-2-1",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 2,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-26T16:15:00.000Z",
+   "updatedAt": "2026-10-26T16:15:00.000Z",
+   "weight": 24,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-09-set-7-0",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 7,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-26T16:18:00.000Z",
+   "updatedAt": "2026-10-26T16:18:00.000Z",
+   "weight": 13,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-09-set-7-1",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 7,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-26T16:21:00.000Z",
+   "updatedAt": "2026-10-26T16:21:00.000Z",
+   "weight": 13,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-09-set-235-0",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 235,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-26T16:24:00.000Z",
+   "updatedAt": "2026-10-26T16:24:00.000Z",
+   "weight": 32.5,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-09-set-235-1",
+   "workoutId": "demo-workout-09",
+   "exerciseId": 235,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-26T16:27:00.000Z",
+   "updatedAt": "2026-10-26T16:27:00.000Z",
+   "weight": 32.5,
+   "reps": 9
+  },
+  {
+   "id": "demo-workout-10-set-71-0",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 71,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-28T16:03:00.000Z",
+   "updatedAt": "2026-10-28T16:03:00.000Z",
+   "weight": 85,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-10-set-71-1",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 71,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-28T16:06:00.000Z",
+   "updatedAt": "2026-10-28T16:06:00.000Z",
+   "weight": 85,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-10-set-71-2",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 71,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-10-28T16:09:00.000Z",
+   "updatedAt": "2026-10-28T16:09:00.000Z",
+   "weight": 90,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-10-set-48-0",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 48,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-28T16:12:00.000Z",
+   "updatedAt": "2026-10-28T16:12:00.000Z",
+   "weight": 52.5,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-10-set-48-1",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 48,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-28T16:15:00.000Z",
+   "updatedAt": "2026-10-28T16:15:00.000Z",
+   "weight": 55.0,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-10-set-116-0",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 116,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-28T16:18:00.000Z",
+   "updatedAt": "2026-10-28T16:18:00.000Z",
+   "weight": 105,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-10-set-116-1",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 116,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-28T16:21:00.000Z",
+   "updatedAt": "2026-10-28T16:21:00.000Z",
+   "weight": 110,
+   "reps": 3
+  },
+  {
+   "id": "demo-workout-10-set-93-0",
+   "workoutId": "demo-workout-10",
+   "exerciseId": 93,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-28T16:24:00.000Z",
+   "updatedAt": "2026-10-28T16:24:00.000Z",
+   "weight": 150,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-11-set-321-0",
+   "workoutId": "demo-workout-11",
+   "exerciseId": 321,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-30T16:03:00.000Z",
+   "updatedAt": "2026-10-30T16:03:00.000Z",
+   "weight": 0,
+   "reps": 1,
+   "distance": 4.5,
+   "duration": 23,
+   "incline": 2,
+   "intensity": 6
+  },
+  {
+   "id": "demo-workout-11-set-281-0",
+   "workoutId": "demo-workout-11",
+   "exerciseId": 281,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-10-30T16:06:00.000Z",
+   "updatedAt": "2026-10-30T16:06:00.000Z",
+   "weight": 0,
+   "reps": 60
+  },
+  {
+   "id": "demo-workout-11-set-281-1",
+   "workoutId": "demo-workout-11",
+   "exerciseId": 281,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-10-30T16:09:00.000Z",
+   "updatedAt": "2026-10-30T16:09:00.000Z",
+   "weight": 0,
+   "reps": 45
+  },
+  {
+   "id": "demo-workout-12-set-1-0",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 1,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-02T16:03:00.000Z",
+   "updatedAt": "2026-11-02T16:03:00.000Z",
+   "weight": 60.0,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-12-set-1-1",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 1,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-02T16:06:00.000Z",
+   "updatedAt": "2026-11-02T16:06:00.000Z",
+   "weight": 62.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-12-set-1-2",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 1,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-11-02T16:09:00.000Z",
+   "updatedAt": "2026-11-02T16:09:00.000Z",
+   "weight": 62.5,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-12-set-2-0",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 2,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-02T16:12:00.000Z",
+   "updatedAt": "2026-11-02T16:12:00.000Z",
+   "weight": 26,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-12-set-2-1",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 2,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-02T16:15:00.000Z",
+   "updatedAt": "2026-11-02T16:15:00.000Z",
+   "weight": 26,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-12-set-7-0",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 7,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-02T16:18:00.000Z",
+   "updatedAt": "2026-11-02T16:18:00.000Z",
+   "weight": 14,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-12-set-7-1",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 7,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-02T16:21:00.000Z",
+   "updatedAt": "2026-11-02T16:21:00.000Z",
+   "weight": 14,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-12-set-235-0",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 235,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-02T16:24:00.000Z",
+   "updatedAt": "2026-11-02T16:24:00.000Z",
+   "weight": 35.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-12-set-235-1",
+   "workoutId": "demo-workout-12",
+   "exerciseId": 235,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-02T16:27:00.000Z",
+   "updatedAt": "2026-11-02T16:27:00.000Z",
+   "weight": 35.0,
+   "reps": 9
+  },
+  {
+   "id": "demo-workout-13-set-71-0",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 71,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-04T16:03:00.000Z",
+   "updatedAt": "2026-11-04T16:03:00.000Z",
+   "weight": 90,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-13-set-71-1",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 71,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-04T16:06:00.000Z",
+   "updatedAt": "2026-11-04T16:06:00.000Z",
+   "weight": 90,
+   "reps": 6
+  },
+  {
+   "id": "demo-workout-13-set-71-2",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 71,
+   "setOrder": 2,
+   "completed": true,
+   "createdAt": "2026-11-04T16:09:00.000Z",
+   "updatedAt": "2026-11-04T16:09:00.000Z",
+   "weight": 95,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-13-set-48-0",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 48,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-04T16:12:00.000Z",
+   "updatedAt": "2026-11-04T16:12:00.000Z",
+   "weight": 55.0,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-13-set-48-1",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 48,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-04T16:15:00.000Z",
+   "updatedAt": "2026-11-04T16:15:00.000Z",
+   "weight": 57.5,
+   "reps": 8
+  },
+  {
+   "id": "demo-workout-13-set-116-0",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 116,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-04T16:18:00.000Z",
+   "updatedAt": "2026-11-04T16:18:00.000Z",
+   "weight": 110,
+   "reps": 5
+  },
+  {
+   "id": "demo-workout-13-set-116-1",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 116,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-04T16:21:00.000Z",
+   "updatedAt": "2026-11-04T16:21:00.000Z",
+   "weight": 115,
+   "reps": 3
+  },
+  {
+   "id": "demo-workout-13-set-93-0",
+   "workoutId": "demo-workout-13",
+   "exerciseId": 93,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-04T16:24:00.000Z",
+   "updatedAt": "2026-11-04T16:24:00.000Z",
+   "weight": 160,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-14-set-180-0",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 180,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-06T05:03:00.000Z",
+   "updatedAt": "2026-11-06T05:03:00.000Z",
+   "weight": 20,
+   "reps": 12
+  },
+  {
+   "id": "demo-workout-14-set-180-1",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 180,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-06T05:06:00.000Z",
+   "updatedAt": "2026-11-06T05:06:00.000Z",
+   "weight": 22.5,
+   "reps": 10
+  },
+  {
+   "id": "demo-workout-14-set-200-0",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 200,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-06T05:09:00.000Z",
+   "updatedAt": "2026-11-06T05:09:00.000Z",
+   "weight": 8,
+   "reps": 15
+  },
+  {
+   "id": "demo-workout-14-set-200-1",
+   "workoutId": "demo-workout-14",
+   "exerciseId": 200,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-06T05:12:00.000Z",
+   "updatedAt": "2026-11-06T05:12:00.000Z",
+   "weight": 8,
+   "reps": 15
+  },
+  {
+   "id": "demo-workout-15-set-321-0",
+   "workoutId": "demo-workout-15",
+   "exerciseId": 321,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-06T16:03:00.000Z",
+   "updatedAt": "2026-11-06T16:03:00.000Z",
+   "weight": 0,
+   "reps": 1,
+   "distance": 5.0,
+   "duration": 24,
+   "incline": 2,
+   "intensity": 6
+  },
+  {
+   "id": "demo-workout-15-set-281-0",
+   "workoutId": "demo-workout-15",
+   "exerciseId": 281,
+   "setOrder": 0,
+   "completed": true,
+   "createdAt": "2026-11-06T16:06:00.000Z",
+   "updatedAt": "2026-11-06T16:06:00.000Z",
+   "weight": 0,
+   "reps": 60
+  },
+  {
+   "id": "demo-workout-15-set-281-1",
+   "workoutId": "demo-workout-15",
+   "exerciseId": 281,
+   "setOrder": 1,
+   "completed": true,
+   "createdAt": "2026-11-06T16:09:00.000Z",
+   "updatedAt": "2026-11-06T16:09:00.000Z",
+   "weight": 0,
+   "reps": 45
+  }
+ ],
+ "exerciseProgress": [
+  {
+   "exerciseId": 9,
+   "masteryPointAdjustment": 300,
+   "totalSets": 0,
+   "totalXp": 0,
+   "bestWeightEver": 0
+  },
+  {
+   "exerciseId": 180,
+   "masteryPointAdjustment": 130,
+   "totalSets": 0,
+   "totalXp": 0,
+   "bestWeightEver": 0
+  },
+  {
+   "exerciseId": 10,
+   "masteryPointAdjustment": 60,
+   "totalSets": 0,
+   "totalXp": 0,
+   "bestWeightEver": 0
+  },
+  {
+   "exerciseId": 45,
+   "masteryPointAdjustment": 16,
+   "totalSets": 0,
+   "totalXp": 0,
+   "bestWeightEver": 0
+  }
+ ]
+}

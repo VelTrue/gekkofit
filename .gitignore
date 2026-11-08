@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# design map: raw PNG screenshots (WebP copies live in docs/design/cabinet/screens)
+docs/design/screens/

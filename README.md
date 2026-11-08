@@ -44,7 +44,7 @@ Workflow устанавливает зависимости, запускает �
 - `src/data-layer` - логика без интерфейса: тренировки, подходы, история, мастерство, резервная копия.
 - `src/db` - схема IndexedDB (Dexie) и миграции, синхронизация каталога из `data/exercises.json`.
 - `docs/superpowers` - спецификации и планы.
-- `docs/design/cabinet/index.html` - макеты всех экранов по группам сценариев, `docs/design/flow.html` - те же экраны на одной доске со стрелками. Оба собираются командой `python docs/design/build.py` из описания экранов в этом файле.
+- `docs/design/cabinet/index.html` - все экраны приложения на одной странице: скриншоты живого сайта в тёмной и светлой теме, группы, фильтры, недочёты и предложения. Обновление: `node docs/design/capture/capture.cjs` (нужен `npm i --no-save puppeteer-core@23.11.1`), затем `python docs/design/build.py`.
 
 Вкладки адресуются через hash: `#/workout`, `#/progress`, `#/history`, `#/settings`.
 

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GekkoFit · История</title>
+<!-- Собрано docs/design/build.py по скриншотам capture.cjs. -->
+<link rel="stylesheet" href="cabinet.css">
+</head>
+<body class="board">
+<header class="board-head"><div><h1>GekkoFit · 6. История</h1><p>Архив тренировок: список, календарь, день, завершённая тренировка. Скриншоты с gekkofit.vercel.app (коммит 21cf456), 8 ноября 2026.</p><nav><a href="index.html">Все экраны</a><a href="S5-confirm.html">← 5. Подтверждения</a><a href="S7-mastery.html">7. Мастерство →</a></nav></div><div class="tools"><div class="board-tools" role="group" aria-label="Тема экранов"><button type="button" data-mode="dark" aria-pressed="true">Тёмная</button><button type="button" data-mode="light" aria-pressed="false">Светлая</button></div><div class="board-tools" role="group" aria-label="Размер экранов"><button type="button" data-size="s" aria-pressed="false">Мелко</button><button type="button" data-size="m" aria-pressed="true">Средне</button><button type="button" data-size="l" aria-pressed="false">Крупно</button></div></div></header>
+<main class="flow">
+  <section class="shot" id="A6" data-status="state" data-group="history" data-tab="История" data-bugs="1" data-search="a6 история · пусто завершённых тренировок нет только текст, нет кнопки «начать тренировку» (предложение h10)">
+    <div class="cap"><b><span>A6</span>История · пусто<em class="st state">состояние</em><em class="st bug">недочёты: 1</em></b><small>завершённых тренировок нет</small><span class="note bug">только текст, нет кнопки «Начать тренировку» (предложение H10)</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть A6 крупно" data-full-dark="screens/dark/history-empty.webp" data-full-light="screens/light/history-empty.webp"><img loading="lazy" alt="A6 История · пусто" src="screens/dark/history-empty.webp" data-dark="screens/dark/history-empty.webp" data-light="screens/light/history-empty.webp"></button></div>
+  </section>
+  <section class="shot" id="B6" data-status="ok" data-group="history" data-tab="История" data-bugs="2" data-search="b6 история · список вкладка «история» кардио в карточке: «1 подход, 0 повторений» планка: «2 подхода, 105 повторений» (секунды посчитаны как повторы)">
+    <div class="cap"><b><span>B6</span>История · список<em class="st ok">есть</em><em class="st bug">недочёты: 2</em></b><small>вкладка «История»</small><span class="to">Переходы: «карточка» → <a class="code" href="S6-history.html#E6">E6</a> · «Календарь» → <a class="code" href="S6-history.html#C6">C6</a></span><span class="note bug">кардио в карточке: «1 подход, 0 повторений»</span><span class="note bug">планка: «2 подхода, 105 повторений» (секунды посчитаны как повторы)</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть B6 крупно" data-full-dark="screens/dark/history-full.webp" data-full-light="screens/light/history-full.webp"><img loading="lazy" alt="B6 История · список" src="screens/dark/history.webp" data-dark="screens/dark/history.webp" data-light="screens/light/history.webp"></button></div>
+  </section>
+  <section class="shot" id="C6" data-status="ok" data-group="history" data-tab="История" data-bugs="0" data-search="c6 история · календарь месяц последней тренировки, дни с тренировками выделены">
+    <div class="cap"><b><span>C6</span>История · календарь<em class="st ok">есть</em></b><small>месяц последней тренировки, дни с тренировками выделены</small><span class="to">Переходы: «день» → <a class="code" href="S6-history.html#E6">E6</a> · «день с двумя» → <a class="code" href="S6-history.html#D6">D6</a> · «Список» → <a class="code" href="S6-history.html#B6">B6</a></span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть C6 крупно" data-full-dark="screens/dark/history-calendar.webp" data-full-light="screens/light/history-calendar.webp"><img loading="lazy" alt="C6 История · календарь" src="screens/dark/history-calendar.webp" data-dark="screens/dark/history-calendar.webp" data-light="screens/light/history-calendar.webp"></button></div>
+  </section>
+  <section class="shot" id="D6" data-status="state" data-group="history" data-tab="История" data-bugs="0" data-search="d6 календарь · несколько за день 6 ноября: две тренировки">
+    <div class="cap"><b><span>D6</span>Календарь · несколько за день<em class="st state">состояние</em></b><small>6 ноября: две тренировки</small><span class="to">Переходы: «карточка» → <a class="code" href="S6-history.html#E6">E6</a></span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть D6 крупно" data-full-dark="screens/dark/history-day.webp" data-full-light="screens/light/history-day.webp"><img loading="lazy" alt="D6 Календарь · несколько за день" src="screens/dark/history-day.webp" data-dark="screens/dark/history-day.webp" data-light="screens/light/history-day.webp"></button></div>
+  </section>
+  <section class="shot" id="E6" data-status="ok" data-group="history" data-tab="История" data-bugs="0" data-search="e6 завершённая тренировка всё редактируется: подходы, упражнения, название">
+    <div class="cap"><b><span>E6</span>Завершённая тренировка<em class="st ok">есть</em></b><small>всё редактируется: подходы, упражнения, название</small><span class="to">Переходы: «Удалить тренировку» → <a class="code" href="S6-history.html#F6">F6</a> · «Добавить упражнение» → <a class="code" href="S2-picker.html#A2">A2</a> · «Назад к истории» → <a class="code" href="S6-history.html#B6">B6</a></span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть E6 крупно" data-full-dark="screens/dark/history-detail-full.webp" data-full-light="screens/light/history-detail-full.webp"><img loading="lazy" alt="E6 Завершённая тренировка" src="screens/dark/history-detail.webp" data-dark="screens/dark/history-detail.webp" data-light="screens/light/history-detail.webp"></button></div>
+  </section>
+  <section class="shot" id="F6" data-status="ok" data-group="history" data-tab="История" data-bugs="0" data-search="f6 удалить тренировку? ">
+    <div class="cap"><b><span>F6</span>Удалить тренировку?<em class="st ok">есть</em></b><small></small><span class="to">Переходы: «Удалить» → <a class="code" href="S6-history.html#B6">B6</a> · «Назад» → <a class="code" href="S6-history.html#E6">E6</a></span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть F6 крупно" data-full-dark="screens/dark/history-delete.webp" data-full-light="screens/light/history-delete.webp"><img loading="lazy" alt="F6 Удалить тренировку?" src="screens/dark/history-delete.webp" data-dark="screens/dark/history-delete.webp" data-light="screens/light/history-delete.webp"></button></div>
+  </section>
+</main>
+<div class="lightbox" hidden><button type="button" class="lightbox-close" aria-label="Закрыть">✕</button><img alt=""></div>
+<script src="cabinet.js"></script>
+</body>
+</html>

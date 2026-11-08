@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GekkoFit · История и замена упражнения</title>
+<!-- Собрано docs/design/build.py по скриншотам capture.cjs. -->
+<link rel="stylesheet" href="cabinet.css">
+</head>
+<body class="board">
+<header class="board-head"><div><h1>GekkoFit · 4. История и замена упражнения</h1><p>Кнопки «История» и «Заменить» в карточке упражнения. Скриншоты с gekkofit.vercel.app (коммит 21cf456), 8 ноября 2026.</p><nav><a href="index.html">Все экраны</a><a href="S3-workout.html">← 3. Тренировка идёт</a><a href="S5-confirm.html">5. Подтверждения →</a></nav></div><div class="tools"><div class="board-tools" role="group" aria-label="Тема экранов"><button type="button" data-mode="dark" aria-pressed="true">Тёмная</button><button type="button" data-mode="light" aria-pressed="false">Светлая</button></div><div class="board-tools" role="group" aria-label="Размер экранов"><button type="button" data-size="s" aria-pressed="false">Мелко</button><button type="button" data-size="m" aria-pressed="true">Средне</button><button type="button" data-size="l" aria-pressed="false">Крупно</button></div></div></header>
+<main class="flow">
+  <section class="shot" id="A4" data-status="ok" data-group="exercise" data-tab="Тренировка" data-bugs="1" data-search="a4 история упражнения лист из a3 · последняя тренировка с этим упражнением под датой тег с названием тренировки в заголовке нет названия упражнения">
+    <div class="cap"><b><span>A4</span>История упражнения<em class="st ok">есть</em><em class="st bug">недочёты: 1</em></b><small>лист из A3 · последняя тренировка с этим упражнением</small><span class="to">Переходы: «Вся история» → <a class="code" href="S4-exercise.html#B4">B4</a> · «✕» → <a class="code" href="S3-workout.html#A3">A3</a></span><span class="note">под датой тег с названием тренировки</span><span class="note bug">в заголовке нет названия упражнения</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть A4 крупно" data-full-dark="screens/dark/exercise-history.webp" data-full-light="screens/light/exercise-history.webp"><img loading="lazy" alt="A4 История упражнения" src="screens/dark/exercise-history.webp" data-dark="screens/dark/exercise-history.webp" data-light="screens/light/exercise-history.webp"></button></div>
+  </section>
+  <section class="shot" id="B4" data-status="state" data-group="exercise" data-tab="Тренировка" data-bugs="0" data-search="b4 вся история упражнения тот же лист, все тренировки графика прогресса нет (предложение d10)">
+    <div class="cap"><b><span>B4</span>Вся история упражнения<em class="st state">состояние</em></b><small>тот же лист, все тренировки</small><span class="to">Переходы: «Последняя тренировка» → <a class="code" href="S4-exercise.html#A4">A4</a></span><span class="note">графика прогресса нет (предложение D10)</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть B4 крупно" data-full-dark="screens/dark/exercise-history-all.webp" data-full-light="screens/light/exercise-history-all.webp"><img loading="lazy" alt="B4 Вся история упражнения" src="screens/dark/exercise-history-all.webp" data-dark="screens/dark/exercise-history-all.webp" data-light="screens/light/exercise-history-all.webp"></button></div>
+  </section>
+  <section class="shot" id="C4" data-status="ok" data-group="exercise" data-tab="Тренировка" data-bugs="0" data-search="c4 заменить упражнение каталог только из похожих упражнений уже добавленные в тренировку исключены">
+    <div class="cap"><b><span>C4</span>Заменить упражнение<em class="st ok">есть</em></b><small>каталог только из похожих упражнений</small><span class="to">Переходы: «упражнение» → <a class="code" href="S4-exercise.html#D4">D4</a> · «Назад к тренировке» → <a class="code" href="S3-workout.html#A3">A3</a></span><span class="note">уже добавленные в тренировку исключены</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть C4 крупно" data-full-dark="screens/dark/replace.webp" data-full-light="screens/light/replace.webp"><img loading="lazy" alt="C4 Заменить упражнение" src="screens/dark/replace.webp" data-dark="screens/dark/replace.webp" data-light="screens/light/replace.webp"></button></div>
+  </section>
+  <section class="shot" id="D4" data-status="ok" data-group="exercise" data-tab="Тренировка" data-bugs="1" data-search="d4 заменить · подтверждение подходы прежнего упражнения удаляются кнопка «заменить» красная, как удаление">
+    <div class="cap"><b><span>D4</span>Заменить · подтверждение<em class="st ok">есть</em><em class="st bug">недочёты: 1</em></b><small>подходы прежнего упражнения удаляются</small><span class="to">Переходы: «Заменить» → <a class="code" href="S3-workout.html#A3">A3</a> · «Назад» → <a class="code" href="S4-exercise.html#C4">C4</a></span><span class="note bug">кнопка «Заменить» красная, как удаление</span></div>
+    <div class="device"><button type="button" class="shot-img" aria-label="Открыть D4 крупно" data-full-dark="screens/dark/replace-confirm.webp" data-full-light="screens/light/replace-confirm.webp"><img loading="lazy" alt="D4 Заменить · подтверждение" src="screens/dark/replace-confirm.webp" data-dark="screens/dark/replace-confirm.webp" data-light="screens/light/replace-confirm.webp"></button></div>
+  </section>
+</main>
+<div class="lightbox" hidden><button type="button" class="lightbox-close" aria-label="Закрыть">✕</button><img alt=""></div>
+<script src="cabinet.js"></script>
+</body>
+</html>
