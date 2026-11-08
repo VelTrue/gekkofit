@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Workout mastery">
+  <rect width="64" height="64" rx="15" fill="#15171a"/>
+  <path d="M32 8l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" fill="#c8ff3d"/>
+  <path d="M17 29h6v6h18v-6h6v-5h6v16h-6v-5h-6v5H23v-5h-6v5h-6V24h6z" fill="#f4f5ef"/>
+  <circle cx="32" cy="32" r="4" fill="#ff7058"/>
+</svg>

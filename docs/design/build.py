@@ -1,8 +1,9 @@
-"""Сайт-карта экранов GekkoFit: все экраны живого приложения на одной странице и по группам.
+"""Сайт-карта экранов GekkoFit: все экраны приложения на одной странице и по группам, каждый можно «пощупать».
 
-Как обновить после изменений в приложении:
-  1. node docs/design/capture/capture.cjs          снимает скриншоты с https://gekkofit.vercel.app/
-  2. python docs/design/build.py                   собирает docs/design/cabinet/
+Как обновить после изменений в приложении (из корня репозитория, после git fetch):
+  1. python docs/design/build_app.py [origin/main]  собирает живые экраны: приложение + шаги из states.py
+  2. node docs/design/capture/capture.cjs           снимает скриншоты с живых экранов (тёмная и светлая тема)
+  3. python docs/design/build.py                    собирает страницы docs/design/cabinet/
 
 Каждый экран описан ниже одной записью shot(...): код (A1...), группа, вкладка, статус,
 название, файл скриншота, переходы, заметки и найденные недочёты. Экраны группы
@@ -12,14 +13,19 @@ import html as html_lib
 import json
 import os
 
+import sys
+
 from PIL import Image
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from states import STATES  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, 'screens')            # PNG от capture.cjs (в git не хранятся)
 SITE = os.path.join(HERE, 'cabinet')           # готовый сайт
 EM = chr(0x2014)
 CAPTURED = '8 ноября 2026'
-SOURCE = 'gekkofit.vercel.app (коммит 21cf456)'
+SOURCE = 'версии с GitHub (origin/main, коммит 21cf456, как на gekkofit.vercel.app)'
 
 GROUPS = []   # группы-сценарии
 SHOTS = []    # экраны
@@ -207,18 +213,16 @@ for item in SHOTS:
 
 
 def webp(name, theme):
-    """screens/<тема>/<имя>.png -> cabinet/screens/<тема>/<имя>.webp; возвращает путь для сайта или None."""
-    folder = 'desktop' if name.startswith('desktop/') else theme
-    base = name.split('/')[-1]
-    src = os.path.join(RAW, folder, base + '.png')
-    rel = f'screens/{folder}/{base}.webp'
+    """screens/<тема>/<имя>.png -> cabinet/screens/<тема>/<имя>.webp; путь для сайта или None."""
+    src = os.path.join(RAW, theme, name + '.png')
+    rel = f'screens/{theme}/{name}.webp'
     dst = os.path.join(SITE, rel)
     if not os.path.exists(src):
         return rel if os.path.exists(dst) else None
     if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         im = Image.open(src).convert('RGB')
-        if folder != 'desktop':
+        if im.width < 1000:
             im = im.resize((im.width * 3 // 4, im.height * 3 // 4), Image.LANCZOS)
         im.save(dst, 'WEBP', quality=78, method=6)
     return rel
@@ -244,18 +248,24 @@ def render_shot(s, single):
     if s['mock']:
         device = f'<div class="screen" data-mode="dark">{s["mock"]}</div>'
     else:
-        dark, light = webp(s['img'], 'dark'), webp(s['img'], 'light')
-        light = light or dark
-        full_dark = (webp(s['full'], 'dark') if s['full'] else None) or dark
-        full_light = (webp(s['full'], 'light') if s['full'] else None) or light
-        device = (f'<button type="button" class="shot-img" aria-label="Открыть {s["code"]} крупно" data-full-dark="{full_dark}" data-full-light="{full_light}">'
-                  f'<img loading="lazy" alt="{s["code"]} {e(s["title"])}" src="{dark}" data-dark="{dark}" data-light="{light}"></button>')
+        code = s['code']
+        dark = webp(code, 'dark')
+        light = webp(code, 'light') or dark
+        full_dark = (webp(code + '-full', 'dark') if s['full'] else None) or dark
+        full_light = (webp(code + '-full', 'light') if s['full'] else None) or light
+        device = (f'<button type="button" class="shot-img" aria-label="Открыть {code} крупно" data-full-dark="{full_dark}" data-full-light="{full_light}">'
+                  f'<img loading="lazy" alt="{code} {e(s["title"])}" src="{dark}" data-dark="{dark}" data-light="{light}"></button>')
+    live = ''
+    if s['code'] in STATES:
+        live = (f'<div class="live-tools"><button type="button" class="live-on" data-live="{s["code"]}">Пощупать</button>'
+                f'<button type="button" class="live-reset" hidden>Сбросить</button><button type="button" class="live-off" hidden>Скриншот</button>'
+                f'<a class="live-open" href="app/index.html?state={s["code"]}" target="_blank" rel="noopener">в новой вкладке ↗</a></div>')
     search = ' '.join([s['code'], s['title'], s['meta'], *s['notes'], *s['bugs']]).lower()
     return (f'  <section class="shot{" wide" if s["wide"] else ""}" id="{s["code"]}" data-status="{cls}" data-group="{s["group"]}" '
             f'data-tab="{e(s["tab"])}" data-bugs="{len(s["bugs"])}" data-search="{e(search)}">\n'
             f'    <div class="cap"><b><span>{s["code"]}</span>{e(s["title"])}<em class="st {cls}">{s["status"]}</em>{bug_chip}</b>'
             f'<small>{s["meta"]}</small>{to}{notes}{bugs}</div>\n'
-            f'    <div class="device">{device}</div>\n  </section>\n')
+            f'    <div class="device">{device}</div>{live}\n  </section>\n')
 
 
 def chips(name, values):
@@ -312,14 +322,14 @@ sections = []
 for g in GROUPS:
     items = [s for s in SHOTS if s['group'] == g['id']]
     sections.append(f'<section class="group" id="g-{g["id"]}" data-group="{g["id"]}"><h2><span>{g["number"]}</span>{g["title"]}<small>{g["desc"]}</small>'
-                    f'<a href="{group_file(g["id"])}">отдельной страницей →</a></h2>'
+                    f'<button type="button" class="live-group">Пощупать всю группу</button><a href="{group_file(g["id"])}">отдельной страницей →</a></h2>'
                     '<div class="flow">\n' + ''.join(render_shot(s, True) for s in items) + '</div></section>')
 
 index_body = ('<header class="board-head"><div><h1>GekkoFit · все экраны</h1>'
-              f'<p>Все экраны и состояния приложения на одной странице. Скриншоты сняты с {SOURCE}, {CAPTURED}. '
-              'Назовите код экрана (например «C3») и что поменять. Нажатие на экран открывает его крупно. Красные заметки: найденные недочёты.</p></div>'
+              f'<p>Все экраны и состояния приложения на одной странице. Экраны собраны из {SOURCE}, {CAPTURED}. '
+              'Кнопка «Пощупать» под экраном включает живое приложение в этом состоянии: нажимайте, вводите, листайте. Назовите код экрана (например «C3») и что поменять. Красные заметки: найденные недочёты.</p></div>'
               f'<div class="tools">{TOOLS}</div></header>\n<main class="overview">{counts}<div class="grid">{"".join(cards)}</div>{filters}\n'
-              + '\n'.join(sections) + '</main>')
+              + '\n'.join(sections) + '</main><a class="to-filters" href="#filters">↑ Фильтры</a>')
 open(os.path.join(SITE, 'index.html'), 'w', encoding='utf-8', newline='\n').write(page('GekkoFit · все экраны', index_body, 'board index'))
 
 for number, g in enumerate(GROUPS):
@@ -331,12 +341,12 @@ for number, g in enumerate(GROUPS):
     if number < len(GROUPS) - 1:
         nxt = GROUPS[number + 1]
         nav.append(f'<a href="{group_file(nxt["id"])}">{nxt["number"]}. {nxt["title"]} →</a>')
-    body = (f'<header class="board-head"><div><h1>GekkoFit · {g["number"]}. {g["title"]}</h1><p>{g["desc"]}. Скриншоты с {SOURCE}, {CAPTURED}.</p>'
+    body = (f'<header class="board-head"><div><h1>GekkoFit · {g["number"]}. {g["title"]}</h1><p>{g["desc"]}. Экраны живые: нажимайте и вводите прямо в телефоне. Версия: {SOURCE}.</p>'
             f'<nav>{"".join(nav)}</nav></div><div class="tools">{TOOLS}</div></header>\n'
             '<main class="flow">\n' + ''.join(render_shot(s, False) for s in items) + '</main>')
-    open(os.path.join(SITE, group_file(g['id'])), 'w', encoding='utf-8', newline='\n').write(page(f'GekkoFit · {g["title"]}', body, 'board'))
+    open(os.path.join(SITE, group_file(g['id'])), 'w', encoding='utf-8', newline='\n').write(page(f'GekkoFit · {g["title"]}', body, 'board group-page'))
 
 with open(os.path.join(SITE, 'screens.json'), 'w', encoding='utf-8', newline='\n') as handle:
     json.dump([{k: v for k, v in s.items() if k != 'mock'} for s in SHOTS], handle, ensure_ascii=False, indent=1)
-missing = [s['code'] for s in SHOTS if not s['mock'] and not webp(s['img'], 'dark')]
+missing = [s['code'] for s in SHOTS if not s['mock'] and not webp(s['code'], 'dark')]
 print(f'{total} экранов, {real} из приложения, {bug_total} недочётов, групп {len(GROUPS)}' + (f', нет скриншотов: {missing}' if missing else ''))
