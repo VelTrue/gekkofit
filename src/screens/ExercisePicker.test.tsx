@@ -22,7 +22,7 @@ function Harness({ onPick = vi.fn(), replacementFor }: { onPick?: (exercise: Exe
 async function openPicker(onPick = vi.fn()) {
   render(<Harness onPick={onPick} />)
   await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
-  await screen.findByRole('heading', { name: 'Группы мышц' })
+  await screen.findByRole('heading', { name: 'Найти другое' })
   return onPick
 }
 
@@ -49,7 +49,7 @@ describe('visual exercise picker', () => {
 
   it('shows anatomy and supporting metadata, and selects only from the row', async () => {
     const onPick = await openPicker()
-    const results = await search('жим лежа наклон гантели')
+    const results = await search('Жим гантелей под наклоном')
     const select = await within(results).findByRole('button', { name: 'Добавить Жим гантелей под наклоном' })
     expect(within(select.closest('li')!).getByRole('img', { name: /Основные мышцы: грудь/ })).toBeVisible()
     expect(within(select).getByText('гантели')).toBeVisible()
@@ -67,7 +67,7 @@ describe('visual exercise picker', () => {
     const results = await screen.findByRole('region', { name: 'Похожие упражнения' })
     expect(within(results).getByText('Бег с высоким подниманием бедра')).toBeVisible()
     expect(within(results).queryByText('Езда на велотренажере')).not.toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'Группы мышц' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Найти другое' })).not.toBeInTheDocument()
   })
 
   it('explains when the catalog has no similar replacement', async () => {
@@ -83,7 +83,7 @@ describe('visual exercise picker', () => {
     const set = await addSet(db, workout.id, 19, 16, 10)
     await db.sets.update(set.id, { completed: true })
     const onPick = await openPicker()
-    const results = await search('жим лежа наклон гантели')
+    const results = await search('Жим гантелей под наклоном')
     const info = await within(results).findByRole('button', { name: 'Об упражнении Жим гантелей под наклоном' })
     await userEvent.click(info)
     const detail = screen.getByRole('dialog', { name: 'Жим гантелей под наклоном' })
@@ -105,7 +105,7 @@ describe('visual exercise picker', () => {
     await userEvent.click(back)
     await waitFor(() => expect(detail).not.toBeInTheDocument())
     expect(info).toHaveFocus()
-    expect(screen.getByRole('searchbox')).toHaveValue('жим лежа наклон гантели')
+    expect(screen.getByRole('searchbox')).toHaveValue('Жим гантелей под наклоном')
     await userEvent.click(info)
     fireEvent(screen.getByRole('dialog', { name: 'Жим гантелей под наклоном' }), new Event('cancel', { bubbles: false, cancelable: true }))
     await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Жим гантелей под наклоном' })).not.toBeInTheDocument())
@@ -114,55 +114,61 @@ describe('visual exercise picker', () => {
 
   it('closes detail before picker on browser Back, preserving the filter', async () => {
     await openPicker()
-    const results = await search('жим лежа наклон гантели')
+    const results = await search('Жим гантелей под наклоном')
     const info = await within(results).findByRole('button', { name: 'Об упражнении Жим гантелей под наклоном' })
     await userEvent.click(info)
     await act(async () => { history.back() })
     await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Жим гантелей под наклоном' })).not.toBeInTheDocument())
     expect(info).toHaveFocus()
-    expect(screen.getByRole('searchbox')).toHaveValue('жим лежа наклон гантели')
+    expect(screen.getByRole('searchbox')).toHaveValue('Жим гантелей под наклоном')
     await act(async () => { history.back() })
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
     expect(screen.getByRole('button', { name: 'Добавить упражнение' })).toHaveFocus()
   })
 
-  it('separates recent and frequent recommendations without repeating exercises', async () => {
+  it('shows the four latest completed exercises before the catalog', async () => {
     const workout = await startWorkout(db, 'ru')
     for (const exerciseId of [1, 19, 2, 3, 4]) {
       const set = await addSet(db, workout.id, exerciseId, 20, 8)
       await db.sets.update(set.id, { completed: true })
     }
     await openPicker()
-    const recent = screen.getByRole('region', { name: 'Недавние' })
-    const frequent = screen.getByRole('region', { name: 'Часто используемые' })
+    const recent = screen.getByRole('region', { name: 'Недавние упражнения' })
     const recentIds = Array.from(recent.querySelectorAll('[data-exercise-id]')).map((row) => row.getAttribute('data-exercise-id'))
-    const frequentIds = Array.from(frequent.querySelectorAll('[data-exercise-id]')).map((row) => row.getAttribute('data-exercise-id'))
-    expect(recentIds).toEqual(['4', '3', '2'])
-    expect(frequentIds).toEqual(['19', '1'])
-    expect(recentIds.some((id) => frequentIds.includes(id))).toBe(false)
-    expect(screen.getByRole('region', { name: 'Все упражнения' })).toBeVisible()
+    expect(recentIds).toEqual(['4', '3', '2', '19'])
+    expect(screen.queryByRole('region', { name: 'Все упражнения' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Открыть весь каталог/ })).toBeVisible()
   })
 
-  it('filters the full results by muscle group and clears the filter', async () => {
+  it('combines muscle and equipment filters and clears them', async () => {
     await openPicker()
-    const group = screen.getByRole('button', { name: 'Грудь' })
-    await userEvent.click(group)
-    expect(group).toHaveAttribute('aria-pressed', 'true')
-    const results = screen.getByRole('region', { name: 'Все упражнения' })
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Мышцы' }), 'ГРУДЬ')
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Инвентарь' }), 'barbell')
+    const results = screen.getByRole('region', { name: 'Подходящие упражнения' })
     const ids = Array.from(results.querySelectorAll('[data-exercise-id]')).map((row) => Number(row.getAttribute('data-exercise-id')))
-    const expected = await db.exercises.where('muscle_group').equals('ГРУДЬ').primaryKeys()
+    const expected = (await db.exercises.toArray()).filter((exercise) => exercise.muscle_group === 'ГРУДЬ' && exercise.equipment === 'штанга').map(({ id }) => id)
     expect(ids).toEqual(expected)
-    await userEvent.click(screen.getByRole('button', { name: 'Все группы' }))
-    expect(group).toHaveAttribute('aria-pressed', 'false')
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Мышцы' }), '')
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Инвентарь' }), '')
+    expect(screen.queryByRole('region', { name: 'Подходящие упражнения' })).not.toBeInTheDocument()
+  })
+
+  it('searches exercise names without matching muscle or equipment alone', async () => {
+    await openPicker()
+    expect(screen.getByRole('searchbox', { name: 'Поиск упражнений' })).toHaveAttribute('placeholder', 'Поиск по названию упражнения')
+    const results = await search('широчайшие')
+    expect(within(results).getByText('Ничего не найдено')).toBeVisible()
+    expect(within(results).queryByRole('button', { name: /^Добавить / })).not.toBeInTheDocument()
   })
 
   it('reveals the complete catalog in accessible batches and resets the batch on a new query', async () => {
     await openPicker()
+    await userEvent.click(screen.getByRole('button', { name: /Открыть весь каталог/ }))
     const results = screen.getByRole('region', { name: 'Все упражнения' })
     expect(results.querySelectorAll('[data-exercise-id]').length).toBe(40)
     await userEvent.click(within(results).getByRole('button', { name: 'Показать ещё' }))
     expect(results.querySelectorAll('[data-exercise-id]').length).toBe(80)
-    const matches = await search('жим лежа наклон гантели')
+    const matches = await search('Жим гантелей под наклоном')
     expect(matches.querySelectorAll('[data-exercise-id]').length).toBe(1)
     await userEvent.click(screen.getByRole('button', { name: 'Очистить поиск' }))
     expect(screen.getByRole('region', { name: 'Все упражнения' }).querySelectorAll('[data-exercise-id]').length).toBe(40)
@@ -174,7 +180,7 @@ describe('visual exercise picker', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Не удалось загрузить упражнения')
     await userEvent.click(screen.getByRole('button', { name: 'Повторить' }))
-    await screen.findByRole('heading', { name: 'Группы мышц' })
+    await screen.findByRole('heading', { name: 'Найти другое' })
     await search('zzzzzz')
     expect(await screen.findByText('Ничего не найдено')).toBeVisible()
     await userEvent.click(screen.getByRole('button', { name: 'Очистить поиск' }))
@@ -186,8 +192,8 @@ describe('visual exercise picker', () => {
     localStorage.setItem('lang', 'en')
     render(<Harness />)
     await userEvent.click(screen.getByRole('button', { name: 'Добавить упражнение' }))
-    await screen.findByRole('heading', { name: 'Muscle groups' })
-    expect(screen.getByRole('button', { name: 'Chest' })).toBeVisible()
+    await screen.findByRole('heading', { name: 'Find another' })
+    expect(screen.getByRole('option', { name: 'Chest' })).toBeInTheDocument()
     await userEvent.type(screen.getByRole('searchbox', { name: 'Search exercises' }), 'Dumbbell Incline Bench Press')
     await userEvent.click(await screen.findByRole('button', { name: 'About Dumbbell Incline Bench Press' }))
     const detail = screen.getByRole('dialog', { name: 'Dumbbell Incline Bench Press' })

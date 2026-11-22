@@ -32,6 +32,18 @@ describe('active workout', () => {
   })
   afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks() })
 
+  it('keeps set entry and workout actions in the active screen', async () => {
+    await activeFixture(false)
+    renderHome()
+    expect(await screen.findByRole('heading', { name: 'Подходы' })).toBeVisible()
+    expect(screen.getByText('0 из 1 выполнено')).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Завершить подход 1' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Добавить подход' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Добавить упражнение' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Завершить тренировку' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Удалить тренировку' })).toBeVisible()
+  })
+
   it('opens recent workouts with an empty state before the first session', async () => {
     renderHome()
     await userEvent.click(await screen.findByRole('button', { name: 'Недавние' }))
